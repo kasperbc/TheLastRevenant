@@ -17,4 +17,5 @@ texture = ExtResource("1_tb4jb")
 shape = SubResource("RectangleShape2D_2n7hf")
 
 [connection signal="collided" from="." to="." method="_on_collided"]
+[connection signal="max_distance_reached" from="." to="." method="_on_max_distance_reached"]
 [connection signal="spawned" from="." to="." method="_on_spawned"]

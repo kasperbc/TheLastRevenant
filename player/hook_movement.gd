@@ -3,38 +3,56 @@ extends CharacterBody2D
 const MOVE_SPEED = 400.0
 const MAX_DISTANCE = 300.0
 
+enum HookMoveState {NONE, MOVING, RETURNING}
+var current_state : HookMoveState
+
 var move_dir
-var shoot_position
-var moving = false
 
 signal spawned
 signal collided(collision_pos)
+signal max_distance_reached
 
 func _on_spawned():
 	move_dir = position.direction_to(get_global_mouse_position())
-	shoot_position = position
-	moving = true
+	current_state = HookMoveState.MOVING
 
 func _on_collided(_collision_pos):
-	moving = false
+	current_state = HookMoveState.NONE
 
 func _on_hook_released():
 	queue_free()
 
+func _on_max_distance_reached():
+	current_state = HookMoveState.RETURNING
+	set_collision_mask_value(1, false)
+
 # HOOK MOVEMENT
 
 func _physics_process(delta):
-	if not moving:
-		return
-	
+	if current_state == HookMoveState.MOVING:
+		process_moving(delta)
+	elif current_state == HookMoveState.RETURNING:
+		process_returning()
+
+func process_moving(delta):
 	var collision = move_and_collide(move_dir * MOVE_SPEED * delta)
 	
-	var distance_traveled = position.distance_to(shoot_position)
+	var distance_traveled = position.distance_to(GameMan.get_player().position)
 	if distance_traveled >= MAX_DISTANCE:
-		queue_free()
+		max_distance_reached.emit()
 		return
 	
 	if not collision:
 		return
 	
 	collided.emit(collision.get_position())
+
+func process_returning():
+	var direction = position.direction_to(GameMan.get_player().position)
+	
+	velocity = direction * MOVE_SPEED
+	move_and_slide()
+	
+	var distance = position.distance_to(GameMan.get_player().position)
+	if distance < 20:
+		queue_free()
