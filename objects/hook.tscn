@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfx5xq2alhmlx"]
+
+[ext_resource type="Script" path="res://player/hook_movement.gd" id="1_hil7d"]
+[ext_resource type="Texture2D" uid="uid://cwgpuitxqvde2" path="res://icon.svg" id="1_tb4jb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7hf"]
+
+[node name="Hook" type="CharacterBody2D" groups=["Hooks"]]
+collision_layer = 0
+script = ExtResource("1_hil7d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_tb4jb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2n7hf")
+
+[connection signal="collided" from="." to="." method="_on_collided"]
+[connection signal="spawned" from="." to="." method="_on_spawned"]
