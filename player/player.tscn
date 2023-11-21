@@ -17,4 +17,5 @@ position = Vector2(1.90735e-06, 2.14577e-06)
 scale = Vector2(0.156, 0.234375)
 texture = ExtResource("1_ed2c7")
 
+[connection signal="hook_early_released" from="." to="." method="_on_hook_early_released"]
 [connection signal="hook_released" from="." to="." method="_on_hook_released"]
