@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-const MOVE_SPEED = 400.0
-const MAX_DISTANCE = 300.0
+const MOVE_SPEED = 600.0
+const MAX_DISTANCE = 350.0
 
 enum HookMoveState {NONE, MOVING, RETURNING}
-var current_state : HookMoveState
 
+var current_state : HookMoveState
+var shoot_position : Vector2
 var move_dir
 
 signal spawned
@@ -14,6 +15,7 @@ signal max_distance_reached
 
 func _on_spawned():
 	move_dir = position.direction_to(get_global_mouse_position())
+	shoot_position = position
 	current_state = HookMoveState.MOVING
 
 func _on_collided(_collision_pos):
@@ -35,9 +37,10 @@ func _physics_process(delta):
 		process_returning()
 
 func process_moving(delta):
+	var distance_traveled = position.distance_to(shoot_position)
+	
 	var collision = move_and_collide(move_dir * MOVE_SPEED * delta)
 	
-	var distance_traveled = position.distance_to(GameMan.get_player().position)
 	if distance_traveled >= MAX_DISTANCE:
 		max_distance_reached.emit()
 		return

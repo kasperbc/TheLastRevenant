@@ -9,6 +9,8 @@
 [node name="Player" parent="." instance=ExtResource("1_37j5j")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 script = ExtResource("2_q7r5k")
 
 [node name="TileMap" type="TileMap" parent="."]

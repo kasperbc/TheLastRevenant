@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 150.0
+const SPEED = 175.0
 const ACCELERATION = 1200.0
 const FRICTION = 600.0
 const AIR_FRICTION = 400.0
@@ -10,9 +10,9 @@ const JUMP_HEIGHT = 100.0
 const JUMP_TIME_TO_PEAK = 0.45
 const JUMP_TIME_TO_DESCENT = 0.4
 
-const HOOK_BASE_FLY_SPEED = 300.0
-const HOOK_MAX_FLY_SPEED = 500.0
-const HOOK_ACCELERATION = 100.0
+const HOOK_BASE_FLY_SPEED = 500.0
+const HOOK_MAX_FLY_SPEED = 800.0
+const HOOK_ACCELERATION = 300.0
 const HOOK_JUMP_BASE_STRENGTH = 1
 const HOOK_JUMP_MIN_STRENGTH = 0.75
 const HOOK_JUMPS_BEFORE_MIN_STRENGTH = 4
@@ -88,15 +88,22 @@ func horizontal_move(delta):
 	
 	if direction:
 		var direction_opposite_to_velocity = clamp(direction * 100, -1, 1) + clamp(velocity.x, -1, 1) == 0
-		if (abs(velocity.x) < SNAP_VELOCITY or direction_opposite_to_velocity) and is_on_floor():
+		if (abs(velocity.x) < SNAP_VELOCITY or direction_opposite_to_velocity) and is_on_floor() and abs(velocity.x) < SPEED * 1.5:
 			velocity.x = SNAP_VELOCITY * direction
+		
+		if abs(velocity.x) > SPEED and not direction_opposite_to_velocity:
+			apply_friction(delta)
+			return
 		
 		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
 	else:
-		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
-		else:
-			velocity.x = move_toward(velocity.x, 0, AIR_FRICTION * delta)
+		apply_friction(delta)
+
+func apply_friction(delta):
+	if is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+	else:
+		velocity.x = move_toward(velocity.x, 0, AIR_FRICTION * delta)
 
 func fire_hook():
 	var hooks_fired = get_tree().get_nodes_in_group("Hooks").size()
@@ -125,7 +132,6 @@ func process_hook_flying(delta):
 	var direction = position.direction_to(hook_position)
 	
 	hook_speed = move_toward(hook_speed, HOOK_MAX_FLY_SPEED, HOOK_ACCELERATION * delta)
-	print(hook_speed)
 	velocity = direction * hook_speed
 	
 	# Check if close enough to hook
