@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://glmeh6l6odpp"]
+
+[ext_resource type="Texture2D" uid="uid://bigss2jferxn3" path="res://assets/sprites/ui/target_ind.png" id="1_bfg3p"]
+[ext_resource type="Script" path="res://objects/hook_shot_pos_indicator/hook_shot_pos_indicator.gd" id="2_ytyfj"]
+
+[node name="HookShotPosIndicator" type="Sprite2D"]
+texture = ExtResource("1_bfg3p")
+script = ExtResource("2_ytyfj")

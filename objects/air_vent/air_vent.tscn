@@ -9,7 +9,7 @@ size = Vector2(32, 64)
 [node name="AirVent" type="StaticBody2D"]
 script = ExtResource("2_qtu55")
 detect_player_near = true
-player_near_range = 2.0
+player_near_range = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5qaji")

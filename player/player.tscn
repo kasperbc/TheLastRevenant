@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdk28anvdyvwx"]
+[gd_scene load_steps=5 format=3 uid="uid://cdk28anvdyvwx"]
 
 [ext_resource type="Texture2D" uid="uid://cwgpuitxqvde2" path="res://icon.svg" id="1_ed2c7"]
 [ext_resource type="Script" path="res://player/player_movement.gd" id="1_xsl8m"]
+[ext_resource type="PackedScene" uid="uid://glmeh6l6odpp" path="res://objects/hook_shot_pos_indicator/hook_shot_pos_indicator.tscn" id="3_8hvtn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uw8j3"]
 
@@ -13,9 +14,15 @@ script = ExtResource("1_xsl8m")
 shape = SubResource("CapsuleShape2D_uw8j3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(1.90735e-06, 2.14577e-06)
 scale = Vector2(0.156, 0.234375)
 texture = ExtResource("1_ed2c7")
 
-[connection signal="hook_early_released" from="." to="." method="_on_hook_early_released"]
+[node name="HookShotPosIndicator" parent="." instance=ExtResource("3_8hvtn")]
+modulate = Color(1, 1, 1, 0.392157)
+show = true
+
+[connection signal="hook_fired" from="." to="." method="_on_hook_fired"]
 [connection signal="hook_released" from="." to="." method="_on_hook_released"]
+[connection signal="hook_released_early" from="." to="." method="_on_hook_released_early"]

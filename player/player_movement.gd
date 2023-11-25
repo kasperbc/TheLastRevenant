@@ -1,8 +1,9 @@
 extends CharacterBody2D
+class_name PlayerMovement
 
-const SPEED = 175.0
+const SPEED = 300.0
 const ACCELERATION = 1200.0
-const FRICTION = 600.0
+const FRICTION = 900.0
 const AIR_FRICTION = 400.0
 const SNAP_VELOCITY = 100.0
 
@@ -10,8 +11,8 @@ const JUMP_HEIGHT = 100.0
 const JUMP_TIME_TO_PEAK = 0.45
 const JUMP_TIME_TO_DESCENT = 0.4
 
-const HOOK_BASE_FLY_SPEED = 500.0
-const HOOK_MAX_FLY_SPEED = 800.0
+const HOOK_BASE_FLY_SPEED = 600.0
+const HOOK_MAX_FLY_SPEED = 900.0
 const HOOK_ACCELERATION = 300.0
 const HOOK_JUMP_BASE_STRENGTH = 1
 const HOOK_JUMP_MIN_STRENGTH = 0.75
@@ -21,15 +22,16 @@ const MAX_HOOKS = 1
 enum MoveState {NORMAL, HOOKED_FLYING, HOOKED}
 var current_state : MoveState
 
+signal hook_fired
 signal hook_released
-signal hook_early_released
+signal hook_released_early
 
 @onready var jump_velocity : float = ((-2.0 * JUMP_HEIGHT) / JUMP_TIME_TO_PEAK) * -1.0
 @onready var jump_gravity : float = ((-2.0 * JUMP_HEIGHT) / (JUMP_TIME_TO_PEAK * JUMP_TIME_TO_PEAK)) * -1.0
 @onready var fall_gravity : float = ((-2.0 * JUMP_HEIGHT) / (JUMP_TIME_TO_DESCENT * JUMP_TIME_TO_DESCENT)) * -1.0
 @onready var hook_jump_deplete_rate : float = (HOOK_JUMP_BASE_STRENGTH - HOOK_JUMP_MIN_STRENGTH) / HOOK_JUMPS_BEFORE_MIN_STRENGTH
 
-@onready var hook_obj = preload("res://objects/hook.tscn")
+@onready var hook_obj = preload("res://objects/hook/hook.tscn")
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -68,9 +70,8 @@ func process_normal_movement(delta):
 	horizontal_move(delta)
 	
 	if Input.is_action_just_pressed("fire_hook"):
-		fire_hook()
-	
-	
+		hook_fired.emit()
+
 
 func get_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
@@ -108,10 +109,8 @@ func apply_friction(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, AIR_FRICTION * delta)
 
-func fire_hook():
-	var hooks_fired = get_tree().get_nodes_in_group("Hooks").size()
-	
-	if hooks_fired >= MAX_HOOKS:
+func _on_hook_fired():
+	if get_hooks_fired_amount() >= MAX_HOOKS:
 		return
 	
 	var hook_instance = hook_obj.instantiate()
@@ -121,7 +120,10 @@ func fire_hook():
 	
 	hook_instance.collided.connect(_on_hook_collided)
 	hook_released.connect(hook_instance._on_hook_released)
-	hook_early_released.connect(hook_instance._on_max_distance_reached)
+	hook_released_early.connect(hook_instance._on_max_distance_reached)
+
+func get_hooks_fired_amount() -> int:
+	return get_tree().get_nodes_in_group("Hooks").size()
 
 func _on_hook_collided(collision : KinematicCollision2D):
 	current_state = MoveState.HOOKED_FLYING
@@ -155,7 +157,7 @@ func process_hook_flying(delta):
 	last_distance = distance
 	
 	if Input.is_action_just_pressed("jump"):
-		hook_early_released.emit()
+		hook_released_early.emit()
 
 func process_hooked():
 	velocity = Vector2.ZERO
@@ -183,7 +185,7 @@ func hook_jump():
 	velocity.y = -jump_velocity * hook_jump_strength
 	velocity.x = -position.direction_to(hook_position).x * 300 * hook_jump_strength
 
-func _on_hook_early_released():
+func _on_hook_released_early():
 	current_state = MoveState.NORMAL
 	
 	if hooked_obj:

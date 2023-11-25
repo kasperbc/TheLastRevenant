@@ -58,3 +58,8 @@ fire_hook={
 
 2d_physics/layer_1="Default"
 2d_physics/layer_2="Player"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"

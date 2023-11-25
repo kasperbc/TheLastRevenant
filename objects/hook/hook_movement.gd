@@ -1,6 +1,8 @@
 extends CharacterBody2D
+class_name HookMovement
 
-const MOVE_SPEED = 600.0
+const MOVE_SPEED = 800.0
+const RETURN_SPEED_MULTIPLIER = 1.2
 const MAX_DISTANCE = 350.0
 
 enum HookMoveState {NONE, MOVING, RETURNING}
@@ -53,7 +55,7 @@ func process_moving(delta):
 func process_returning():
 	var direction = position.direction_to(GameMan.get_player().position)
 	
-	velocity = direction * MOVE_SPEED
+	velocity = direction * MOVE_SPEED * RETURN_SPEED_MULTIPLIER
 	move_and_slide()
 	
 	var distance = position.distance_to(GameMan.get_player().position)
