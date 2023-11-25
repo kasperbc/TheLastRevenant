@@ -10,7 +10,7 @@ var shoot_position : Vector2
 var move_dir
 
 signal spawned
-signal collided(collision_pos)
+signal collided(collision : KinematicCollision2D)
 signal max_distance_reached
 
 func _on_spawned():
@@ -18,7 +18,7 @@ func _on_spawned():
 	shoot_position = position
 	current_state = HookMoveState.MOVING
 
-func _on_collided(_collision_pos):
+func _on_collided(_collision):
 	current_state = HookMoveState.NONE
 
 func _on_hook_released():
@@ -48,7 +48,7 @@ func process_moving(delta):
 	if not collision:
 		return
 	
-	collided.emit(collision.get_position())
+	collided.emit(collision)
 
 func process_returning():
 	var direction = position.direction_to(GameMan.get_player().position)

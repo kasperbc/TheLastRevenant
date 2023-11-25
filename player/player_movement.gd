@@ -38,6 +38,7 @@ var move_velocity
 var hook_position : Vector2
 var hook_speed : float
 var hook_jump_strength : float
+var hooked_obj
 var last_distance : float
 
 func _physics_process(delta):
@@ -98,6 +99,8 @@ func horizontal_move(delta):
 		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
 	else:
 		apply_friction(delta)
+	
+	
 
 func apply_friction(delta):
 	if is_on_floor():
@@ -120,10 +123,15 @@ func fire_hook():
 	hook_released.connect(hook_instance._on_hook_released)
 	hook_early_released.connect(hook_instance._on_max_distance_reached)
 
-func _on_hook_collided(collision_pos):
+func _on_hook_collided(collision : KinematicCollision2D):
 	current_state = MoveState.HOOKED_FLYING
-	hook_position = collision_pos
+	hook_position = collision.get_position()
 	hook_speed = HOOK_BASE_FLY_SPEED
+	
+	var _hooked_obj = collision.get_collider()
+	if _hooked_obj is HookableObject:
+		hooked_obj = _hooked_obj
+		hooked_obj._on_hook_attached()
 
 # HOOK MOVEMENT
 
@@ -139,6 +147,9 @@ func process_hook_flying(delta):
 	
 	if abs(last_distance - distance) < 1:
 		current_state = MoveState.HOOKED
+		
+		if hooked_obj:
+			hooked_obj._on_player_attached()
 		return
 		
 	last_distance = distance
@@ -159,6 +170,11 @@ func process_hooked():
 
 func _on_hook_released():
 	current_state = MoveState.NORMAL
+	
+	if hooked_obj:
+		hooked_obj._on_player_detached()
+	
+	hooked_obj = null
 
 func hook_jump():
 	hook_jump_strength -= hook_jump_deplete_rate
@@ -169,3 +185,8 @@ func hook_jump():
 
 func _on_hook_early_released():
 	current_state = MoveState.NORMAL
+	
+	if hooked_obj:
+		hooked_obj._on_hook_detached()
+	
+	hooked_obj = null
