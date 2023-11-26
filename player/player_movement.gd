@@ -18,6 +18,7 @@ const HOOK_ACCELERATION = 150.0
 const HOOK_JUMP_BASE_STRENGTH = 1
 const HOOK_JUMP_MIN_STRENGTH = 0.75
 const HOOK_JUMPS_BEFORE_MIN_STRENGTH = 4
+const HOOK_WALL_JUMP_STRENGTH = 150.0
 const MAX_HOOKS = 1
 
 enum MoveState {NORMAL, HOOKED_FLYING, HOOKED}
@@ -188,7 +189,7 @@ func hook_jump():
 	hook_jump_strength = clamp(hook_jump_strength, HOOK_JUMP_MIN_STRENGTH, 1.0)
 	
 	velocity.y = -jump_velocity * hook_jump_strength
-	velocity.x = -position.direction_to(hook_position).x * 300 * hook_jump_strength
+	velocity.x = -position.direction_to(hook_position).x * HOOK_WALL_JUMP_STRENGTH * hook_jump_strength
 
 func _on_hook_released_early():
 	current_state = MoveState.NORMAL
