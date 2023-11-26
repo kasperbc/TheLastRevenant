@@ -11,7 +11,7 @@
 [node name="Player" parent="." instance=ExtResource("1_37j5j")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(3, 3)
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("2_q7r5k")

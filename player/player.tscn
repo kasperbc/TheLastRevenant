@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://player/player_health.gd" id="4_lnaue"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uw8j3"]
+radius = 4.0
+height = 16.0
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 collision_layer = 2
@@ -18,7 +20,7 @@ shape = SubResource("CapsuleShape2D_uw8j3")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
 position = Vector2(1.90735e-06, 2.14577e-06)
-scale = Vector2(0.156, 0.234375)
+scale = Vector2(0.078, 0.117)
 texture = ExtResource("1_ed2c7")
 
 [node name="HookShotPosIndicator" parent="." instance=ExtResource("3_8hvtn")]

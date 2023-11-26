@@ -1,9 +1,9 @@
 extends CharacterBody2D
 class_name HookMovement
 
-const MOVE_SPEED = 800.0
+const MOVE_SPEED = 500.0
 const RETURN_SPEED_MULTIPLIER = 1.2
-const MAX_DISTANCE = 350.0
+const MAX_DISTANCE = 200.0
 
 enum HookMoveState {NONE, MOVING, RETURNING}
 

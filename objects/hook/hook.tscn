@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://clu5ba5esrbj2" path="res://icon.svg" id="2_rwlyf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7hf"]
+size = Vector2(10, 10)
 
 [node name="Hook" type="CharacterBody2D" groups=["Hooks"]]
 collision_layer = 0
@@ -11,7 +12,7 @@ collision_mask = 9
 script = ExtResource("1_idwuo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.075, 0.075)
 texture = ExtResource("2_rwlyf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
