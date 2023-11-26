@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5g4g7sk7nr3o"]
 
 [ext_resource type="Script" path="res://objects/hook/hook_movement.gd" id="1_idwuo"]
-[ext_resource type="Texture2D" uid="uid://cwgpuitxqvde2" path="res://icon.svg" id="2_rwlyf"]
+[ext_resource type="Texture2D" uid="uid://clu5ba5esrbj2" path="res://icon.svg" id="2_rwlyf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7hf"]
 
 [node name="Hook" type="CharacterBody2D" groups=["Hooks"]]
 collision_layer = 0
+collision_mask = 9
 script = ExtResource("1_idwuo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

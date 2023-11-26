@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdk28anvdyvwx"]
+[gd_scene load_steps=6 format=3 uid="uid://cdk28anvdyvwx"]
 
-[ext_resource type="Texture2D" uid="uid://cwgpuitxqvde2" path="res://icon.svg" id="1_ed2c7"]
+[ext_resource type="Texture2D" uid="uid://clu5ba5esrbj2" path="res://icon.svg" id="1_ed2c7"]
 [ext_resource type="Script" path="res://player/player_movement.gd" id="1_xsl8m"]
 [ext_resource type="PackedScene" uid="uid://glmeh6l6odpp" path="res://objects/hook_shot_pos_indicator/hook_shot_pos_indicator.tscn" id="3_8hvtn"]
+[ext_resource type="Script" path="res://player/player_health.gd" id="4_lnaue"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uw8j3"]
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_xsl8m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -22,6 +24,24 @@ texture = ExtResource("1_ed2c7")
 [node name="HookShotPosIndicator" parent="." instance=ExtResource("3_8hvtn")]
 modulate = Color(1, 1, 1, 0.392157)
 show = true
+
+[node name="FrictionParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 14)
+emitting = false
+amount = 25
+lifetime = 0.5
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, 920)
+initial_velocity_min = 323.23
+initial_velocity_max = 323.23
+color = Color(1, 1, 0, 1)
+
+[node name="HealthMan" type="Node" parent="."]
+script = ExtResource("4_lnaue")
 
 [connection signal="hook_fired" from="." to="." method="_on_hook_fired"]
 [connection signal="hook_released" from="." to="." method="_on_hook_released"]

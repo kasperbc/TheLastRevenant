@@ -6,6 +6,7 @@ const ACCELERATION = 1200.0
 const FRICTION = 900.0
 const AIR_FRICTION = 400.0
 const SNAP_VELOCITY = 100.0
+const MIN_VELOCITY_FRICTION_EFFECTS = 350.0
 
 const JUMP_HEIGHT = 100.0
 const JUMP_TIME_TO_PEAK = 0.45
@@ -88,6 +89,8 @@ func jump():
 func horizontal_move(delta):
 	var direction = Input.get_axis("move_left", "move_right")
 	
+	$FrictionParticles.emitting = false
+	
 	if direction:
 		var direction_opposite_to_velocity = clamp(direction * 100, -1, 1) + clamp(velocity.x, -1, 1) == 0
 		if (abs(velocity.x) < SNAP_VELOCITY or direction_opposite_to_velocity) and is_on_floor() and abs(velocity.x) < SPEED * 1.5:
@@ -106,6 +109,8 @@ func horizontal_move(delta):
 func apply_friction(delta):
 	if is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+		if abs(velocity.x) > MIN_VELOCITY_FRICTION_EFFECTS:
+			$FrictionParticles.emitting = true
 	else:
 		velocity.x = move_toward(velocity.x, 0, AIR_FRICTION * delta)
 
