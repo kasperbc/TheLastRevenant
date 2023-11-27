@@ -17,3 +17,6 @@ func _on_player_detached():
 
 func _on_player_near():
 	super()
+
+func _on_player_attacked():
+	super()

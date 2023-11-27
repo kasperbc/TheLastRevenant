@@ -42,3 +42,6 @@ func _on_player_detached():
 
 func _on_player_near():
 	print("Player near!")
+
+func _on_player_attacked():
+	print("Player attacked!")
