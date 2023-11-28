@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4mitftujrrxp"]
+[gd_scene load_steps=14 format=3 uid="uid://b4mitftujrrxp"]
 
 [ext_resource type="TileSet" uid="uid://cugqd8tqxnjuh" path="res://assets/tilesets/beta_tiles/beta_tileset_1.tres" id="1_25riw"]
 [ext_resource type="PackedScene" uid="uid://c2tk6n83hrwxq" path="res://objects/air_vent/air_vent.tscn" id="2_ncyf6"]
@@ -20,13 +20,16 @@ size = Vector2(152, 168)
 size = Vector2(448, 208)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eubjp"]
-size = Vector2(136, 224)
+size = Vector2(128, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omati"]
 size = Vector2(576, 136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcp53"]
 size = Vector2(1224, 348)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i21dt"]
+size = Vector2(127.625, 82.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw6ln"]
 size = Vector2(952, 70)
@@ -108,7 +111,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomContamination/CameraRestrictorSpawn2"]
-position = Vector2(812, -64)
+position = Vector2(808, -22)
 shape = SubResource("RectangleShape2D_eubjp")
 debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
@@ -130,6 +133,15 @@ collision_mask = 0
 [node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomStealth/CameraRestrictorStealth"]
 position = Vector2(1484, -126)
 shape = SubResource("RectangleShape2D_tcp53")
+debug_color = Color(0, 0.6, 0.701961, 0.0784314)
+
+[node name="CameraRestrictorStealth" type="Area2D" parent="RoomStealth/CameraRestrictorStealth"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomStealth/CameraRestrictorStealth/CameraRestrictorStealth"]
+position = Vector2(807.813, -134.25)
+shape = SubResource("RectangleShape2D_i21dt")
 debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
 [node name="CameraRestrictorStealth2" type="Area2D" parent="RoomStealth"]

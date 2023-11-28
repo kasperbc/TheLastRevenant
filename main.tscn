@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="1_37j5j"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="2_q7r5k"]
 [ext_resource type="PackedScene" uid="uid://b4mitftujrrxp" path="res://level.tscn" id="3_6jmh6"]
-[ext_resource type="PackedScene" uid="uid://dcr1q7oj4a006" path="res://main_ui.tscn" id="4_etwc1"]
+[ext_resource type="PackedScene" path="res://main_ui.tscn" id="4_etwc1"]
 
 [node name="Main" type="Node2D"]
 
