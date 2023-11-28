@@ -21,6 +21,8 @@ const HOOK_JUMPS_BEFORE_MIN_STRENGTH = 4
 const HOOK_WALL_JUMP_STRENGTH = 150.0
 const MAX_HOOKS = 1
 
+const HOOK_ATTACK_DISTANCE = 150.0
+
 enum MoveState {NORMAL, HOOKED_FLYING, HOOKED}
 var current_state : MoveState
 
@@ -42,8 +44,14 @@ var move_velocity
 var hook_position : Vector2
 var hook_speed : float
 var hook_jump_strength : float
-var hooked_obj
 var last_distance : float
+
+var _hooked_obj
+var hooked_obj : 
+	get: 
+		return get_hooked_obj() 
+	set(value): 
+		set_hooked_obj(value)
 
 func _physics_process(delta):
 	
@@ -164,6 +172,13 @@ func process_hook_flying(delta):
 	
 	if Input.is_action_just_pressed("jump"):
 		hook_released_early.emit()
+		return
+	
+	# Hook counter
+	if Input.is_action_just_pressed("hook_attack") and distance < HOOK_ATTACK_DISTANCE:
+		if hooked_obj:
+			hooked_obj._on_player_attacked()
+		return
 
 func process_hooked():
 	velocity = Vector2.ZERO
@@ -198,3 +213,13 @@ func _on_hook_released_early():
 		hooked_obj._on_hook_detached()
 	
 	hooked_obj = null
+
+func set_hooked_obj(value):
+	_hooked_obj = value
+
+func get_hooked_obj():
+	if is_instance_valid(_hooked_obj):
+		return _hooked_obj
+	else:
+		hooked_obj = null
+		return null

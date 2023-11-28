@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://csmvnldkrubnc"]
+
+[ext_resource type="PackedScene" uid="uid://b4mitftujrrxp" path="res://level.tscn" id="1_0sbx2"]
+[ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="2_gfv6k"]
+[ext_resource type="Script" path="res://player/player_camera.gd" id="3_257x3"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Level" parent="." instance=ExtResource("1_0sbx2")]
+
+[node name="Player" parent="." instance=ExtResource("2_gfv6k")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("3_257x3")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.0
+blend_mode = 1
