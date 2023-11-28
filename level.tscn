@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://b4mitftujrrxp"]
 
-[ext_resource type="TileSet" uid="uid://cc41iadyq3puy" path="res://assets/tilesets/beta_tiles/beta_tileset_1.tres" id="1_25riw"]
+[ext_resource type="TileSet" uid="uid://cugqd8tqxnjuh" path="res://assets/tilesets/beta_tiles/beta_tileset_1.tres" id="1_25riw"]
 [ext_resource type="PackedScene" uid="uid://c2tk6n83hrwxq" path="res://objects/air_vent/air_vent.tscn" id="2_ncyf6"]
 [ext_resource type="PackedScene" uid="uid://bqokkcn7ot43k" path="res://objects/enemies/test1/test_enemy_1.tscn" id="3_3m7y3"]
 

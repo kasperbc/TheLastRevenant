@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cc41iadyq3puy"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cugqd8tqxnjuh"]
 
 [ext_resource type="Texture2D" uid="uid://ckwwhofablvg5" path="res://assets/tilesets/beta_tiles/tlr-betatexture-1.png" id="1_brhmn"]
 [ext_resource type="Texture2D" uid="uid://c6n8b1jwavetj" path="res://assets/tilesets/beta_tiles/tlr-betatexture-1-pipes.png" id="2_mxvd1"]
@@ -1441,13 +1441,13 @@ texture = ExtResource("3_elsge")
 [resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "Mixed"
+terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.615686, 0.537255, 0, 1)
 terrain_set_1/mode = 0
-terrain_set_1/terrain_0/name = "Pipes"
+terrain_set_1/terrain_0/name = "Terrain 0"
 terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_2/mode = 0
-terrain_set_2/terrain_0/name = "Empty"
+terrain_set_2/terrain_0/name = "Terrain 0"
 terrain_set_2/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_smmsm")
 sources/1 = SubResource("TileSetAtlasSource_ut0ef")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5g4g7sk7nr3o"]
 
 [ext_resource type="Script" path="res://objects/hook/hook_movement.gd" id="1_idwuo"]
-[ext_resource type="Texture2D" uid="uid://by1ue4lbxgaqb" path="res://assets/sprites/hook/placeholder_hookshot.png" id="2_njg1c"]
+[ext_resource type="Texture2D" uid="uid://clu5ba5esrbj2" path="res://icon.svg" id="2_rwlyf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7hf"]
 size = Vector2(10, 10)
@@ -12,7 +12,8 @@ collision_mask = 9
 script = ExtResource("1_idwuo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_njg1c")
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("2_rwlyf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2n7hf")
