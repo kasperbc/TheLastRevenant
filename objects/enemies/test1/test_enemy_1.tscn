@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqokkcn7ot43k"]
+[gd_scene load_steps=5 format=3 uid="uid://bqokkcn7ot43k"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_4tsr2"]
 [ext_resource type="Texture2D" uid="uid://bigss2jferxn3" path="res://assets/sprites/ui/target_ind.png" id="2_jiy16"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xw5b"]
+radius = 15.0
 
 [node name="TestEnemy1" type="CharacterBody2D"]
 collision_layer = 8
@@ -18,3 +21,13 @@ texture = ExtResource("2_jiy16")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gfxgg")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_0xw5b")
+debug_color = Color(1, 0.6, 0, 0.298039)
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]
