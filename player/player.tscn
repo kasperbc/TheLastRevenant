@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://cdk28anvdyvwx"]
 
-[ext_resource type="Texture2D" uid="uid://clu5ba5esrbj2" path="res://icon.svg" id="1_ed2c7"]
 [ext_resource type="Script" path="res://player/player_movement.gd" id="1_xsl8m"]
+[ext_resource type="Texture2D" uid="uid://dpx5cqxqjj4av" path="res://assets/sprites/player/placeholder_betaplayer.png" id="2_lvogt"]
 [ext_resource type="PackedScene" uid="uid://glmeh6l6odpp" path="res://objects/hook_shot_pos_indicator/hook_shot_pos_indicator.tscn" id="3_8hvtn"]
 [ext_resource type="Script" path="res://player/player_health.gd" id="4_lnaue"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uw8j3"]
-radius = 4.0
-height = 16.0
+radius = 6.0
+height = 28.0
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 collision_layer = 2
@@ -15,13 +15,13 @@ collision_mask = 9
 script = ExtResource("1_xsl8m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_uw8j3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
 position = Vector2(1.90735e-06, 2.14577e-06)
-scale = Vector2(0.078, 0.117)
-texture = ExtResource("1_ed2c7")
+texture = ExtResource("2_lvogt")
 
 [node name="HookShotPosIndicator" parent="." instance=ExtResource("3_8hvtn")]
 modulate = Color(1, 1, 1, 0.392157)
