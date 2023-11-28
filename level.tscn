@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://b4mitftujrrxp"]
 
-[ext_resource type="TileSet" uid="uid://cugqd8tqxnjuh" path="res://assets/tilesets/beta_tiles/beta_tileset_1.tres" id="1_25riw"]
+[ext_resource type="TileSet" uid="uid://cc41iadyq3puy" path="res://assets/tilesets/beta_tiles/beta_tileset_1.tres" id="1_25riw"]
 [ext_resource type="PackedScene" uid="uid://c2tk6n83hrwxq" path="res://objects/air_vent/air_vent.tscn" id="2_ncyf6"]
 [ext_resource type="PackedScene" uid="uid://bqokkcn7ot43k" path="res://objects/enemies/test1/test_enemy_1.tscn" id="3_3m7y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eome5"]
-size = Vector2(448, 208)
+size = Vector2(448, 248)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5co7"]
-size = Vector2(448, 152)
+size = Vector2(448, 216)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kjpix"]
 size = Vector2(80, 104)
@@ -17,19 +17,19 @@ size = Vector2(80, 104)
 size = Vector2(152, 168)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5575"]
-size = Vector2(448, 208)
+size = Vector2(448, 264)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eubjp"]
-size = Vector2(136, 224)
+size = Vector2(128, 264)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omati"]
-size = Vector2(576, 136)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcp53"]
-size = Vector2(1224, 348)
+size = Vector2(576, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw6ln"]
-size = Vector2(952, 70)
+size = Vector2(1024, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcp53"]
+size = Vector2(1224, 424)
 
 [node name="Level" type="TileMap"]
 tile_set = ExtResource("1_25riw")
@@ -43,7 +43,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomSpawn/CameraRestrictorSpawn"]
-position = Vector2(72, -56)
+position = Vector2(72, -36)
 shape = SubResource("RectangleShape2D_eome5")
 debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
@@ -52,7 +52,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomSpawn/CameraRestrictorSpawn2"]
-position = Vector2(72, -236)
+position = Vector2(72, -268)
 shape = SubResource("RectangleShape2D_y5co7")
 debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
@@ -99,7 +99,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomContamination/CameraRestrictorSpawn"]
-position = Vector2(520, -56)
+position = Vector2(520, -44)
 shape = SubResource("RectangleShape2D_y5575")
 debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
@@ -108,7 +108,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomContamination/CameraRestrictorSpawn2"]
-position = Vector2(812, -64)
+position = Vector2(808, -44)
 shape = SubResource("RectangleShape2D_eubjp")
 debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
@@ -117,28 +117,29 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomContamination/CameraRestrictorSpawn3"]
-position = Vector2(584, -244)
+position = Vector2(584, -276)
 shape = SubResource("RectangleShape2D_omati")
 debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
 [node name="RoomStealth" type="Node2D" parent="."]
+
+[node name="CameraRestrictorStealth2" type="Area2D" parent="RoomStealth"]
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+
+[node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomStealth/CameraRestrictorStealth2"]
+position = Vector2(1384, 43)
+shape = SubResource("RectangleShape2D_yw6ln")
+debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
 [node name="CameraRestrictorStealth" type="Area2D" parent="RoomStealth"]
 collision_layer = 4
 collision_mask = 0
 
 [node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomStealth/CameraRestrictorStealth"]
-position = Vector2(1484, -126)
+position = Vector2(1484, -164)
 shape = SubResource("RectangleShape2D_tcp53")
-debug_color = Color(0, 0.6, 0.701961, 0.0784314)
-
-[node name="CameraRestrictorStealth2" type="Area2D" parent="RoomStealth"]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CameraRestrictorShape" type="CollisionShape2D" parent="RoomStealth/CameraRestrictorStealth2"]
-position = Vector2(1420, 83)
-shape = SubResource("RectangleShape2D_yw6ln")
 debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
 [node name="TestEnemy1" parent="RoomStealth" instance=ExtResource("3_3m7y3")]
