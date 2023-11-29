@@ -26,6 +26,6 @@ blend_mode = 1
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(828, -76)
-scale = Vector2(200, 200)
+position = Vector2(1917, -76)
+scale = Vector2(336.125, 200)
 texture = ExtResource("5_g3icy")
