@@ -21,7 +21,7 @@ func _on_contact_detection_body_entered(body : Node2D):
 	
 	on_player_contact()
 
-# enemy functions
+# damage / health
 func on_hook_attached():
 	if GameMan.get_player_health().invincible:
 		GameMan.get_player().hook_released_early.emit()

@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqokkcn7ot43k"]
+[gd_scene load_steps=8 format=3 uid="uid://bqokkcn7ot43k"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_4tsr2"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_tl2ki"]
 [ext_resource type="Texture2D" uid="uid://bigss2jferxn3" path="res://assets/sprites/ui/target_ind.png" id="2_jiy16"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_pap3r"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/idle_pointfollow_fly.gd" id="4_drwr0"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player.gd" id="5_r8vwl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
 
@@ -10,10 +13,12 @@ radius = 15.0
 
 [node name="TestEnemy1" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 2
-script = ExtResource("1_4tsr2")
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_tl2ki")
 health = 2
 player_near_range = 100.0
+metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
@@ -29,5 +34,23 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
 shape = SubResource("CircleShape2D_icfny")
 debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("3_pap3r")
+default_state = "pursue"
+
+[node name="idle" type="Node" parent="AI"]
+script = ExtResource("4_drwr0")
+speed = 100.0
+wait_time = 0.5
+slowdown_distance = 50.0
+speedup_distance = 50.0
+
+[node name="pursue" type="Node" parent="AI"]
+script = ExtResource("5_r8vwl")
 
 [connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]
