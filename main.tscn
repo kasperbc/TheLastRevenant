@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://c65f2wpdei786"]
+[gd_scene load_steps=9 format=3 uid="uid://c65f2wpdei786"]
 
 [ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="1_37j5j"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="2_q7r5k"]
 [ext_resource type="PackedScene" uid="uid://b4mitftujrrxp" path="res://level.tscn" id="3_6jmh6"]
 [ext_resource type="PackedScene" uid="uid://dcr1q7oj4a006" path="res://main_ui.tscn" id="4_etwc1"]
 [ext_resource type="Texture2D" uid="uid://dge4ysc7omnmg" path="res://assets/backgrounds/background.png" id="5_g3icy"]
+[ext_resource type="Script" path="res://scripts/background.gd" id="5_gi1er"]
+[ext_resource type="PackedScene" uid="uid://cwh5d4qwcv0i6" path="res://objects/lights/area_light.tscn" id="6_buguk"]
+[ext_resource type="PackedScene" uid="uid://fc5h1wnmon4l" path="res://objects/lights/light_revealer.tscn" id="7_wqkgk"]
 
 [node name="Main" type="Node2D"]
 
@@ -20,13 +23,31 @@ editor_draw_limits = true
 script = ExtResource("2_q7r5k")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-energy = 0.0
 blend_mode = 1
-
-[node name="UI" parent="." instance=ExtResource("4_etwc1")]
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(828, -76)
-scale = Vector2(200, 200)
+scale = Vector2(30, 30)
 texture = ExtResource("5_g3icy")
+script = ExtResource("5_gi1er")
+
+[node name="Lighting" type="Node2D" parent="."]
+
+[node name="AreaLight" parent="Lighting" instance=ExtResource("6_buguk")]
+position = Vector2(19, -127)
+scale = Vector2(6.96875, 6.5)
+
+[node name="AreaLight2" parent="Lighting" instance=ExtResource("6_buguk")]
+position = Vector2(530.5, -8.5)
+scale = Vector2(11.2031, 2.42188)
+
+[node name="LightRevealer" parent="Lighting/AreaLight2" instance=ExtResource("7_wqkgk")]
+position = Vector2(283, -1)
+reveal_range = 50.0
+
+[node name="AreaLight3" parent="Lighting" instance=ExtResource("6_buguk")]
+position = Vector2(1416.77, -116.595)
+scale = Vector2(-19.3743, -7.87631)
+
+[node name="UI" parent="." instance=ExtResource("4_etwc1")]
+layer = 3

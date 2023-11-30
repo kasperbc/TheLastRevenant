@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnbtm33srq5j0"
-path="res://.godot/imported/tlr-betahookshot.png-4ddf33aa6399aa0c0ebb3d529b2a233e.ctex"
+uid="uid://c7k5ud716gwkc"
+path="res://.godot/imported/square_light.png-5c21ae5949ae6e892b86aa93fdcd63eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/hook/tlr-betahookshot.png"
-dest_files=["res://.godot/imported/tlr-betahookshot.png-4ddf33aa6399aa0c0ebb3d529b2a233e.ctex"]
+source_file="res://assets/gradients/square_light.png"
+dest_files=["res://.godot/imported/square_light.png-5c21ae5949ae6e892b86aa93fdcd63eb.ctex"]
 
 [params]
 
