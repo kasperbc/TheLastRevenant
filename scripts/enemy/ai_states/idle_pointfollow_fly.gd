@@ -25,7 +25,7 @@ func move_towards_target_point():
 	var spd = speed * clamp(distance_to_pos / slowdown_distance, 0, 1) * clamp(distance_to_prev_pos / speedup_distance, 0, 1)
 	
 	
-	move_towards_point(target_pos, spd)
+	pathfind_towards_point(target_pos, spd)
 	
 	if distance_to_pos < 10:
 		on_reach_target()

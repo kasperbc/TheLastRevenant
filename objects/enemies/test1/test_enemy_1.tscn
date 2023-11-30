@@ -41,7 +41,6 @@ debug_enabled = true
 
 [node name="AI" type="Node" parent="."]
 script = ExtResource("3_pap3r")
-default_state = "pursue"
 
 [node name="idle" type="Node" parent="AI"]
 script = ExtResource("4_drwr0")
@@ -49,6 +48,7 @@ speed = 100.0
 wait_time = 0.5
 slowdown_distance = 50.0
 speedup_distance = 50.0
+pathfind = true
 
 [node name="pursue" type="Node" parent="AI"]
 script = ExtResource("5_r8vwl")
