@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwh5d4qwcv0i6"]
+
+[ext_resource type="Texture2D" uid="uid://c7k5ud716gwkc" path="res://assets/gradients/square_light.png" id="1_05g5b"]
+[ext_resource type="Script" path="res://objects/lights/light_variation.gd" id="2_xw3aj"]
+
+[node name="AreaLight" type="PointLight2D"]
+z_index = 1
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 4.6
+texture = ExtResource("1_05g5b")
+script = ExtResource("2_xw3aj")

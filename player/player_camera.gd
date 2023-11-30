@@ -5,7 +5,7 @@ extends Camera2D
 const NORMAL_SMOOTH_SPEED = 10
 
 # free cam
-const FLOOR_Y_OFFSET = -130.0
+const FLOOR_Y_OFFSET = -60.0
 const FLOOR_SMOOTH_SPEED = 5
 
 const MIN_DISTANCE_FOR_DYNAMIC_CAM = 300.0
@@ -16,7 +16,7 @@ func _process(delta):
 	var space = get_world_2d().direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
 	query.collision_mask = 4
-	query.position = position
+	query.position = player.position
 	query.collide_with_areas = true
 	var result = space.intersect_point(query)
 	
@@ -31,12 +31,17 @@ func _process(delta):
 	if not cam_restrictor_shape is RectangleShape2D:
 		return
 	
-	var vp_rect = get_viewport_rect()
+	var vp_rect = get_viewport_rect().size / zoom
 	
 	limit_left = cam_restrictor.global_position.x - cam_restrictor_shape.size.x / 2
 	limit_right = cam_restrictor.global_position.x + cam_restrictor_shape.size.x / 2
+	if vp_rect.x > cam_restrictor_shape.size.x:
+		position.x = cam_restrictor.global_position.x
+	
 	limit_top = cam_restrictor.global_position.y - cam_restrictor_shape.size.y / 2
 	limit_bottom = cam_restrictor.global_position.y + cam_restrictor_shape.size.y / 2
+	if vp_rect.y > cam_restrictor_shape.size.y:
+		position.y = cam_restrictor.global_position.y
 
 func free_camera():
 	limit_left = -100000

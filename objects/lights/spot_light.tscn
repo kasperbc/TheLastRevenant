@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b37soeehetqff"]
+
+[ext_resource type="Texture2D" uid="uid://bdqd103mlwktt" path="res://assets/gradients/top_light.png" id="1_b4eyv"]
+
+[node name="SpotLight" type="PointLight2D"]
+z_index = 1
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 4.6
+texture = ExtResource("1_b4eyv")

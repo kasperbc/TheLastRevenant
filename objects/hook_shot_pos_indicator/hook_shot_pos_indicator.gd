@@ -8,7 +8,7 @@ func _physics_process(delta):
 		return
 	
 	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(GameMan.get_player().position, get_global_mouse_position())
+	var query = PhysicsRayQueryParameters2D.create(GameMan.get_player().global_position, get_global_mouse_position())
 	query.exclude = [GameMan.get_player()]
 	var result = space_state.intersect_ray(query)
 	
