@@ -7,6 +7,10 @@ class_name EnemyAI
 var active : bool = true
 
 func _process(delta):
+	process_active_state(delta)
+	change_state()
+
+func process_active_state(delta):
 	if not active:
 		return
 	
@@ -21,3 +25,6 @@ func _process(delta):
 			return
 	
 	print("Cannot find state %s!" % state)
+
+func change_state():
+	pass

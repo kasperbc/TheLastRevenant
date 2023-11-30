@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player.gd" id="5_r8vwl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
 radius = 15.0
