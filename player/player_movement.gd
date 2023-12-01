@@ -79,7 +79,7 @@ func process_normal_movement(delta):
 		# $jumpboom.play()
 	horizontal_move(delta)
 	
-	if Input.is_action_just_pressed("fire_hook"):
+	if Input.is_action_just_pressed("fire_hook") and GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
 		hook_fired.emit()
 
 
@@ -189,7 +189,6 @@ func process_hooked():
 	
 	if global_position.distance_to(hook_position) > 10.0:
 		current_state = MoveState.HOOKED_FLYING
-		return
 	
 	velocity = Vector2.ZERO
 	

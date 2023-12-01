@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmagxtuvmpxs3"]
+
+[ext_resource type="Script" path="res://scripts/pickup/pickup.gd" id="1_bxco8"]
+[ext_resource type="Texture2D" uid="uid://by1ue4lbxgaqb" path="res://assets/sprites/hook/placeholder_hookshot.png" id="2_uu3ue"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4f8pn"]
+size = Vector2(16, 16)
+
+[node name="PickupTest1" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_bxco8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4f8pn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_uu3ue")
+
+[connection signal="body_entered" from="." to="." method="_on_player_contact"]

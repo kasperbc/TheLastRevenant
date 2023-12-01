@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://bngsf10futafm"]
+
+[ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_kqllc"]
+
+[resource]
+script = ExtResource("1_kqllc")
+id = 1
+name = "Hookshot"
+description = "Default description"

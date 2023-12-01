@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj4v8mptq5mu4"]
+
+[ext_resource type="Script" path="res://scripts/pickup/pickup_upgrade.gd" id="1_8edas"]
+[ext_resource type="Texture2D" uid="uid://bho4e2nb1ra24" path="res://assets/sprites/pickups/pickup_hookshot.png" id="1_btg37"]
+[ext_resource type="Resource" uid="uid://bngsf10futafm" path="res://objects/resources/upgrades/hookshot.tres" id="2_gygt0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4f8pn"]
+size = Vector2(16, 16)
+
+[node name="PickupHookshot" type="Area2D" groups=["UpgradePickups"]]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_8edas")
+upgrade = ExtResource("2_gygt0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4f8pn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_btg37")
+
+[connection signal="body_entered" from="." to="." method="_on_player_contact"]

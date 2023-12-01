@@ -7,6 +7,10 @@ func _physics_process(delta):
 		hide_self()
 		return
 	
+	if GameMan.get_upgrade_status(GameMan.Upgrades.VISUALIZER) != GameMan.UpgradeStatus.ENABLED:
+		hide_self()
+		return
+	
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(GameMan.get_player().global_position, get_global_mouse_position())
 	query.exclude = [GameMan.get_player()]

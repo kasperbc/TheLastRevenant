@@ -41,6 +41,9 @@ func go_towards_player():
 
 func die_if_on_wall():
 	if body.is_on_wall():
+		dir = Vector2.ZERO
+		await get_tree().create_timer(0.1).timeout
+		
 		body.die()
 
 func accelerate(delta):

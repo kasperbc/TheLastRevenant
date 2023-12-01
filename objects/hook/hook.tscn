@@ -21,6 +21,7 @@ shape = SubResource("RectangleShape2D_2n7hf")
 texture = ExtResource("3_6t6pb")
 
 [node name="Rope" type="Sprite2D" parent="."]
+top_level = true
 z_index = -1
 texture_repeat = 2
 texture = ExtResource("3_5cfij")

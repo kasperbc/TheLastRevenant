@@ -83,10 +83,10 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3h6my"]
-radius = 4.0
+radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
-radius = 7.0
+radius = 5.09902
 
 [sub_resource type="Gradient" id="Gradient_b3cr8"]
 offsets = PackedFloat32Array(0, 0.543624, 1)
@@ -136,7 +136,7 @@ default_state = "fly_towards_player"
 
 [node name="fly_towards_player" type="Node" parent="AI"]
 script = ExtResource("4_utpiu")
-max_speed = 750.0
+max_speed = 400.0
 accleration = 300.0
 
 [node name="SmokeParticle" type="CPUParticles2D" parent="."]
