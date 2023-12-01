@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfvkq6c4g1ir1"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_n884m"]
+[ext_resource type="PackedScene" uid="uid://cxcxvctlfdjcd" path="res://objects/particles/big_explosion.tscn" id="2_fx6gb"]
+[ext_resource type="Texture2D" uid="uid://bigss2jferxn3" path="res://assets/sprites/ui/target_ind.png" id="2_w1bnl"]
+[ext_resource type="Script" path="res://scripts/enemy/ais/turret_drone.gd" id="3_etgmy"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/idle_pointfollow_fly.gd" id="4_8aug7"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_standstill_fly_shoot.gd" id="5_wi8a8"]
+[ext_resource type="PackedScene" uid="uid://hwg8cw6udjx2" path="res://objects/projectiles/missiles/missile.tscn" id="6_a713c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+
+[node name="TurretDroneEasy" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 8
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_n884m")
+death_particle = ExtResource("2_fx6gb")
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_w1bnl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gfxgg")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("3_etgmy")
+idle_check_angle = 20.0
+blind_pursue_time = 1.5
+
+[node name="idle" type="Node" parent="AI"]
+script = ExtResource("4_8aug7")
+speed = 75.0
+wait_time = 0.5
+slowdown_distance = 50.0
+speedup_distance = 50.0
+pathfind = true
+
+[node name="pursue" type="Node" parent="AI"]
+script = ExtResource("5_wi8a8")
+time_before_first_shot = 1.0
+projectile = ExtResource("6_a713c")
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

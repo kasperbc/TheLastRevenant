@@ -10,6 +10,7 @@ enum HookMoveState {NONE, MOVING, RETURNING}
 var current_state : HookMoveState
 var shoot_position : Vector2
 var move_dir
+var hooked_obj
 
 signal spawned
 signal collided(collision : KinematicCollision2D)
@@ -37,6 +38,9 @@ func _physics_process(delta):
 		process_moving(delta)
 	elif current_state == HookMoveState.RETURNING:
 		process_returning()
+	elif current_state == HookMoveState.NONE:
+		if hooked_obj:
+			global_position = hooked_obj.global_position
 
 func process_moving(delta):
 	var distance_traveled = position.distance_to(shoot_position)
@@ -49,6 +53,10 @@ func process_moving(delta):
 	
 	if not collision:
 		return
+	
+	var collider = collision.get_collider()
+	if collider is HookableObject:
+		hooked_obj = collider
 	
 	collided.emit(collision)
 

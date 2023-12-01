@@ -10,9 +10,13 @@ class_name IdlePointFollowFlyState
 
 var target_point = 0
 var moving = true
+var previous_target_pos : Vector2
 
 func ai_state_process(delta):
 	move_towards_target_point()
+
+func _on_state_activate():
+	previous_target_pos = body.global_position
 
 func move_towards_target_point():
 	if points.size() == 0 or not moving:
@@ -20,17 +24,18 @@ func move_towards_target_point():
 	
 	var target_pos = points[target_point]
 	var distance_to_pos = global_position.distance_to(target_pos)
-	var distance_to_prev_pos = global_position.distance_to(get_previous_target())
+	var distance_to_prev_pos = global_position.distance_to(previous_target_pos)
 	
-	var spd = speed * clamp(distance_to_pos / slowdown_distance, 0, 1) * clamp(distance_to_prev_pos / speedup_distance, 0, 1)
-	
-	
-	pathfind_towards_point(target_pos, spd)
+	var _speed = speed * clamp(distance_to_pos / slowdown_distance, 0, 1) * clamp(distance_to_prev_pos / speedup_distance, 0.5, 1)
+
+	pathfind_towards_point(target_pos, _speed)
 	
 	if distance_to_pos < 10:
 		on_reach_target()
 
 func on_reach_target():
+	previous_target_pos = points[target_point]
+	
 	target_point += 1
 	if target_point >= points.size():
 		target_point = 0
@@ -38,11 +43,3 @@ func on_reach_target():
 	moving = false
 	await get_tree().create_timer(wait_time).timeout
 	moving = true
-
-func get_previous_target() -> Vector2:
-	var prev_point = target_point - 1
-	
-	if prev_point < 0:
-		prev_point = points.size() - 1
-	
-	return points[prev_point]

@@ -4,6 +4,12 @@ class_name Enemy
 @onready var player = GameMan.get_player()
 
 @export var health : int = 1
+@export var death_particle : PackedScene
+@export_group("Contact")
+@export var contact_damage = true
+@export var destroy_on_contact = false
+
+signal died
 
 # hookable object functions
 func _on_hook_attached():
@@ -27,7 +33,10 @@ func on_hook_attached():
 		GameMan.get_player().hook_released_early.emit()
 
 func on_player_contact():
-	damage_player()
+	if contact_damage:
+		damage_player()
+	if destroy_on_contact:
+		die()
 
 func on_player_attacked():
 	take_damage()
@@ -42,6 +51,12 @@ func knock_back_player(amount : Vector2):
 	player.velocity.y = amount.y
 
 func take_damage():
+	
+	get_tree().paused = true
+	# await get_tree().create_timer(0.05, true, false, true).timeout
+	get_tree().paused = false
+	
+	
 	health -= 1
 	
 	if health == 0:
@@ -51,5 +66,14 @@ func take_damage():
 		knock_back_player(Vector2(200, -300))
 
 func die():
-	player.hook_released_early.emit()
+	died.emit()
+	
+	if death_particle:
+		var part = death_particle.instantiate()
+		get_parent().add_child(part)
+		if part is Node2D:
+			part.global_position = global_position
+	
+	if hook_attached:
+		player.hook_released_early.emit()
 	queue_free()
