@@ -76,7 +76,7 @@ func process_normal_movement(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump"):
 		jump()
-
+		$jumpboom.play()
 	horizontal_move(delta)
 	
 	if Input.is_action_just_pressed("fire_hook"):
@@ -186,7 +186,7 @@ func process_hooked():
 	if Input.is_action_just_pressed("jump"):
 		hook_released.emit()
 		hook_jump()
-	
+		$jumpboom.play()
 	if Input.is_action_just_pressed("fire_hook"):
 		hook_released.emit()
 
