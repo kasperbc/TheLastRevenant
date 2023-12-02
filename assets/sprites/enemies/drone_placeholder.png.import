@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq6w6pe6pe05n"
-path="res://.godot/imported/tlr-betahook-cursor.png-b2e9bdf20d252ad5d3d4ff3593aab353.ctex"
+uid="uid://budigx4xbky3o"
+path="res://.godot/imported/drone_placeholder.png-e44be1314763ced976657c949634b1b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/tlr-betahook-cursor.png"
-dest_files=["res://.godot/imported/tlr-betahook-cursor.png-b2e9bdf20d252ad5d3d4ff3593aab353.ctex"]
+source_file="res://assets/sprites/enemies/drone_placeholder.png"
+dest_files=["res://.godot/imported/drone_placeholder.png-e44be1314763ced976657c949634b1b5.ctex"]
 
 [params]
 

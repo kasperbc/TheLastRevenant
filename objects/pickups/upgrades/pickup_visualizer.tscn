@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://hvpkds1vurlo"]
+
+[ext_resource type="PackedScene" uid="uid://bj4v8mptq5mu4" path="res://objects/pickups/upgrades/pickup_hookshot.tscn" id="1_fn6fa"]
+[ext_resource type="Texture2D" uid="uid://dprp14vr6btuf" path="res://assets/sprites/pickups/pickup_visualizer.png" id="2_0xkhy"]
+[ext_resource type="Resource" uid="uid://bmpm7wkxtd2jk" path="res://objects/resources/upgrades/visualizer.tres" id="2_lx7cl"]
+
+[node name="PickupVisualizer" instance=ExtResource("1_fn6fa")]
+upgrade = ExtResource("2_lx7cl")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_0xkhy")

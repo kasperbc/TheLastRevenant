@@ -3,7 +3,7 @@ class_name HookMovement
 
 const MOVE_SPEED = 500.0
 const RETURN_SPEED_MULTIPLIER = 1.2
-const MAX_DISTANCE = 200.0
+const MAX_DISTANCE = 180.0
 
 enum HookMoveState {NONE, MOVING, RETURNING}
 
@@ -44,9 +44,15 @@ func _physics_process(delta):
 func process_moving(delta):
 	var distance_traveled = position.distance_to(GameMan.get_player().global_position)
 	
-	var collision = move_and_collide(move_dir * MOVE_SPEED * delta)
+	var move_speed = MOVE_SPEED
+	var max_distance = MAX_DISTANCE
+	if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
+		move_speed *= PlayerMovement.HOOK_UPGRADE_SPEED_MULTIPLIER
+		max_distance *= PlayerMovement.HOOK_UPGRADE_SPEED_MULTIPLIER
 	
-	if distance_traveled >= MAX_DISTANCE:
+	var collision = move_and_collide(move_dir * move_speed * delta)
+	
+	if distance_traveled >= max_distance:
 		max_distance_reached.emit()
 		return
 	

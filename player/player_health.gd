@@ -8,7 +8,7 @@ var current_health :
 		return _current_health
 	set(value):
 		_current_health = value
-		get_tree().root.get_node("/root/Main/UI/Control/HealthLabel").text = "Health %s" % current_health
+		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").frame = 4 - (current_health % 5)
 
 var health_upgrades = 0
 var invincible = false
@@ -26,10 +26,8 @@ func damage():
 	
 	if current_health <= 0:
 		GameMan.reload_scene()
+		return
 	
 	invincible = true
-	$InvincibilityTimer.start()
-
-
-func _on_invincibility_timer_timeout():
+	await get_tree().create_timer(1).timeout
 	invincible = false

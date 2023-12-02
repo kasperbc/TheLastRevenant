@@ -13,7 +13,7 @@ func detach_particle():
 	add_child(timer)
 	timer.wait_time = 3
 	timer.timeout.connect(death_timer_timeout)
-	timer.start()
+	timer.autostart = true
 
 func death_timer_timeout():
 	queue_free()

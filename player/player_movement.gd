@@ -12,9 +12,10 @@ const JUMP_HEIGHT = 50.0
 const JUMP_TIME_TO_PEAK = 0.45
 const JUMP_TIME_TO_DESCENT = 0.4
 
-const HOOK_BASE_FLY_SPEED = 300.0
-const HOOK_MAX_FLY_SPEED = 600.0
-const HOOK_ACCELERATION = 150.0
+const HOOK_BASE_FLY_SPEED = 275.0
+const HOOK_MAX_FLY_SPEED = 550.0
+const HOOK_ACCELERATION = 125.0
+const HOOK_UPGRADE_SPEED_MULTIPLIER = 1.2
 const HOOK_JUMP_BASE_STRENGTH = 1
 const HOOK_JUMP_MIN_STRENGTH = 0.75
 const HOOK_JUMPS_BEFORE_MIN_STRENGTH = 4
@@ -144,6 +145,9 @@ func _on_hook_collided(collision : KinematicCollision2D):
 	hook_position = collision.get_position()
 	hook_speed = HOOK_BASE_FLY_SPEED
 	
+	if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
+		hook_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER
+	
 	var _hooked_obj = collision.get_collider()
 	if _hooked_obj is HookableObject:
 		hooked_obj = _hooked_obj
@@ -158,7 +162,13 @@ func process_hook_flying(delta):
 	# Fly towards hook position
 	var direction = position.direction_to(hook_position)
 	
-	hook_speed = move_toward(hook_speed, HOOK_MAX_FLY_SPEED, HOOK_ACCELERATION * delta)
+	var max_speed = HOOK_MAX_FLY_SPEED
+	var acceleration_speed = HOOK_ACCELERATION
+	if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
+		max_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER
+		acceleration_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER
+	
+	hook_speed = move_toward(hook_speed, max_speed, acceleration_speed * delta)
 	velocity = direction * hook_speed
 	
 	# Check if close enough to hook
@@ -178,10 +188,21 @@ func process_hook_flying(delta):
 		return
 	
 	# Hook counter
-	if Input.is_action_just_pressed("hook_attack") and distance < HOOK_ATTACK_DISTANCE:
-		if hooked_obj:
-			hooked_obj._on_player_attacked()
+	if Input.is_action_just_pressed("hook_attack"):
+		hook_attack()
 		return
+
+func hook_attack():
+	if not GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
+		return
+	
+	if not hooked_obj:
+		return
+	
+	if not global_position.distance_to(hook_position) < HOOK_ATTACK_DISTANCE:
+		return
+	
+	hooked_obj._on_player_attacked()
 
 func process_hooked():
 	if hooked_obj:

@@ -1,9 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://b4mitftujrrxp"]
+[gd_scene load_steps=23 format=3 uid="uid://b4mitftujrrxp"]
 
 [ext_resource type="TileSet" uid="uid://cugqd8tqxnjuh" path="res://assets/tilesets/beta_tiles/beta_tileset_1.tres" id="1_25riw"]
+[ext_resource type="PackedScene" uid="uid://hvpkds1vurlo" path="res://objects/pickups/upgrades/pickup_visualizer.tscn" id="2_54y3u"]
 [ext_resource type="PackedScene" uid="uid://c2tk6n83hrwxq" path="res://objects/air_vent/air_vent.tscn" id="2_ncyf6"]
 [ext_resource type="PackedScene" uid="uid://bj4v8mptq5mu4" path="res://objects/pickups/upgrades/pickup_hookshot.tscn" id="2_ocflq"]
 [ext_resource type="PackedScene" uid="uid://cfvkq6c4g1ir1" path="res://objects/enemies/turret_drone/easy_turret_drone.tscn" id="3_62myx"]
+[ext_resource type="PackedScene" uid="uid://sa2xhrgx1bh1" path="res://objects/pickups/upgrades/pickup_velocity_module.tscn" id="3_vm1te"]
+[ext_resource type="PackedScene" uid="uid://cdljnfbdhfxvb" path="res://objects/pickups/upgrades/pickup_galvanic_module.tscn" id="5_4k4d7"]
+[ext_resource type="PackedScene" uid="uid://ceg3mgpra1w41" path="res://objects/pickups/upgrades/pickup_thermal_module.tscn" id="6_biwh2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eome5"]
 size = Vector2(448, 248)
@@ -54,8 +58,20 @@ layer_0/tile_data = PackedInt32Array(196607, 327681, 4, 131072, 327681, 4, 26214
 
 [node name="RoomSpawn" type="Node2D" parent="."]
 
+[node name="PickupVisualizer" parent="RoomSpawn" instance=ExtResource("2_54y3u")]
+position = Vector2(-40, -48)
+
+[node name="PickupVelocityModule" parent="RoomSpawn" instance=ExtResource("3_vm1te")]
+position = Vector2(-64, -48)
+
 [node name="PickupHookshot" parent="RoomSpawn" instance=ExtResource("2_ocflq")]
-position = Vector2(-96, 0)
+position = Vector2(-88, -48)
+
+[node name="PickupGalvanicModule" parent="RoomSpawn" instance=ExtResource("5_4k4d7")]
+position = Vector2(-16, -48)
+
+[node name="PickupThermalModule" parent="RoomSpawn" instance=ExtResource("6_biwh2")]
+position = Vector2(8, -48)
 
 [node name="CameraRestrictorSpawn" type="Area2D" parent="RoomSpawn"]
 collision_layer = 4
@@ -171,6 +187,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
 [node name="TurretDroneEasy" parent="RoomStealth" instance=ExtResource("3_62myx")]
 position = Vector2(1424, -168)
+health = 3
 metadata/move_points = PackedVector2Array(1300, -100, 920, -100)
 
 [node name="AirVentStealth" parent="RoomStealth" instance=ExtResource("2_ncyf6")]

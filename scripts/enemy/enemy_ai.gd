@@ -2,6 +2,7 @@ extends Node
 class_name EnemyAI
 
 @export var default_state : String = "idle"
+@export var no_ai_on_stun : bool = true
 
 @onready var state = default_state
 @onready var body = get_parent()
@@ -17,6 +18,9 @@ func _process(delta):
 
 func process_active_state(delta):
 	if not active:
+		return
+	
+	if body.stunned and no_ai_on_stun:
 		return
 	
 	var children = get_children()

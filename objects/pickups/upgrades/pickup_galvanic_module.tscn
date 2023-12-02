@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdljnfbdhfxvb"]
+
+[ext_resource type="PackedScene" uid="uid://bj4v8mptq5mu4" path="res://objects/pickups/upgrades/pickup_hookshot.tscn" id="1_mjjkj"]
+[ext_resource type="Resource" uid="uid://d1ivt5xs2pe1w" path="res://objects/resources/upgrades/galvanic_module.tres" id="2_ulkrf"]
+[ext_resource type="Texture2D" uid="uid://c5wpu1dc04g81" path="res://assets/sprites/pickups/pickup_galvanic_module.png" id="3_s0iwi"]
+
+[node name="PickupGalvanicModule" instance=ExtResource("1_mjjkj")]
+upgrade = ExtResource("2_ulkrf")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_s0iwi")

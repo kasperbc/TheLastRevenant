@@ -2,16 +2,33 @@ extends Pickup
 class_name PickupUpgrade
 
 @export var upgrade : Upgrade
+var in_upgrade_text = false
+
+func _ready():
+	super()
+	if not GameMan.get_upgrade_status(upgrade.id) == GameMan.UpgradeStatus.LOCKED:
+		destroy_self()
 
 func pick_up():
 	GameMan.unlock_upgrade(upgrade)
 	
+	show_upgrade_text()
+	await get_tree().create_timer(3).timeout
+	hide_upgrade_text()
+	
+	super()
+
+func show_upgrade_text():
+	in_upgrade_text = true
 	get_tree().paused = true
 	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText/Name").text = upgrade.name.capitalize()
 	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText/Description").text = upgrade.description.capitalize()
 	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText").visible = true
-	await get_tree().create_timer(3).timeout
+
+func hide_upgrade_text():
+	if not in_upgrade_text:
+		return
+	
+	in_upgrade_text = false
 	get_tree().paused = false
 	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText").visible = false
-	
-	super()

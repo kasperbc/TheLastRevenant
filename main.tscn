@@ -25,8 +25,9 @@ script = ExtResource("2_q7r5k")
 blend_mode = 1
 
 [node name="AreaLightSpawn" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(13.5, -133)
-scale = Vector2(7.04688, 5.84375)
+position = Vector2(13.5, -142)
+scale = Vector2(7.04688, 6.125)
+offset = Vector2(0, -0.045)
 
 [node name="AreaLightHallway1" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
 position = Vector2(557, -13)

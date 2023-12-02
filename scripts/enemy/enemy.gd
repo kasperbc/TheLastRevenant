@@ -3,11 +3,17 @@ class_name Enemy
 
 @onready var player = GameMan.get_player()
 
+@export_category("Damage")
 @export var health : int = 1
+@export var infinite_health = false
 @export var death_particle : PackedScene
+@export var stun_time : float = 1.0
+@export var shake_on_stun : bool = true
 @export_group("Contact")
 @export var contact_damage = true
 @export var destroy_on_contact = false
+
+var stunned
 
 signal died
 
@@ -42,6 +48,9 @@ func on_player_attacked():
 	take_damage()
 
 func damage_player():
+	if stunned:
+		return
+	
 	player.hook_released.emit()
 	GameMan.get_player_health().damage()
 	knock_back_player(Vector2(200, -200))
@@ -51,19 +60,34 @@ func knock_back_player(amount : Vector2):
 	player.velocity.y = amount.y
 
 func take_damage():
+	if stunned:
+		return
 	
 	get_tree().paused = true
 	# await get_tree().create_timer(0.05, true, false, true).timeout
 	get_tree().paused = false
 	
 	
-	health -= 1
+	if not infinite_health:
+		health -= 1
 	
 	if health == 0:
 		die()
 		return
 	else:
-		knock_back_player(Vector2(200, -300))
+		stun()
+
+func stun():
+	stunned = true
+	if hook_attached:
+		GameMan.get_player().hook_released.emit()
+	
+	if get_node_or_null("Shaker"):
+		$Shaker.start_shake(self, 2.0, stun_time)
+	
+	await get_tree().create_timer(stun_time).timeout
+	
+	stunned = false
 
 func die():
 	died.emit()

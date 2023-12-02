@@ -18,5 +18,8 @@ func ai_state_process(delta):
 		shoot()
 
 func shoot():
+	if body.hook_attached:
+		return
+	
 	if ai_controller.can_see_player():
 		shoot_projectile(Vector2.DOWN * 10.0)

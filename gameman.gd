@@ -21,6 +21,9 @@ enum UpgradeStatus {
 }
 
 var upgrades_collected : Array[Upgrade]
+var health_expansions_collected : Array[int]
+var speed_expansions_collected : Array[int]
+var range_expansions_collected : Array[int]
 
 func get_player() -> Node:
 	if not is_instance_valid(player):
