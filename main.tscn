@@ -14,6 +14,7 @@
 [node name="Level" parent="." instance=ExtResource("3_6jmh6")]
 
 [node name="Player" parent="." instance=ExtResource("1_37j5j")]
+position = Vector2(120, -92)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -22,16 +23,17 @@ position_smoothing_enabled = true
 script = ExtResource("2_q7r5k")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 blend_mode = 1
 
 [node name="AreaLightSpawn" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(13.5, -142)
-scale = Vector2(7.04688, 6.125)
+position = Vector2(2284, -3562)
+scale = Vector2(121.727, 20.7031)
 offset = Vector2(0, -0.045)
 
 [node name="AreaLightHallway1" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(557, -13)
-scale = Vector2(11.125, 1.78125)
+position = Vector2(174, -745)
+scale = Vector2(11.125, 7.53125)
 
 [node name="LightRevealer" parent="DirectionalLight2D/AreaLightHallway1" instance=ExtResource("5_q84k6")]
 position = Vector2(285, 3)
@@ -70,7 +72,7 @@ scale = Vector2(8.875, 3.51758)
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -10
-position = Vector2(-7, 2)
+position = Vector2(576, 6)
 scale = Vector2(30, 30)
 texture = ExtResource("5_g3icy")
 script = ExtResource("6_2wqmi")
