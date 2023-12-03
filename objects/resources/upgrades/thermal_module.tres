@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://bp0docgpbcxih"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://ddp665oscmntu"]
 
 [ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_j5yop"]
 
@@ -6,4 +6,4 @@
 script = ExtResource("1_j5yop")
 id = 5
 name = "Thermal Module"
-description = "Default Description"
+description = "Grants the ability to generate throwable thermal bombs. Equip with [Right Click], throw with [Left Click]"
