@@ -20,7 +20,6 @@ const HOOK_JUMP_BASE_STRENGTH = 1
 const HOOK_JUMP_MIN_STRENGTH = 0.75
 const HOOK_JUMPS_BEFORE_MIN_STRENGTH = 4
 const HOOK_WALL_JUMP_STRENGTH = 150.0
-const MAX_HOOKS = 1
 
 const HOOK_ATTACK_DISTANCE = 150.0
 
@@ -36,7 +35,7 @@ signal hook_released_early
 @onready var fall_gravity : float = ((-2.0 * JUMP_HEIGHT) / (JUMP_TIME_TO_DESCENT * JUMP_TIME_TO_DESCENT)) * -1.0
 @onready var hook_jump_deplete_rate : float = (HOOK_JUMP_BASE_STRENGTH - HOOK_JUMP_MIN_STRENGTH) / HOOK_JUMPS_BEFORE_MIN_STRENGTH
 
-@onready var hook_obj = preload("res://objects/hook/hook.tscn")
+@onready var hook_obj = $Hook
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -46,6 +45,7 @@ var hook_position : Vector2
 var hook_speed : float
 var hook_jump_strength : float
 var last_distance : float
+var bomb_active : bool
 
 var _hooked_obj
 var hooked_obj : 
@@ -81,7 +81,13 @@ func process_normal_movement(delta):
 	horizontal_move(delta)
 	
 	if Input.is_action_just_pressed("fire_hook") and GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
+		if $Hook.visible:
+			return
+		
 		hook_fired.emit()
+	
+	if Input.is_action_just_pressed("hook_attack") and GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
+		bomb_active = !bomb_active
 
 
 func get_gravity() -> float:
@@ -125,17 +131,9 @@ func apply_friction(delta):
 		velocity.x = move_toward(velocity.x, 0, AIR_FRICTION * delta)
 
 func _on_hook_fired():
-	if get_hooks_fired_amount() >= MAX_HOOKS:
-		return
-	
-	var hook_instance = hook_obj.instantiate()
-	get_parent().add_child(hook_instance)
-	hook_instance.position = position
-	hook_instance.spawned.emit()
-	
-	hook_instance.collided.connect(_on_hook_collided)
-	hook_released.connect(hook_instance._on_hook_released)
-	hook_released_early.connect(hook_instance._on_max_distance_reached)
+	hook_obj.visible = true
+	hook_obj.global_position = global_position
+	hook_obj.spawned.emit()
 
 func get_hooks_fired_amount() -> int:
 	return get_tree().get_nodes_in_group("Hooks").size()
@@ -174,14 +172,6 @@ func process_hook_flying(delta):
 	# Check if close enough to hook
 	var distance = position.distance_to(hook_position)
 	
-	if abs(last_distance - distance) < 1:
-		current_state = MoveState.HOOKED
-		
-		if hooked_obj:
-			hooked_obj._on_player_attached()
-		return
-		
-	last_distance = distance
 	
 	if Input.is_action_just_pressed("jump"):
 		hook_released_early.emit()
@@ -191,6 +181,15 @@ func process_hook_flying(delta):
 	if Input.is_action_just_pressed("hook_attack"):
 		hook_attack()
 		return
+	
+	if abs(last_distance - distance) < 1:
+		current_state = MoveState.HOOKED
+		
+		if hooked_obj:
+			hooked_obj._on_player_attached()
+		return
+		
+	last_distance = distance
 
 func hook_attack():
 	if not GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:

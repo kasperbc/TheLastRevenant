@@ -3,7 +3,7 @@ extends Sprite2D
 @export var show : bool = false
 
 func _physics_process(delta):
-	if GameMan.get_player().get_hooks_fired_amount() >= PlayerMovement.MAX_HOOKS or not show:
+	if not show:
 		hide_self()
 		return
 	
