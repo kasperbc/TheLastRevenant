@@ -2,13 +2,18 @@ extends HookableObject
 class_name Enemy
 
 @onready var player = GameMan.get_player()
+@onready var health_pickup = preload("res://objects/pickups/pickup_health.tscn")
 
 @export_category("Damage")
-@export var health : int = 1
+@export var health : float = 1.0
 @export var infinite_health = false
 @export var death_particle : PackedScene
 @export var stun_time : float = 1.0
 @export var shake_on_stun : bool = true
+@export_category("Pickups")
+@export var drop_health_pickups = true
+@export var health_pickup_amount = 1
+@export var health_pickup_spread = 5.0
 @export_group("Contact")
 @export var contact_damage = true
 @export var destroy_on_contact = false
@@ -69,11 +74,13 @@ func take_damage():
 	
 	
 	if not infinite_health:
-		health -= 1
+		if not GameMan.get_upgrade_status(GameMan.Upgrades.GALVANIC_MODULE) == GameMan.UpgradeStatus.ENABLED:
+			health -= 1
+		else:
+			health -= 1.5
 	
-	if health == 0:
+	if health <= 0:
 		die()
-		return
 	else:
 		stun()
 
@@ -82,10 +89,14 @@ func stun():
 	if hook_attached:
 		GameMan.get_player().hook_released.emit()
 	
-	if get_node_or_null("Shaker"):
-		$Shaker.start_shake(self, 2.0, stun_time)
+	var _stun_time = stun_time
+	if GameMan.get_upgrade_status(GameMan.Upgrades.GALVANIC_MODULE) == GameMan.UpgradeStatus.ENABLED:
+		_stun_time *= 1.5
 	
-	await get_tree().create_timer(stun_time).timeout
+	if get_node_or_null("Shaker"):
+		$Shaker.start_shake(self, 2.0, _stun_time)
+	
+	await get_tree().create_timer(_stun_time).timeout
 	
 	stunned = false
 
@@ -97,6 +108,15 @@ func die():
 		get_parent().add_child(part)
 		if part is Node2D:
 			part.global_position = global_position
+	
+	if drop_health_pickups:
+		for x in health_pickup_amount:
+			var pickup = health_pickup.instantiate()
+			get_parent().add_child(pickup)
+			pickup.global_position = global_position
+			pickup.global_position.x += randf_range(-health_pickup_spread, health_pickup_spread)
+			pickup.global_position.y += randf_range(-health_pickup_spread, health_pickup_spread)
+			pickup.base_pos = pickup.global_position
 	
 	if hook_attached:
 		player.hook_released_early.emit()

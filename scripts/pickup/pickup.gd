@@ -6,10 +6,9 @@ class_name Pickup
 @export var hover_speed = 1.0
 @export var hover_intensity = 5.0
 
-var base_pos
+@onready var random_hover_offset = randf_range(0, hover_speed)
 
-func _ready():
-	base_pos = global_position
+@onready var base_pos = global_position
 
 func _on_player_contact(body : Node2D):
 	if body.is_in_group("Players"):
@@ -20,7 +19,7 @@ func _process(delta):
 		process_hover_anim()
 
 func process_hover_anim():
-	global_position.y = base_pos.y + sin(Time.get_unix_time_from_system() * hover_speed) * hover_intensity
+	global_position.y = base_pos.y + sin((Time.get_unix_time_from_system() * hover_speed) + random_hover_offset) * hover_intensity
 
 func pick_up():
 	destroy_self()

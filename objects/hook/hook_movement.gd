@@ -17,13 +17,14 @@ signal max_distance_reached
 
 func _on_spawned():
 	move_dir = global_position.direction_to(get_global_mouse_position())
+	rotation_degrees = rad_to_deg(Vector2.RIGHT.angle_to(move_dir))
 	current_state = HookMoveState.MOVING
 	set_collision_mask_value(1, true)
 	hooked_obj = null
 
 func _on_collided(collision):
 	current_state = HookMoveState.STILL
-	rotation_degrees = rad_to_deg(global_position.angle_to_point(global_position.direction_to(collision.get_collider().global_position)))
+	rotation_degrees = rad_to_deg(Vector2.RIGHT.angle_to(global_position.direction_to(collision.get_position())))
 
 func _on_hook_released():
 	visible = false

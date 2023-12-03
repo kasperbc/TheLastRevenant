@@ -3,7 +3,7 @@ class_name PlayerMovement
 
 const SPEED = 150.0
 const ACCELERATION = 600.0
-const FRICTION = 450.0
+const FRICTION = 600.0
 const AIR_FRICTION = 200.0
 const SNAP_VELOCITY = 50.0
 const MIN_VELOCITY_FRICTION_EFFECTS = 175.0
@@ -23,7 +23,7 @@ const HOOK_WALL_JUMP_STRENGTH = 150.0
 
 const HOOK_ATTACK_DISTANCE = 150.0
 
-enum MoveState {NORMAL, HOOKED_FLYING, HOOKED}
+enum MoveState {NORMAL, HOOKED_FLYING, HOOKED, DEBUG}
 var current_state : MoveState
 
 signal hook_fired
@@ -36,6 +36,7 @@ signal hook_released_early
 @onready var hook_jump_deplete_rate : float = (HOOK_JUMP_BASE_STRENGTH - HOOK_JUMP_MIN_STRENGTH) / HOOK_JUMPS_BEFORE_MIN_STRENGTH
 
 @onready var hook_obj = $Hook
+@onready var explosion = preload("res://objects/particles/big_explosion.tscn")
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -62,12 +63,15 @@ func _physics_process(delta):
 		process_hook_flying(delta)
 	elif current_state == MoveState.HOOKED:
 		process_hooked()
+	elif current_state == MoveState.DEBUG:
+		process_debug()
 	
 	move_and_slide()
 
 # NORMAL MOVEMENT
 
 func process_normal_movement(delta):
+	
 	# Add the gravity.
 	if not is_on_floor():
 		apply_gravity(delta)
@@ -83,11 +87,26 @@ func process_normal_movement(delta):
 	if Input.is_action_just_pressed("fire_hook") and GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
 		if $Hook.visible:
 			return
-		
 		hook_fired.emit()
 	
-	if Input.is_action_just_pressed("hook_attack") and GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
+	if Input.is_action_just_pressed("hook_attack") and GameMan.get_upgrade_status(GameMan.Upgrades.THERMAL_MODULE) == GameMan.UpgradeStatus.ENABLED:
+		if $Hook.visible:
+			return
 		bomb_active = !bomb_active
+	
+		
+	if Input.is_action_just_pressed("toggle_debug"):
+		toggle_debug(true)
+		return
+	
+	var hookshot_hand_frame = 0
+	if bomb_active:
+		hookshot_hand_frame = 1
+	
+	$Sprite2D/HookshotHand.frame = hookshot_hand_frame
+	
+	if not $Hook.visible:
+		$Sprite2D/HookshotHand.visible = true
 
 
 func get_gravity() -> float:
@@ -132,6 +151,7 @@ func apply_friction(delta):
 
 func _on_hook_fired():
 	hook_obj.visible = true
+	$Sprite2D/HookshotHand.visible = false
 	hook_obj.global_position = global_position
 	hook_obj.spawned.emit()
 
@@ -139,17 +159,27 @@ func get_hooks_fired_amount() -> int:
 	return get_tree().get_nodes_in_group("Hooks").size()
 
 func _on_hook_collided(collision : KinematicCollision2D):
-	current_state = MoveState.HOOKED_FLYING
-	hook_position = collision.get_position()
-	hook_speed = HOOK_BASE_FLY_SPEED
-	
-	if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
-		hook_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER
-	
 	var _hooked_obj = collision.get_collider()
 	if _hooked_obj is HookableObject:
 		hooked_obj = _hooked_obj
-		hooked_obj._on_hook_attached()
+		if not bomb_active:
+			hooked_obj._on_hook_attached()
+		else:
+			hooked_obj._on_player_attacked()
+	
+	if not bomb_active:
+		current_state = MoveState.HOOKED_FLYING
+		hook_position = collision.get_position()
+		hook_speed = HOOK_BASE_FLY_SPEED
+
+		if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
+			hook_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER
+	else:
+		hook_released_early.emit()
+		bomb_active = false
+		var explosion_effect = explosion.instantiate()
+		get_parent().add_child(explosion_effect)
+		explosion_effect.global_position = hook_obj.global_position
 
 # HOOK MOVEMENT
 
@@ -252,3 +282,69 @@ func get_hooked_obj():
 	else:
 		hooked_obj = null
 		return null
+
+func toggle_debug(value):
+	set_collision_layer_value(2, !value)
+	set_collision_mask_value(1, !value)
+	
+	get_tree().root.get_node("/root/Main/UI/Control/DebugText").visible = value
+	
+	if value:
+		current_state = MoveState.DEBUG
+		get_viewport().get_camera_2d().position_smoothing_enabled = false
+		get_viewport().get_camera_2d().zoom = Vector2.ONE
+	else:
+		current_state = MoveState.NORMAL
+		get_viewport().get_camera_2d().position_smoothing_enabled = true
+		get_viewport().get_camera_2d().zoom = Vector2.ONE * 2.75
+
+func process_debug():
+	var hookshot = Upgrade.new(GameMan.Upgrades.HOOKSHOT)
+	var velocity_module = Upgrade.new(GameMan.Upgrades.VELOCITY_MODULE)
+	var thermal_module = Upgrade.new(GameMan.Upgrades.THERMAL_MODULE)
+	var galvanic_module = Upgrade.new(GameMan.Upgrades.GALVANIC_MODULE)
+	var visualizer = Upgrade.new(GameMan.Upgrades.VISUALIZER)
+	
+	var extra_move = Input.is_key_pressed(KEY_SHIFT)
+	
+	if Input.is_action_just_pressed("debug_unlock_all_upgrades"):
+		GameMan.unlock_upgrade(hookshot)
+		GameMan.unlock_upgrade(velocity_module)
+		GameMan.unlock_upgrade(thermal_module)
+		GameMan.unlock_upgrade(galvanic_module)
+		GameMan.unlock_upgrade(visualizer)
+	
+	if Input.is_action_just_pressed("debug_unlock_hookshot"):
+		GameMan.unlock_upgrade(hookshot)
+	if Input.is_action_just_pressed("debug_unlock_velocity_module"):
+		GameMan.unlock_upgrade(velocity_module)
+	if Input.is_action_just_pressed("debug_unlock_galvanic_module"):
+		GameMan.unlock_upgrade(galvanic_module)
+	if Input.is_action_just_pressed("debug_unlock_artillery_module"):
+		GameMan.unlock_upgrade(thermal_module)
+	if Input.is_action_just_pressed("debug_unlock_visualizer"):
+		GameMan.unlock_upgrade(visualizer)
+	
+	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	
+	var move_amount = 1000.0
+	if extra_move:
+		move_amount *= 2
+	
+	velocity = direction * move_amount
+	
+	var teleport_dir = Vector2.ZERO
+	
+	if Input.is_action_just_pressed("debug_teleport_down"):
+		teleport_dir.y = 1
+	if Input.is_action_just_pressed("debug_teleport_up"):
+		teleport_dir.y = -1
+	if Input.is_action_just_pressed("debug_teleport_left"):
+		teleport_dir.x = -1
+	if Input.is_action_just_pressed("debug_teleport_right"):
+		teleport_dir.x = 1
+	
+	global_position += teleport_dir * (move_amount / 2.5)
+	
+	if Input.is_action_just_pressed("toggle_debug"):
+		toggle_debug(false)

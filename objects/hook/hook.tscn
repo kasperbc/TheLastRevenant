@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5g4g7sk7nr3o"]
 
 [ext_resource type="Script" path="res://objects/hook/hook_movement.gd" id="1_idwuo"]
+[ext_resource type="Texture2D" uid="uid://nkhkipp7gxjy" path="res://assets/sprites/hook/tlr-betahookshot-hand.png" id="2_g0dr2"]
 [ext_resource type="Texture2D" uid="uid://5lecja7no5eg" path="res://assets/sprites/hook/rope.png" id="3_5cfij"]
-[ext_resource type="Texture2D" uid="uid://by1ue4lbxgaqb" path="res://assets/sprites/hook/placeholder_hookshot.png" id="3_6t6pb"]
 [ext_resource type="Script" path="res://objects/hook/rope.gd" id="4_4uoam"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7hf"]
@@ -18,7 +18,7 @@ script = ExtResource("1_idwuo")
 shape = SubResource("RectangleShape2D_2n7hf")
 
 [node name="Hook" type="Sprite2D" parent="."]
-texture = ExtResource("3_6t6pb")
+texture = ExtResource("2_g0dr2")
 
 [node name="Rope" type="Sprite2D" parent="."]
 top_level = true

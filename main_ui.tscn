@@ -79,3 +79,24 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "DEFAULT DESCRIPTION"
 horizontal_alignment = 1
+
+[node name="DebugText" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 1024.0
+offset_right = 1280.0
+offset_bottom = 416.0
+text = "Debug mode enabled
+
+1 = Unlock all upgrades
+2 = Unlock hookshot
+3 = Unlock velocity module
+4 = Unlock galvanic module
+5 = Unlock artillery module
+6 = Unlock visualizer
+
+WASD = Move
+IJKL = Teleport
+Shift = Move/Teleport more
+P = Disable debug mode"
+horizontal_alignment = 2

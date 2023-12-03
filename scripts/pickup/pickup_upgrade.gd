@@ -5,7 +5,6 @@ class_name PickupUpgrade
 var in_upgrade_text = false
 
 func _ready():
-	super()
 	if not GameMan.get_upgrade_status(upgrade.id) == GameMan.UpgradeStatus.LOCKED:
 		destroy_self()
 

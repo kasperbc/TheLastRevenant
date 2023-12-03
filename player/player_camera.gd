@@ -13,6 +13,13 @@ const MIN_DISTANCE_FOR_DYNAMIC_CAM = 300.0
 func _process(delta):
 	position = player.position
 	
+	if GameMan.get_player().current_state == PlayerMovement.MoveState.DEBUG:
+		limit_left = -1000000
+		limit_right = 1000000
+		limit_top = -1000000
+		limit_bottom = 1000000
+		return
+	
 	var space = get_world_2d().direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
 	query.collision_mask = 4
@@ -44,9 +51,9 @@ func _process(delta):
 		position.y = cam_restrictor.global_position.y
 
 func free_camera():
-	limit_left = -100000
-	limit_right = 100000
-	limit_top = -100000
+	limit_left = -1000000
+	limit_right = 1000000
+	limit_top = -1000000
 	limit_bottom = 1000000
 	
 	var offset = Vector2.ZERO

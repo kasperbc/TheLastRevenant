@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_j5yop")
 id = 5
-name = "Thermal Module"
+name = "Artillery Module"
 description = "Default Description"
