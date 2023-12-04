@@ -1,7 +1,6 @@
 [gd_resource type="TileSet" load_steps=17 format=3 uid="uid://cugqd8tqxnjuh"]
 
 [ext_resource type="Texture2D" uid="uid://ckwwhofablvg5" path="res://assets/tilesets/areas/revenant-lab-1/tlr-betatexture-1.png" id="1_brhmn"]
-[ext_resource type="Texture2D" uid="uid://c6n8b1jwavetj" path="res://assets/tilesets/areas/revenant-lab-1/tlr-betatexture-1-pipes.png" id="2_mxvd1"]
 [ext_resource type="Texture2D" uid="uid://bbkouo3061tnr" path="res://assets/tilesets/areas/revenant-lab-1/tlr-betatexture-1-tiles.png" id="3_elsge"]
 [ext_resource type="Texture2D" uid="uid://pqwyb5kwqrun" path="res://assets/tilesets/cheesewithnothin.png" id="4_b4p1t"]
 
@@ -549,8 +548,11 @@ texture = ExtResource("1_brhmn")
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ovv8j"]
 source_geometry_group_name = &"navigation_polygon_source_group"
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1cuua"]
+load_path = "res://.godot/imported/tlr-betatexture-1-pipes.png-07e1ea89389f0ce20196f8a3ba5d8752.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ut0ef"]
-texture = ExtResource("2_mxvd1")
+texture = SubResource("CompressedTexture2D_1cuua")
 0:0/0 = 0
 0:0/0/terrain_set = 1
 0:0/0/terrain = 0
