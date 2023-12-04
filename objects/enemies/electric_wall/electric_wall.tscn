@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://bsj2csskm1yjl"]
+
+[ext_resource type="Script" path="res://objects/enemies/electric_wall/electric_wall.gd" id="1_cedc1"]
+[ext_resource type="Texture2D" uid="uid://ct7g2goemowfr" path="res://assets/sprites/objects/electric_wall-1.png" id="2_vvx5i"]
+[ext_resource type="Texture2D" uid="uid://bf7rv668lpclf" path="res://assets/sprites/objects/electric_wall-2.png" id="3_pdueg"]
+[ext_resource type="Texture2D" uid="uid://oni4wehmxmhm" path="res://assets/sprites/objects/electric_wall-3.png" id="4_pdmdx"]
+[ext_resource type="Texture2D" uid="uid://qi4ylpihmyuv" path="res://assets/sprites/objects/electric_wall-4.png" id="5_cu6gt"]
+
+[sub_resource type="Animation" id="Animation_ydbwt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_vvx5i")]
+}
+
+[sub_resource type="Animation" id="Animation_mff3d"]
+resource_name = "electricity"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_vvx5i"), ExtResource("3_pdueg"), ExtResource("4_pdmdx"), ExtResource("5_cu6gt")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cpvtp"]
+_data = {
+"RESET": SubResource("Animation_ydbwt"),
+"electricity": SubResource("Animation_mff3d")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uveia"]
+size = Vector2(10, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq3uj"]
+size = Vector2(14, 16)
+
+[node name="TestEnemy1" type="CharacterBody2D" groups=["Enemies"]]
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_cedc1")
+infinite_health = true
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 100
+texture_repeat = 2
+texture = ExtResource("2_vvx5i")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_cpvtp")
+}
+autoplay = "electricity"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uveia")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("RectangleShape2D_jq3uj")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]
