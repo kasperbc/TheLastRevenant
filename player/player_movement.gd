@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name PlayerMovement
 
 const SPEED = 150.0
+const SPEED_EXPANSION_INCREASE = 12.5
 const ACCELERATION = 600.0
 const FRICTION = 600.0
 const AIR_FRICTION = 200.0
@@ -11,11 +12,13 @@ const MIN_VELOCITY_FRICTION_EFFECTS = 175.0
 const JUMP_HEIGHT = 50.0
 const JUMP_TIME_TO_PEAK = 0.45
 const JUMP_TIME_TO_DESCENT = 0.4
+const SPEED_EXPANSION_GRAVITY_DECREASE = 50
 
 const HOOK_BASE_FLY_SPEED = 275.0
 const HOOK_MAX_FLY_SPEED = 550.0
 const HOOK_ACCELERATION = 125.0
 const HOOK_UPGRADE_SPEED_MULTIPLIER = 1.2
+const HOOK_SPEED_EXPANSION_MULTIPLIER_INCREASE = 0.105
 const HOOK_JUMP_BASE_STRENGTH = 1
 const HOOK_JUMP_MIN_STRENGTH = 0.75
 const HOOK_JUMPS_BEFORE_MIN_STRENGTH = 4
@@ -69,7 +72,6 @@ func _physics_process(delta):
 	elif current_state == MoveState.DEBUG:
 		process_debug()
 	
-	
 	move_and_slide()
 
 # NORMAL MOVEMENT
@@ -117,6 +119,8 @@ func get_gravity() -> float:
 
 func apply_gravity(delta):
 	velocity.y += get_gravity() * delta
+	var gravity_decrease = GameMan.get_expansion_count(GameMan.ExpansionType.SPEED) * SPEED_EXPANSION_GRAVITY_DECREASE
+	velocity.y = clamp(velocity.y, -999999, 850 - gravity_decrease)
 
 func jump():
 	if not is_on_floor():
@@ -129,16 +133,18 @@ func horizontal_move(delta):
 	
 	$FrictionParticles.emitting = false
 	
+	var speed = SPEED + (GameMan.get_expansion_count(GameMan.ExpansionType.SPEED) * SPEED_EXPANSION_INCREASE)
+	
 	if direction:
 		var direction_opposite_to_velocity = clamp(direction * 100, -1, 1) + clamp(velocity.x, -1, 1) == 0
-		if (abs(velocity.x) < SNAP_VELOCITY or direction_opposite_to_velocity) and is_on_floor() and abs(velocity.x) < SPEED * 1.5:
+		if (abs(velocity.x) < SNAP_VELOCITY or direction_opposite_to_velocity) and is_on_floor() and abs(velocity.x) < speed * 1.5:
 			velocity.x = SNAP_VELOCITY * direction
 		
-		if abs(velocity.x) > SPEED and not direction_opposite_to_velocity:
+		if abs(velocity.x) > speed and not direction_opposite_to_velocity:
 			apply_friction(delta)
 			return
 		
-		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
+		velocity.x = move_toward(velocity.x, direction * speed, ACCELERATION * delta)
 	else:
 		apply_friction(delta)
 	
@@ -176,7 +182,7 @@ func _on_hook_collided(collision : KinematicCollision2D):
 		hook_speed = HOOK_BASE_FLY_SPEED
 
 		if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
-			hook_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER
+			hook_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER + (HOOK_SPEED_EXPANSION_MULTIPLIER_INCREASE * (GameMan.get_expansion_count(GameMan.ExpansionType.SPEED)))
 	else:
 		hook_released_early.emit()
 		bomb_active = false

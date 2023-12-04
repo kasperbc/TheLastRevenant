@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bps5olh5753pl"]
+
+[ext_resource type="Script" path="res://scripts/pickup/pickup_expansion.gd" id="1_1nr28"]
+[ext_resource type="Texture2D" uid="uid://cjxehrlnad2qs" path="res://assets/sprites/pickups/pickup_health_expansion.png" id="2_p0tw4"]
+[ext_resource type="Script" path="res://objects/pickups/expansions/expansion_text_skipper.gd" id="3_1f7f1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4f8pn"]
+size = Vector2(16, 16)
+
+[node name="PickupHealthExpansion" type="Area2D" groups=["UpgradePickups"]]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_1nr28")
+expansion_text = "Health expansion collected"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4f8pn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_p0tw4")
+
+[node name="ExpansionTextSkipper" type="Node" parent="."]
+process_mode = 2
+script = ExtResource("3_1f7f1")
+
+[connection signal="body_entered" from="." to="." method="_on_player_contact"]

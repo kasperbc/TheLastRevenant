@@ -2,8 +2,9 @@ extends CharacterBody2D
 class_name HookMovement
 
 const MOVE_SPEED = 500.0
-const RETURN_SPEED_MULTIPLIER = 1.2
+const RETURN_SPEED_MULTIPLIER = 2.1
 const MAX_DISTANCE = 180.0
+const RANGE_EXPANSION_DISTANCE_INCREASE = 22.5
 
 enum HookMoveState {DISABLED, STILL, MOVING, RETURNING}
 
@@ -49,10 +50,15 @@ func process_moving(delta):
 	var move_speed = MOVE_SPEED
 	var max_distance = MAX_DISTANCE
 	if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
-		move_speed *= PlayerMovement.HOOK_UPGRADE_SPEED_MULTIPLIER
+		move_speed *= PlayerMovement.HOOK_UPGRADE_SPEED_MULTIPLIER + (PlayerMovement.HOOK_SPEED_EXPANSION_MULTIPLIER_INCREASE * GameMan.get_expansion_count(GameMan.ExpansionType.SPEED))
 		max_distance *= PlayerMovement.HOOK_UPGRADE_SPEED_MULTIPLIER
+	else:
+		move_speed *= 1 + PlayerMovement.HOOK_SPEED_EXPANSION_MULTIPLIER_INCREASE * GameMan.get_expansion_count(GameMan.ExpansionType.SPEED)
+	max_distance += RANGE_EXPANSION_DISTANCE_INCREASE * GameMan.get_expansion_count(GameMan.ExpansionType.RANGE)
 	
 	var collision = move_and_collide(move_dir * move_speed * delta)
+	
+	print(max_distance)
 	
 	if distance_traveled >= max_distance:
 		max_distance_reached.emit()
@@ -69,6 +75,8 @@ func process_moving(delta):
 
 func process_returning():
 	var direction = position.direction_to(GameMan.get_player().position)
+	
+	var move_speed = MOVE_SPEED
 	
 	velocity = direction * MOVE_SPEED * RETURN_SPEED_MULTIPLIER
 	move_and_slide()

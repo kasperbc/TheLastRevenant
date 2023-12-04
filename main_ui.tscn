@@ -3,36 +3,36 @@
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://cxojaukuay0qd" path="res://assets/sprites/ui/health-circle.png" id="2_dobjs"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_puntb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lwb7"]
 atlas = ExtResource("2_dobjs")
-region = Rect2(0, 0, 62, 62)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4jlu"]
-atlas = ExtResource("2_dobjs")
-region = Rect2(0, 62, 62, 62)
+region = Rect2(0, 186, 62, 62)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtxlw"]
 atlas = ExtResource("2_dobjs")
 region = Rect2(0, 124, 62, 62)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3lwb7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4jlu"]
 atlas = ExtResource("2_dobjs")
-region = Rect2(0, 186, 62, 62)
+region = Rect2(0, 62, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puntb"]
+atlas = ExtResource("2_dobjs")
+region = Rect2(0, 0, 62, 62)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_myf26"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_puntb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k4jlu")
+"texture": SubResource("AtlasTexture_3lwb7")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gtxlw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3lwb7")
+"texture": SubResource("AtlasTexture_k4jlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puntb")
 }],
 "loop": true,
 "name": &"default",
@@ -106,3 +106,16 @@ Shift + N = Die
 
 P = Disable debug mode"
 horizontal_alignment = 2
+
+[node name="ExpansionText" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -48.0
+offset_right = 158.0
+offset_bottom = -28.0
+grow_vertical = 0
+text = "Expansion Text"

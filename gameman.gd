@@ -20,6 +20,12 @@ enum UpgradeStatus {
 	DISABLED = 2 # unlocked & not enabled
 }
 
+enum ExpansionType {
+	HEALTH = 0,
+	SPEED = 1,
+	RANGE = 2
+}
+
 var upgrades_collected : Array[Upgrade]
 var latest_recharge_station : int = -1
 var health_expansions_collected : Array[int]
@@ -73,3 +79,27 @@ func unlock_upgrade(value : Upgrade):
 func set_latest_recharge_point(id : int):
 	latest_recharge_station = id
 	print("The latest recharge station has been set to %s!" % id)
+
+func has_collected_expansion(type : ExpansionType, id : int) -> bool:
+	if type == ExpansionType.HEALTH:
+		return health_expansions_collected.has(id)
+	elif type == ExpansionType.SPEED:
+		return speed_expansions_collected.has(id)
+	else:
+		return range_expansions_collected.has(id)
+
+func get_expansion_count(type : ExpansionType) -> int:
+	if type == ExpansionType.HEALTH:
+		return health_expansions_collected.size()
+	elif type == ExpansionType.SPEED:
+		return speed_expansions_collected.size()
+	else:
+		return range_expansions_collected.size()
+
+func collect_expansion(type: ExpansionType, id : int):
+	if type == ExpansionType.HEALTH:
+		health_expansions_collected.append(id)
+	elif type == ExpansionType.SPEED:
+		speed_expansions_collected.append(id)
+	else:
+		range_expansions_collected.append(id)

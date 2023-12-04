@@ -7,6 +7,10 @@ func _on_player_near():
 	GameMan.get_player().hook_released_early.emit()
 	open_vent()
 
+func _on_player_attached():
+	GameMan.get_player().hook_released_early.emit()
+	open_vent()
+
 func open_vent():
 	$CollisionShape2D.disabled = true
 	

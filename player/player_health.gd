@@ -8,17 +8,19 @@ var current_health :
 		return _current_health
 	set(value):
 		_current_health = value
-		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").frame = 4 - (current_health % 5)
+		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").frame = (current_health - 1) % 4
 
-var health_upgrades = 0
 var invincible = false
 
 
 func _ready():
 	current_health = get_max_health()
 
+func _process(delta):
+	pass
+
 func damage():
-	if invincible:
+	if invincible and GameMan.get_player().current_state != PlayerMovement.MoveState.DEBUG:
 		return
 	
 	current_health -= 1
@@ -44,4 +46,4 @@ func heal_full():
 	current_health = get_max_health()
 
 func get_max_health() -> int:
-	return BASE_MAX_HEALTH
+	return BASE_MAX_HEALTH + (GameMan.get_expansion_count(GameMan.ExpansionType.HEALTH) * 2)

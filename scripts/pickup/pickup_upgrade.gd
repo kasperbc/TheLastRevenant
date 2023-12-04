@@ -20,8 +20,8 @@ func pick_up():
 func show_upgrade_text():
 	in_upgrade_text = true
 	get_tree().paused = true
-	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText/Name").text = upgrade.name.capitalize()
-	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText/Description").text = upgrade.description.capitalize()
+	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText/Name").text = upgrade.name
+	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText/Description").text = upgrade.description
 	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText").visible = true
 	
 func hide_upgrade_text():
