@@ -98,5 +98,11 @@ text = "Debug mode enabled
 WASD = Move
 IJKL = Teleport
 Shift = Move/Teleport more
+
+H = Heal
+Shift + H = Full Heal
+N = Take damage
+Shift + N = Die
+
 P = Disable debug mode"
 horizontal_alignment = 2
