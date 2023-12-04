@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2tk6n83hrwxq"]
 
 [ext_resource type="Script" path="res://objects/air_vent/air_vent.gd" id="2_qtu55"]
-[ext_resource type="Texture2D" uid="uid://coo2k6eo7egud" path="res://assets/sprites/objects/air_vent_long.png" id="2_us2dh"]
+[ext_resource type="Texture2D" uid="uid://clu5ba5esrbj2" path="res://icon.svg" id="3_chffk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qaji"]
-size = Vector2(12, 40)
+size = Vector2(16, 32)
 
 [node name="AirVent" type="StaticBody2D"]
 script = ExtResource("2_qtu55")
@@ -12,16 +12,16 @@ detect_player_near = true
 player_near_range = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_5qaji")
 
 [node name="UpperVent" type="Sprite2D" parent="."]
-position = Vector2(2, -18)
-texture = ExtResource("2_us2dh")
-offset = Vector2(0, 8)
+position = Vector2(8, -14)
+scale = Vector2(0.025, 0.125)
+texture = ExtResource("3_chffk")
+offset = Vector2(0, 48)
 
 [node name="LowerVent" type="Sprite2D" parent="."]
-position = Vector2(2, 18)
-texture = ExtResource("2_us2dh")
-offset = Vector2(0, -8)
-flip_v = true
+position = Vector2(8, 14)
+scale = Vector2(0.025, 0.125)
+texture = ExtResource("3_chffk")
+offset = Vector2(0, -48)
