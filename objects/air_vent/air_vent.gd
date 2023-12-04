@@ -13,7 +13,7 @@ func open_vent():
 	$UpperVent.rotation_degrees = 90
 	$LowerVent.rotation_degrees = -90
 	
-	await get_tree().create_timer(10).timeout
+	await get_tree().create_timer(3).timeout
 	
 	close_vent()
 
