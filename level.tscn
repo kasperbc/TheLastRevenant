@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b4mitftujrrxp"]
+[gd_scene load_steps=33 format=3 uid="uid://b4mitftujrrxp"]
 
 [ext_resource type="TileSet" uid="uid://cugqd8tqxnjuh" path="res://assets/tilesets/areas/revenant-lab-1/beta_tileset_1.tres" id="1_25riw"]
 [ext_resource type="PackedScene" uid="uid://hvpkds1vurlo" path="res://objects/pickups/upgrades/pickup_visualizer.tscn" id="2_54y3u"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ceg3mgpra1w41" path="res://objects/pickups/upgrades/pickup_thermal_module.tscn" id="6_biwh2"]
 [ext_resource type="Texture2D" uid="uid://bf2lxc5uotdd5" path="res://assets/tilesets/areas/living-quarters-2/tlr-betatexture-2-pipes.png" id="10_qyg48"]
 [ext_resource type="Texture2D" uid="uid://dmoyudqk1h6om" path="res://assets/tilesets/areas/living-quarters-2/tlr-betatexture-2-tiles.png" id="11_semoa"]
+[ext_resource type="PackedScene" uid="uid://q6127s5vksfd" path="res://objects/stations/recharge_station.tscn" id="12_1iiu0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eome5"]
 size = Vector2(336, 568)
@@ -653,3 +654,10 @@ format = 2
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_2xmt3")
 format = 2
+
+[node name="RechargeStation" parent="." instance=ExtResource("12_1iiu0")]
+position = Vector2(245, -90)
+
+[node name="RechargeStation2" parent="." instance=ExtResource("12_1iiu0")]
+position = Vector2(465, -90)
+station_id = 1

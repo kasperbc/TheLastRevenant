@@ -55,6 +55,9 @@ var hooked_obj :
 	set(value): 
 		set_hooked_obj(value)
 
+func _ready():
+	GameMan.move_player_to_latest_recharge_station()
+
 func _physics_process(delta):
 	
 	if current_state == MoveState.NORMAL:
@@ -66,12 +69,12 @@ func _physics_process(delta):
 	elif current_state == MoveState.DEBUG:
 		process_debug()
 	
+	
 	move_and_slide()
 
 # NORMAL MOVEMENT
 
 func process_normal_movement(delta):
-	
 	# Add the gravity.
 	if not is_on_floor():
 		apply_gravity(delta)
@@ -105,7 +108,7 @@ func process_normal_movement(delta):
 	
 	$Sprite2D/HookshotHand.frame = hookshot_hand_frame
 	
-	if not $Hook.visible:
+	if not $Hook.visible and GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
 		$Sprite2D/HookshotHand.visible = true
 
 
@@ -305,7 +308,7 @@ func process_debug():
 	var galvanic_module = Upgrade.new(GameMan.Upgrades.GALVANIC_MODULE)
 	var visualizer = Upgrade.new(GameMan.Upgrades.VISUALIZER)
 	
-	var extra_move = Input.is_key_pressed(KEY_SHIFT)
+	var shift_held = Input.is_key_pressed(KEY_SHIFT)
 	
 	if Input.is_action_just_pressed("debug_unlock_all_upgrades"):
 		GameMan.unlock_upgrade(hookshot)
@@ -328,7 +331,7 @@ func process_debug():
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
 	var move_amount = 1000.0
-	if extra_move:
+	if shift_held:
 		move_amount *= 2
 	
 	velocity = direction * move_amount
@@ -345,6 +348,18 @@ func process_debug():
 		teleport_dir.x = 1
 	
 	global_position += teleport_dir * (move_amount / 2.5)
+	
+	if Input.is_action_just_pressed("debug_damage"):
+		if shift_held:
+			GameMan.get_player_health().die()
+		else:
+			GameMan.get_player_health().damage()
+	
+	if Input.is_action_just_pressed("debug_heal"):
+		if shift_held:
+			GameMan.get_player_health().heal_full()
+		else:
+			GameMan.get_player_health().heal()
 	
 	if Input.is_action_just_pressed("toggle_debug"):
 		toggle_debug(false)

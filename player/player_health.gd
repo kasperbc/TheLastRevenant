@@ -15,7 +15,7 @@ var invincible = false
 
 
 func _ready():
-	current_health = BASE_MAX_HEALTH
+	current_health = get_max_health()
 
 func damage():
 	if invincible:
@@ -24,15 +24,24 @@ func damage():
 	current_health -= 1
 	
 	if current_health <= 0:
-		GameMan.reload_scene()
+		die()
 		return
 	
 	invincible = true
 	await get_tree().create_timer(1).timeout
 	invincible = false
 
+func die():
+	GameMan.reload_scene()
+
 func heal():
 	current_health += 1
 	
-	if current_health > BASE_MAX_HEALTH:
-		current_health = BASE_MAX_HEALTH
+	if current_health > get_max_health():
+		current_health = get_max_health()
+
+func heal_full():
+	current_health = get_max_health()
+
+func get_max_health() -> int:
+	return BASE_MAX_HEALTH

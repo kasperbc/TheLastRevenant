@@ -21,6 +21,7 @@ enum UpgradeStatus {
 }
 
 var upgrades_collected : Array[Upgrade]
+var latest_recharge_station : int = -1
 var health_expansions_collected : Array[int]
 var speed_expansions_collected : Array[int]
 var range_expansions_collected : Array[int]
@@ -40,6 +41,24 @@ func get_player_health() -> Node:
 func reload_scene():
 	get_tree().reload_current_scene()
 
+func move_player_to_latest_recharge_station():
+	if latest_recharge_station == -1:
+		return
+	
+	var target_station
+	
+	var stations = get_tree().get_nodes_in_group("RechargeStations")
+	for s in stations:
+		if not s is RechargeStation:
+			continue
+		if s.station_id == latest_recharge_station:
+			target_station = s
+			break
+	
+	if target_station:
+		get_player().global_position = target_station.global_position
+		print("Player has been moved to station %s" % latest_recharge_station)
+
 func get_upgrade_status(value : Upgrades) -> UpgradeStatus:
 	for u in upgrades_collected:
 		if u.id == value:
@@ -50,3 +69,7 @@ func get_upgrade_status(value : Upgrades) -> UpgradeStatus:
 func unlock_upgrade(value : Upgrade):
 	if not upgrades_collected.has(value):
 		upgrades_collected.append(value)
+
+func set_latest_recharge_point(id : int):
+	latest_recharge_station = id
+	print("The latest recharge station has been set to %s!" % id)
