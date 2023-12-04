@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6n8b1jwavetj"
-path="res://.godot/imported/tlr-betatexture-1-pipes.png-dfc27c24425eb0b3d74d5a6fe0bee3ab.ctex"
+uid="uid://bbkouo3061tnr"
+path="res://.godot/imported/tlr-betatexture-1-tiles.png-18ba7ea869e7e58100019e03aff1dd4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/beta_tiles/tlr-betatexture-1-pipes.png"
-dest_files=["res://.godot/imported/tlr-betatexture-1-pipes.png-dfc27c24425eb0b3d74d5a6fe0bee3ab.ctex"]
+source_file="res://assets/tilesets/areas/revenant-lab-1/tlr-betatexture-1-tiles.png"
+dest_files=["res://.godot/imported/tlr-betatexture-1-tiles.png-18ba7ea869e7e58100019e03aff1dd4c.ctex"]
 
 [params]
 

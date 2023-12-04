@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckwwhofablvg5"
-path="res://.godot/imported/tlr-betatexture-1.png-b9f138a96ed1ec4c0d2b3ab337f3a60e.ctex"
+path="res://.godot/imported/tlr-betatexture-1.png-269375aab32ee0175d8df45520dacd88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/beta_tiles/tlr-betatexture-1.png"
-dest_files=["res://.godot/imported/tlr-betatexture-1.png-b9f138a96ed1ec4c0d2b3ab337f3a60e.ctex"]
+source_file="res://assets/tilesets/areas/revenant-lab-1/tlr-betatexture-1.png"
+dest_files=["res://.godot/imported/tlr-betatexture-1.png-269375aab32ee0175d8df45520dacd88.ctex"]
 
 [params]
 

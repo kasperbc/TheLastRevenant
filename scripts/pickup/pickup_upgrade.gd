@@ -24,7 +24,7 @@ func show_upgrade_text():
 	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText/Name").text = upgrade.name.capitalize()
 	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText/Description").text = upgrade.description.capitalize()
 	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText").visible = true
-
+	
 func hide_upgrade_text():
 	if not in_upgrade_text:
 		return

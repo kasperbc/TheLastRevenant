@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=17 format=3 uid="uid://cugqd8tqxnjuh"]
 
-[ext_resource type="Texture2D" uid="uid://ckwwhofablvg5" path="res://assets/tilesets/beta_tiles/tlr-betatexture-1.png" id="1_brhmn"]
-[ext_resource type="Texture2D" uid="uid://c6n8b1jwavetj" path="res://assets/tilesets/beta_tiles/tlr-betatexture-1-pipes.png" id="2_mxvd1"]
-[ext_resource type="Texture2D" uid="uid://bbkouo3061tnr" path="res://assets/tilesets/beta_tiles/tlr-betatexture-1-tiles.png" id="3_elsge"]
+[ext_resource type="Texture2D" uid="uid://ckwwhofablvg5" path="res://assets/tilesets/areas/revenant-lab-1/tlr-betatexture-1.png" id="1_brhmn"]
+[ext_resource type="Texture2D" uid="uid://c6n8b1jwavetj" path="res://assets/tilesets/areas/revenant-lab-1/tlr-betatexture-1-pipes.png" id="2_mxvd1"]
+[ext_resource type="Texture2D" uid="uid://bbkouo3061tnr" path="res://assets/tilesets/areas/revenant-lab-1/tlr-betatexture-1-tiles.png" id="3_elsge"]
 [ext_resource type="Texture2D" uid="uid://pqwyb5kwqrun" path="res://assets/tilesets/cheesewithnothin.png" id="4_b4p1t"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_dl4xd"]
