@@ -5,7 +5,7 @@ const MOVE_SPEED = 500.0
 const RETURN_SPEED_MULTIPLIER = 1.2
 const MAX_DISTANCE = 180.0
 
-enum HookMoveState {NONE, MOVING, RETURNING}
+enum HookMoveState {DISABLED, STILL, MOVING, RETURNING}
 
 var current_state : HookMoveState
 var move_dir
@@ -16,16 +16,18 @@ signal collided(collision : KinematicCollision2D)
 signal max_distance_reached
 
 func _on_spawned():
-	move_dir = position.direction_to(get_global_mouse_position())
+	move_dir = global_position.direction_to(get_global_mouse_position())
+	rotation_degrees = rad_to_deg(Vector2.RIGHT.angle_to(move_dir))
 	current_state = HookMoveState.MOVING
+	set_collision_mask_value(1, true)
+	hooked_obj = null
 
 func _on_collided(collision):
-	current_state = HookMoveState.NONE
-	
-	rotation_degrees = rad_to_deg(global_position.angle_to_point(global_position.direction_to(collision.get_collider().global_position)))
+	current_state = HookMoveState.STILL
+	rotation_degrees = rad_to_deg(Vector2.RIGHT.angle_to(global_position.direction_to(collision.get_position())))
 
 func _on_hook_released():
-	queue_free()
+	visible = false
 
 func _on_max_distance_reached():
 	current_state = HookMoveState.RETURNING
@@ -38,7 +40,7 @@ func _physics_process(delta):
 		process_moving(delta)
 	elif current_state == HookMoveState.RETURNING:
 		process_returning()
-	elif current_state == HookMoveState.NONE:
+	elif current_state == HookMoveState.STILL:
 		process_still()
 
 func process_moving(delta):
@@ -73,7 +75,7 @@ func process_returning():
 	
 	var distance = position.distance_to(GameMan.get_player().position)
 	if distance < 20:
-		queue_free()
+		visible = false
 
 func process_still():
 	if hooked_obj:

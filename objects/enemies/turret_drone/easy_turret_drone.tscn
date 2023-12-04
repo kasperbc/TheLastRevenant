@@ -22,6 +22,8 @@ collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_n884m")
 death_particle = ExtResource("2_fx6gb")
+health_pickup_amount = 2
+health_pickup_spread = 16.0
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

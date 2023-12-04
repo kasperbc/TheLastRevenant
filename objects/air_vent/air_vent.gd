@@ -12,3 +12,13 @@ func open_vent():
 	
 	$UpperVent.rotation_degrees = 90
 	$LowerVent.rotation_degrees = -90
+	
+	await get_tree().create_timer(10).timeout
+	
+	close_vent()
+
+func close_vent():
+	$CollisionShape2D.disabled = false
+	
+	$UpperVent.rotation_degrees = 0
+	$LowerVent.rotation_degrees = 0

@@ -22,7 +22,6 @@ func damage():
 		return
 	
 	current_health -= 1
-	print("Player took damage: current health: %s" % current_health)
 	
 	if current_health <= 0:
 		GameMan.reload_scene()
@@ -31,3 +30,9 @@ func damage():
 	invincible = true
 	await get_tree().create_timer(1).timeout
 	invincible = false
+
+func heal():
+	current_health += 1
+	
+	if current_health > BASE_MAX_HEALTH:
+		current_health = BASE_MAX_HEALTH
