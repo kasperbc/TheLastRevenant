@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cdk28anvdyvwx"]
+[gd_scene load_steps=15 format=3 uid="uid://cdk28anvdyvwx"]
 
 [ext_resource type="Script" path="res://player/player_movement.gd" id="1_xsl8m"]
 [ext_resource type="Texture2D" uid="uid://hlrxci5pilcw" path="res://assets/sprites/player/tlr-sombre.png" id="2_oiug0"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bf2hbpcuyhpum" path="res://soundeffects/vineboom.mp3" id="6_hxv3p"]
 [ext_resource type="Texture2D" uid="uid://doche4allsmwy" path="res://assets/sprites/hook/hookshot_hand.png" id="7_eyyva"]
 [ext_resource type="PackedScene" uid="uid://d2clbmyic26t" path="res://objects/particles/explosion.tscn" id="9_urjyp"]
+[ext_resource type="PackedScene" uid="uid://q6127s5vksfd" path="res://objects/stations/recharge_station.tscn" id="10_eau81"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uw8j3"]
 radius = 5.0
@@ -86,6 +87,9 @@ stream = ExtResource("6_hxv3p")
 volume_db = -1.857
 
 [node name="Explosion" parent="." instance=ExtResource("9_urjyp")]
+
+[node name="RechargeStation" parent="." instance=ExtResource("10_eau81")]
+position = Vector2(3648, 304)
 
 [connection signal="hook_fired" from="." to="." method="_on_hook_fired"]
 [connection signal="hook_released" from="." to="." method="_on_hook_released"]

@@ -711,4 +711,4 @@ tile_set = SubResource("TileSet_2xmt3")
 format = 2
 
 [node name="RechargeStation" parent="." instance=ExtResource("12_7bpeg")]
-position = Vector2(-104, -263)
+position = Vector2(3664, 308)
