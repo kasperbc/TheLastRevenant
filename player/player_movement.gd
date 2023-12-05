@@ -62,6 +62,8 @@ var hooked_obj :
 
 func _ready():
 	GameMan.move_player_to_latest_recharge_station()
+	$Attack.visible = false
+	$AttackFlare.visible = false
 
 func _physics_process(delta):
 	if current_state == MoveState.NORMAL:
@@ -207,7 +209,8 @@ func _on_hook_collided(collision : KinematicCollision2D):
 
 func process_hook_flying(delta):
 	if hooked_obj:
-		hook_position = hooked_obj.global_position
+		if not hooked_obj.static_object:
+			hook_position = hooked_obj.global_position
 	
 	# Fly towards hook position
 	var direction = position.direction_to(hook_position)
@@ -264,7 +267,8 @@ func hook_attack():
 
 func process_hooked():
 	if hooked_obj:
-		hook_position = hooked_obj.global_position
+		if not hooked_obj.static_object:
+			hook_position = hooked_obj.global_position
 	
 	if global_position.distance_to(hook_position) > 10.0:
 		current_state = MoveState.HOOKED_FLYING

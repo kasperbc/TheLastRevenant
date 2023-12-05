@@ -38,6 +38,16 @@ func damage():
 	invincible = false
 
 func die():
+	get_tree().paused = true
+	
+	await get_tree().create_timer(2).timeout
+	
+	get_tree().root.get_node("/root/Main/UI/Control/FadeScreen").fade_to_black(1)
+	
+	await get_tree().create_timer(1).timeout
+	
+	get_tree().paused = false
+	
 	GameMan.reload_scene()
 
 func heal():

@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://pjcv8mdog7mm"]
+
+[ext_resource type="Script" path="res://objects/enemies/conveyor_wall/conveyor_wall.gd" id="1_t0jjj"]
+[ext_resource type="Texture2D" uid="uid://cshmc3ld2jv2r" path="res://assets/sprites/objects/conveyor_wall1.png" id="2_qaquq"]
+[ext_resource type="Texture2D" uid="uid://be5to4dvtmjdd" path="res://assets/sprites/objects/conveyor_wall2.png" id="3_26s0s"]
+[ext_resource type="Texture2D" uid="uid://xnlib2lbmh0p" path="res://assets/sprites/objects/conveyor_wall3.png" id="4_3523f"]
+[ext_resource type="Texture2D" uid="uid://lg3mlcwfrho8" path="res://assets/sprites/objects/conveyor_wall4.png" id="5_jbsc5"]
+[ext_resource type="Texture2D" uid="uid://dmswy5ymkq81r" path="res://assets/sprites/objects/conveyor_wall5.png" id="6_45jo3"]
+[ext_resource type="Texture2D" uid="uid://cocueieakm0go" path="res://assets/sprites/objects/conveyor_wall6.png" id="7_jcu8b"]
+
+[sub_resource type="Animation" id="Animation_g31e8"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_qaquq"), ExtResource("3_26s0s"), ExtResource("4_3523f"), ExtResource("5_jbsc5"), ExtResource("6_45jo3"), ExtResource("7_jcu8b")]
+}
+
+[sub_resource type="Animation" id="Animation_paih6"]
+resource_name = "move"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_qaquq"), ExtResource("3_26s0s"), ExtResource("4_3523f"), ExtResource("5_jbsc5"), ExtResource("6_45jo3")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xkmbl"]
+_data = {
+"RESET": SubResource("Animation_g31e8"),
+"move": SubResource("Animation_paih6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uveia"]
+size = Vector2(6, 16)
+
+[node name="ConveyorWall" type="CharacterBody2D" groups=["Enemies"]]
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_t0jjj")
+detect_player_near = true
+player_near_range = 30.0
+static_object = true
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture_repeat = 2
+texture = ExtResource("2_qaquq")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_xkmbl")
+}
+autoplay = "RESET"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uveia")

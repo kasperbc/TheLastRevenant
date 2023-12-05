@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=18 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://cxojaukuay0qd" path="res://assets/sprites/ui/health-circle.png" id="2_dobjs"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://fgbkjltmqd2f" path="res://assets/sprites/ui/speed_bar_fill.png" id="8_h8tpl"]
 [ext_resource type="Script" path="res://scripts/ui/speed_bar.gd" id="9_cre45"]
 [ext_resource type="FontFile" uid="uid://dth7yl8x2whvb" path="res://assets/fonts/Retro Gaming.ttf" id="10_f8qvh"]
+[ext_resource type="Script" path="res://scripts/ui/fade_screen.gd" id="11_6yqxg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3lwb7"]
 atlas = ExtResource("2_dobjs")
@@ -83,9 +84,9 @@ texture_progress = ExtResource("4_wmwh3")
 script = ExtResource("5_730nh")
 
 [node name="Speedometer" type="TextureProgressBar" parent="Control/HealthSprite"]
-offset_left = -46.5
+offset_left = -48.5
 offset_top = -31.5
-offset_right = -6.5
+offset_right = -8.5
 offset_bottom = 32.5
 max_value = 1.0
 step = 0.01
@@ -172,3 +173,16 @@ offset_right = 158.0
 offset_bottom = -28.0
 grow_vertical = 0
 text = "Expansion Text"
+
+[node name="FadeScreen" type="ColorRect" parent="Control"]
+process_mode = 3
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("11_6yqxg")
