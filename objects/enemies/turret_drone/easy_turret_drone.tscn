@@ -114,6 +114,7 @@ debug_enabled = true
 [node name="AI" type="Node" parent="."]
 script = ExtResource("3_etgmy")
 idle_check_angle = 20.0
+idle_check_distance = 150.0
 blind_pursue_time = 1.5
 
 [node name="idle" type="Node" parent="AI"]
