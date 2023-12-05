@@ -112,6 +112,9 @@ func process_normal_movement(delta):
 	
 	if not $Hook.visible and GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
 		$Sprite2D/HookshotHand.visible = true
+	
+	if GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
+		flip_sprite(get_global_mouse_position().x < global_position.x)
 
 
 func get_gravity() -> float:
@@ -137,6 +140,10 @@ func horizontal_move(delta):
 	
 	if direction:
 		var direction_opposite_to_velocity = clamp(direction * 100, -1, 1) + clamp(velocity.x, -1, 1) == 0
+		
+		if not GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
+			flip_sprite(velocity.x < 0)
+		
 		if (abs(velocity.x) < SNAP_VELOCITY or direction_opposite_to_velocity) and is_on_floor() and abs(velocity.x) < speed * 1.5:
 			velocity.x = SNAP_VELOCITY * direction
 		
@@ -229,6 +236,8 @@ func process_hook_flying(delta):
 		return
 		
 	last_distance = distance
+	
+	flip_sprite(hook_position.x < global_position.x)
 
 func hook_attack():
 	if not GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
@@ -369,3 +378,12 @@ func process_debug():
 	
 	if Input.is_action_just_pressed("toggle_debug"):
 		toggle_debug(false)
+
+func flip_sprite(inverse : bool):
+	$Sprite2D.flip_h = inverse
+	
+	var hookhand_pos = Vector2(4,5)
+	if inverse:
+		hookhand_pos.x *= -1
+	
+	$Sprite2D/HookshotHand.position = hookhand_pos

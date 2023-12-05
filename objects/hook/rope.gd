@@ -1,4 +1,7 @@
 extends Sprite2D
+class_name Rope
+
+@export var sprites : Array[CompressedTexture2D]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -14,3 +17,13 @@ func _process(delta):
 
 	# rotation
 	rotation = Vector2.RIGHT.angle_to(hook_pos.direction_to(player_pos))
+	
+	# sprite
+	if GameMan.get_upgrade_status(GameMan.Upgrades.THERMAL_MODULE) == GameMan.UpgradeStatus.ENABLED:
+		texture = sprites[3]
+	elif GameMan.get_upgrade_status(GameMan.Upgrades.GALVANIC_MODULE) == GameMan.UpgradeStatus.ENABLED:
+		texture = sprites[2]
+	elif GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
+		texture = sprites[1]
+	elif GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
+		texture = sprites[0]

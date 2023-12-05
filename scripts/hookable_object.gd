@@ -4,6 +4,8 @@ extends PhysicsBody2D
 @export_group("Player near detection")
 @export var detect_player_near : bool = false
 @export var player_near_range : float = 0.0
+@export_group("")
+@export var static_object : bool = false
 
 var hook_attached
 var player_near_triggered = false
