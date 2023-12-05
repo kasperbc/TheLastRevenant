@@ -108,6 +108,8 @@ size = Vector2(32, 48)
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_tcvpf")
+health_pickup_amount = 5
+health_pickup_spread = Vector2(16, 24)
 static_object = true
 metadata/move_points = PackedVector2Array()
 

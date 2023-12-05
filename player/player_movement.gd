@@ -25,6 +25,7 @@ const HOOK_JUMPS_BEFORE_MIN_STRENGTH = 4
 const HOOK_WALL_JUMP_STRENGTH = 150.0
 
 const HOOK_ATTACK_DISTANCE = 150.0
+const BOMB_COOLDOWN = 3.0
 
 enum MoveState {NORMAL, HOOKED_FLYING, HOOKED, DEBUG}
 var current_state : MoveState
@@ -50,6 +51,7 @@ var hook_speed : float
 var hook_jump_strength : float
 var last_distance : float
 var bomb_active : bool
+var bomb_last_use_timestamp = 0.0
 
 var _hooked_obj
 var hooked_obj : 
@@ -62,7 +64,6 @@ func _ready():
 	GameMan.move_player_to_latest_recharge_station()
 
 func _physics_process(delta):
-	
 	if current_state == MoveState.NORMAL:
 		process_normal_movement(delta)
 	elif current_state == MoveState.HOOKED_FLYING:
@@ -95,7 +96,7 @@ func process_normal_movement(delta):
 		hook_fired.emit()
 	
 	if Input.is_action_just_pressed("hook_attack") and GameMan.get_upgrade_status(GameMan.Upgrades.THERMAL_MODULE) == GameMan.UpgradeStatus.ENABLED:
-		if $Hook.visible:
+		if $Hook.visible or get_bomb_on_cooldown():
 			return
 		bomb_active = !bomb_active
 	
@@ -178,10 +179,6 @@ func _on_hook_collided(collision : KinematicCollision2D):
 	var _hooked_obj = collision.get_collider()
 	if _hooked_obj is HookableObject:
 		hooked_obj = _hooked_obj
-		if not bomb_active:
-			hooked_obj._on_hook_attached()
-		else:
-			hooked_obj._on_player_attacked()
 	
 	if not bomb_active:
 		current_state = MoveState.HOOKED_FLYING
@@ -190,12 +187,21 @@ func _on_hook_collided(collision : KinematicCollision2D):
 
 		if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
 			hook_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER + (HOOK_SPEED_EXPANSION_MULTIPLIER_INCREASE * (GameMan.get_expansion_count(GameMan.ExpansionType.SPEED)))
+		
+		if hooked_obj:
+			hooked_obj._on_hook_attached()
 	else:
+		if hooked_obj:
+			hooked_obj._on_player_attacked()
+		
+		bomb_last_use_timestamp = Time.get_unix_time_from_system()
 		hook_released_early.emit()
 		bomb_active = false
 		var explosion_effect = explosion.instantiate()
 		get_parent().add_child(explosion_effect)
 		explosion_effect.global_position = hook_obj.global_position
+	
+	
 
 # HOOK MOVEMENT
 
@@ -387,3 +393,6 @@ func flip_sprite(inverse : bool):
 		hookhand_pos.x *= -1
 	
 	$Sprite2D/HookshotHand.position = hookhand_pos
+
+func get_bomb_on_cooldown() -> bool:
+	return Time.get_unix_time_from_system() < bomb_last_use_timestamp + BOMB_COOLDOWN

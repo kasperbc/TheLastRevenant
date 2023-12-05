@@ -28,7 +28,6 @@ func _on_collided(collision):
 	current_state = HookMoveState.STILL
 	
 	var dir = global_position.direction_to(collision.get_position())
-	print(abs(dir.x - dir.y))
 	
 	if abs(dir.x) > abs(dir.y):
 		dir.x = clamp(dir.x * 100, -1, 1)
@@ -100,6 +99,6 @@ func process_returning():
 		visible = false
 
 func process_still():
-	if hooked_obj:
+	if is_instance_valid(hooked_obj):
 		if not hooked_obj.static_object:
 			global_position = hooked_obj.global_position
