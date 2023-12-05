@@ -1,7 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=17 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://cxojaukuay0qd" path="res://assets/sprites/ui/health-circle.png" id="2_dobjs"]
+[ext_resource type="Texture2D" uid="uid://wd3gqvj8tiaa" path="res://assets/sprites/ui/bomb_bar_outline.png" id="3_0rfi0"]
+[ext_resource type="Texture2D" uid="uid://pucppjrdakd1" path="res://assets/sprites/ui/bomb_bar_under.png" id="3_btd6h"]
+[ext_resource type="Texture2D" uid="uid://68ucm7p53mpf" path="res://assets/sprites/ui/bomb_bar_fill.png" id="4_wmwh3"]
+[ext_resource type="Script" path="res://scripts/ui/bomb_bar.gd" id="5_730nh"]
+[ext_resource type="Texture2D" uid="uid://cnwm58do1to1b" path="res://assets/sprites/ui/speed_bar_under.png" id="7_ji1u2"]
+[ext_resource type="Texture2D" uid="uid://fgbkjltmqd2f" path="res://assets/sprites/ui/speed_bar_fill.png" id="8_h8tpl"]
+[ext_resource type="Script" path="res://scripts/ui/speed_bar.gd" id="9_cre45"]
+[ext_resource type="FontFile" uid="uid://dth7yl8x2whvb" path="res://assets/fonts/Retro Gaming.ttf" id="10_f8qvh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3lwb7"]
 atlas = ExtResource("2_dobjs")
@@ -39,6 +47,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_rtar1"]
+font_size = 24
+font_color = Color(0.509804, 0.847059, 0.913725, 1)
+outline_size = 4
+outline_color = Color(0.176471, 0.356863, 0.521569, 1)
+
 [node name="UI" type="CanvasLayer"]
 
 [node name="Control" type="Control" parent="."]
@@ -49,9 +63,48 @@ offset_bottom = 720.0
 theme = ExtResource("1_3mwic")
 
 [node name="HealthSprite" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(94, 94)
+position = Vector2(135, 94)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_myf26")
+frame = 3
+
+[node name="BombBar" type="TextureProgressBar" parent="Control/HealthSprite"]
+offset_left = 20.5
+offset_top = -32.0
+offset_right = 60.5
+offset_bottom = 32.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+fill_mode = 2
+texture_under = ExtResource("3_btd6h")
+texture_over = ExtResource("3_0rfi0")
+texture_progress = ExtResource("4_wmwh3")
+script = ExtResource("5_730nh")
+
+[node name="Speedometer" type="TextureProgressBar" parent="Control/HealthSprite"]
+offset_left = -46.5
+offset_top = -31.5
+offset_right = -6.5
+offset_bottom = 32.5
+max_value = 1.0
+step = 0.01
+value = 1.0
+fill_mode = 2
+texture_under = ExtResource("7_ji1u2")
+texture_progress = ExtResource("8_h8tpl")
+script = ExtResource("9_cre45")
+
+[node name="HealthText" type="Label" parent="Control/HealthSprite"]
+offset_left = -19.5
+offset_top = -11.0
+offset_right = 29.5
+offset_bottom = 20.0
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/font = ExtResource("10_f8qvh")
+text = "4"
+label_settings = SubResource("LabelSettings_rtar1")
+horizontal_alignment = 1
 
 [node name="UpgradeText" type="VBoxContainer" parent="Control"]
 visible = false

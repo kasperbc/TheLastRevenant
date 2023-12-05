@@ -9,6 +9,10 @@ var current_health :
 	set(value):
 		_current_health = value
 		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").frame = (current_health - 1) % 4
+		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").text = str(current_health)
+		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").label_settings.font_color = Color("49b2d3")
+		if current_health == get_max_health():
+			get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").label_settings.font_color = Color("82d8e9")
 
 var invincible = false
 

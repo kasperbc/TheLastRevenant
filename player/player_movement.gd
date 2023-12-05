@@ -255,6 +255,11 @@ func hook_attack():
 	if not global_position.distance_to(hook_position) < HOOK_ATTACK_DISTANCE:
 		return
 	
+	$Attack.rotation = Vector2.RIGHT.angle_to(global_position.direction_to(hooked_obj.global_position)) + 90
+	$Attack/AnimationPlayer.current_animation = "attack"
+	
+	$AttackFlare.global_position = hooked_obj.global_position
+	$AttackFlare/AnimationPlayer.current_animation = "flare"
 	hooked_obj._on_player_attacked()
 
 func process_hooked():

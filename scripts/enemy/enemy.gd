@@ -69,8 +69,9 @@ func take_damage():
 	if stunned:
 		return
 	
+	await get_tree().create_timer(0.06, true, false, true).timeout
 	get_tree().paused = true
-	# await get_tree().create_timer(0.05, true, false, true).timeout
+	await get_tree().create_timer(0.1, true, false, true).timeout
 	get_tree().paused = false
 	
 	
