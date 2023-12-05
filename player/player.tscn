@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cdk28anvdyvwx"]
 
 [ext_resource type="Script" path="res://player/player_movement.gd" id="1_xsl8m"]
-[ext_resource type="Texture2D" uid="uid://dpx5cqxqjj4av" path="res://assets/sprites/player/placeholder_betaplayer.png" id="2_lvogt"]
+[ext_resource type="Texture2D" uid="uid://hlrxci5pilcw" path="res://assets/sprites/player/tlr-sombre.png" id="2_oiug0"]
 [ext_resource type="PackedScene" uid="uid://glmeh6l6odpp" path="res://objects/hook_shot_pos_indicator/hook_shot_pos_indicator.tscn" id="3_8hvtn"]
 [ext_resource type="Texture2D" uid="uid://cq6w6pe6pe05n" path="res://assets/sprites/ui/tlr-betahook-cursor.png" id="3_aswug"]
 [ext_resource type="Script" path="res://player/player_health.gd" id="4_lnaue"]
@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://d2clbmyic26t" path="res://objects/particles/explosion.tscn" id="9_urjyp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uw8j3"]
-radius = 6.0
-height = 28.0
+radius = 5.0
+height = 24.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mt6x"]
 atlas = ExtResource("7_eyyva")
@@ -42,18 +42,17 @@ floor_snap_length = 6.0
 script = ExtResource("1_xsl8m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_uw8j3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
 position = Vector2(1.90735e-06, 2.14577e-06)
-texture = ExtResource("2_lvogt")
+texture = ExtResource("2_oiug0")
 
 [node name="HookshotHand" type="AnimatedSprite2D" parent="Sprite2D"]
-visible = false
-z_index = 10
-position = Vector2(3, -2.14577e-06)
+z_index = -1
+position = Vector2(4, 5)
 sprite_frames = SubResource("SpriteFrames_m4la1")
 offset = Vector2(3, 0)
 script = ExtResource("4_oyyjh")

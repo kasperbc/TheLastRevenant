@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hlrxci5pilcw"
-path="res://.godot/imported/tlr-sombre.png-aa24b5131b55e12a3b247419ea835036.ctex"
+path="res://.godot/imported/tlr-sombre.png-ce93012c58e7bd1f70f8a11fd08ae1d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/tlr-sombre.png"
-dest_files=["res://.godot/imported/tlr-sombre.png-aa24b5131b55e12a3b247419ea835036.ctex"]
+source_file="res://assets/sprites/player/tlr-sombre.png"
+dest_files=["res://.godot/imported/tlr-sombre.png-ce93012c58e7bd1f70f8a11fd08ae1d2.ctex"]
 
 [params]
 
