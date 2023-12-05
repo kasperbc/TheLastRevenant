@@ -19,5 +19,5 @@ func _draw():
 	
 	var i = 0
 	while i < path.size() - 1:
-		draw_line(to_local(path[i]), to_local(path[i + 1]), Color(1,0,0,0.5), 1.5, false)
+		draw_line(path[i], path[i + 1], Color(1,0,0,0.5), 1.5, false)
 		i += 1
