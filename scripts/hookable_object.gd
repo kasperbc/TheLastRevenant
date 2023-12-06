@@ -4,6 +4,8 @@ extends PhysicsBody2D
 @export_group("Player near detection")
 @export var detect_player_near : bool = false
 @export var player_near_range : float = 0.0
+@export_group("")
+@export var static_object : bool = false
 
 var hook_attached
 var player_near_triggered = false
@@ -16,7 +18,7 @@ func check_player_near():
 	if player_near_range == 0 or player_near_triggered or not detect_player_near:
 		return
 	
-	var distance_to_player = position.distance_to(GameMan.get_player().position)
+	var distance_to_player = global_position.distance_to(GameMan.get_player().global_position)
 	if distance_to_player > player_near_range:
 		return
 	

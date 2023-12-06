@@ -13,10 +13,11 @@ class_name Enemy
 @export_category("Pickups")
 @export var drop_health_pickups = true
 @export var health_pickup_amount = 1
-@export var health_pickup_spread = 5.0
+@export var health_pickup_spread = Vector2(5.0, 5.0)
 @export_group("Contact")
 @export var contact_damage = true
 @export var destroy_on_contact = false
+@export var knockback = Vector2(200, -200)
 
 var stunned
 
@@ -58,7 +59,7 @@ func damage_player():
 	
 	player.hook_released.emit()
 	GameMan.get_player_health().damage()
-	knock_back_player(Vector2(200, -200))
+	knock_back_player(Vector2(knockback))
 
 func knock_back_player(amount : Vector2):
 	player.velocity.x = (position.direction_to(player.position) * amount.x).x
@@ -68,8 +69,9 @@ func take_damage():
 	if stunned:
 		return
 	
+	await get_tree().create_timer(0.06, true, false, true).timeout
 	get_tree().paused = true
-	# await get_tree().create_timer(0.05, true, false, true).timeout
+	await get_tree().create_timer(0.1, true, false, true).timeout
 	get_tree().paused = false
 	
 	
@@ -114,8 +116,8 @@ func die():
 			var pickup = health_pickup.instantiate()
 			get_parent().add_child(pickup)
 			pickup.global_position = global_position
-			pickup.global_position.x += randf_range(-health_pickup_spread, health_pickup_spread)
-			pickup.global_position.y += randf_range(-health_pickup_spread, health_pickup_spread)
+			pickup.global_position.x += randf_range(-health_pickup_spread.x, health_pickup_spread.x)
+			pickup.global_position.y += randf_range(-health_pickup_spread.y, health_pickup_spread.y)
 			pickup.base_pos = pickup.global_position
 	
 	if hook_attached:

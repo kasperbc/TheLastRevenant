@@ -6,4 +6,4 @@
 script = ExtResource("1_dy4aq")
 id = 3
 name = "Velocity Module"
-description = "Augments your velocity and allows you to counter enemies and obstacles with [Right Click]."
+description = "Augments your velocity and allows you to counter enemies and obstacles while hooked with [Right Click]."

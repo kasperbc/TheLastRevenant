@@ -22,10 +22,25 @@ func _on_spawned():
 	current_state = HookMoveState.MOVING
 	set_collision_mask_value(1, true)
 	hooked_obj = null
+	$Hook.visible = true
 
 func _on_collided(collision):
 	current_state = HookMoveState.STILL
-	rotation_degrees = rad_to_deg(Vector2.RIGHT.angle_to(global_position.direction_to(collision.get_position())))
+	
+	var dir = global_position.direction_to(collision.get_position())
+	
+	if abs(dir.x) > abs(dir.y):
+		dir.x = clamp(dir.x * 100, -1, 1)
+		dir.y = 0
+	else:
+		dir.y = clamp(dir.y * 100, -1, 1)
+		dir.x = 0
+	
+	rotation_degrees = rad_to_deg(Vector2.RIGHT.angle_to(dir))
+	
+	if hooked_obj:
+		if not hooked_obj.static_object:
+			$Hook.visible = false
 
 func _on_hook_released():
 	visible = false
@@ -58,8 +73,6 @@ func process_moving(delta):
 	
 	var collision = move_and_collide(move_dir * move_speed * delta)
 	
-	print(max_distance)
-	
 	if distance_traveled >= max_distance:
 		max_distance_reached.emit()
 		return
@@ -86,5 +99,6 @@ func process_returning():
 		visible = false
 
 func process_still():
-	if hooked_obj:
-		global_position = hooked_obj.global_position
+	if is_instance_valid(hooked_obj):
+		if not hooked_obj.static_object:
+			global_position = hooked_obj.global_position

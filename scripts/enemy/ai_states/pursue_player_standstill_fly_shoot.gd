@@ -22,4 +22,4 @@ func shoot():
 		return
 	
 	if ai_controller.can_see_player():
-		shoot_projectile(Vector2.DOWN * 10.0)
+		shoot_projectile_towards_player(Vector2.ZERO, 5.0)

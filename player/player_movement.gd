@@ -25,6 +25,7 @@ const HOOK_JUMPS_BEFORE_MIN_STRENGTH = 4
 const HOOK_WALL_JUMP_STRENGTH = 150.0
 
 const HOOK_ATTACK_DISTANCE = 150.0
+const BOMB_COOLDOWN = 3.0
 
 enum MoveState {NORMAL, HOOKED_FLYING, HOOKED, DEBUG}
 var current_state : MoveState
@@ -50,6 +51,7 @@ var hook_speed : float
 var hook_jump_strength : float
 var last_distance : float
 var bomb_active : bool
+var bomb_last_use_timestamp = 0.0
 
 var _hooked_obj
 var hooked_obj : 
@@ -60,9 +62,10 @@ var hooked_obj :
 
 func _ready():
 	GameMan.move_player_to_latest_recharge_station()
+	$Attack.visible = false
+	$AttackFlare.visible = false
 
 func _physics_process(delta):
-	
 	if current_state == MoveState.NORMAL:
 		process_normal_movement(delta)
 	elif current_state == MoveState.HOOKED_FLYING:
@@ -95,7 +98,7 @@ func process_normal_movement(delta):
 		hook_fired.emit()
 	
 	if Input.is_action_just_pressed("hook_attack") and GameMan.get_upgrade_status(GameMan.Upgrades.THERMAL_MODULE) == GameMan.UpgradeStatus.ENABLED:
-		if $Hook.visible:
+		if $Hook.visible or get_bomb_on_cooldown():
 			return
 		bomb_active = !bomb_active
 	
@@ -112,6 +115,9 @@ func process_normal_movement(delta):
 	
 	if not $Hook.visible and GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
 		$Sprite2D/HookshotHand.visible = true
+	
+	if GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
+		flip_sprite(get_global_mouse_position().x < global_position.x)
 
 
 func get_gravity() -> float:
@@ -137,6 +143,10 @@ func horizontal_move(delta):
 	
 	if direction:
 		var direction_opposite_to_velocity = clamp(direction * 100, -1, 1) + clamp(velocity.x, -1, 1) == 0
+		
+		if not GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
+			flip_sprite(velocity.x < 0)
+		
 		if (abs(velocity.x) < SNAP_VELOCITY or direction_opposite_to_velocity) and is_on_floor() and abs(velocity.x) < speed * 1.5:
 			velocity.x = SNAP_VELOCITY * direction
 		
@@ -171,10 +181,6 @@ func _on_hook_collided(collision : KinematicCollision2D):
 	var _hooked_obj = collision.get_collider()
 	if _hooked_obj is HookableObject:
 		hooked_obj = _hooked_obj
-		if not bomb_active:
-			hooked_obj._on_hook_attached()
-		else:
-			hooked_obj._on_player_attacked()
 	
 	if not bomb_active:
 		current_state = MoveState.HOOKED_FLYING
@@ -183,18 +189,28 @@ func _on_hook_collided(collision : KinematicCollision2D):
 
 		if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
 			hook_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER + (HOOK_SPEED_EXPANSION_MULTIPLIER_INCREASE * (GameMan.get_expansion_count(GameMan.ExpansionType.SPEED)))
+		
+		if hooked_obj:
+			hooked_obj._on_hook_attached()
 	else:
+		if hooked_obj:
+			hooked_obj._on_player_attacked()
+		
+		bomb_last_use_timestamp = Time.get_unix_time_from_system()
 		hook_released_early.emit()
 		bomb_active = false
 		var explosion_effect = explosion.instantiate()
 		get_parent().add_child(explosion_effect)
 		explosion_effect.global_position = hook_obj.global_position
+	
+	
 
 # HOOK MOVEMENT
 
 func process_hook_flying(delta):
 	if hooked_obj:
-		hook_position = hooked_obj.global_position
+		if not hooked_obj.static_object:
+			hook_position = hooked_obj.global_position
 	
 	# Fly towards hook position
 	var direction = position.direction_to(hook_position)
@@ -229,6 +245,8 @@ func process_hook_flying(delta):
 		return
 		
 	last_distance = distance
+	
+	flip_sprite(hook_position.x < global_position.x)
 
 func hook_attack():
 	if not GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
@@ -240,11 +258,17 @@ func hook_attack():
 	if not global_position.distance_to(hook_position) < HOOK_ATTACK_DISTANCE:
 		return
 	
+	$Attack.rotation = Vector2.RIGHT.angle_to(global_position.direction_to(hooked_obj.global_position)) + 90
+	$Attack/AnimationPlayer.current_animation = "attack"
+	
+	$AttackFlare.global_position = hooked_obj.global_position
+	$AttackFlare/AnimationPlayer.current_animation = "flare"
 	hooked_obj._on_player_attacked()
 
 func process_hooked():
 	if hooked_obj:
-		hook_position = hooked_obj.global_position
+		if not hooked_obj.static_object:
+			hook_position = hooked_obj.global_position
 	
 	if global_position.distance_to(hook_position) > 10.0:
 		current_state = MoveState.HOOKED_FLYING
@@ -369,3 +393,15 @@ func process_debug():
 	
 	if Input.is_action_just_pressed("toggle_debug"):
 		toggle_debug(false)
+
+func flip_sprite(inverse : bool):
+	$Sprite2D.flip_h = inverse
+	
+	var hookhand_pos = Vector2(4,5)
+	if inverse:
+		hookhand_pos.x *= -1
+	
+	$Sprite2D/HookshotHand.position = hookhand_pos
+
+func get_bomb_on_cooldown() -> bool:
+	return Time.get_unix_time_from_system() < bomb_last_use_timestamp + BOMB_COOLDOWN

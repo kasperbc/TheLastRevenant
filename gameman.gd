@@ -32,7 +32,7 @@ var health_expansions_collected : Array[int]
 var speed_expansions_collected : Array[int]
 var range_expansions_collected : Array[int]
 
-func get_player() -> Node:
+func get_player() -> PlayerMovement:
 	if not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("Players")
 	

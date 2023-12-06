@@ -2,6 +2,7 @@ extends Node
 class_name EnemyAIState
 
 var global_position : Vector2
+var position : Vector2
 
 var _body : Enemy
 var body : Enemy :
@@ -38,6 +39,7 @@ func _ready():
 
 func _process(delta):
 	global_position = body.global_position
+	position = body.position
 
 func ai_state_process(delta):
 	pass
