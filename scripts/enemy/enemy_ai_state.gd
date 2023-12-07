@@ -96,7 +96,7 @@ func shoot_projectile(offset : Vector2):
 	body.get_parent().add_child(new_projectile)
 	
 	if new_projectile is Node2D:
-		new_projectile.global_position = global_position + offset
+		new_projectile.global_position = global_position
 
 func shoot_projectile_towards_player(offset : Vector2, distance : float):
 	shoot_projectile((body.global_position.direction_to(GameMan.get_player().global_position) * distance) + offset)

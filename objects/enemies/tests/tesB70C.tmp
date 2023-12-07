@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqokkcn7ot43k"]
+[gd_scene load_steps=8 format=3 uid="uid://ls0jt53knh26"]
 
-[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_tl2ki"]
-[ext_resource type="Texture2D" uid="uid://bigss2jferxn3" path="res://assets/sprites/ui/target_ind.png" id="2_jiy16"]
-[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_pap3r"]
-[ext_resource type="Script" path="res://scripts/enemy/ai_states/idle_pointfollow_fly.gd" id="4_drwr0"]
-[ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_fly.gd" id="5_r8vwl"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_7diq4"]
+[ext_resource type="Texture2D" uid="uid://bigss2jferxn3" path="res://assets/sprites/ui/target_ind.png" id="2_2cv5m"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_iryc3"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move.gd" id="4_0fqwm"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_fly.gd" id="5_xhbe2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
 radius = 5.0
@@ -12,18 +12,17 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
 radius = 15.0
 
-[node name="TestEnemy1" type="CharacterBody2D" groups=["Enemies"]]
+[node name="TestEnemy2" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 8
 collision_mask = 3
-motion_mode = 1
-script = ExtResource("1_tl2ki")
+script = ExtResource("1_7diq4")
 health = 2
 player_near_range = 100.0
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
-texture = ExtResource("2_jiy16")
+texture = ExtResource("2_2cv5m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gfxgg")
@@ -41,17 +40,13 @@ avoidance_enabled = true
 debug_enabled = true
 
 [node name="AI" type="Node" parent="."]
-script = ExtResource("3_pap3r")
+script = ExtResource("3_iryc3")
 
 [node name="idle" type="Node" parent="AI"]
-script = ExtResource("4_drwr0")
-speed = 100.0
-wait_time = 0.5
-slowdown_distance = 50.0
-speedup_distance = 50.0
-pathfind = true
+script = ExtResource("4_0fqwm")
+move_speed = 100.0
 
 [node name="pursue" type="Node" parent="AI"]
-script = ExtResource("5_r8vwl")
+script = ExtResource("5_xhbe2")
 
 [connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

@@ -3,6 +3,7 @@ class_name EnemyAI
 
 @export var default_state : String = "idle"
 @export var no_ai_on_stun : bool = true
+@export var active_range : float = 700.0
 
 @onready var state = default_state
 @onready var body = get_parent()
@@ -13,13 +14,20 @@ var time_since_last_saw_player
 var state_prev_frame = ""
 
 func _process(delta):
-	process_active_state(delta)
-	change_state()
-
-func process_active_state(delta):
+	try_activate()
+	
 	if not active:
 		return
 	
+	process_active_state(delta)
+	change_state()
+
+func try_activate():
+	var dist = get_parent().global_position.distance_to(GameMan.get_player().global_position)
+	
+	active = dist <= active_range
+
+func process_active_state(delta):	
 	if body.stunned and no_ai_on_stun:
 		return
 	
