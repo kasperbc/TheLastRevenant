@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cfvkq6c4g1ir1"]
+[gd_scene load_steps=19 format=3 uid="uid://cfvkq6c4g1ir1"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_n884m"]
 [ext_resource type="PackedScene" uid="uid://cxcxvctlfdjcd" path="res://objects/particles/big_explosion.tscn" id="2_fx6gb"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bqryuh8g7nrer" path="res://assets/sprites/enemies/easy_drone_fly.png" id="3_kpr0n"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/idle_pointfollow_fly.gd" id="4_8aug7"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_standstill_fly_shoot.gd" id="5_wi8a8"]
-[ext_resource type="PackedScene" uid="uid://hwg8cw6udjx2" path="res://objects/projectiles/missiles/missile.tscn" id="6_a713c"]
 [ext_resource type="Script" path="res://scripts/shaker.gd" id="8_5otya"]
 [ext_resource type="Texture2D" uid="uid://22dwjutt4ncg" path="res://assets/sprites/objects/cannon.png" id="9_0rm6s"]
 [ext_resource type="Script" path="res://objects/enemies/turret_drone/turret_rotate.gd" id="10_51sbs"]
@@ -127,7 +126,7 @@ pathfind = true
 script = ExtResource("5_wi8a8")
 time_before_first_shot = 1.0
 shoot_rate = 2.0
-projectile = ExtResource("6_a713c")
+projectile_identifier = "homing_missile"
 
 [node name="Shaker" type="Node" parent="."]
 script = ExtResource("8_5otya")

@@ -10,6 +10,8 @@ class_name Enemy
 @export var death_particle : PackedScene
 @export var stun_time : float = 1.0
 @export var shake_on_stun : bool = true
+@export var pooled : bool = false
+@export var pool_identifier : String = ""
 @export_category("Pickups")
 @export var drop_health_pickups = true
 @export var health_pickup_amount = 1
@@ -122,4 +124,11 @@ func die():
 	
 	if hook_attached:
 		player.hook_released_early.emit()
-	queue_free()
+	
+	if not pooled:
+		queue_free()
+	if pooled:
+		PoolMan.return_to_pool(self, pool_identifier)
+
+func _reset():
+	pass
