@@ -12,6 +12,7 @@ var dir : Vector2
 func _on_state_activate():
 	set_dir()
 	rotate_towards_dir()
+	speed = 0.0
 
 func set_dir():
 	var target_pos = GameMan.get_player().global_position

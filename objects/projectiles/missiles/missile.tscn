@@ -99,6 +99,8 @@ collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_7ylg8")
 death_particle = ExtResource("2_ii8wc")
+pooled = true
+pool_identifier = "missile"
 drop_health_pickups = false
 metadata/move_points = PackedVector2Array()
 
@@ -138,6 +140,8 @@ max_speed = 400.0
 accleration = 300.0
 
 [node name="SmokeParticle" type="CPUParticles2D" parent="."]
+process_mode = 3
+top_level = true
 z_index = -1
 lifetime = 0.5
 randomness = 0.5

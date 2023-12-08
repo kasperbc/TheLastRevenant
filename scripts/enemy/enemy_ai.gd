@@ -116,3 +116,6 @@ func update_player_sighting_timestamp(saw_player : bool):
 		time_since_last_saw_player = 0
 		return
 	time_since_last_saw_player = Time.get_unix_time_from_system() - last_player_sighting_timestamp
+
+func reset_state():
+	state_prev_frame = ""

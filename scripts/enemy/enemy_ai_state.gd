@@ -28,7 +28,7 @@ var ai_controller : EnemyAI :
 @export var pathfind : bool = false
 @export var path_update_rate : float = 0.1
 @export_group("Projectile")
-@export var projectile : PackedScene
+@export var projectile_identifier : String = "missile"
 
 var path_target : Vector2
 
@@ -89,11 +89,10 @@ func is_active():
 	return get_parent().state == name
 
 func shoot_projectile(offset : Vector2):
-	if not projectile:
+	if projectile_identifier == "":
 		return
 	
-	var new_projectile = projectile.instantiate()
-	body.get_parent().add_child(new_projectile)
+	var new_projectile = PoolMan.borrow_from_pool(self, projectile_identifier)
 	
 	if new_projectile is Node2D:
 		new_projectile.global_position = global_position
