@@ -1,7 +1,6 @@
 extends HookableObject
 class_name Enemy
 
-@onready var player = GameMan.get_player()
 @onready var health_pickup = preload("res://objects/pickups/pickup_health.tscn")
 
 @export_category("Damage")
@@ -59,13 +58,14 @@ func damage_player():
 	if stunned:
 		return
 	
-	player.hook_released.emit()
+	GameMan.get_player().hook_released.emit()
+	
 	GameMan.get_player_health().damage()
 	knock_back_player(Vector2(knockback))
 
 func knock_back_player(amount : Vector2):
-	player.velocity.x = (position.direction_to(player.position) * amount.x).x
-	player.velocity.y = amount.y
+	GameMan.get_player().velocity.x = (position.direction_to(GameMan.get_player().position) * amount.x).x
+	GameMan.get_player().velocity.y = amount.y
 
 func take_damage():
 	if stunned:
@@ -123,7 +123,7 @@ func die():
 			pickup.base_pos = pickup.global_position
 	
 	if hook_attached:
-		player.hook_released_early.emit()
+		GameMan.get_player().hook_released_early.emit()
 	
 	if not pooled:
 		queue_free()

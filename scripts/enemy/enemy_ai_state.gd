@@ -31,6 +31,7 @@ var ai_controller : EnemyAI :
 @export var projectile_identifier : String = "missile"
 
 var path_target : Vector2
+var last_projectile
 
 var speed_multiplier : float = 1.0
 
@@ -95,7 +96,9 @@ func shoot_projectile(offset : Vector2):
 	var new_projectile = PoolMan.borrow_from_pool(self, projectile_identifier)
 	
 	if new_projectile is Node2D:
-		new_projectile.global_position = global_position
+		new_projectile.global_position = global_position + offset
+	
+	last_projectile = new_projectile
 
 func shoot_projectile_towards_player(offset : Vector2, distance : float):
 	shoot_projectile((body.global_position.direction_to(GameMan.get_player().global_position) * distance) + offset)
