@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbjxmaks6nr8v"
-path="res://.godot/imported/tlr-betatexture-9-tiles.png-92c112b3ef635fbb7bd8553ed5811843.ctex"
+uid="uid://bs5acjixg325n"
+path="res://.godot/imported/fat_missile.png-43b95dbc12cd8c74f4b9a2918c7df215.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/areas/flight-hangar-9/tlr-betatexture-9-tiles.png"
-dest_files=["res://.godot/imported/tlr-betatexture-9-tiles.png-92c112b3ef635fbb7bd8553ed5811843.ctex"]
+source_file="res://assets/sprites/missile/fat_missile.png"
+dest_files=["res://.godot/imported/fat_missile.png-43b95dbc12cd8c74f4b9a2918c7df215.ctex"]
 
 [params]
 

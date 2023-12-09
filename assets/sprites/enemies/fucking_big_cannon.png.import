@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbjxmaks6nr8v"
-path="res://.godot/imported/tlr-betatexture-9-tiles.png-92c112b3ef635fbb7bd8553ed5811843.ctex"
+uid="uid://d3eeexbfwrily"
+path="res://.godot/imported/fucking_big_cannon.png-577f6d7343c395ff9b4ea61a671a3147.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/areas/flight-hangar-9/tlr-betatexture-9-tiles.png"
-dest_files=["res://.godot/imported/tlr-betatexture-9-tiles.png-92c112b3ef635fbb7bd8553ed5811843.ctex"]
+source_file="res://assets/sprites/enemies/fucking_big_cannon.png"
+dest_files=["res://.godot/imported/fucking_big_cannon.png-577f6d7343c395ff9b4ea61a671a3147.ctex"]
 
 [params]
 
