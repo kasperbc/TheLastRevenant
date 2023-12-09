@@ -13,10 +13,12 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
 radius = 48.0
 
-[node name="Boss_Allmyfellas" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Boss_Allmyfellas" type="CharacterBody2D" groups=["Boss1", "Enemies"]]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_ilic4")
+health = 3.0
+stun_time = 0.0
 player_near_range = 100.0
 metadata/move_points = PackedVector2Array()
 

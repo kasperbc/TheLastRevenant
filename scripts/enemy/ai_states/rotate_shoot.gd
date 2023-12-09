@@ -20,7 +20,7 @@ func ai_state_process(delta):
 	
 	var target_rad = deg_to_rad(target_rotation)
 	
-	body.rotation = rotate_toward(body.rotation, target_rad, rotate_speed * delta)
+	body.rotation = rotate_toward(body.rotation, target_rad, rotate_speed * speed_multiplier * delta)
 	
 	if abs(body.rotation - target_rad) < 0.1 and not rotation_reached:
 		on_rotation_reach()
@@ -29,9 +29,8 @@ func on_rotation_reach():
 	rotation_reached = true
 	
 	shoot_projectile(Vector2.RIGHT.rotated(body.rotation) * 20.0)
-	await get_tree().create_timer(wait_time).timeout
+	await get_tree().create_timer(wait_time / speed_multiplier).timeout
 	change_point()
-	print(current_point)
 	
 	rotation_reached = false
 

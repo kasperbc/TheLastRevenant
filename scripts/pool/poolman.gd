@@ -23,4 +23,4 @@ func borrow_from_pool(recipient, identifier) -> Node:
 	return get_pool(identifier).borrow_node(recipient)
 
 func return_to_pool(node, identifier):
-	get_pool(identifier).return_node(node)
+	get_pool(identifier).call_deferred("return_node", node)
