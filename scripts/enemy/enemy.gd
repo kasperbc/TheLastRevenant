@@ -21,6 +21,7 @@ class_name Enemy
 @export var knockback = Vector2(200, -200)
 
 var stunned
+@onready var base_health = health
 
 signal died
 

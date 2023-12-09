@@ -126,7 +126,6 @@ pathfind = true
 script = ExtResource("5_wi8a8")
 time_before_first_shot = 1.0
 shoot_rate = 2.0
-projectile_identifier = "homing_missile"
 
 [node name="Shaker" type="Node" parent="."]
 script = ExtResource("8_5otya")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://byfgg5b0x6vgq"]
+
+[ext_resource type="Script" path="res://objects/doors/boss_door.gd" id="1_d5byi"]
+[ext_resource type="Texture2D" uid="uid://coo2k6eo7egud" path="res://assets/sprites/objects/air_vent_long.png" id="2_lfmoy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0q64"]
+size = Vector2(4, 56)
+
+[node name="SmallBossDoor" type="StaticBody2D"]
+script = ExtResource("1_d5byi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v0q64")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lfmoy")

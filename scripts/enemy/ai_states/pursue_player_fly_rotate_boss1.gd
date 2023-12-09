@@ -27,7 +27,9 @@ func ai_state_process(delta):
 	
 	var closest_damager : Node2D
 	for damager in get_tree().get_nodes_in_group("Boss1Damagers"):
-		if not damager is Node2D:
+		if not damager is Boss1Damager:
+			continue
+		if damager.falling:
 			continue
 		
 		var dist = body.global_position.distance_to(damager.global_position)

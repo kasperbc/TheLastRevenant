@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b4tg3cp3idim5"]
 
-[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_ilic4"]
+[ext_resource type="Script" path="res://objects/enemies/boss_1_allmyfellas/boss1.gd" id="1_cwjhc"]
 [ext_resource type="Texture2D" uid="uid://ccdht5wh4tpi8" path="res://assets/sprites/enemies/boss-1-allmyfellas.png" id="2_nopve"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_lomk7"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move.gd" id="4_eaece"]
@@ -16,10 +16,10 @@ radius = 48.0
 [node name="Boss_Allmyfellas" type="CharacterBody2D" groups=["Boss1", "Enemies"]]
 collision_layer = 8
 collision_mask = 3
-script = ExtResource("1_ilic4")
+script = ExtResource("1_cwjhc")
 health = 3.0
 stun_time = 0.0
-player_near_range = 100.0
+health_pickup_amount = 5
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -50,22 +50,22 @@ script = ExtResource("4_eaece")
 move_speed = 100.0
 gravity = 0.0
 
-[node name="RotatingCannon" parent="." instance=ExtResource("5_8omdk")]
+[node name="RotatingCannon" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
 position = Vector2(-32, -32)
 rotation = -2.89376
 metadata/rotate_points = PackedFloat64Array(-165, -110)
 
-[node name="RotatingCannon2" parent="." instance=ExtResource("5_8omdk")]
+[node name="RotatingCannon2" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
 position = Vector2(-48, -16)
 rotation = -1.57079
 metadata/rotate_points = PackedFloat64Array(-165, -110)
 
-[node name="RotatingCannon3" parent="." instance=ExtResource("5_8omdk")]
+[node name="RotatingCannon3" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
 position = Vector2(24, -24)
 rotation = -0.785398
 metadata/rotate_points = PackedFloat64Array(-45, 10)
 
-[node name="RotatingCannon4" parent="." instance=ExtResource("5_8omdk")]
+[node name="RotatingCannon4" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
 position = Vector2(40, -8)
 rotation = -1.57079
 metadata/rotate_points = PackedFloat64Array(-45, 10)
