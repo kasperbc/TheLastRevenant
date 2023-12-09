@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dhu3piawgw8n6"]
+[gd_scene load_steps=19 format=3 uid="uid://dhu3piawgw8n6"]
 
-[ext_resource type="Script" path="res://objects/projectiles/missiles/missile.gd" id="1_ivm7d"]
+[ext_resource type="Script" path="res://objects/projectiles/missiles/fat_missile.gd" id="1_84y6m"]
 [ext_resource type="PackedScene" uid="uid://d2clbmyic26t" path="res://objects/particles/explosion.tscn" id="2_5ksys"]
 [ext_resource type="Texture2D" uid="uid://bs5acjixg325n" path="res://assets/sprites/missile/fat_missile.png" id="3_kbvw8"]
-[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="4_bne04"]
-[ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_fly_rotate.gd" id="5_4kxa3"]
+[ext_resource type="Script" path="res://scripts/enemy/ais/fat_missile.gd" id="4_bvdof"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_fly_rotate_boss1.gd" id="5_vphdv"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/fall_and_die.gd" id="6_50lka"]
 [ext_resource type="Texture2D" uid="uid://bb7wvp1x6ss07" path="res://assets/sprites/particles/smoke.png" id="6_ixb1t"]
 [ext_resource type="Script" path="res://scripts/particle.gd" id="7_yuxcg"]
 
@@ -77,7 +78,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3h6my"]
-radius = 3.0
+radius = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
 radius = 5.09902
@@ -89,9 +90,8 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 [node name="FatMissile" type="CharacterBody2D" groups=["Enemies"]]
 z_index = 1
 collision_layer = 0
-collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_ivm7d")
+script = ExtResource("1_84y6m")
 death_particle = ExtResource("2_5ksys")
 pooled = true
 pool_identifier = "fat_missile"
@@ -114,24 +114,34 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_3h6my")
 
 [node name="ContactDetection" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
 shape = SubResource("CircleShape2D_icfny")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
+[node name="DamagerContactDetection" type="Area2D" parent="."]
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-debug_enabled = true
 
 [node name="AI" type="Node" parent="."]
-script = ExtResource("4_bne04")
+script = ExtResource("4_bvdof")
 default_state = "pursue_player_rotate"
 
 [node name="pursue_player_rotate" type="Node" parent="AI"]
-script = ExtResource("5_4kxa3")
+script = ExtResource("5_vphdv")
+speed = 75.0
 pathfind = true
+
+[node name="fall_and_die" type="Node" parent="AI"]
+script = ExtResource("6_50lka")
 
 [node name="SmokeParticle" type="CPUParticles2D" parent="."]
 process_mode = 3
@@ -151,3 +161,4 @@ script = ExtResource("7_yuxcg")
 
 [connection signal="died" from="." to="SmokeParticle" method="detach_particle"]
 [connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]
+[connection signal="body_entered" from="DamagerContactDetection" to="." method="on_hit_boss_damager"]
