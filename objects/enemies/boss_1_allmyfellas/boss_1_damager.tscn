@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ig3stjcdobx3"]
+[gd_scene load_steps=5 format=3 uid="uid://ig3stjcdobx3"]
 
 [ext_resource type="Texture2D" uid="uid://chdkyqq2rilgn" path="res://assets/sprites/objects/stalagmite_head.png" id="1_ia5f8"]
 [ext_resource type="Script" path="res://objects/enemies/boss_1_allmyfellas/boss_1_damager.gd" id="1_og2mk"]
+[ext_resource type="Texture2D" uid="uid://dpp7s3k2b1s2b" path="res://assets/sprites/particles/boss1_damager_particle.png" id="3_ex4t7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ta0s"]
 size = Vector2(32, 48)
@@ -15,3 +16,20 @@ shape = SubResource("RectangleShape2D_8ta0s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ia5f8")
+
+[node name="FallParticle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 400
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_ex4t7")
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, 150)
+initial_velocity_min = 178.5
+initial_velocity_max = 304.81
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+linear_accel_min = -100.0
+linear_accel_max = 100.0
