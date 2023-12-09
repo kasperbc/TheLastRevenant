@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4tg3cp3idim5"]
+[gd_scene load_steps=9 format=3 uid="uid://b4tg3cp3idim5"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_ilic4"]
 [ext_resource type="Texture2D" uid="uid://ccdht5wh4tpi8" path="res://assets/sprites/enemies/boss-1-allmyfellas.png" id="2_nopve"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_lomk7"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move.gd" id="4_eaece"]
 [ext_resource type="PackedScene" uid="uid://kj4psh0t28c3" path="res://objects/enemies/cannons/rotating_cannon.tscn" id="5_8omdk"]
+[ext_resource type="PackedScene" uid="uid://do2mus308riy4" path="res://objects/enemies/cannons/fucking_big_cannon.tscn" id="6_7vfh7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
 radius = 5.0
@@ -24,7 +25,7 @@ texture = ExtResource("2_nopve")
 offset = Vector2(0, -24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_gfxgg")
 
 [node name="ContactDetection" type="Area2D" parent="."]
@@ -66,5 +67,8 @@ metadata/rotate_points = PackedFloat64Array(-45, 10)
 position = Vector2(40, -8)
 rotation = -1.57079
 metadata/rotate_points = PackedFloat64Array(-45, 10)
+
+[node name="FuckingBigCannon" parent="." instance=ExtResource("6_7vfh7")]
+position = Vector2(-2, -26)
 
 [connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

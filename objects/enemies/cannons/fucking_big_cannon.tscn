@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://do2mus308riy4"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_hb7c2"]
+[ext_resource type="Texture2D" uid="uid://d3eeexbfwrily" path="res://assets/sprites/enemies/fucking_big_cannon.png" id="2_yud8l"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_s6exw"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/shoot_repeatedly.gd" id="4_oyw8x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+radius = 15.0
+
+[node name="FuckingBigCannon" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_hb7c2")
+contact_damage = false
+player_near_range = 100.0
+metadata/rotate_points = PackedFloat64Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yud8l")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gfxgg")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("3_s6exw")
+default_state = "shoot"
+
+[node name="shoot" type="Node" parent="AI"]
+script = ExtResource("4_oyw8x")
+projectile_offset = Vector2(0, -16)
+projectile_identifier = "fat_missile"
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

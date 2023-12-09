@@ -1,0 +1,153 @@
+[gd_scene load_steps=18 format=3 uid="uid://dhu3piawgw8n6"]
+
+[ext_resource type="Script" path="res://objects/projectiles/missiles/missile.gd" id="1_ivm7d"]
+[ext_resource type="PackedScene" uid="uid://d2clbmyic26t" path="res://objects/particles/explosion.tscn" id="2_5ksys"]
+[ext_resource type="Texture2D" uid="uid://bs5acjixg325n" path="res://assets/sprites/missile/fat_missile.png" id="3_kbvw8"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="4_bne04"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_fly_rotate.gd" id="5_4kxa3"]
+[ext_resource type="Texture2D" uid="uid://bb7wvp1x6ss07" path="res://assets/sprites/particles/smoke.png" id="6_ixb1t"]
+[ext_resource type="Script" path="res://scripts/particle.gd" id="7_yuxcg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1dun"]
+atlas = ExtResource("3_kbvw8")
+region = Rect2(0, 0, 13, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r54cu"]
+atlas = ExtResource("3_kbvw8")
+region = Rect2(13, 0, 13, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4syc"]
+atlas = ExtResource("3_kbvw8")
+region = Rect2(26, 0, 13, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_djfi2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1dun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r54cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4syc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_tgqvj"]
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_wo664"]
+resource_name = "fly"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ebbgq"]
+_data = {
+"RESET": SubResource("Animation_tgqvj"),
+"fly": SubResource("Animation_wo664")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3h6my"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+radius = 5.09902
+
+[sub_resource type="Gradient" id="Gradient_b3cr8"]
+offsets = PackedFloat32Array(0, 0.543624, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="FatMissile" type="CharacterBody2D" groups=["Enemies"]]
+z_index = 1
+collision_layer = 0
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_ivm7d")
+death_particle = ExtResource("2_5ksys")
+pooled = true
+pool_identifier = "fat_missile"
+drop_health_pickups = false
+destroy_on_contact = true
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_djfi2")
+speed_scale = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_ebbgq")
+}
+autoplay = "fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_3h6my")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("4_bne04")
+default_state = "pursue_player_rotate"
+
+[node name="pursue_player_rotate" type="Node" parent="AI"]
+script = ExtResource("5_4kxa3")
+pathfind = true
+
+[node name="SmokeParticle" type="CPUParticles2D" parent="."]
+process_mode = 3
+top_level = true
+z_index = -1
+amount = 16
+lifetime = 0.5
+randomness = 0.5
+texture = ExtResource("6_ixb1t")
+emission_shape = 1
+emission_sphere_radius = 6.0
+gravity = Vector2(0, -15)
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+color_ramp = SubResource("Gradient_b3cr8")
+script = ExtResource("7_yuxcg")
+
+[connection signal="died" from="." to="SmokeParticle" method="detach_particle"]
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]
