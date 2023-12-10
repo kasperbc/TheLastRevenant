@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbuper4n5vpor"]
+
+[ext_resource type="PackedScene" uid="uid://c2tk6n83hrwxq" path="res://objects/air_vent/air_vent.tscn" id="1_act15"]
+[ext_resource type="Texture2D" uid="uid://b2tqhu6pwee5e" path="res://assets/sprites/objects/air_vent.png" id="2_htwkb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssgrl"]
+size = Vector2(12, 32)
+
+[node name="AirVentSmall" instance=ExtResource("1_act15")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_ssgrl")
+
+[node name="UpperVent" parent="." index="1"]
+position = Vector2(2, -14)
+texture = ExtResource("2_htwkb")
+offset = Vector2(0, 6)
+
+[node name="LowerVent" parent="." index="2"]
+position = Vector2(2, 14)
+texture = ExtResource("2_htwkb")
+offset = Vector2(0, -6)
