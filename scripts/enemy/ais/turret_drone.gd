@@ -19,7 +19,7 @@ func idle_state_check():
 		state = "pursue"
 
 func pursue_state_check():
-	if not can_see_player(200):
+	if not can_see_player(160):
 		$pursue.speed_multiplier = clamp(1 - (time_since_last_saw_player / blind_pursue_time) * 1.5, 0, 1)
 		
 		body.get_node("Turret").rotate = false
