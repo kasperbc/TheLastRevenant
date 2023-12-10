@@ -6,4 +6,4 @@
 script = ExtResource("1_kqllc")
 id = 1
 name = "Hookshot"
-description = "A powerful mechanised claw that extends in the direction of your cursor and interacts with objects with [Left Click]."
+description = "A powerful mechanised claw that extends in the direction of your cursor and interacts with objects using [Left Click]."

@@ -6,4 +6,4 @@
 script = ExtResource("1_rt020")
 id = 2
 name = "Visualizer"
-description = "Adds a visual targeting reticle to your Hookshot."
+description = "Adds a visual targeting reticle to the Hookshot."
