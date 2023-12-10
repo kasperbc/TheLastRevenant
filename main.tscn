@@ -88,11 +88,13 @@ scale = Vector2(30, 30)
 texture = ExtResource("5_g3icy")
 script = ExtResource("6_2wqmi")
 
-[node name="PickupHookshot" parent="." instance=ExtResource("10_ga3pa")]
+[node name="PickupHealthExpansion" parent="." instance=ExtResource("10_ga3pa")]
 position = Vector2(256, -112)
+expansion_text = "Health Expansion collected"
 
 [node name="PickupSpeedExpansion" parent="." instance=ExtResource("11_wpq0g")]
 position = Vector2(176, -136)
+expansion_text = "Velocity Expansion collected"
 
 [node name="PickupSpeedExpansion2" parent="." instance=ExtResource("11_wpq0g")]
 position = Vector2(200, -136)
@@ -105,6 +107,7 @@ position = Vector2(248, -136)
 
 [node name="PickupRangeExpansion" parent="." instance=ExtResource("12_mt3bn")]
 position = Vector2(88, -152)
+expansion_text = "Range Expansion collected"
 
 [node name="PickupRangeExpansion2" parent="." instance=ExtResource("12_mt3bn")]
 position = Vector2(88, -176)
