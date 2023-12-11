@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jl1fuvroj5g"
-path="res://.godot/imported/boss-1-allmyfellas-fixed.png-752c6b6577d54183bf05e15471c7ae60.ctex"
+uid="uid://b11b08w4g6081"
+path="res://.godot/imported/map-screen-tiles-8.png-4f18f6e24c58a03a0f181e219fddc8dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/boss-1-allmyfellas-fixed.png"
-dest_files=["res://.godot/imported/boss-1-allmyfellas-fixed.png-752c6b6577d54183bf05e15471c7ae60.ctex"]
+source_file="res://assets/tilesets/map-screen/map-screen-tiles-8.png"
+dest_files=["res://.godot/imported/map-screen-tiles-8.png-4f18f6e24c58a03a0f181e219fddc8dc.ctex"]
 
 [params]
 
