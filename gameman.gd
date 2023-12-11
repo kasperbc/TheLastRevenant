@@ -5,6 +5,9 @@ class_name GameManager
 @onready var player : Node = get_tree().get_first_node_in_group("Players")
 @onready var player_health : Node = player.find_child("HealthMan")
 
+var map_positions_unlocked : Array[Vector2i]
+var map_sources_partial_unlocked : Array[int]
+
 enum Upgrades {
 	DEFAULT = 0,
 	HOOKSHOT = 1,

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c65f2wpdei786"]
+[gd_scene load_steps=15 format=3 uid="uid://c65f2wpdei786"]
 
 [ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="1_37j5j"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="2_q7r5k"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://brur0pqy4y5yc" path="res://objects/pickups/expansions/pickup_speed_expansion.tscn" id="11_wpq0g"]
 [ext_resource type="PackedScene" uid="uid://byeclgl0ya61e" path="res://objects/pickups/expansions/pickup_range_expansion.tscn" id="12_mt3bn"]
 [ext_resource type="Texture2D" uid="uid://6mm8nxnjj2p4" path="res://assets/collision_decor/cryocapsule-vertical-open.png" id="13_knvox"]
+[ext_resource type="PackedScene" uid="uid://cd7s0aqqasom1" path="res://objects/stations/nav_station.tscn" id="14_hdcxj"]
 
 [node name="Main" type="Node2D"]
 
@@ -122,6 +123,10 @@ position = Vector2(88, -224)
 [node name="Cryocapsule-vertical-open" type="Sprite2D" parent="."]
 position = Vector2(80, -88)
 texture = ExtResource("13_knvox")
+
+[node name="NavigationStation" parent="." instance=ExtResource("14_hdcxj")]
+position = Vector2(272, -80)
+map_unlock_source_id = Array[int]([0, 1, 10])
 
 [connection signal="hook_released" from="Player" to="Player/Hook" method="_on_hook_released"]
 [connection signal="hook_released_early" from="Player" to="Player/Hook" method="_on_max_distance_reached"]
