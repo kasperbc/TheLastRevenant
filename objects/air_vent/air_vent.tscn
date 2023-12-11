@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://objects/air_vent/air_vent.gd" id="2_qtu55"]
 [ext_resource type="Texture2D" uid="uid://coo2k6eo7egud" path="res://assets/sprites/objects/air_vent_long.png" id="2_us2dh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eldub"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qaji"]
 size = Vector2(12, 40)
 
 [node name="AirVent" type="StaticBody2D"]
@@ -14,7 +14,7 @@ static_object = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 0)
-shape = SubResource("RectangleShape2D_eldub")
+shape = SubResource("RectangleShape2D_5qaji")
 
 [node name="UpperVent" type="Sprite2D" parent="."]
 position = Vector2(2, -18)

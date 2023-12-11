@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c65f2wpdei786"]
+[gd_scene load_steps=14 format=3 uid="uid://c65f2wpdei786"]
 
 [ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="1_37j5j"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="2_q7r5k"]
@@ -12,13 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://bps5olh5753pl" path="res://objects/pickups/expansions/pickup_health_expansion.tscn" id="10_ga3pa"]
 [ext_resource type="PackedScene" uid="uid://brur0pqy4y5yc" path="res://objects/pickups/expansions/pickup_speed_expansion.tscn" id="11_wpq0g"]
 [ext_resource type="PackedScene" uid="uid://byeclgl0ya61e" path="res://objects/pickups/expansions/pickup_range_expansion.tscn" id="12_mt3bn"]
+[ext_resource type="Texture2D" uid="uid://6mm8nxnjj2p4" path="res://assets/collision_decor/cryocapsule-vertical-open.png" id="13_knvox"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Level" parent="." instance=ExtResource("3_6jmh6")]
 
 [node name="Player" parent="." instance=ExtResource("1_37j5j")]
-position = Vector2(120, -92)
+position = Vector2(94, -87)
 
 [node name="Hook" parent="Player" instance=ExtResource("3_mds0t")]
 visible = false
@@ -117,6 +118,10 @@ position = Vector2(88, -200)
 
 [node name="PickupRangeExpansion4" parent="." instance=ExtResource("12_mt3bn")]
 position = Vector2(88, -224)
+
+[node name="Cryocapsule-vertical-open" type="Sprite2D" parent="."]
+position = Vector2(80, -88)
+texture = ExtResource("13_knvox")
 
 [connection signal="hook_released" from="Player" to="Player/Hook" method="_on_hook_released"]
 [connection signal="hook_released_early" from="Player" to="Player/Hook" method="_on_max_distance_reached"]
