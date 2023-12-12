@@ -153,8 +153,11 @@ func horizontal_move(delta):
 			return
 		
 		velocity.x = move_toward(velocity.x, direction * speed, ACCELERATION * delta)
+		
+		$Sprite2D.play("walk")
 	else:
 		apply_friction(delta)
+		$Sprite2D.play("idle")
 	
 	
 

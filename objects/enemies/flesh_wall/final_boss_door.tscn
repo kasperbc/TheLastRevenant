@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2v2mh6rjnngy"]
+
+[ext_resource type="Script" path="res://objects/enemies/flesh_wall/flesh_wall.gd" id="1_gvrsw"]
+[ext_resource type="Texture2D" uid="uid://dqomr4xnyeee1" path="res://assets/sprites/objects/big_boss_wall.png" id="2_skwyq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uveia"]
+size = Vector2(32, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq3uj"]
+size = Vector2(32, 48)
+
+[node name="FinalBossDoor" type="CharacterBody2D" groups=["Enemies"]]
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_gvrsw")
+health_pickup_amount = 5
+health_pickup_spread = Vector2(16, 24)
+static_object = true
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 100
+texture_repeat = 2
+texture = ExtResource("2_skwyq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uveia")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("RectangleShape2D_jq3uj")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]
