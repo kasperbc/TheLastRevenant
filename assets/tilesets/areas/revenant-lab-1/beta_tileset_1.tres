@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dhhd7tpmng1my" path="res://assets/tilesets/areas/observation-deck-6/tlr-betatexture-6-tiles.png" id="7_ju3by"]
 [ext_resource type="Texture2D" uid="uid://br47m5u4nr4vc" path="res://assets/tilesets/tlr-airvent.png" id="7_t1tvh"]
 [ext_resource type="Texture2D" uid="uid://bbjxmaks6nr8v" path="res://assets/tilesets/areas/flight-hangar-9/tlr-betatexture-9-tiles.png" id="8_42ew5"]
-[ext_resource type="Texture2D" uid="uid://cuqcs27n7ffa2" path="res://assets/tilesets/areas/flight-hangar-9/tlr-betatexture-9-boss.png" id="9_b6rvm"]
+[ext_resource type="Texture2D" uid="uid://bbrkroxx3eof2" path="res://assets/tilesets/areas/flight-hangar-9/tlr-betatexture-9-boss.png" id="9_b6rvm"]
 [ext_resource type="Texture2D" uid="uid://wh2qpw2k7wn5" path="res://assets/tilesets/tlr_platforms.png" id="10_28emr"]
 [ext_resource type="Texture2D" uid="uid://b8g18rklm872c" path="res://assets/tilesets/areas/ventilation-systems-3/tlr-betatexture-3-pipes.png" id="12_7n61x"]
 [ext_resource type="Texture2D" uid="uid://254hnff3p2uf" path="res://assets/tilesets/areas/ventilation-systems-3/tlr-betatexture-3-tiles.png" id="13_0vnvc"]
