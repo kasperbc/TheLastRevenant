@@ -125,6 +125,12 @@ func apply_gravity(delta):
 	velocity.y += get_gravity() * delta
 	var gravity_decrease = GameMan.get_expansion_count(GameMan.ExpansionType.SPEED) * SPEED_EXPANSION_GRAVITY_DECREASE
 	velocity.y = clamp(velocity.y, -999999, 850 - gravity_decrease)
+	
+	if not is_on_floor():
+		if velocity.y > 0:
+			$Sprite2D.play("freefall")
+		else:
+			$Sprite2D.play("jumpsquat")
 
 func jump():
 	if not is_on_floor():
@@ -154,10 +160,12 @@ func horizontal_move(delta):
 		
 		velocity.x = move_toward(velocity.x, direction * speed, ACCELERATION * delta)
 		
-		$Sprite2D.play("walk")
+		if is_on_floor():
+			$Sprite2D.play("walk")
 	else:
 		apply_friction(delta)
-		$Sprite2D.play("idle")
+		if is_on_floor():
+			$Sprite2D.play("idle")
 	
 	
 
