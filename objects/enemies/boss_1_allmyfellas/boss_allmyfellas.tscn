@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4tg3cp3idim5"]
+[gd_scene load_steps=10 format=3 uid="uid://b4tg3cp3idim5"]
 
 [ext_resource type="Script" path="res://objects/enemies/boss_1_allmyfellas/boss1.gd" id="1_cwjhc"]
 [ext_resource type="Texture2D" uid="uid://cy4pelkhlxc5c" path="res://assets/sprites/enemies/boss-1-allmyfellas-fixed.png" id="2_8odqr"]
+[ext_resource type="PackedScene" uid="uid://guniwtfi5jxm" path="res://objects/particles/boss1_explosion.tscn" id="2_v7wyj"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_lomk7"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move.gd" id="4_eaece"]
 [ext_resource type="PackedScene" uid="uid://kj4psh0t28c3" path="res://objects/enemies/cannons/rotating_cannon.tscn" id="5_8omdk"]
@@ -18,8 +19,12 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_cwjhc")
 health = 3.0
+death_particle = ExtResource("2_v7wyj")
 stun_time = 0.0
-health_pickup_amount = 5
+health_pickup_amount = 10
+health_pickup_spread = Vector2(50, 16)
+health_pickup_offset = Vector2(0, -16)
+boss = true
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

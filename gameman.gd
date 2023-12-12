@@ -38,6 +38,8 @@ var range_expansions_collected : Array[int]
 var map_positions_unlocked : Array[Vector2i]
 var map_sources_partial_unlocked : Array[int]
 
+var bosses_defeated : Array[int]
+
 var game_paused : bool
 
 func _ready():

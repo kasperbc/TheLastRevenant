@@ -1,36 +1,40 @@
 [gd_scene load_steps=7 format=3 uid="uid://1bkawvhokpbd"]
 
-[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_ny6wi"]
-[ext_resource type="Texture2D" uid="uid://bigss2jferxn3" path="res://assets/sprites/ui/target_ind.png" id="2_2pu6w"]
+[ext_resource type="Script" path="res://objects/enemies/boss_2/boss_2.gd" id="1_nht8l"]
+[ext_resource type="Texture2D" uid="uid://ddcn62qadmcvi" path="res://assets/sprites/enemies/boss2.png" id="2_d0bof"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_gycsj"]
-[ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move.gd" id="4_gev8s"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/go_in_direction.gd" id="4_odicg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u413k"]
+radius = 8.0
+height = 240.0
 
-[node name="TestEnemy2" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Boss2" type="CharacterBody2D" groups=["Boss2", "Enemies"]]
 collision_layer = 8
 collision_mask = 3
-script = ExtResource("1_ny6wi")
-player_near_range = 100.0
+script = ExtResource("1_nht8l")
+insta_kill = true
+boss = true
+boss_id = 1
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
-texture = ExtResource("2_2pu6w")
+texture = ExtResource("2_d0bof")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 120)
 shape = SubResource("CircleShape2D_gfxgg")
 
 [node name="ContactDetection" type="Area2D" parent="."]
+collision_layer = 32
 collision_mask = 2
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
-shape = SubResource("CircleShape2D_icfny")
+shape = SubResource("CapsuleShape2D_u413k")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -39,9 +43,11 @@ debug_enabled = true
 
 [node name="AI" type="Node" parent="."]
 script = ExtResource("3_gycsj")
+default_state = "go_in_direction"
 
-[node name="idle" type="Node" parent="AI"]
-script = ExtResource("4_gev8s")
-move_speed = 100.0
+[node name="go_in_direction" type="Node" parent="AI"]
+script = ExtResource("4_odicg")
+direction = -1.0
+move_speed = 1000.0
 
 [connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

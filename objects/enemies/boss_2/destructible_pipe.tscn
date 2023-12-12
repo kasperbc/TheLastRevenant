@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dha73i3yn03gu"]
+
+[ext_resource type="Script" path="res://objects/enemies/boss_2/destructible_pipe.gd" id="1_0ryx0"]
+[ext_resource type="Texture2D" uid="uid://bswj664ul1kj" path="res://assets/sprites/objects/destructible_pipe.png" id="1_xjp4y"]
+[ext_resource type="Texture2D" uid="uid://dwk7q24fk3klf" path="res://assets/sprites/particles/pipe_shard.png" id="3_724co"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moyok"]
+size = Vector2(10, 16)
+
+[node name="DestructiblePipe" type="StaticBody2D"]
+script = ExtResource("1_0ryx0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("1_xjp4y")
+region_enabled = true
+region_rect = Rect2(0, 0, 10, 16)
+
+[node name="DestructiblePipe" type="Area2D" parent="."]
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestructiblePipe"]
+shape = SubResource("RectangleShape2D_moyok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_moyok")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_724co")
+emission_shape = 3
+emission_rect_extents = Vector2(5, 8)
+direction = Vector2(-1, -0.5)
+gravity = Vector2(0, 250)
+initial_velocity_min = 41.66
+initial_velocity_max = 194.44
+angular_velocity_min = -180.0
+angular_velocity_max = 120.0
+
+[connection signal="area_entered" from="DestructiblePipe" to="." method="_on_area_entered"]

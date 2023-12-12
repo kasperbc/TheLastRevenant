@@ -11,19 +11,28 @@ class_name Enemy
 @export var shake_on_stun : bool = true
 @export var pooled : bool = false
 @export var pool_identifier : String = ""
+@export var insta_kill : bool = false
 @export_group("Pickups")
 @export var drop_health_pickups = true
 @export var health_pickup_amount = 1
 @export var health_pickup_spread = Vector2(5.0, 5.0)
+@export var health_pickup_offset = Vector2.ZERO
 @export_group("Contact")
 @export var contact_damage = true
 @export var destroy_on_contact = false
 @export var knockback = Vector2(200, -200)
+@export_group("Boss")
+@export var boss = false
+@export var boss_id : int
 
 var stunned
 @onready var base_health = health
 
 signal died
+
+func _ready():
+	if boss and GameMan.bosses_defeated.has(boss_id):
+		queue_free()
 
 # hookable object functions
 func _on_hook_attached():
@@ -61,7 +70,11 @@ func damage_player():
 	
 	GameMan.get_player().hook_released.emit()
 	
-	GameMan.get_player_health().damage()
+	if not insta_kill:
+		GameMan.get_player_health().damage()
+	else:
+		GameMan.get_player_health().die()
+	
 	knock_back_player(Vector2(knockback))
 
 func knock_back_player(amount : Vector2):
@@ -118,10 +131,13 @@ func die():
 		for x in health_pickup_amount:
 			var pickup = health_pickup.instantiate()
 			get_parent().add_child(pickup)
-			pickup.global_position = global_position
+			pickup.global_position = global_position + health_pickup_offset
 			pickup.global_position.x += randf_range(-health_pickup_spread.x, health_pickup_spread.x)
 			pickup.global_position.y += randf_range(-health_pickup_spread.y, health_pickup_spread.y)
 			pickup.base_pos = pickup.global_position
+	
+	if boss:
+		GameMan.bosses_defeated.append(boss_id)
 	
 	if hook_attached:
 		GameMan.get_player().hook_released_early.emit()

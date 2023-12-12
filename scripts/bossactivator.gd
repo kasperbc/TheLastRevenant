@@ -7,4 +7,5 @@ func _on_body_entered(body):
 	if body is PlayerMovement:
 		activated.emit()
 	
-	boss.process_mode = PROCESS_MODE_INHERIT
+	if is_instance_valid(boss):
+		boss.process_mode = PROCESS_MODE_INHERIT

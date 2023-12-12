@@ -16,6 +16,9 @@ signal spawned
 signal collided(collision : KinematicCollision2D)
 signal max_distance_reached
 
+func _ready():
+	current_state = HookMoveState.RETURNING
+
 func _on_spawned():
 	move_dir = global_position.direction_to(get_global_mouse_position())
 	rotation_degrees = rad_to_deg(Vector2.RIGHT.angle_to(move_dir))

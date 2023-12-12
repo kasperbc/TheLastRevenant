@@ -20,8 +20,9 @@ func generate_tilemap():
 	var scr : TileMap = get_map_scr()
 	
 	for cell in GameMan.map_positions_unlocked:
-		scr_ref.get_cell_atlas_coords(0, cell)
-		scr.set_cell(0, cell, 0, Vector2i.ZERO, 0)
+		var sid = scr_ref.get_cell_source_id(0, cell)
+		var atl = scr_ref.get_cell_atlas_coords(0, cell)
+		scr.set_cell(0, cell, sid, atl, 0)
 
 func _process(_delta):
 	var player_pos = get_player_pos()

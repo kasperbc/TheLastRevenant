@@ -19,9 +19,8 @@
 position = Vector2(94, -87)
 
 [node name="Hook" parent="Player" instance=ExtResource("3_mds0t")]
-visible = false
 top_level = true
-position = Vector2(-2016.21, 2476.63)
+position = Vector2(96, -80)
 motion_mode = 1
 wall_min_slide_angle = 1.5708
 
