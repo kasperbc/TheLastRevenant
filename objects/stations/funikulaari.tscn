@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://df6itpdsqjhro"]
+[gd_scene load_steps=21 format=3 uid="uid://df6itpdsqjhro"]
 
 [ext_resource type="Texture2D" uid="uid://6bf2hue73htm" path="res://objects/stations/funikulaari.png" id="1_nnjec"]
 [ext_resource type="Script" path="res://objects/stations/funikulaari.gd" id="1_png2w"]
+[ext_resource type="Texture2D" uid="uid://d1nk01hx15d1s" path="res://objects/stations/wheels_on_the_bus.png" id="3_uhic6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bf4l"]
 size = Vector2(72, 4)
@@ -37,6 +38,70 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_svjur"]
+atlas = ExtResource("3_uhic6")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ispoy"]
+atlas = ExtResource("3_uhic6")
+region = Rect2(10, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hflr"]
+atlas = ExtResource("3_uhic6")
+region = Rect2(20, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t0fd"]
+atlas = ExtResource("3_uhic6")
+region = Rect2(30, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlw77"]
+atlas = ExtResource("3_uhic6")
+region = Rect2(40, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn11a"]
+atlas = ExtResource("3_uhic6")
+region = Rect2(50, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwqb1"]
+atlas = ExtResource("3_uhic6")
+region = Rect2(60, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cecos"]
+atlas = ExtResource("3_uhic6")
+region = Rect2(70, 0, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_60mx8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svjur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ispoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hflr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t0fd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlw77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn11a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwqb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cecos")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cejhb"]
 
 [node name="Funikulaari" type="CharacterBody2D"]
@@ -63,6 +128,11 @@ disabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 15
 sprite_frames = SubResource("SpriteFrames_x4wcc")
+
+[node name="WheelSprite" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+z_index = 1
+position = Vector2(0, 24)
+sprite_frames = SubResource("SpriteFrames_60mx8")
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 position = Vector2(16, 0)

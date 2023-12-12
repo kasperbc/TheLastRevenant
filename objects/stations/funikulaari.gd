@@ -13,13 +13,17 @@ var start_pos : Vector2
 
 func _ready():
 	start_pos = global_position
+	$AnimatedSprite2D/WheelSprite.play("default")
 
 func _process(delta):
+	$AnimatedSprite2D/WheelSprite.speed_scale = velocity.x / (TOP_SPEED / 15)
+	
 	if not going:
 		return
 	
 	current_speed += ACCELERATION * delta
 	current_speed = clamp(current_speed, 0, TOP_SPEED)
+	
 	
 	velocity.x = current_speed * dir
 	move_and_slide()

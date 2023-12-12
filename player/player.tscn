@@ -1,10 +1,12 @@
-[gd_scene load_steps=63 format=3 uid="uid://cdk28anvdyvwx"]
+[gd_scene load_steps=65 format=3 uid="uid://cdk28anvdyvwx"]
 
 [ext_resource type="Script" path="res://player/player_movement.gd" id="1_xsl8m"]
+[ext_resource type="Texture2D" uid="uid://chewg68qcfq0k" path="res://assets/sprites/player/tlr-sombre-freefall.png" id="2_4pjd8"]
 [ext_resource type="Texture2D" uid="uid://1v83se2v2hfb" path="res://assets/sprites/player/tlr-sombre-idle.png" id="2_561y6"]
 [ext_resource type="PackedScene" uid="uid://glmeh6l6odpp" path="res://objects/hook_shot_pos_indicator/hook_shot_pos_indicator.tscn" id="3_8hvtn"]
 [ext_resource type="Texture2D" uid="uid://cq6w6pe6pe05n" path="res://assets/sprites/ui/tlr-betahook-cursor.png" id="3_aswug"]
 [ext_resource type="Texture2D" uid="uid://541j3u2jr4qd" path="res://assets/sprites/player/tlr-sombre-walk.png" id="3_yb35w"]
+[ext_resource type="Texture2D" uid="uid://d2ru0qfhoykyk" path="res://assets/sprites/player/tlr-sombre-jumpsquat.png" id="4_2gdyk"]
 [ext_resource type="Script" path="res://player/player_health.gd" id="4_lnaue"]
 [ext_resource type="Script" path="res://player/hookshot_hand.gd" id="4_s1e1s"]
 [ext_resource type="Texture2D" uid="uid://bf3imwmt3f8yk" path="res://assets/sprites/hook/hookshot_hand-1.png" id="5_qo580"]
@@ -105,6 +107,14 @@ region = Rect2(112, 0, 16, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_4pjd8")
+}],
+"loop": true,
+"name": &"freefall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fpmsu")
 }, {
 "duration": 1.0,
@@ -143,6 +153,14 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2gdyk")
+}],
+"loop": true,
+"name": &"jumpsquat",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -451,7 +469,7 @@ shape = SubResource("CapsuleShape2D_uw8j3")
 z_index = 10
 position = Vector2(1.90735e-06, 2.14577e-06)
 sprite_frames = SubResource("SpriteFrames_70ofr")
-animation = &"walk"
+animation = &"jumpsquat"
 
 [node name="HookshotHand" type="AnimatedSprite2D" parent="Sprite2D"]
 visible = false
