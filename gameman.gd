@@ -5,8 +5,6 @@ class_name GameManager
 @onready var player : Node = get_tree().get_first_node_in_group("Players")
 @onready var player_health : Node = player.find_child("HealthMan")
 
-var map_positions_unlocked : Array[Vector2i]
-var map_sources_partial_unlocked : Array[int]
 
 enum Upgrades {
 	DEFAULT = 0,
@@ -34,6 +32,21 @@ var latest_recharge_station : int = -1
 var health_expansions_collected : Array[int]
 var speed_expansions_collected : Array[int]
 var range_expansions_collected : Array[int]
+
+var map_positions_unlocked : Array[Vector2i]
+var map_sources_partial_unlocked : Array[int]
+
+var game_paused : bool
+
+func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+func _process(delta):
+	if Input.is_action_just_pressed("pause_game"):
+		if game_paused:
+			unpause_game()
+		else:
+			pause_game()
 
 func get_player() -> PlayerMovement:
 	if not is_instance_valid(player):
@@ -106,3 +119,16 @@ func collect_expansion(type: ExpansionType, id : int):
 		speed_expansions_collected.append(id)
 	else:
 		range_expansions_collected.append(id)
+
+func pause_game():
+	if get_tree().paused:
+		return
+	
+	game_paused = true
+	
+	get_tree().paused = true
+
+func unpause_game():
+	game_paused = false
+	
+	get_tree().paused = false

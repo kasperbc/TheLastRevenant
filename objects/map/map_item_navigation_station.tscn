@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://j7hscwodo6f5"]
+
+[ext_resource type="Texture2D" uid="uid://b3456kabnlwll" path="res://assets/tilesets/map-screen/tlr_map_icon_navigation_station.png" id="1_1umkc"]
+[ext_resource type="Script" path="res://objects/map/map_item.gd" id="1_ml6pv"]
+
+[node name="NavigationStation" type="Sprite2D"]
+texture = ExtResource("1_1umkc")
+script = ExtResource("1_ml6pv")

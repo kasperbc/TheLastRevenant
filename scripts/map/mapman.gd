@@ -2,6 +2,12 @@ extends Control
 class_name MapManager
 
 const MINIMAP_MAPSCREEN_OFFSET : Vector2i = Vector2i(3, 2)
+const MINIMAP_MAPSCREEN_OFFSET_PAUSED : Vector2i = Vector2i(12, 12)
+
+const MAPMASK_PAUSED_SIZE = Vector2(1200,580)
+const MAPMASK_PAUSED_POSITION = Vector2(32,16)
+const MAPMASK_UNPAUSED_SIZE = Vector2(210,150)
+const MAPMASK_UNPAUSED_POSITION = Vector2(1030,32)
 
 @export var debug : bool = false
 
@@ -27,6 +33,13 @@ func _process(_delta):
 	
 	if debug:
 		$DebugPos.text = str(player_pos)
+	
+	if GameMan.game_paused:
+		size = MAPMASK_PAUSED_SIZE
+		position = MAPMASK_PAUSED_POSITION
+	else:
+		size = MAPMASK_UNPAUSED_SIZE
+		position = MAPMASK_UNPAUSED_POSITION
 
 func try_unlock_map_pos(pos : Vector2i):
 	if GameMan.map_positions_unlocked.has(pos):
@@ -45,6 +58,9 @@ func update_partially_unlocked_tiles():
 
 func move_mapscreen_to_player_pos():
 	var target_pos = -get_player_pos() + MINIMAP_MAPSCREEN_OFFSET
+	if GameMan.game_paused:
+		target_pos = MINIMAP_MAPSCREEN_OFFSET_PAUSED
+	
 	get_map_scr_ref().position = target_pos * 30.0
 	$MapScreen/PlayerPos.position = get_player_pos() * 8.0 + Vector2(4,4)
 

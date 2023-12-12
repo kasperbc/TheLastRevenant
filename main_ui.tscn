@@ -190,22 +190,24 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("11_6yqxg")
 
 [node name="MapMask" type="ColorRect" parent="Control"]
-modulate = Color(1, 1, 1, 0.784314)
+process_mode = 3
+modulate = Color(1, 1, 1, 0.862745)
 clip_children = 2
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -250.0
+offset_left = -1248.0
 offset_top = 32.0
 offset_right = -40.0
-offset_bottom = 182.0
+offset_bottom = 608.0
 grow_horizontal = 0
 color = Color(0.0784314, 0.105882, 0.152941, 1)
 script = ExtResource("12_y05dh")
 debug = true
 
 [node name="MapScreen" parent="Control/MapMask" instance=ExtResource("12_f8m6a")]
+position = Vector2(368, 368)
 scale = Vector2(3.75, 3.75)
 
 [node name="DebugPos" type="Label" parent="Control/MapMask"]
