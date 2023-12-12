@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd7s0aqqasom1"]
+
+[ext_resource type="Script" path="res://objects/stations/nav_station.gd" id="1_pxpi1"]
+[ext_resource type="Texture2D" uid="uid://bkfnae0o4g3xo" path="res://assets/sprites/objects/nav-station.png" id="2_tn1qb"]
+[ext_resource type="Texture2D" uid="uid://dlgcdmo01kfx0" path="res://assets/sprites/ui/e_prompt.png" id="3_ul3p2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qg65v"]
+size = Vector2(26, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x77ht"]
+size = Vector2(42, 6)
+
+[node name="NavigationStation" type="Area2D" groups=["RechargeStations"]]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_pxpi1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_qg65v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_tn1qb")
+
+[node name="KeyPrompt" type="Sprite2D" parent="."]
+position = Vector2(0, -35)
+texture = ExtResource("3_ul3p2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 29)
+shape = SubResource("RectangleShape2D_x77ht")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=20 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://cxojaukuay0qd" path="res://assets/sprites/ui/health-circle.png" id="2_dobjs"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scripts/ui/speed_bar.gd" id="9_cre45"]
 [ext_resource type="FontFile" uid="uid://dth7yl8x2whvb" path="res://assets/fonts/Retro Gaming.ttf" id="10_f8qvh"]
 [ext_resource type="Script" path="res://scripts/ui/fade_screen.gd" id="11_6yqxg"]
+[ext_resource type="PackedScene" uid="uid://cecc7ddrs85o4" path="res://map_screen.tscn" id="12_f8m6a"]
+[ext_resource type="Script" path="res://scripts/map/mapman.gd" id="12_y05dh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3lwb7"]
 atlas = ExtResource("2_dobjs")
@@ -186,3 +188,30 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("11_6yqxg")
+
+[node name="MapMask" type="ColorRect" parent="Control"]
+process_mode = 3
+modulate = Color(1, 1, 1, 0.862745)
+clip_children = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1248.0
+offset_top = 32.0
+offset_right = -40.0
+offset_bottom = 608.0
+grow_horizontal = 0
+color = Color(0.0784314, 0.105882, 0.152941, 1)
+script = ExtResource("12_y05dh")
+debug = true
+
+[node name="MapScreen" parent="Control/MapMask" instance=ExtResource("12_f8m6a")]
+position = Vector2(368, 368)
+scale = Vector2(3.75, 3.75)
+
+[node name="DebugPos" type="Label" parent="Control/MapMask"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 42.0
+offset_bottom = 20.0
