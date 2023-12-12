@@ -42,6 +42,7 @@ debug_enabled = true
 [node name="AI" type="Node" parent="."]
 script = ExtResource("3_s6exw")
 default_state = "shoot"
+active_range = 300.0
 
 [node name="shoot" type="Node" parent="AI"]
 script = ExtResource("4_oyw8x")

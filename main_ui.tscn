@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=30 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://cxojaukuay0qd" path="res://assets/sprites/ui/health-circle.png" id="2_dobjs"]
@@ -11,8 +11,17 @@
 [ext_resource type="Script" path="res://scripts/ui/speed_bar.gd" id="9_cre45"]
 [ext_resource type="FontFile" uid="uid://dth7yl8x2whvb" path="res://assets/fonts/Retro Gaming.ttf" id="10_f8qvh"]
 [ext_resource type="Script" path="res://scripts/ui/fade_screen.gd" id="11_6yqxg"]
+[ext_resource type="Script" path="res://scripts/pause_screen.gd" id="11_a8ros"]
 [ext_resource type="PackedScene" uid="uid://cecc7ddrs85o4" path="res://map_screen.tscn" id="12_f8m6a"]
+[ext_resource type="PackedScene" uid="uid://c3ifnkrxk22ss" path="res://objects/ui/upgrade_toggle.tscn" id="12_vimth"]
 [ext_resource type="Script" path="res://scripts/map/mapman.gd" id="12_y05dh"]
+[ext_resource type="Resource" uid="uid://bngsf10futafm" path="res://objects/resources/upgrades/hookshot.tres" id="13_bept6"]
+[ext_resource type="Resource" uid="uid://bmpm7wkxtd2jk" path="res://objects/resources/upgrades/visualizer.tres" id="14_nmkxt"]
+[ext_resource type="Resource" uid="uid://s3hn1pcur1f" path="res://objects/resources/upgrades/velocity_module.tres" id="15_a8ba0"]
+[ext_resource type="Resource" uid="uid://d1ivt5xs2pe1w" path="res://objects/resources/upgrades/galvanic_module.tres" id="16_7nt7v"]
+[ext_resource type="Resource" uid="uid://ddp665oscmntu" path="res://objects/resources/upgrades/thermal_module.tres" id="17_00q1f"]
+[ext_resource type="Script" path="res://scripts/ui/volume_label.gd" id="18_x6xrf"]
+[ext_resource type="Script" path="res://scripts/ui/item_complete_percentage.gd" id="21_tu8x2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3lwb7"]
 atlas = ExtResource("2_dobjs")
@@ -55,6 +64,9 @@ font_size = 24
 font_color = Color(0.509804, 0.847059, 0.913725, 1)
 outline_size = 4
 outline_color = Color(0.176471, 0.356863, 0.521569, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lkqad"]
+font_color = Color(1, 1, 1, 0.392157)
 
 [node name="UI" type="CanvasLayer"]
 
@@ -176,31 +188,99 @@ offset_bottom = -28.0
 grow_vertical = 0
 text = "Expansion Text"
 
-[node name="FadeScreen" type="ColorRect" parent="Control"]
+[node name="PauseScreen" type="ColorRect" parent="Control"]
 process_mode = 3
 visible = false
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
-script = ExtResource("11_6yqxg")
+color = Color(0.117647, 0.152941, 0.203922, 1)
+script = ExtResource("11_a8ros")
+
+[node name="UpgradeToggles" type="HBoxContainer" parent="Control/PauseScreen"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 653.0
+offset_right = 355.0
+offset_bottom = 701.0
+scale = Vector2(1.25, 1.25)
+theme_override_constants/separation = 20
+
+[node name="HookshotToggle" parent="Control/PauseScreen/UpgradeToggles" instance=ExtResource("12_vimth")]
+layout_mode = 2
+upgrade = 1
+upgrade_res = ExtResource("13_bept6")
+
+[node name="VisualizerToggle" parent="Control/PauseScreen/UpgradeToggles" instance=ExtResource("12_vimth")]
+layout_mode = 2
+upgrade = 2
+upgrade_res = ExtResource("14_nmkxt")
+
+[node name="VelocityToggle" parent="Control/PauseScreen/UpgradeToggles" instance=ExtResource("12_vimth")]
+layout_mode = 2
+upgrade = 3
+upgrade_res = ExtResource("15_a8ba0")
+
+[node name="GalvanicToggle" parent="Control/PauseScreen/UpgradeToggles" instance=ExtResource("12_vimth")]
+layout_mode = 2
+upgrade = 4
+upgrade_res = ExtResource("16_7nt7v")
+
+[node name="ArtilleryToggle" parent="Control/PauseScreen/UpgradeToggles" instance=ExtResource("12_vimth")]
+layout_mode = 2
+upgrade = 5
+upgrade_res = ExtResource("17_00q1f")
+
+[node name="TitleButton" type="Button" parent="Control/PauseScreen"]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 624.0
+offset_right = 1248.0
+offset_bottom = 654.0
+text = "Return to title"
+
+[node name="Label" type="Label" parent="Control/PauseScreen/TitleButton"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 226.0
+offset_bottom = 68.0
+text = "And there's no going back!"
+label_settings = SubResource("LabelSettings_lkqad")
+horizontal_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="Control/PauseScreen"]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 632.0
+offset_right = 934.0
+offset_bottom = 648.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="VolumeLabel" type="Label" parent="Control/PauseScreen/VolumeSlider"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 34.0
+offset_right = 137.0
+offset_bottom = 54.0
+text = "Volume: 100%"
+horizontal_alignment = 1
+script = ExtResource("18_x6xrf")
 
 [node name="MapMask" type="ColorRect" parent="Control"]
 process_mode = 3
 modulate = Color(1, 1, 1, 0.862745)
 clip_children = 2
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1248.0
+layout_mode = 2
+offset_left = 1008.0
 offset_top = 32.0
-offset_right = -40.0
-offset_bottom = 608.0
+offset_right = 1218.0
+offset_bottom = 182.0
 grow_horizontal = 0
 color = Color(0.0784314, 0.105882, 0.152941, 1)
 script = ExtResource("12_y05dh")
@@ -215,3 +295,28 @@ layout_mode = 0
 offset_left = 2.0
 offset_right = 42.0
 offset_bottom = 20.0
+
+[node name="ItemCompletePercentage" type="Label" parent="Control/MapMask"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 28.0
+offset_right = 42.0
+offset_bottom = 48.0
+text = "0%"
+script = ExtResource("21_tu8x2")
+
+[node name="FadeScreen" type="ColorRect" parent="Control"]
+process_mode = 3
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("11_6yqxg")
+
+[connection signal="value_changed" from="Control/PauseScreen/VolumeSlider" to="Control/PauseScreen/VolumeSlider/VolumeLabel" method="_on_volume_slider_value_changed"]

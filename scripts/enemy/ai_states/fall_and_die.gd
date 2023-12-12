@@ -5,6 +5,8 @@ var x_dir : float
 
 var gravity = 100.0
 
+@export var bad_sf : SpriteFrames
+
 func _on_state_activate():
 	x_dir = clampf(Vector2.RIGHT.rotated(body.rotation).x * 100, -1, 1)
 
@@ -19,6 +21,8 @@ func ai_state_process(delta):
 	body.move_and_slide()
 	if body.is_on_wall():
 		body.die()
+	
+	body.get_node("Sprite2D").sprite_frames = bad_sf
 
 func apply_gravity(delta):
 	body.velocity.y += gravity * delta

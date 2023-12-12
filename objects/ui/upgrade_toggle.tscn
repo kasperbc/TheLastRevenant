@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ifnkrxk22ss"]
+
+[ext_resource type="Script" path="res://objects/ui/upgrade_toggle.gd" id="1_fghq7"]
+[ext_resource type="Texture2D" uid="uid://bho4e2nb1ra24" path="res://assets/sprites/pickups/pickup_hookshot.png" id="1_rp6w5"]
+
+[node name="UpgradeToggle" type="CheckButton"]
+offset_right = 44.0
+offset_bottom = 24.0
+tooltip_text = "Pipo pipo"
+button_pressed = true
+script = ExtResource("1_fghq7")
+
+[node name="UpgradeTexture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -37.0
+offset_right = 38.0
+offset_bottom = -5.0
+texture = ExtResource("1_rp6w5")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

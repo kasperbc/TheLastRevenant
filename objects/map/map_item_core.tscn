@@ -4,6 +4,5 @@
 [ext_resource type="Texture2D" uid="uid://75vofe5aama4" path="res://assets/tilesets/map-screen/tlr_map_icon_upgrade.png" id="1_rrhjv"]
 
 [node name="MapItemCore" type="Sprite2D"]
-z_index = 1
 texture = ExtResource("1_rrhjv")
 script = ExtResource("1_gy6kr")

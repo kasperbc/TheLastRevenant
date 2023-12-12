@@ -3,7 +3,7 @@ class_name Enemy
 
 @onready var health_pickup = preload("res://objects/pickups/pickup_health.tscn")
 
-@export_category("Damage")
+@export_group("Damage")
 @export var health : float = 1.0
 @export var infinite_health = false
 @export var death_particle : PackedScene
@@ -11,7 +11,7 @@ class_name Enemy
 @export var shake_on_stun : bool = true
 @export var pooled : bool = false
 @export var pool_identifier : String = ""
-@export_category("Pickups")
+@export_group("Pickups")
 @export var drop_health_pickups = true
 @export var health_pickup_amount = 1
 @export var health_pickup_spread = Vector2(5.0, 5.0)

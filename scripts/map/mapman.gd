@@ -37,9 +37,11 @@ func _process(_delta):
 	if GameMan.game_paused:
 		size = MAPMASK_PAUSED_SIZE
 		position = MAPMASK_PAUSED_POSITION
+		self_modulate.a = 1
 	else:
 		size = MAPMASK_UNPAUSED_SIZE
 		position = MAPMASK_UNPAUSED_POSITION
+		self_modulate.a = 0.8
 
 func try_unlock_map_pos(pos : Vector2i):
 	if GameMan.map_positions_unlocked.has(pos):

@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://ddp665oscmntu"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://ddp665oscmntu"]
 
 [ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_j5yop"]
+[ext_resource type="Texture2D" uid="uid://dd0jgi1sqw4gf" path="res://assets/sprites/pickups/pickup_thermal_module.png" id="2_7xbqh"]
 
 [resource]
 script = ExtResource("1_j5yop")
 id = 5
 name = "Artillery Module"
 description = "A destructive explosive that can destroy organic targets. [Right Click] to load, [Left Click] to shoot."
+texture = ExtResource("2_7xbqh")

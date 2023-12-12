@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c65f2wpdei786"]
+[gd_scene load_steps=11 format=3 uid="uid://c65f2wpdei786"]
 
 [ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="1_37j5j"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="2_q7r5k"]
@@ -9,11 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dge4ysc7omnmg" path="res://assets/backgrounds/background.png" id="5_g3icy"]
 [ext_resource type="PackedScene" uid="uid://fc5h1wnmon4l" path="res://objects/lights/light_revealer.tscn" id="5_q84k6"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="6_2wqmi"]
-[ext_resource type="PackedScene" uid="uid://bps5olh5753pl" path="res://objects/pickups/expansions/pickup_health_expansion.tscn" id="10_ga3pa"]
-[ext_resource type="PackedScene" uid="uid://brur0pqy4y5yc" path="res://objects/pickups/expansions/pickup_speed_expansion.tscn" id="11_wpq0g"]
-[ext_resource type="PackedScene" uid="uid://byeclgl0ya61e" path="res://objects/pickups/expansions/pickup_range_expansion.tscn" id="12_mt3bn"]
 [ext_resource type="Texture2D" uid="uid://6mm8nxnjj2p4" path="res://assets/collision_decor/cryocapsule-vertical-open.png" id="13_knvox"]
-[ext_resource type="PackedScene" uid="uid://cd7s0aqqasom1" path="res://objects/stations/nav_station.tscn" id="14_hdcxj"]
 
 [node name="Main" type="Node2D"]
 
@@ -90,43 +86,9 @@ scale = Vector2(30, 30)
 texture = ExtResource("5_g3icy")
 script = ExtResource("6_2wqmi")
 
-[node name="PickupHealthExpansion" parent="." instance=ExtResource("10_ga3pa")]
-position = Vector2(256, -112)
-expansion_text = "Health Expansion collected"
-
-[node name="PickupSpeedExpansion" parent="." instance=ExtResource("11_wpq0g")]
-position = Vector2(176, -136)
-expansion_text = "Velocity Expansion collected"
-
-[node name="PickupSpeedExpansion2" parent="." instance=ExtResource("11_wpq0g")]
-position = Vector2(200, -136)
-
-[node name="PickupSpeedExpansion3" parent="." instance=ExtResource("11_wpq0g")]
-position = Vector2(224, -136)
-
-[node name="PickupSpeedExpansion4" parent="." instance=ExtResource("11_wpq0g")]
-position = Vector2(248, -136)
-
-[node name="PickupRangeExpansion" parent="." instance=ExtResource("12_mt3bn")]
-position = Vector2(88, -152)
-expansion_text = "Range Expansion collected"
-
-[node name="PickupRangeExpansion2" parent="." instance=ExtResource("12_mt3bn")]
-position = Vector2(88, -176)
-
-[node name="PickupRangeExpansion3" parent="." instance=ExtResource("12_mt3bn")]
-position = Vector2(88, -200)
-
-[node name="PickupRangeExpansion4" parent="." instance=ExtResource("12_mt3bn")]
-position = Vector2(88, -224)
-
 [node name="Cryocapsule-vertical-open" type="Sprite2D" parent="."]
 position = Vector2(80, -88)
 texture = ExtResource("13_knvox")
-
-[node name="NavigationStation" parent="." instance=ExtResource("14_hdcxj")]
-position = Vector2(272, -80)
-map_unlock_source_id = Array[int]([0, 1, 10])
 
 [connection signal="hook_released" from="Player" to="Player/Hook" method="_on_hook_released"]
 [connection signal="hook_released_early" from="Player" to="Player/Hook" method="_on_max_distance_reached"]

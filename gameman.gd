@@ -28,6 +28,8 @@ enum ExpansionType {
 }
 
 var upgrades_collected : Array[Upgrade]
+var upgrades_enabled : Array[bool]
+
 var latest_recharge_station : int = -1
 var health_expansions_collected : Array[int]
 var speed_expansions_collected : Array[int]
@@ -82,15 +84,24 @@ func move_player_to_latest_recharge_station():
 		print("Player has been moved to station %s" % latest_recharge_station)
 
 func get_upgrade_status(value : Upgrades) -> UpgradeStatus:
-	for u in upgrades_collected:
-		if u.id == value:
-			return UpgradeStatus.ENABLED
+	for i in upgrades_collected.size():
+		if upgrades_collected[i].id == value:
+			if upgrades_enabled[i]:
+				return UpgradeStatus.ENABLED
+			else:
+				return UpgradeStatus.DISABLED
 	
 	return UpgradeStatus.LOCKED
 
 func unlock_upgrade(value : Upgrade):
 	if not upgrades_collected.has(value):
 		upgrades_collected.append(value)
+		upgrades_enabled.append(true)
+
+func set_upgrade_enabled(upgrade : Upgrades, value):
+	for i in upgrades_collected.size():
+		if upgrades_collected[i].id == upgrade:
+			upgrades_enabled[i] = value
 
 func set_latest_recharge_point(id : int):
 	latest_recharge_station = id

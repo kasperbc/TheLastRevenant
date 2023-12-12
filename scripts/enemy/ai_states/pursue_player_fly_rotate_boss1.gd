@@ -7,6 +7,9 @@ var going_towards_damager : bool
 @export var damager_target_treshhold = 160.0
 @export var player_distance_treshhold = 24.0
 
+@export var neutral_sf : SpriteFrames
+@export var good_sf : SpriteFrames
+
 func _on_state_activate():
 	going_towards_damager = false
 	target = null
@@ -21,6 +24,11 @@ func ai_state_process(delta):
 		target = GameMan.get_player()
 	
 	move_and_rotate_toward_player()
+	
+	if target == GameMan.get_player():
+		body.get_node("Sprite2D").sprite_frames = neutral_sf
+	else:
+		body.get_node("Sprite2D").sprite_frames = good_sf
 	
 	if going_towards_damager:
 		return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhu3piawgw8n6"]
+[gd_scene load_steps=29 format=3 uid="uid://dhu3piawgw8n6"]
 
 [ext_resource type="Script" path="res://objects/projectiles/missiles/fat_missile.gd" id="1_84y6m"]
 [ext_resource type="PackedScene" uid="uid://d2clbmyic26t" path="res://objects/particles/explosion.tscn" id="2_5ksys"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_fly_rotate_boss1.gd" id="5_vphdv"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/fall_and_die.gd" id="6_50lka"]
 [ext_resource type="Texture2D" uid="uid://bb7wvp1x6ss07" path="res://assets/sprites/particles/smoke.png" id="6_ixb1t"]
+[ext_resource type="Texture2D" uid="uid://dnw1tt53bhd2k" path="res://assets/sprites/missile/fat_missile-neutral.png" id="6_w4qfc"]
+[ext_resource type="Texture2D" uid="uid://cdq78oufrv787" path="res://assets/sprites/missile/fat_missile-good.png" id="7_nw70r"]
 [ext_resource type="Script" path="res://scripts/particle.gd" id="7_yuxcg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1dun"]
@@ -83,6 +85,64 @@ radius = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
 radius = 5.09902
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cywff"]
+atlas = ExtResource("6_w4qfc")
+region = Rect2(0, 0, 13, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avr2i"]
+atlas = ExtResource("6_w4qfc")
+region = Rect2(13, 0, 13, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inee8"]
+atlas = ExtResource("6_w4qfc")
+region = Rect2(26, 0, 13, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lyd8e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cywff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avr2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inee8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6273"]
+atlas = ExtResource("7_nw70r")
+region = Rect2(0, 0, 13, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqh3o"]
+atlas = ExtResource("7_nw70r")
+region = Rect2(13, 0, 13, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko8eh"]
+atlas = ExtResource("7_nw70r")
+region = Rect2(26, 0, 13, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v7c1m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6273")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqh3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ko8eh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="Gradient" id="Gradient_b3cr8"]
 offsets = PackedFloat32Array(0, 0.543624, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
@@ -137,11 +197,14 @@ default_state = "pursue_player_rotate"
 
 [node name="pursue_player_rotate" type="Node" parent="AI"]
 script = ExtResource("5_vphdv")
+neutral_sf = SubResource("SpriteFrames_lyd8e")
+good_sf = SubResource("SpriteFrames_v7c1m")
 speed = 75.0
 pathfind = true
 
 [node name="fall_and_die" type="Node" parent="AI"]
 script = ExtResource("6_50lka")
+bad_sf = SubResource("SpriteFrames_djfi2")
 
 [node name="SmokeParticle" type="CPUParticles2D" parent="."]
 process_mode = 3

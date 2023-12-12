@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b4tg3cp3idim5"]
 
 [ext_resource type="Script" path="res://objects/enemies/boss_1_allmyfellas/boss1.gd" id="1_cwjhc"]
-[ext_resource type="Texture2D" uid="uid://ccdht5wh4tpi8" path="res://assets/sprites/enemies/boss-1-allmyfellas.png" id="2_nopve"]
+[ext_resource type="Texture2D" uid="uid://cy4pelkhlxc5c" path="res://assets/sprites/enemies/boss-1-allmyfellas-fixed.png" id="2_8odqr"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_lomk7"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move.gd" id="4_eaece"]
 [ext_resource type="PackedScene" uid="uid://kj4psh0t28c3" path="res://objects/enemies/cannons/rotating_cannon.tscn" id="5_8omdk"]
@@ -10,8 +10,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
-radius = 48.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_2lh13"]
+radius = 52.0
 
 [node name="Boss_Allmyfellas" type="CharacterBody2D" groups=["Boss1", "Enemies"]]
 collision_layer = 8
@@ -23,8 +23,8 @@ health_pickup_amount = 5
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_nopve")
-offset = Vector2(0, -24)
+texture = ExtResource("2_8odqr")
+offset = Vector2(0, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
@@ -35,7 +35,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
-shape = SubResource("CircleShape2D_icfny")
+shape = SubResource("CircleShape2D_2lh13")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -51,26 +51,25 @@ move_speed = 100.0
 gravity = 0.0
 
 [node name="RotatingCannon" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
-position = Vector2(-32, -32)
+z_index = -1
+position = Vector2(-35, -32)
 rotation = -2.89376
 metadata/rotate_points = PackedFloat64Array(-165, -110)
 
 [node name="RotatingCannon2" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
-position = Vector2(-48, -16)
+z_index = -1
+position = Vector2(-52, -24)
 rotation = -1.57079
 metadata/rotate_points = PackedFloat64Array(-165, -110)
 
 [node name="RotatingCannon3" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
-position = Vector2(24, -24)
+z_index = -1
+position = Vector2(48, -25)
 rotation = -0.785398
 metadata/rotate_points = PackedFloat64Array(-45, 10)
 
-[node name="RotatingCannon4" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
-position = Vector2(40, -8)
-rotation = -1.57079
-metadata/rotate_points = PackedFloat64Array(-45, 10)
-
 [node name="FuckingBigCannon" parent="." instance=ExtResource("6_7vfh7")]
-position = Vector2(-2, -26)
+z_index = -1
+position = Vector2(-2, -59)
 
 [connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

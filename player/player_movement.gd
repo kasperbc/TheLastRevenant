@@ -112,9 +112,7 @@ func process_normal_movement(delta):
 		hookshot_hand_frame = 1
 	
 	$Sprite2D/HookshotHand.frame = hookshot_hand_frame
-	
-	if not $Hook.visible and GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
-		$Sprite2D/HookshotHand.visible = true
+	$Sprite2D/HookshotHand.visible = not $Hook.visible and GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED
 	
 	if GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
 		flip_sprite(get_global_mouse_position().x < global_position.x)
