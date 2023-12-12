@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb60panjjluan"]
+
+[ext_resource type="Texture2D" uid="uid://dcrajxtrm77tn" path="res://assets/sprites/objects/fun_door.png" id="1_fxut4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oi6r2"]
+size = Vector2(72, 8)
+
+[node name="FunDoor" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oi6r2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fxut4")
