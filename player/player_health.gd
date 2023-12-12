@@ -1,6 +1,6 @@
 extends Node
 
-const BASE_MAX_HEALTH = 4
+const BASE_MAX_HEALTH = 6
 
 var _current_health
 var current_health : 
@@ -60,4 +60,4 @@ func heal_full():
 	current_health = get_max_health()
 
 func get_max_health() -> int:
-	return BASE_MAX_HEALTH + (GameMan.get_expansion_count(GameMan.ExpansionType.HEALTH) * 2)
+	return BASE_MAX_HEALTH + (GameMan.get_expansion_count(GameMan.ExpansionType.HEALTH) * 3)

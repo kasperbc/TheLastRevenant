@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://df6itpdsqjhro"]
+
+[ext_resource type="Texture2D" uid="uid://6bf2hue73htm" path="res://objects/stations/funikulaari.png" id="1_nnjec"]
+[ext_resource type="Script" path="res://objects/stations/funikulaari.gd" id="1_png2w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bf4l"]
+size = Vector2(72, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_squtn"]
+size = Vector2(8, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0kv5"]
+size = Vector2(72, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md27i"]
+size = Vector2(8, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpyhm"]
+atlas = ExtResource("1_nnjec")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u238e"]
+atlas = ExtResource("1_nnjec")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4wcc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpyhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u238e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cejhb"]
+
+[node name="Funikulaari" type="CharacterBody2D"]
+script = ExtResource("1_png2w")
+
+[node name="Floor" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 14)
+shape = SubResource("RectangleShape2D_4bf4l")
+
+[node name="Wall" type="CollisionShape2D" parent="."]
+position = Vector2(28, -40)
+shape = SubResource("RectangleShape2D_squtn")
+
+[node name="Ceiling" type="CollisionShape2D" parent="."]
+position = Vector2(-4, -26)
+shape = SubResource("RectangleShape2D_l0kv5")
+disabled = true
+
+[node name="Door" type="CollisionShape2D" parent="."]
+position = Vector2(-12, -4)
+shape = SubResource("RectangleShape2D_md27i")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 15
+sprite_frames = SubResource("SpriteFrames_x4wcc")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+position = Vector2(16, 0)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_cejhb")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
