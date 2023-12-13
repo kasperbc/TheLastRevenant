@@ -45,10 +45,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uveia"]
-size = Vector2(10, 16)
+size = Vector2(12, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jq3uj"]
-size = Vector2(14, 16)
+size = Vector2(16, 16)
 
 [node name="ElectricWall" type="CharacterBody2D" groups=["Enemies"]]
 collision_mask = 3

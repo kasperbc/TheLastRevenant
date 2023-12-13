@@ -1,0 +1,222 @@
+[gd_scene load_steps=22 format=3 uid="uid://bva60n6dsvanh"]
+
+[ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_ho5lk"]
+[ext_resource type="Texture2D" uid="uid://1v83se2v2hfb" path="res://assets/sprites/player/tlr-sombre-idle.png" id="2_71tr4"]
+[ext_resource type="Script" path="res://scripts/end_screen.gd" id="2_cvvwa"]
+[ext_resource type="Script" path="res://scripts/ui/item_complete_percentage.gd" id="3_5tvwr"]
+[ext_resource type="Script" path="res://scripts/ui/game_time.gd" id="5_hndrj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x8vqe"]
+font_size = 48
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7kh6"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edku4"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5q7v6"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djce2"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4duk"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ciyp5"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u1x4"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nono"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frnp5"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(128, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pit5u"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(144, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24jfm"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(160, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huduy"]
+atlas = ExtResource("2_71tr4")
+region = Rect2(176, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ik4ia"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7kh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edku4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5q7v6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djce2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4duk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ciyp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u1x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nono")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frnp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pit5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24jfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huduy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j24ra"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_li1yn"]
+font_color = Color(1, 1, 1, 0.372549)
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ho5lk")
+script = ExtResource("2_cvvwa")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.117647, 0.152941, 0.203922, 1)
+
+[node name="Header" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -286.0
+offset_top = 72.0
+offset_right = 286.0
+offset_bottom = 131.0
+grow_horizontal = 2
+text = "Thank you for playing!"
+label_settings = SubResource("LabelSettings_x8vqe")
+horizontal_alignment = 1
+
+[node name="Player" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(649, 329)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_ik4ia")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CompletionPercentage" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = 73.0
+offset_right = 133.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Item completion: x%"
+label_settings = SubResource("LabelSettings_j24ra")
+horizontal_alignment = 1
+script = ExtResource("3_5tvwr")
+prefix = "Item completion: "
+hide_unpaused = false
+
+[node name="Time" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = 113.0
+offset_right = 133.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Time: 00:00"
+label_settings = SubResource("LabelSettings_j24ra")
+horizontal_alignment = 1
+script = ExtResource("5_hndrj")
+
+[node name="ReturnToTitle" type="Button" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = 176.0
+offset_right = 40.0
+offset_bottom = 204.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Return to title"
+
+[node name="Credits" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -505.0
+offset_top = -41.0
+offset_right = 505.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "kekis - Programming, Sprites | Francca - Sprites, Map Design | RedDeadDumb - Music | Luca - Funikulaari"
+label_settings = SubResource("LabelSettings_li1yn")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="pressed" from="Background/ReturnToTitle" to="." method="_on_return_to_title_pressed"]

@@ -11,6 +11,7 @@ func create_pools():
 	pools.append(NodePool.new("homing_missile", "res://objects/projectiles/missiles/homing_missile.tscn", 3))
 	pools.append(NodePool.new("direction_missile", "res://objects/projectiles/missiles/direction_missile.tscn", 20))
 	pools.append(NodePool.new("fat_missile", "res://objects/projectiles/missiles/fat_missile.tscn", 1))
+	pools.append(NodePool.new("gravity_bomb", "res://objects/projectiles/bombs/gravity_bomb.tscn", 20))
 	
 	for p in pools:
 		add_child(p)
@@ -23,10 +24,19 @@ func get_pool(identifier) -> NodePool:
 	return null
 
 func borrow_from_pool(recipient, identifier) -> Node:
-	return get_pool(identifier).borrow_node(recipient)
+	var pool = get_pool(identifier)
+	
+	if pool:
+		return get_pool(identifier).borrow_node(recipient)
+	return null
 
 func return_to_pool(node, identifier):
-	get_pool(identifier).call_deferred("return_node", node)
+	var pool = get_pool(identifier)
+	
+	if pool:
+		pool.call_deferred("return_node", node)
+	else:
+		node.queue_free()
 
 func reset_pools():
 	for p in pools:

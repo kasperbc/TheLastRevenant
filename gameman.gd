@@ -2,8 +2,8 @@ extends Node
 
 class_name GameManager
 
-@onready var player : Node = get_tree().get_first_node_in_group("Players")
-@onready var player_health : Node = player.find_child("HealthMan")
+var player : Node
+var player_health : Node
 
 
 enum Upgrades {
@@ -41,9 +41,14 @@ var map_sources_partial_unlocked : Array[int]
 var bosses_defeated : Array[int]
 
 var game_paused : bool
+var game_start_timestamp : float
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	if get_tree().root.get_node_or_null("Main"):
+		player = get_tree().get_first_node_in_group("Players")
+		player_health = player.find_child("HealthMan")
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause_game"):
@@ -139,10 +144,11 @@ func pause_game():
 		return
 	
 	game_paused = true
-	
 	get_tree().paused = true
 
 func unpause_game():
 	game_paused = false
-	
 	get_tree().paused = false
+
+func load_title_screen():
+	get_tree().change_scene_to_file("")

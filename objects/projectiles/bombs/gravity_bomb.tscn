@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://dlyddybxq4aix"]
+
+[ext_resource type="Script" path="res://objects/projectiles/missiles/missile.gd" id="1_rep27"]
+[ext_resource type="PackedScene" uid="uid://d2clbmyic26t" path="res://objects/particles/explosion.tscn" id="2_fiwdi"]
+[ext_resource type="Texture2D" uid="uid://d2lcj4btkre8s" path="res://assets/sprites/missile/gravity_bomb_2.png" id="3_rk7mo"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="4_otslf"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/fall_down_and_die.gd" id="5_ku57u"]
+[ext_resource type="Texture2D" uid="uid://bb7wvp1x6ss07" path="res://assets/sprites/particles/smoke.png" id="6_53lj5"]
+[ext_resource type="Script" path="res://scripts/particle.gd" id="7_621rf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3h6my"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+radius = 5.09902
+
+[sub_resource type="Gradient" id="Gradient_b3cr8"]
+offsets = PackedFloat32Array(0, 0.543624, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="GravityBomb" type="CharacterBody2D" groups=["Enemies"]]
+z_index = 1
+collision_layer = 0
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_rep27")
+damage_while_hooked = true
+death_particle = ExtResource("2_fiwdi")
+pooled = true
+pool_identifier = "gravity_bomb"
+health_pickup_chance = 0.05
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("3_rk7mo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_3h6my")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("4_otslf")
+default_state = "fall_and_die"
+
+[node name="fall_and_die" type="Node" parent="AI"]
+script = ExtResource("5_ku57u")
+max_speed = 910.0
+accleration = 300.0
+
+[node name="SmokeParticle" type="CPUParticles2D" parent="."]
+process_mode = 3
+visible = false
+top_level = true
+z_index = -1
+lifetime = 0.5
+randomness = 0.5
+texture = ExtResource("6_53lj5")
+emission_shape = 1
+emission_sphere_radius = 6.0
+gravity = Vector2(0, -15)
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+color_ramp = SubResource("Gradient_b3cr8")
+script = ExtResource("7_621rf")
+
+[connection signal="died" from="." to="SmokeParticle" method="detach_particle"]
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

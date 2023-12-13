@@ -14,7 +14,9 @@ var current_health :
 		if current_health == get_max_health():
 			get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").label_settings.font_color = Color("82d8e9")
 		if current_health == 0:
-			get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").visible = false
+			get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").animation = "dead"
+			get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").frame = 0
+			get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").visible = false
 
 var invincible = false
 
@@ -34,6 +36,14 @@ func damage():
 	if current_health <= 0:
 		die()
 		return
+	
+	get_parent().get_node("Sprite2D").self_modulate = Color(1,0.5,0.5,1)
+	get_parent().get_node("Sprite2D").flash_red()
+	
+	get_tree().paused = true
+	await get_tree().create_timer(0.15).timeout
+	get_tree().paused = false
+	
 	
 	invincible = true
 	await get_tree().create_timer(1).timeout

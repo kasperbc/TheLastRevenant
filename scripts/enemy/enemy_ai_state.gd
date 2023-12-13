@@ -94,6 +94,8 @@ func shoot_projectile(offset : Vector2):
 		return
 	
 	var new_projectile = PoolMan.borrow_from_pool(self, projectile_identifier)
+	if not new_projectile:
+		return
 	
 	if new_projectile is Node2D:
 		new_projectile.global_position = global_position + offset
