@@ -8,9 +8,11 @@ class_name EnemyAI
 @onready var state = default_state
 @onready var body = get_parent()
 @onready var last_player_sighting_timestamp : float = Time.get_unix_time_from_system()
+@onready var last_player_not_sighting_timestamp : float = Time.get_unix_time_from_system()
 
 var active : bool = true
 var time_since_last_saw_player
+var time_since_last_not_saw_player
 var state_prev_frame = ""
 
 func _process(delta):
@@ -114,8 +116,11 @@ func update_player_sighting_timestamp(saw_player : bool):
 	if saw_player:
 		last_player_sighting_timestamp = Time.get_unix_time_from_system()
 		time_since_last_saw_player = 0
-		return
-	time_since_last_saw_player = Time.get_unix_time_from_system() - last_player_sighting_timestamp
+		time_since_last_not_saw_player = Time.get_unix_time_from_system() - last_player_not_sighting_timestamp
+	else:
+		last_player_not_sighting_timestamp = Time.get_unix_time_from_system()
+		time_since_last_not_saw_player = 0
+		time_since_last_saw_player = Time.get_unix_time_from_system() - last_player_sighting_timestamp
 
 func reset_state():
 	state_prev_frame = ""

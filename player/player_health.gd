@@ -8,11 +8,13 @@ var current_health :
 		return _current_health
 	set(value):
 		_current_health = value
-		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").frame = (current_health - 1) % 4
+		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").frame = (current_health - 1) % 6
 		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").text = str(current_health)
 		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").label_settings.font_color = Color("49b2d3")
 		if current_health == get_max_health():
 			get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").label_settings.font_color = Color("82d8e9")
+		if current_health == 0:
+			get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").visible = false
 
 var invincible = false
 
@@ -46,7 +48,8 @@ func die():
 	
 	await get_tree().create_timer(1).timeout
 	
-	get_tree().paused = false
+	if get_tree():
+		get_tree().paused = false
 	
 	GameMan.reload_scene()
 

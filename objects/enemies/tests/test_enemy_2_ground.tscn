@@ -43,6 +43,5 @@ script = ExtResource("3_iryc3")
 
 [node name="idle" type="Node" parent="AI"]
 script = ExtResource("4_0fqwm")
-move_speed = 100.0
 
 [connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

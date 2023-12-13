@@ -1,7 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=32 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
-[ext_resource type="Texture2D" uid="uid://cxojaukuay0qd" path="res://assets/sprites/ui/health-circle.png" id="2_dobjs"]
+[ext_resource type="Texture2D" uid="uid://b5h2mm0nj1btl" path="res://assets/sprites/ui/health-circle-2-sheet.png" id="2_e3dks"]
 [ext_resource type="Texture2D" uid="uid://wd3gqvj8tiaa" path="res://assets/sprites/ui/bomb_bar_outline.png" id="3_0rfi0"]
 [ext_resource type="Texture2D" uid="uid://pucppjrdakd1" path="res://assets/sprites/ui/bomb_bar_under.png" id="3_btd6h"]
 [ext_resource type="Texture2D" uid="uid://68ucm7p53mpf" path="res://assets/sprites/ui/bomb_bar_fill.png" id="4_wmwh3"]
@@ -23,36 +23,50 @@
 [ext_resource type="Script" path="res://scripts/ui/volume_label.gd" id="18_x6xrf"]
 [ext_resource type="Script" path="res://scripts/ui/item_complete_percentage.gd" id="21_tu8x2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3lwb7"]
-atlas = ExtResource("2_dobjs")
-region = Rect2(0, 186, 62, 62)
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bbdo"]
+atlas = ExtResource("2_e3dks")
+region = Rect2(310, 0, 62, 62)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gtxlw"]
-atlas = ExtResource("2_dobjs")
-region = Rect2(0, 124, 62, 62)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq3k3"]
+atlas = ExtResource("2_e3dks")
+region = Rect2(248, 0, 62, 62)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4jlu"]
-atlas = ExtResource("2_dobjs")
-region = Rect2(0, 62, 62, 62)
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4ayd"]
+atlas = ExtResource("2_e3dks")
+region = Rect2(186, 0, 62, 62)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_puntb"]
-atlas = ExtResource("2_dobjs")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe5ru"]
+atlas = ExtResource("2_e3dks")
+region = Rect2(124, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrs1g"]
+atlas = ExtResource("2_e3dks")
+region = Rect2(62, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tetrb"]
+atlas = ExtResource("2_e3dks")
 region = Rect2(0, 0, 62, 62)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_myf26"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3lwb7")
+"texture": SubResource("AtlasTexture_3bbdo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gtxlw")
+"texture": SubResource("AtlasTexture_jq3k3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k4jlu")
+"texture": SubResource("AtlasTexture_h4ayd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_puntb")
+"texture": SubResource("AtlasTexture_fe5ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrs1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tetrb")
 }],
 "loop": true,
 "name": &"default",
@@ -81,7 +95,6 @@ theme = ExtResource("1_3mwic")
 position = Vector2(135, 94)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_myf26")
-frame = 3
 
 [node name="BombBar" type="TextureProgressBar" parent="Control/HealthSprite"]
 offset_left = 20.5
@@ -111,13 +124,13 @@ texture_progress = ExtResource("8_h8tpl")
 script = ExtResource("9_cre45")
 
 [node name="HealthText" type="Label" parent="Control/HealthSprite"]
-offset_left = -19.5
+offset_left = -18.0
 offset_top = -11.0
-offset_right = 29.5
+offset_right = 31.0
 offset_bottom = 20.0
 scale = Vector2(0.75, 0.75)
 theme_override_fonts/font = ExtResource("10_f8qvh")
-text = "4"
+text = "6"
 label_settings = SubResource("LabelSettings_rtar1")
 horizontal_alignment = 1
 

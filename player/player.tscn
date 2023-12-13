@@ -458,6 +458,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 collision_layer = 2
+floor_constant_speed = true
 floor_snap_length = 6.0
 script = ExtResource("1_xsl8m")
 

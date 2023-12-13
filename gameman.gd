@@ -66,6 +66,7 @@ func get_player_health() -> Node:
 
 func reload_scene():
 	get_tree().reload_current_scene()
+	PoolMan.reset_pools()
 
 func move_player_to_latest_recharge_station():
 	if latest_recharge_station == -1:

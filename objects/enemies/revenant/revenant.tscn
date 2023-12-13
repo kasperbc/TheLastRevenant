@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://dtsopo8cmgr5n"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_wmuni"]
+[ext_resource type="Texture2D" uid="uid://bigss2jferxn3" path="res://assets/sprites/ui/target_ind.png" id="2_861us"]
+[ext_resource type="PackedScene" uid="uid://dhfieln5f4mk5" path="res://objects/enemies/shaker.tscn" id="3_c8mom"]
+[ext_resource type="Script" path="res://scripts/enemy/ais/revenant.gd" id="4_a2vjt"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move.gd" id="4_rckp1"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move_and_jump_towards_player.gd" id="5_1j36j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+radius = 15.0
+
+[node name="Revenant" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_wmuni")
+health = 2
+player_near_range = 100.0
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_861us")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gfxgg")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="Shaker" parent="." instance=ExtResource("3_c8mom")]
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("4_a2vjt")
+
+[node name="idle" type="Node" parent="AI"]
+script = ExtResource("4_rckp1")
+
+[node name="move_towards_player" type="Node" parent="AI"]
+script = ExtResource("5_1j36j")
+move_speed = 250.0
+acceleration = 150.0
+gravity = 300.0
+wall_stops_velocity = true
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

@@ -4,6 +4,9 @@ class_name PoolManager
 var pools : Array[NodePool]
 
 func _ready():
+	create_pools()
+
+func create_pools():
 	pools.append(NodePool.new("missile", "res://objects/projectiles/missiles/missile.tscn", 30))
 	pools.append(NodePool.new("homing_missile", "res://objects/projectiles/missiles/homing_missile.tscn", 3))
 	pools.append(NodePool.new("direction_missile", "res://objects/projectiles/missiles/direction_missile.tscn", 20))
@@ -24,3 +27,12 @@ func borrow_from_pool(recipient, identifier) -> Node:
 
 func return_to_pool(node, identifier):
 	get_pool(identifier).call_deferred("return_node", node)
+
+func reset_pools():
+	for p in pools:
+		remove_child(p)
+		p.queue_free()
+	
+	pools.clear()
+	
+	create_pools()

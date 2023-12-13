@@ -101,7 +101,7 @@ script = ExtResource("1_h0qbj")
 death_particle = ExtResource("2_7m68i")
 pooled = true
 pool_identifier = "direction_missile"
-drop_health_pickups = false
+health_pickup_chance = 0.05
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]

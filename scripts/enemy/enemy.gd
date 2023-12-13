@@ -15,6 +15,7 @@ class_name Enemy
 @export_group("Pickups")
 @export var drop_health_pickups = true
 @export var health_pickup_amount = 1
+@export var health_pickup_chance = 1.0
 @export var health_pickup_spread = Vector2(5.0, 5.0)
 @export var health_pickup_offset = Vector2.ZERO
 @export_group("Contact")
@@ -127,7 +128,7 @@ func die():
 		if part is Node2D:
 			part.global_position = global_position
 	
-	if drop_health_pickups:
+	if drop_health_pickups and health_pickup_chance >= randf():
 		for x in health_pickup_amount:
 			var pickup = health_pickup.instantiate()
 			get_parent().add_child(pickup)
