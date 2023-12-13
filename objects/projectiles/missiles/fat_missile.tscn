@@ -199,7 +199,7 @@ default_state = "pursue_player_rotate"
 script = ExtResource("5_vphdv")
 neutral_sf = SubResource("SpriteFrames_lyd8e")
 good_sf = SubResource("SpriteFrames_v7c1m")
-speed = 75.0
+speed = 60.0
 pathfind = true
 
 [node name="fall_and_die" type="Node" parent="AI"]

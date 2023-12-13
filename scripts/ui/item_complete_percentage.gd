@@ -4,6 +4,7 @@ class_name ItemCompletePercentage
 const EXPANSION_COUNT = 12
 const CORE_COUNT = 5
 
+@export var prefix = ""
 @export var hide_unpaused = true
 
 func _process(delta):
@@ -21,4 +22,4 @@ func _process(delta):
 	
 	var upgrades_collected_01 = expansion_collected_01 / 2 + core_upgrades_collected_01 / 2
 	
-	text = str(round(upgrades_collected_01 * 100)) + "%"
+	text = prefix + str(round(upgrades_collected_01 * 100)) + "%"

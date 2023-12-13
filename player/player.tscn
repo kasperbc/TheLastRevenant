@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cdk28anvdyvwx"]
+[gd_scene load_steps=67 format=3 uid="uid://cdk28anvdyvwx"]
 
 [ext_resource type="Script" path="res://player/player_movement.gd" id="1_xsl8m"]
 [ext_resource type="Texture2D" uid="uid://chewg68qcfq0k" path="res://assets/sprites/player/tlr-sombre-freefall.png" id="2_4pjd8"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://player/player_health.gd" id="4_lnaue"]
 [ext_resource type="Script" path="res://player/hookshot_hand.gd" id="4_s1e1s"]
 [ext_resource type="Texture2D" uid="uid://bf3imwmt3f8yk" path="res://assets/sprites/hook/hookshot_hand-1.png" id="5_qo580"]
+[ext_resource type="Script" path="res://player/sprite_flash.gd" id="6_3b40c"]
 [ext_resource type="Texture2D" uid="uid://ug3sjt6ijyj" path="res://assets/sprites/hook/hookshot_hand-2.png" id="6_8mkoe"]
 [ext_resource type="AudioStream" uid="uid://bf2hbpcuyhpum" path="res://soundeffects/vineboom.mp3" id="6_hxv3p"]
 [ext_resource type="Texture2D" uid="uid://c8ret7115jgxa" path="res://assets/sprites/hook/hookshot_hand-3.png" id="7_6tb23"]
@@ -70,6 +71,10 @@ region = Rect2(160, 0, 16, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hpc6d"]
 atlas = ExtResource("2_561y6")
 region = Rect2(176, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntk6t"]
+atlas = ExtResource("2_561y6")
+region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23p1y"]
 atlas = ExtResource("3_yb35w")
@@ -157,8 +162,11 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_2gdyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntk6t")
 }],
-"loop": true,
+"loop": false,
 "name": &"jumpsquat",
 "speed": 5.0
 }, {
@@ -471,6 +479,9 @@ z_index = 10
 position = Vector2(1.90735e-06, 2.14577e-06)
 sprite_frames = SubResource("SpriteFrames_70ofr")
 animation = &"jumpsquat"
+frame = 1
+frame_progress = 0.220307
+script = ExtResource("6_3b40c")
 
 [node name="HookshotHand" type="AnimatedSprite2D" parent="Sprite2D"]
 visible = false
