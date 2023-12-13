@@ -10,13 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://fc5h1wnmon4l" path="res://objects/lights/light_revealer.tscn" id="5_q84k6"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="6_2wqmi"]
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="11_8wm0p"]
-[ext_resource type="PackedScene" uid="uid://bks8g580di8fy" path="res://objects/enemies/cannons/aimed_cannon.tscn" id="12_w3lxq"]
+[ext_resource type="PackedScene" uid="uid://dtsopo8cmgr5n" path="res://objects/enemies/revenant/revenant.tscn" id="12_kqylw"]
 [ext_resource type="Texture2D" uid="uid://6mm8nxnjj2p4" path="res://assets/collision_decor/cryocapsule-vertical-open.png" id="13_knvox"]
 
 [node name="Main" type="Node2D"]
-
-[node name="AimedCannon" parent="." instance=ExtResource("12_w3lxq")]
-position = Vector2(228, -107)
 
 [node name="Level" parent="." instance=ExtResource("3_6jmh6")]
 
@@ -30,7 +27,7 @@ motion_mode = 1
 wall_min_slide_angle = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(2.75, 2.75)
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("2_q7r5k")
@@ -90,11 +87,19 @@ scale = Vector2(30, 30)
 texture = ExtResource("5_g3icy")
 script = ExtResource("6_2wqmi")
 
+[node name="Background2" type="Sprite2D" parent="Background"]
+z_index = -15
+texture = ExtResource("5_g3icy")
+script = ExtResource("6_2wqmi")
+
 [node name="Cryocapsule-vertical-open" type="Sprite2D" parent="."]
 position = Vector2(80, -88)
 texture = ExtResource("13_knvox")
 
 [node name="AudioManager" parent="." instance=ExtResource("11_8wm0p")]
+
+[node name="Revenant" parent="." instance=ExtResource("12_kqylw")]
+position = Vector2(254, -63)
 
 [connection signal="hook_released" from="Player" to="Player/Hook" method="_on_hook_released"]
 [connection signal="hook_released_early" from="Player" to="Player/Hook" method="_on_max_distance_reached"]

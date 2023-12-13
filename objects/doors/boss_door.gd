@@ -8,6 +8,8 @@ func _ready():
 
 func close_door():
 	set_collision_layer_value(1, true)
+	$Sprite2D.frame = 1
 
 func open_door():
 	set_collision_layer_value(1, false)
+	$Sprite2D.frame = 0

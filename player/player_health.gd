@@ -50,12 +50,14 @@ func damage():
 	invincible = false
 
 func die():
+	current_health = 0
+	
 	get_tree().paused = true
 	
+	get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/Shaker").start_shake(get_node("/root/Main/UI/Control/HealthSprite"), 5.0, 3.0)
+	
 	await get_tree().create_timer(2).timeout
-	
 	get_tree().root.get_node("/root/Main/UI/Control/FadeScreen").fade_to_black(1)
-	
 	await get_tree().create_timer(1).timeout
 	
 	if get_tree():

@@ -1,7 +1,7 @@
 extends Label
 
 func _ready():
-	var game_time = Time.get_unix_time_from_system() - (Time.get_unix_time_from_system() - 3601)
+	var game_time = Time.get_unix_time_from_system() - GameMan.game_start_timestamp
 	
 	var time_dict = Time.get_datetime_dict_from_unix_time(game_time)
 	

@@ -24,6 +24,7 @@ func _on_spawned():
 	rotation_degrees = rad_to_deg(Vector2.RIGHT.angle_to(move_dir))
 	current_state = HookMoveState.MOVING
 	set_collision_mask_value(1, true)
+	set_collision_mask_value(4, true)
 	hooked_obj = null
 	$Hook.visible = true
 
@@ -51,6 +52,7 @@ func _on_hook_released():
 func _on_max_distance_reached():
 	current_state = HookMoveState.RETURNING
 	set_collision_mask_value(1, false)
+	set_collision_mask_value(4, false)
 
 # HOOK MOVEMENT
 

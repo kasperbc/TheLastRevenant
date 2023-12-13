@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://cysvrvvovblxi"]
+[gd_scene load_steps=5 format=3 uid="uid://cysvrvvovblxi"]
+
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_5pnsf"]
+[ext_resource type="Texture2D" uid="uid://535gam887hrk" path="res://assets/sprites/ui/title-screen.png" id="1_mtryt"]
+[ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_n7yo8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_50n41"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -7,12 +13,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_n7yo8")
+script = ExtResource("1_5pnsf")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.117647, 0.152941, 0.203922, 1)
+texture = ExtResource("1_mtryt")
+
+[node name="Play" type="Button" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = 216.5
+offset_right = 12.5
+offset_bottom = 247.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Play"
+
+[node name="Credits" type="Label" parent="Background"]
+modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -31.0
+offset_right = 771.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "kekis - Programming & Sprites | Francca - Sprites & Map Design | RedDeadDumb - Music"
+label_settings = SubResource("LabelSettings_50n41")
+
+[connection signal="pressed" from="Background/Play" to="." method="_on_play_pressed"]
