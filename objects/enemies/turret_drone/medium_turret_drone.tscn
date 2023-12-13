@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b27xddymq5uix"]
+[gd_scene load_steps=19 format=3 uid="uid://b27xddymq5uix"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_dw2bu"]
 [ext_resource type="PackedScene" uid="uid://cxcxvctlfdjcd" path="res://objects/particles/big_explosion.tscn" id="2_6o522"]
@@ -6,8 +6,7 @@
 [ext_resource type="Script" path="res://scripts/enemy/ais/turret_drone.gd" id="4_6rclm"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/idle_pointfollow_fly.gd" id="5_w72qb"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_standstill_fly_shoot.gd" id="6_bf5l2"]
-[ext_resource type="PackedScene" uid="uid://hwg8cw6udjx2" path="res://objects/projectiles/missiles/missile.tscn" id="7_lg7yi"]
-[ext_resource type="Script" path="res://scripts/shaker.gd" id="8_krlsq"]
+[ext_resource type="PackedScene" uid="uid://dhfieln5f4mk5" path="res://objects/enemies/shaker.tscn" id="7_0bk4l"]
 [ext_resource type="Texture2D" uid="uid://22dwjutt4ncg" path="res://assets/sprites/objects/cannon.png" id="9_62f7t"]
 [ext_resource type="Script" path="res://objects/enemies/turret_drone/turret_rotate.gd" id="10_mr6ki"]
 [ext_resource type="Script" path="res://scripts/tools/move_path_tool.gd" id="11_wwvvd"]
@@ -128,10 +127,8 @@ pathfind = true
 script = ExtResource("6_bf5l2")
 max_distance_from_home = 150.0
 pathfind = true
-projectile = ExtResource("7_lg7yi")
 
-[node name="Shaker" type="Node" parent="."]
-script = ExtResource("8_krlsq")
+[node name="Shaker" parent="." instance=ExtResource("7_0bk4l")]
 
 [node name="Turret" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
