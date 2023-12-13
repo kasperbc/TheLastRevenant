@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://fc5h1wnmon4l" path="res://objects/lights/light_revealer.tscn" id="5_q84k6"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="6_2wqmi"]
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="11_8wm0p"]
+[ext_resource type="PackedScene" uid="uid://dtsopo8cmgr5n" path="res://objects/enemies/revenant/revenant.tscn" id="12_kqylw"]
 [ext_resource type="Texture2D" uid="uid://6mm8nxnjj2p4" path="res://assets/collision_decor/cryocapsule-vertical-open.png" id="13_knvox"]
-[ext_resource type="PackedScene" uid="uid://dt1k2o3nea4hl" path="res://objects/enemies/asteroid/asteroid.tscn" id="13_ylso8"]
 
 [node name="Main" type="Node2D"]
 
@@ -98,8 +98,8 @@ texture = ExtResource("13_knvox")
 
 [node name="AudioManager" parent="." instance=ExtResource("11_8wm0p")]
 
-[node name="Asteroid" parent="." instance=ExtResource("13_ylso8")]
-position = Vector2(223, -156)
+[node name="Revenant" parent="." instance=ExtResource("12_kqylw")]
+position = Vector2(254, -63)
 
 [connection signal="hook_released" from="Player" to="Player/Hook" method="_on_hook_released"]
 [connection signal="hook_released_early" from="Player" to="Player/Hook" method="_on_max_distance_reached"]

@@ -8,6 +8,10 @@ class_name GroundMoveAndJumpTowardsPlayer
 
 var jump_cooldown : float = 3.0
 
+func on_state_activate():
+	current_speed = 0.0
+	body.velocity = Vector2.ZERO
+
 func ai_state_process(delta):
 	super(delta)
 	
@@ -17,6 +21,8 @@ func ai_state_process(delta):
 	var player_is_above_enemy = player_up_angle < 60.0 and body.is_on_floor() and clamp(current_speed, -1, 1) == get_player_dir_x() and player_height_diff < -16.0
 	if player_is_above_enemy:
 		jump()
+	
+	body.get_node("Sprite2D").flip_h = get_player_dir_x() == 1
 
 func jump():
 	if last_jump_time + jump_cooldown > Time.get_unix_time_from_system():
