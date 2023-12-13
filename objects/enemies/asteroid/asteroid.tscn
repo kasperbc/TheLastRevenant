@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://dt1k2o3nea4hl"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_fuaot"]
+[ext_resource type="Texture2D" uid="uid://d4g0rsywatwig" path="res://assets/sprites/enemies/asteroids.png" id="2_th7rs"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_jrd13"]
+[ext_resource type="Script" path="res://objects/enemies/asteroid/random_sprite.gd" id="3_uw5mn"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/orbit_fly.gd" id="5_0teim"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8qyc"]
+atlas = ExtResource("2_th7rs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6gf8"]
+atlas = ExtResource("2_th7rs")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vhaj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8qyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6gf8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+radius = 15.0
+
+[node name="Asteroid" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 8
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_fuaot")
+drop_health_pickups = false
+contact_damage = false
+player_near_range = 100.0
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vhaj7")
+script = ExtResource("3_uw5mn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gfxgg")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("3_jrd13")
+
+[node name="idle" type="Node" parent="AI"]
+script = ExtResource("5_0teim")
+speed = 10.0
+min_anglular_vel = -20.0
+max_anglular_vel = 20.0
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

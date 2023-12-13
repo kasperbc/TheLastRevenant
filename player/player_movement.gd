@@ -52,6 +52,7 @@ var hook_jump_strength : float
 var last_distance : float
 var bomb_active : bool
 var bomb_last_use_timestamp = 0.0
+var gravity_multiplier = 1.0
 
 var _hooked_obj
 var hooked_obj : 
@@ -119,7 +120,10 @@ func process_normal_movement(delta):
 
 
 func get_gravity() -> float:
-	return jump_gravity if velocity.y < 0.0 else fall_gravity
+	var grav = jump_gravity if velocity.y < 0.0 else fall_gravity
+	grav *= gravity_multiplier
+	
+	return grav
 
 func apply_gravity(delta):
 	velocity.y += get_gravity() * delta
@@ -194,8 +198,8 @@ func _on_hook_collided(collision : KinematicCollision2D):
 	if not bomb_active:
 		current_state = MoveState.HOOKED_FLYING
 		hook_position = collision.get_position()
-		hook_speed = HOOK_BASE_FLY_SPEED
-
+		hook_speed = HOOK_BASE_FLY_SPEED * clamp(gravity_multiplier * 2, 0.0, 1.0)
+		
 		if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
 			hook_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER + (HOOK_SPEED_EXPANSION_MULTIPLIER_INCREASE * (GameMan.get_expansion_count(GameMan.ExpansionType.SPEED)))
 		
@@ -228,7 +232,8 @@ func process_hook_flying(delta):
 	var acceleration_speed = HOOK_ACCELERATION
 	if GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
 		max_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER
-		acceleration_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER
+	
+	max_speed *= HOOK_UPGRADE_SPEED_MULTIPLIER
 	
 	hook_speed = move_toward(hook_speed, max_speed, acceleration_speed * delta)
 	velocity = direction * hook_speed

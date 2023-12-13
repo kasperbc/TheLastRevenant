@@ -151,4 +151,17 @@ func unpause_game():
 	get_tree().paused = false
 
 func load_title_screen():
-	get_tree().change_scene_to_file("")
+	get_tree().change_scene_to_file("res://title_screen.tscn")
+	game_paused = false
+	upgrades_collected.clear()
+	upgrades_enabled.clear()
+	health_expansions_collected.clear()
+	speed_expansions_collected.clear()
+	range_expansions_collected.clear()
+	map_positions_unlocked.clear()
+	map_sources_partial_unlocked.clear()
+	bosses_defeated.clear()
+
+func load_main():
+	get_tree().change_scene_to_file("res://main.tscn")
+	game_start_timestamp = Time.get_unix_time_from_system()
