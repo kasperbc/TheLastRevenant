@@ -41,7 +41,7 @@ var map_sources_partial_unlocked : Array[int]
 var bosses_defeated : Array[int]
 
 var game_paused : bool
-var game_start_timestamp : float
+@onready var game_start_timestamp : float = Time.get_unix_time_from_system()
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -165,3 +165,6 @@ func load_title_screen():
 func load_main():
 	get_tree().change_scene_to_file("res://main.tscn")
 	game_start_timestamp = Time.get_unix_time_from_system()
+
+func load_end_screen():
+	get_tree().change_scene_to_file("res://end_screen.tscn")

@@ -52,7 +52,7 @@ var hook_jump_strength : float
 var last_distance : float
 var bomb_active : bool
 var bomb_last_use_timestamp = 0.0
-var gravity_multiplier = 1.0
+var gravity_multiplier = 1
 
 var _hooked_obj
 var hooked_obj : 
@@ -317,7 +317,6 @@ func _on_hook_released_early():
 	
 	if hooked_obj:
 		hooked_obj._on_hook_detached()
-	
 	hooked_obj = null
 
 func set_hooked_obj(value):

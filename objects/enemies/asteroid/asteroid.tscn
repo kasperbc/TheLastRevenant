@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dt1k2o3nea4hl"]
+[gd_scene load_steps=12 format=3 uid="uid://dt1k2o3nea4hl"]
 
-[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_fuaot"]
+[ext_resource type="Script" path="res://objects/enemies/asteroid/asteroid.gd" id="1_ku7jx"]
 [ext_resource type="Texture2D" uid="uid://d4g0rsywatwig" path="res://assets/sprites/enemies/asteroids.png" id="2_th7rs"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_jrd13"]
 [ext_resource type="Script" path="res://objects/enemies/asteroid/random_sprite.gd" id="3_uw5mn"]
+[ext_resource type="PackedScene" uid="uid://dhfieln5f4mk5" path="res://objects/enemies/shaker.tscn" id="4_c2djw"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/orbit_fly.gd" id="5_0teim"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8qyc"]
@@ -38,10 +39,11 @@ radius = 15.0
 collision_layer = 8
 collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_fuaot")
-drop_health_pickups = false
+script = ExtResource("1_ku7jx")
+infinite_health = true
 contact_damage = false
-player_near_range = 100.0
+detect_player_near = true
+player_near_range = 16.0
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
@@ -63,12 +65,13 @@ debug_color = Color(0, 0.6, 0, 0.419608)
 avoidance_enabled = true
 debug_enabled = true
 
+[node name="Shaker" parent="." instance=ExtResource("4_c2djw")]
+
 [node name="AI" type="Node" parent="."]
 script = ExtResource("3_jrd13")
 
 [node name="idle" type="Node" parent="AI"]
 script = ExtResource("5_0teim")
-speed = 10.0
 min_anglular_vel = -20.0
 max_anglular_vel = 20.0
 

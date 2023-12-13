@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://dx8v1f0twlob0"]
+
+[ext_resource type="Texture2D" uid="uid://cijk2ahowxlh7" path="res://assets/sprites/objects/quarantine_shards.png" id="1_x0i33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktei1"]
+size = Vector2(16, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxatj"]
+size = Vector2(16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3ojo"]
+atlas = ExtResource("1_x0i33")
+region = Rect2(0, 0, 32, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbyv7"]
+atlas = ExtResource("1_x0i33")
+region = Rect2(32, 0, 32, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpxqk"]
+atlas = ExtResource("1_x0i33")
+region = Rect2(64, 0, 32, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x832g"]
+atlas = ExtResource("1_x0i33")
+region = Rect2(96, 0, 32, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb5fh"]
+atlas = ExtResource("1_x0i33")
+region = Rect2(128, 0, 32, 78)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_367d1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3ojo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbyv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpxqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x832g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb5fh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="QuarantineShard1" type="StaticBody2D"]
+z_index = 15
+
+[node name="Floor" type="CollisionShape2D" parent="."]
+position = Vector2(8, 34.5)
+shape = SubResource("RectangleShape2D_ktei1")
+
+[node name="Ceiling" type="CollisionShape2D" parent="."]
+position = Vector2(8, -31.5)
+shape = SubResource("RectangleShape2D_nxatj")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_367d1")
+frame = 1

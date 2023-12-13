@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://grtwdi4s2rh3"]
+
+[ext_resource type="PackedScene" uid="uid://dx8v1f0twlob0" path="res://objects/decor/quarantine_shard_1.tscn" id="1_he0tl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7sx81"]
+size = Vector2(16, 12)
+
+[node name="QuarantineShard4" instance=ExtResource("1_he0tl")]
+
+[node name="Floor" parent="." index="0"]
+position = Vector2(8, 33)
+shape = SubResource("RectangleShape2D_7sx81")
+
+[node name="Ceiling" parent="." index="1"]
+disabled = true
+
+[node name="Sprite2D" parent="." index="2"]
+frame = 4
