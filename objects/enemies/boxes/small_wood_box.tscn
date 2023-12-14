@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://wxnjgiyq3sjq"]
+
+[ext_resource type="PackedScene" uid="uid://06cjv4e48i0f" path="res://objects/enemies/boxes/small_flesh_box.tscn" id="1_n1ece"]
+[ext_resource type="PackedScene" uid="uid://c2d1pxh4h0ea7" path="res://objects/particles/box_wood_explosion.tscn" id="2_3ensg"]
+[ext_resource type="Texture2D" uid="uid://cd3n3e7jfap2w" path="res://assets/sprites/objects/wooden_box_small.png" id="2_ticjr"]
+
+[node name="SmallWoodBox" instance=ExtResource("1_n1ece")]
+death_particle = ExtResource("2_3ensg")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ticjr")

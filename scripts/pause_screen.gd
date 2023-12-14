@@ -5,3 +5,8 @@ func _process(delta):
 
 func _on_title_button_pressed():
 	GameMan.load_title_screen()
+
+
+func _on_restart_button_pressed():
+	GameMan.unpause_game()
+	GameMan.get_player_health().die()

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://beec4tqf3qvok"]
+
+[ext_resource type="PackedScene" uid="uid://cbpy7cr2yydq1" path="res://objects/enemies/boxes/large_flesh_box.tscn" id="1_2yfw0"]
+[ext_resource type="Texture2D" uid="uid://cihaqnecctwr1" path="res://assets/sprites/objects/wooden_box_large.png" id="2_bckmw"]
+[ext_resource type="PackedScene" uid="uid://c2d1pxh4h0ea7" path="res://objects/particles/box_wood_explosion.tscn" id="2_gsm3t"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/idle_pointfollow_fly.gd" id="3_65rsa"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_fly.gd" id="4_vb26p"]
+
+[node name="LargeWoodBox" instance=ExtResource("1_2yfw0")]
+death_particle = ExtResource("2_gsm3t")
+health_pickup_amount = 1
+health_pickup_spread = Vector2(5, 5)
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_bckmw")
+
+[node name="idle" parent="AI" index="0"]
+script = ExtResource("3_65rsa")
+speed = 100.0
+wait_time = 0.5
+slowdown_distance = 50.0
+speedup_distance = 50.0
+pathfind = true
+
+[node name="pursue" type="Node" parent="AI" index="1"]
+script = ExtResource("4_vb26p")

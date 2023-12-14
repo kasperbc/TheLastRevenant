@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://o1q3k7v0dxdd"]
+
+[ext_resource type="Script" path="res://objects/platforming_objects/latch_launcher.gd" id="1_g23hy"]
+[ext_resource type="Texture2D" uid="uid://bket3qr5h2hbp" path="res://assets/sprites/objects/latch_launcher_sheet.png" id="2_riobx"]
+[ext_resource type="Script" path="res://objects/platforming_objects/hover.gd" id="3_qjxyv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wa83w"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5ypk"]
+atlas = ExtResource("2_riobx")
+region = Rect2(0, 0, 12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ryxm"]
+atlas = ExtResource("2_riobx")
+region = Rect2(12, 0, 12, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tkk6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5ypk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ryxm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="LatchLauncher" type="StaticBody2D"]
+collision_layer = 8
+script = ExtResource("1_g23hy")
+detect_player_near = true
+player_near_range = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wa83w")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tkk6w")
+autoplay = "default"
+frame_progress = 0.994213
+script = ExtResource("3_qjxyv")

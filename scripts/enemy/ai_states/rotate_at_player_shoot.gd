@@ -24,3 +24,4 @@ func shoot_projectile(offset):
 	if last_projectile:
 		if last_projectile.get_node("AI/fly_towards_point"):
 			last_projectile.get_node("AI/fly_towards_point").set_dir(Vector2.RIGHT.rotated(body.rotation))
+			last_projectile.damage_while_hooked = true

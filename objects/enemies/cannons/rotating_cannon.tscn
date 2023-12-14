@@ -12,6 +12,7 @@ radius = 5.0
 radius = 15.0
 
 [node name="RotatingCannon" type="CharacterBody2D" groups=["Enemies"]]
+z_index = -1
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1

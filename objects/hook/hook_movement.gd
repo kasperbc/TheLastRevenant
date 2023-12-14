@@ -18,6 +18,8 @@ signal max_distance_reached
 
 func _ready():
 	current_state = HookMoveState.RETURNING
+	set_collision_mask_value(1, false)
+	set_collision_mask_value(4, false)
 
 func _on_spawned():
 	move_dir = global_position.direction_to(get_global_mouse_position())

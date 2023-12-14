@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2d1pxh4h0ea7"]
+
+[ext_resource type="Texture2D" uid="uid://bu5345hq81gih" path="res://assets/sprites/objects/wood_shard.png" id="1_14d5d"]
+[ext_resource type="Script" path="res://objects/particles/queue_free_holder.gd" id="2_45nsd"]
+
+[node name="BoxWoodExplosion" type="CPUParticles2D"]
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_14d5d")
+emission_shape = 3
+emission_rect_extents = Vector2(8, 8)
+direction = Vector2(0, -1)
+spread = 40.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 185.48
+initial_velocity_max = 248.77
+angular_velocity_min = -140.0
+angular_velocity_max = 300.0
+script = ExtResource("2_45nsd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.9
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="destroy"]

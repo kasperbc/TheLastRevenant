@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bks8g580di8fy"]
+[gd_scene load_steps=8 format=3 uid="uid://bks8g580di8fy"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_v6rs4"]
 [ext_resource type="Texture2D" uid="uid://d3hyk1cl03m0f" path="res://assets/sprites/enemies/big_cannon-red.png" id="2_dwbwe"]
-[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_on85u"]
+[ext_resource type="Script" path="res://scripts/enemy/ais/aimed_cannon.gd" id="3_u34qj"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/rotate_at_player_shoot.gd" id="4_a2um2"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/rotate_to_idle.gd" id="5_wdyy7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
 radius = 5.0
@@ -40,13 +41,15 @@ avoidance_enabled = true
 debug_enabled = true
 
 [node name="AI" type="Node" parent="."]
-script = ExtResource("3_on85u")
-default_state = "rotate_at_player_shoot"
+script = ExtResource("3_u34qj")
+default_state = "rotate_to_idle"
 
 [node name="rotate_at_player_shoot" type="Node" parent="AI"]
 script = ExtResource("4_a2um2")
 rotate_speed = 2.0
-wait_time = 0.9
 projectile_identifier = "direction_missile"
+
+[node name="rotate_to_idle" type="Node" parent="AI"]
+script = ExtResource("5_wdyy7")
 
 [connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

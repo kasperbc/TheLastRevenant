@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dswi0y0okkf41"]
+
+[ext_resource type="PackedScene" uid="uid://06cjv4e48i0f" path="res://objects/enemies/boxes/small_flesh_box.tscn" id="1_602aq"]
+[ext_resource type="Texture2D" uid="uid://x8nxvtnqg2ic" path="res://assets/sprites/objects/fleshy_box_medium.png" id="2_jipqt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xovf"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_equpn"]
+radius = 24.0
+
+[node name="MediumFleshBox" instance=ExtResource("1_602aq")]
+health_pickup_amount = 2
+health_pickup_spread = Vector2(10, 10)
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_jipqt")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_7xovf")
+
+[node name="CollisionShape2D" parent="ContactDetection" index="0"]
+shape = SubResource("CircleShape2D_equpn")

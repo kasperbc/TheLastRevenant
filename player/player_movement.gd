@@ -242,7 +242,6 @@ func process_hook_flying(delta):
 	# Check if close enough to hook
 	var distance = position.distance_to(hook_position)
 	
-	
 	if Input.is_action_just_pressed("jump"):
 		hook_released_early.emit()
 		return
@@ -252,7 +251,7 @@ func process_hook_flying(delta):
 		hook_attack()
 		return
 	
-	if abs(last_distance - distance) < 1:
+	if distance < hook_speed * delta:
 		current_state = MoveState.HOOKED
 		
 		if hooked_obj:

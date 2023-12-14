@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ksucrrxgo0s1"]
+
+[ext_resource type="Script" path="res://scripts/debug/debug_spawn_pos.gd" id="1_wqv12"]
+
+[node name="DebugSpawnPos" type="Node2D"]
+script = ExtResource("1_wqv12")

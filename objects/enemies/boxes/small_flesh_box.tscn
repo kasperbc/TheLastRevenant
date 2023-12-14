@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://06cjv4e48i0f"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_3qoyg"]
+[ext_resource type="PackedScene" uid="uid://wpsgqg0leqbq" path="res://objects/particles/box_flesh_explosion.tscn" id="2_2t6iq"]
+[ext_resource type="Texture2D" uid="uid://dbdutbqsxac22" path="res://assets/sprites/objects/flesh_box_small.png" id="2_kp2au"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_f3ktg"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai_state.gd" id="4_kl4ll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6eckl"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+radius = 12.0
+
+[node name="SmallFleshBox" type="CharacterBody2D" groups=["Boxes", "Enemies"]]
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_3qoyg")
+death_particle = ExtResource("2_2t6iq")
+health_pickup_chance = 0.5
+contact_damage = false
+player_near_range = 100.0
+static_object = true
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kp2au")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6eckl")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("3_f3ktg")
+
+[node name="idle" type="Node" parent="AI"]
+script = ExtResource("4_kl4ll")
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]
