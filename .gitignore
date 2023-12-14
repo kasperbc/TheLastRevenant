@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 builds/
+assets/sprites/ui/health-expansion-circle.png.import
+assets/sprites/ui/title-screen-2x.png.import
