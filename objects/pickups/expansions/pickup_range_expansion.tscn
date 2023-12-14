@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bps5olh5753pl" path="res://objects/pickups/expansions/pickup_health_expansion.tscn" id="1_30cwu"]
 [ext_resource type="Texture2D" uid="uid://dy2pb4lsxkylp" path="res://assets/sprites/pickups/pickup_range_expansion.png" id="2_huu5s"]
 
-[node name="PickupRangeExpansion" instance=ExtResource("1_30cwu")]
+[node name="PickupRangeExpansion" groups=["RangeExpansions"] instance=ExtResource("1_30cwu")]
 expansion_type = 2
 expansion_text = "Range expansion collected"
 

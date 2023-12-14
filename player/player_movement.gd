@@ -28,7 +28,7 @@ const HOOK_ATTACK_DISTANCE = 150.0
 const BOMB_COOLDOWN = 3.0
 
 enum MoveState {DISABLED, NORMAL, HOOKED_FLYING, HOOKED, DEBUG}
-var current_state : MoveState = MoveState.DISABLED
+var current_state : MoveState = MoveState.NORMAL
 
 signal hook_fired
 signal hook_released
@@ -65,6 +65,7 @@ func _ready():
 	GameMan.move_player_to_latest_recharge_station()
 	$Attack.visible = false
 	$AttackFlare.visible = false
+	$Hook.global_position = global_position
 
 func _physics_process(delta):
 	if current_state == MoveState.NORMAL:

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bps5olh5753pl" path="res://objects/pickups/expansions/pickup_health_expansion.tscn" id="1_wuj14"]
 [ext_resource type="Texture2D" uid="uid://b1hrr6hftmpyw" path="res://assets/sprites/pickups/pickup_speed_expansion.png" id="2_e3al8"]
 
-[node name="PickupSpeedExpansion" instance=ExtResource("1_wuj14")]
+[node name="PickupSpeedExpansion" groups=["SpeedExpansions"] instance=ExtResource("1_wuj14")]
 expansion_type = 1
 expansion_text = "Speed expansion collected"
 

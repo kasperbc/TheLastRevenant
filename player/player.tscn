@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://ceyi2ulnwjom4" path="res://assets/sprites/particles/deltarune_refrence.png" id="21_diawq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uw8j3"]
-radius = 5.0
+radius = 3.0
 height = 24.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpmsu"]
