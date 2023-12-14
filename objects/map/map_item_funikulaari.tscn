@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjacrqjxnbof6"]
 
-[ext_resource type="Texture2D" uid="uid://bt4p74bnj81dx" path="res://assets/tilesets/map-screen/tlr_map_icon_funikulaari.png" id="1_7e2qs"]
+[ext_resource type="Texture2D" uid="uid://bt4p74bnj81dx" path="res://assets/backgrounds/tilesets/map-screen/tlr_map_icon_funikulaari.png" id="1_7e2qs"]
 [ext_resource type="Script" path="res://objects/map/map_item.gd" id="1_kdpge"]
 
 [node name="FunikulaariItem" type="Sprite2D"]

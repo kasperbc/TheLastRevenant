@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuqyw6ifnaw28"]
+
+[ext_resource type="TileSet" uid="uid://cugqd8tqxnjuh" path="res://assets/backgrounds/tilesets/areas/revenant-lab-1/beta_tileset_1.tres" id="1_hlinh"]
+[ext_resource type="Script" path="res://scripts/fake_floor.gd" id="2_a5rh5"]
+[ext_resource type="Texture2D" uid="uid://crfhsp78y50e0" path="res://assets/sprites/particles/area_6_shard.png" id="3_sy737"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0kdm"]
+size = Vector2(128, 32)
+
+[node name="FakeFloor" type="TileMap"]
+tile_set = ExtResource("1_hlinh")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 327681, 5, 65535, 327681, 5, 65534, 327681, 5, -2, 327681, 0, -1, 327681, 0, -65536, 327681, 0, -65535, 327681, 0, -65534, 327681, 0, -65533, 196609, 0, 3, 196609, 5, 2, 327681, 5, 1, 327681, 5, 65533, 327681, 5, -3, 327681, 0, -4, 262145, 0, 65532, 262145, 5)
+script = ExtResource("2_a5rh5")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("RectangleShape2D_o0kdm")
+
+[node name="BreakParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 64
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_sy737")
+emission_shape = 3
+emission_rect_extents = Vector2(160, 32)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 300)
+initial_velocity_min = 164.56
+initial_velocity_max = 303.8
+angular_velocity_min = -145.84
+angular_velocity_max = 72.9
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]

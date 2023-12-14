@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqr5w82q83bao"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_k1bgu"]
+[ext_resource type="Texture2D" uid="uid://d3hyk1cl03m0f" path="res://assets/sprites/enemies/big_cannon-red.png" id="2_16ynv"]
+[ext_resource type="Script" path="res://scripts/enemy/ais/aimed_cannon.gd" id="3_07gmq"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/rotate_at_player_shoot.gd" id="4_iim0c"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/rotate_to_idle.gd" id="5_3imt1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+radius = 15.0
+
+[node name="FinalBossCannon" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_k1bgu")
+contact_damage = false
+player_near_range = 100.0
+metadata/rotate_points = PackedFloat64Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_16ynv")
+offset = Vector2(11, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gfxgg")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("3_07gmq")
+player_see_range = 400.0
+default_state = "rotate_to_idle"
+
+[node name="rotate_at_player_shoot" type="Node" parent="AI"]
+script = ExtResource("4_iim0c")
+rotate_speed = 3.0
+
+[node name="rotate_to_idle" type="Node" parent="AI"]
+script = ExtResource("5_3imt1")
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://d1w8mv3p4nxsn" path="res://assets/sprites/enemies/revenant_creeper_jumpscare.png" id="3_ptvxd"]
 [ext_resource type="Script" path="res://scripts/enemy/ais/revenant.gd" id="4_a2vjt"]
 [ext_resource type="Texture2D" uid="uid://cqof1f00ss1lo" path="res://assets/sprites/enemies/revenant_creepingt.png" id="4_hl334"]
-[ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move.gd" id="4_rckp1"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move_and_jump_towards_player.gd" id="5_1j36j"]
+[ext_resource type="Script" path="res://objects/enemies/revenant/revenant_idle.gd" id="7_e575m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vh2fd"]
 atlas = ExtResource("3_ptvxd")
@@ -187,7 +187,7 @@ metadata/move_points = PackedVector2Array()
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_cxcps")
-animation = &"jump"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -211,7 +211,7 @@ debug_enabled = true
 script = ExtResource("4_a2vjt")
 
 [node name="idle" type="Node" parent="AI"]
-script = ExtResource("4_rckp1")
+script = ExtResource("7_e575m")
 
 [node name="move_towards_player" type="Node" parent="AI"]
 script = ExtResource("5_1j36j")

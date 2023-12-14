@@ -1,4 +1,5 @@
 extends EnemyAI
+class_name RevenantAI
 
 func change_state():
 	if not can_see_player():

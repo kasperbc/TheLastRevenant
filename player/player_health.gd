@@ -56,7 +56,19 @@ func die():
 	
 	get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/Shaker").start_shake(get_node("/root/Main/UI/Control/HealthSprite"), 5.0, 3.0)
 	
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(0.5).timeout
+	GameMan.get_player().get_node("DeathParticle").process_mode = Node.PROCESS_MODE_ALWAYS
+	GameMan.get_player().get_node("DeathParticle").visible = true
+	
+	await get_tree().create_timer(0.5).timeout
+	GameMan.get_player().get_node("DeathParticle2").process_mode = Node.PROCESS_MODE_ALWAYS
+	GameMan.get_player().get_node("DeathParticle2").visible = true
+	
+	await get_tree().create_timer(0.5).timeout
+	GameMan.get_player().get_node("DeathParticle3").process_mode = Node.PROCESS_MODE_ALWAYS
+	GameMan.get_player().get_node("DeathParticle3").visible = true
+	
+	await get_tree().create_timer(0.5).timeout
 	get_tree().root.get_node("/root/Main/UI/Control/FadeScreen").fade_to_black(1)
 	await get_tree().create_timer(1).timeout
 	

@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://di4dkqj3v10to"]
+
+[ext_resource type="Script" path="res://objects/enemies/boss_final/final_boss.gd" id="1_mrrf7"]
+[ext_resource type="Texture2D" uid="uid://bigss2jferxn3" path="res://assets/sprites/ui/target_ind.png" id="2_lbo8o"]
+[ext_resource type="PackedScene" uid="uid://3xbbfvb8emqu" path="res://objects/particles/bossfinal_explosion.tscn" id="2_u3sm1"]
+[ext_resource type="Script" path="res://objects/enemies/boss_final/final_boss_ai.gd" id="3_hwy5i"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai_state.gd" id="4_f6oog"]
+[ext_resource type="PackedScene" uid="uid://bqr5w82q83bao" path="res://objects/enemies/boss_final/final_boss_cannon.tscn" id="5_xwu2e"]
+[ext_resource type="Script" path="res://objects/enemies/boss_final/final_boss_phase.gd" id="6_4myo4"]
+[ext_resource type="PackedScene" uid="uid://bks8g580di8fy" path="res://objects/enemies/cannons/aimed_cannon.tscn" id="6_pabf6"]
+[ext_resource type="PackedScene" uid="uid://b01u35pkbnp01" path="res://objects/enemies/turret_drone/hard_turret_drone.tscn" id="8_21nst"]
+[ext_resource type="PackedScene" uid="uid://dtsopo8cmgr5n" path="res://objects/enemies/revenant/revenant.tscn" id="9_o7k2n"]
+[ext_resource type="PackedScene" uid="uid://drirrv10sao48" path="res://objects/enemies/boss_final/aimed_rapid_cannon.tscn" id="10_xbe3g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+radius = 15.0
+
+[node name="FinalBoss" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 8
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_mrrf7")
+phases = 4
+invincibility_time = 0.0
+death_particle = ExtResource("2_u3sm1")
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lbo8o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gfxgg")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("3_hwy5i")
+
+[node name="idle" type="Node" parent="AI"]
+script = ExtResource("4_f6oog")
+
+[node name="FinalBossCannon" parent="." instance=ExtResource("5_xwu2e")]
+position = Vector2(0, 8)
+
+[node name="Phase1" type="Node2D" parent="." groups=["FinalBossPhases"]]
+process_mode = 4
+visible = false
+script = ExtResource("6_4myo4")
+
+[node name="AimedCannon" parent="Phase1" instance=ExtResource("6_pabf6")]
+position = Vector2(-100, -50)
+
+[node name="AimedCannon2" parent="Phase1" instance=ExtResource("6_pabf6")]
+position = Vector2(100, -50)
+
+[node name="Phase2" type="Node2D" parent="." groups=["FinalBossPhases"]]
+process_mode = 4
+visible = false
+script = ExtResource("6_4myo4")
+phase_id = 2
+
+[node name="TurretDroneHard" parent="Phase2" instance=ExtResource("8_21nst")]
+position = Vector2(-80, 0)
+
+[node name="TurretDroneHard2" parent="Phase2" instance=ExtResource("8_21nst")]
+position = Vector2(80, 0)
+
+[node name="Revenant" parent="Phase2" instance=ExtResource("9_o7k2n")]
+position = Vector2(0, 48)
+
+[node name="Phase3" type="Node2D" parent="." groups=["FinalBossPhases"]]
+process_mode = 4
+visible = false
+script = ExtResource("6_4myo4")
+phase_id = 3
+
+[node name="AimedRapidCannon" parent="Phase3" instance=ExtResource("10_xbe3g")]
+position = Vector2(0, 80)
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

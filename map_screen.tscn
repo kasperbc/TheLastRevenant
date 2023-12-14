@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cecc7ddrs85o4"]
 
-[ext_resource type="TileSet" uid="uid://wa8itsni7gf8" path="res://assets/tilesets/map-screen/map_screen_2.tres" id="1_0mvxt"]
+[ext_resource type="TileSet" uid="uid://wa8itsni7gf8" path="res://assets/backgrounds/tilesets/map-screen/map_screen_2.tres" id="1_0mvxt"]
 [ext_resource type="Texture2D" uid="uid://iw82b3blhlos" path="res://assets/sprites/ui/player_map_icon.png" id="2_h5urc"]
 [ext_resource type="PackedScene" uid="uid://dwawfwtw21afb" path="res://objects/map/map_item_core.tscn" id="3_b2xs8"]
 [ext_resource type="PackedScene" uid="uid://cu7ggll8okmde" path="res://objects/map/map_item_recharge_station.tscn" id="4_ujhqh"]

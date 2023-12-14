@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwawfwtw21afb"]
 
 [ext_resource type="Script" path="res://objects/map/map_item.gd" id="1_gy6kr"]
-[ext_resource type="Texture2D" uid="uid://75vofe5aama4" path="res://assets/tilesets/map-screen/tlr_map_icon_upgrade.png" id="1_rrhjv"]
+[ext_resource type="Texture2D" uid="uid://75vofe5aama4" path="res://assets/backgrounds/tilesets/map-screen/tlr_map_icon_upgrade.png" id="1_rrhjv"]
 
 [node name="MapItemCore" type="Sprite2D"]
 texture = ExtResource("1_rrhjv")

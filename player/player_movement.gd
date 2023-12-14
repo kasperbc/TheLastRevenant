@@ -27,8 +27,8 @@ const HOOK_WALL_JUMP_STRENGTH = 150.0
 const HOOK_ATTACK_DISTANCE = 150.0
 const BOMB_COOLDOWN = 3.0
 
-enum MoveState {NORMAL, HOOKED_FLYING, HOOKED, DEBUG}
-var current_state : MoveState
+enum MoveState {DISABLED, NORMAL, HOOKED_FLYING, HOOKED, DEBUG}
+var current_state : MoveState = MoveState.DISABLED
 
 signal hook_fired
 signal hook_released
@@ -75,6 +75,10 @@ func _physics_process(delta):
 		process_hooked()
 	elif current_state == MoveState.DEBUG:
 		process_debug()
+	elif current_state == MoveState.DISABLED:
+		var in_editor = OS.has_feature("editor")
+		if (Input.is_action_just_pressed("toggle_debug") and in_editor) or Input.is_action_just_pressed("toggle_debug_inbuild"):
+			toggle_debug(true)
 	
 	move_and_slide()
 

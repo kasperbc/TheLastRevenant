@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cu7ggll8okmde"]
 
-[ext_resource type="Texture2D" uid="uid://dsk8nhdkgsqvd" path="res://assets/tilesets/map-screen/tlr_map_icon_recharge_capsule.png" id="1_k0hny"]
+[ext_resource type="Texture2D" uid="uid://dsk8nhdkgsqvd" path="res://assets/backgrounds/tilesets/map-screen/tlr_map_icon_recharge_capsule.png" id="1_k0hny"]
 [ext_resource type="Script" path="res://objects/map/map_item.gd" id="2_ijw3b"]
 
 [node name="RechargeStationItem" type="Sprite2D"]

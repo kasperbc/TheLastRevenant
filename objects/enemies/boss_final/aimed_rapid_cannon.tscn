@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://drirrv10sao48"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_ifc6a"]
+[ext_resource type="Texture2D" uid="uid://d3hyk1cl03m0f" path="res://assets/sprites/enemies/big_cannon-red.png" id="2_bxxo1"]
+[ext_resource type="Script" path="res://scripts/enemy/ais/aimed_cannon.gd" id="3_xly2u"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/rotate_at_player_shoot.gd" id="4_jn2mm"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/rotate_to_idle.gd" id="5_wpl73"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+radius = 15.0
+
+[node name="AimedRapidCannon" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_ifc6a")
+contact_damage = false
+player_near_range = 100.0
+metadata/rotate_points = PackedFloat64Array()
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bxxo1")
+offset = Vector2(11, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gfxgg")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("3_xly2u")
+default_state = "rotate_to_idle"
+
+[node name="rotate_at_player_shoot" type="Node" parent="AI"]
+script = ExtResource("4_jn2mm")
+rotate_speed = 1.75
+wait_time = 0.15
+projectile_identifier = "direction_missile"
+
+[node name="rotate_to_idle" type="Node" parent="AI"]
+script = ExtResource("5_wpl73")
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]

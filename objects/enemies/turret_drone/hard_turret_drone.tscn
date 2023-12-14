@@ -1,0 +1,143 @@
+[gd_scene load_steps=19 format=3 uid="uid://b01u35pkbnp01"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_wxesx"]
+[ext_resource type="PackedScene" uid="uid://cxcxvctlfdjcd" path="res://objects/particles/big_explosion.tscn" id="2_d5ndj"]
+[ext_resource type="Texture2D" uid="uid://cv4p8iu7vgkoh" path="res://assets/sprites/enemies/hard_drone_fly.png" id="3_q1uur"]
+[ext_resource type="Script" path="res://scripts/enemy/ais/turret_drone.gd" id="4_n5rib"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/idle_pointfollow_fly.gd" id="5_f7t6l"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_standstill_fly_shoot_burst.gd" id="6_48r0w"]
+[ext_resource type="PackedScene" uid="uid://dhfieln5f4mk5" path="res://objects/enemies/shaker.tscn" id="7_03lai"]
+[ext_resource type="Texture2D" uid="uid://22dwjutt4ncg" path="res://assets/sprites/objects/cannon.png" id="8_u2fkl"]
+[ext_resource type="Script" path="res://objects/enemies/turret_drone/turret_rotate.gd" id="9_inlgv"]
+[ext_resource type="Script" path="res://scripts/tools/move_path_tool.gd" id="10_q3i0q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ell8x"]
+atlas = ExtResource("3_q1uur")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14hy3"]
+atlas = ExtResource("3_q1uur")
+region = Rect2(16, 0, 16, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nown6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ell8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14hy3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_aqiiy"]
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_hp25a"]
+resource_name = "fluy"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xsm5g"]
+_data = {
+"RESET": SubResource("Animation_aqiiy"),
+"fluy": SubResource("Animation_hp25a")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
+
+[node name="TurretDroneHard" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 8
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_wxesx")
+death_particle = ExtResource("2_d5ndj")
+health_pickup_amount = 2
+metadata/move_points = PackedVector2Array()
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nown6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_xsm5g")
+}
+autoplay = "fluy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gfxgg")
+
+[node name="ContactDetection" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDetection"]
+shape = SubResource("CircleShape2D_icfny")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("4_n5rib")
+idle_check_angle = 20.0
+idle_check_distance = 150.0
+blind_pursue_time = 1.5
+
+[node name="idle" type="Node" parent="AI"]
+script = ExtResource("5_f7t6l")
+speed = 75.0
+wait_time = 0.5
+slowdown_distance = 50.0
+speedup_distance = 50.0
+pathfind = true
+
+[node name="pursue" type="Node" parent="AI"]
+script = ExtResource("6_48r0w")
+time_between_burst_shot = 0.1
+
+[node name="Shaker" parent="." instance=ExtResource("7_03lai")]
+
+[node name="Turret" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+texture = ExtResource("8_u2fkl")
+offset = Vector2(1.5, 0)
+script = ExtResource("9_inlgv")
+rotation_speed = 2.5
+
+[node name="MovePathTool" type="Node2D" parent="."]
+script = ExtResource("10_q3i0q")
+
+[connection signal="body_entered" from="ContactDetection" to="." method="_on_contact_detection_body_entered"]
