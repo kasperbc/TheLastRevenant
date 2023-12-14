@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://c65f2wpdei786"]
+[gd_scene load_steps=54 format=3 uid="uid://c65f2wpdei786"]
 
 [ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="1_37j5j"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="2_q7r5k"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://cvax2goia4dxm" path="res://assets/collision_decor/cryocapsule-opening-start.png" id="11_e2h05"]
 [ext_resource type="AudioStream" uid="uid://bkatxt0t1lcx8" path="res://assets/music/hangar.mp3" id="12_3js6v"]
 [ext_resource type="AudioStream" uid="uid://cg3v58sskj46j" path="res://assets/music/reactor.mp3" id="13_8pg2t"]
-[ext_resource type="PackedScene" uid="uid://bphqw27qpkl3c" path="res://objects/enemies/revenant/trash_revenant.tscn" id="15_bvld7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tj2s"]
 atlas = ExtResource("11_e2h05")
@@ -379,9 +378,6 @@ autoplay = "default"
 
 [node name="AudioManager" parent="." instance=ExtResource("11_8wm0p")]
 music = Array[Resource]([ExtResource("12_3js6v"), ExtResource("13_8pg2t")])
-
-[node name="Revenant" parent="." instance=ExtResource("15_bvld7")]
-position = Vector2(384, -64)
 
 [connection signal="hook_released" from="Player" to="Player/Hook" method="_on_hook_released"]
 [connection signal="hook_released_early" from="Player" to="Player/Hook" method="_on_max_distance_reached"]
