@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1w8mv3p4nxsn"
-path="res://.godot/imported/revenant_creeper_jumpscare.png-6027e72e1e0ffe3884c3cdf4ebf6f0fb.ctex"
+uid="uid://cikv0n0rcvkfu"
+path="res://.godot/imported/health-expansion-circle.png-93d231c266d06090be45085f207b3e01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/revenant_creeper_jumpscare.png"
-dest_files=["res://.godot/imported/revenant_creeper_jumpscare.png-6027e72e1e0ffe3884c3cdf4ebf6f0fb.ctex"]
+source_file="res://assets/sprites/ui/health-expansion-circle.png"
+dest_files=["res://.godot/imported/health-expansion-circle.png-93d231c266d06090be45085f207b3e01.ctex"]
 
 [params]
 

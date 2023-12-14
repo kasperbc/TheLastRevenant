@@ -5,6 +5,8 @@
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_n7yo8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_50n41"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -49,10 +51,27 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 24.0
 offset_top = -31.0
-offset_right = 771.0
+offset_right = 87.0
 offset_bottom = -8.0
 grow_vertical = 0
-text = "kekis - Programming & Sprites | Francca - Sprites & Map Design | RedDeadDumb - Music"
+tooltip_text = "kekis - Programming, Sprites
+Francca - Sprites, Map Design
+RedDeadDumb - Music
+Luca - Lead Funikulaari
+
+Made with Godot 4 for the Metroidvania Month 22 Game Jam."
+mouse_filter = 1
+text = "Hover for info"
 label_settings = SubResource("LabelSettings_50n41")
+
+[node name="Version" type="Label" parent="Background"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 0
+offset_left = 1226.0
+offset_top = 688.0
+offset_right = 1266.0
+offset_bottom = 708.0
+text = "0.0.1"
+horizontal_alignment = 2
 
 [connection signal="pressed" from="Background/Play" to="." method="_on_play_pressed"]

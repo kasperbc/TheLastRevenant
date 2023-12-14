@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1w8mv3p4nxsn"
-path="res://.godot/imported/revenant_creeper_jumpscare.png-6027e72e1e0ffe3884c3cdf4ebf6f0fb.ctex"
+uid="uid://b585hlp8bkxnd"
+path="res://.godot/imported/title-screen-2x.png-e7f01c40b246f40268b71235d5b96b62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/revenant_creeper_jumpscare.png"
-dest_files=["res://.godot/imported/revenant_creeper_jumpscare.png-6027e72e1e0ffe3884c3cdf4ebf6f0fb.ctex"]
+source_file="res://assets/sprites/ui/title-screen-2x.png"
+dest_files=["res://.godot/imported/title-screen-2x.png-e7f01c40b246f40268b71235d5b96b62.ctex"]
 
 [params]
 

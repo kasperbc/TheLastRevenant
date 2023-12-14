@@ -103,8 +103,9 @@ func process_normal_movement(delta):
 			return
 		bomb_active = !bomb_active
 	
-		
-	if Input.is_action_just_pressed("toggle_debug"):
+	var in_editor = OS.has_feature("editor")
+	
+	if (Input.is_action_just_pressed("toggle_debug") and in_editor) or Input.is_action_just_pressed("toggle_debug_inbuild"):
 		toggle_debug(true)
 		return
 	
@@ -404,7 +405,9 @@ func process_debug():
 		else:
 			GameMan.get_player_health().heal()
 	
-	if Input.is_action_just_pressed("toggle_debug"):
+	var in_editor = OS.has_feature("editor")
+	
+	if (Input.is_action_just_pressed("toggle_debug") and in_editor) or Input.is_action_just_pressed("toggle_debug_inbuild"):
 		toggle_debug(false)
 
 func flip_sprite(inverse : bool):

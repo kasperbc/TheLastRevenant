@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbk7pvby4uukn"]
+
+[ext_resource type="Script" path="res://scripts/music_change_area.gd" id="1_wtdsk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlpyp"]
+
+[node name="MusicChanger" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_wtdsk")
+volume = -28.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xlpyp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

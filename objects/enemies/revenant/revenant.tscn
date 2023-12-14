@@ -1,11 +1,174 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtsopo8cmgr5n"]
+[gd_scene load_steps=32 format=3 uid="uid://dtsopo8cmgr5n"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_wmuni"]
 [ext_resource type="Texture2D" uid="uid://d0prx2clcv12g" path="res://assets/sprites/enemies/revenant_creeper.png" id="2_2wjm1"]
 [ext_resource type="PackedScene" uid="uid://dhfieln5f4mk5" path="res://objects/enemies/shaker.tscn" id="3_c8mom"]
+[ext_resource type="Texture2D" uid="uid://d1w8mv3p4nxsn" path="res://assets/sprites/enemies/revenant_creeper_jumpscare.png" id="3_ptvxd"]
 [ext_resource type="Script" path="res://scripts/enemy/ais/revenant.gd" id="4_a2vjt"]
+[ext_resource type="Texture2D" uid="uid://cqof1f00ss1lo" path="res://assets/sprites/enemies/revenant_creepingt.png" id="4_hl334"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move.gd" id="4_rckp1"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move_and_jump_towards_player.gd" id="5_1j36j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh2fd"]
+atlas = ExtResource("3_ptvxd")
+region = Rect2(0, 0, 33, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nud7e"]
+atlas = ExtResource("3_ptvxd")
+region = Rect2(33, 0, 33, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjgbs"]
+atlas = ExtResource("3_ptvxd")
+region = Rect2(66, 0, 33, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl174"]
+atlas = ExtResource("3_ptvxd")
+region = Rect2(99, 0, 33, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onwr8"]
+atlas = ExtResource("3_ptvxd")
+region = Rect2(132, 0, 33, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kcdc"]
+atlas = ExtResource("3_ptvxd")
+region = Rect2(165, 0, 33, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf1w8"]
+atlas = ExtResource("3_ptvxd")
+region = Rect2(198, 0, 33, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sx7b"]
+atlas = ExtResource("3_ptvxd")
+region = Rect2(231, 0, 33, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi4fd"]
+atlas = ExtResource("4_hl334")
+region = Rect2(0, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbm31"]
+atlas = ExtResource("4_hl334")
+region = Rect2(32, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atmls"]
+atlas = ExtResource("4_hl334")
+region = Rect2(64, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71lqy"]
+atlas = ExtResource("4_hl334")
+region = Rect2(96, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf6wr"]
+atlas = ExtResource("4_hl334")
+region = Rect2(128, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyvnj"]
+atlas = ExtResource("4_hl334")
+region = Rect2(160, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwc5a"]
+atlas = ExtResource("4_hl334")
+region = Rect2(192, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyqsf"]
+atlas = ExtResource("4_hl334")
+region = Rect2(224, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q36xw"]
+atlas = ExtResource("4_hl334")
+region = Rect2(256, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oplkf"]
+atlas = ExtResource("4_hl334")
+region = Rect2(288, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gj4y"]
+atlas = ExtResource("4_hl334")
+region = Rect2(320, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lsmh"]
+atlas = ExtResource("4_hl334")
+region = Rect2(352, 0, 32, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxcps"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2wjm1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh2fd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nud7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjgbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl174")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onwr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kcdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf1w8")
+}, {
+"duration": 100.0,
+"texture": SubResource("AtlasTexture_5sx7b")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi4fd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbm31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atmls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71lqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf6wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyvnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwc5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyqsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q36xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oplkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gj4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lsmh")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfxgg"]
 radius = 5.0
@@ -17,14 +180,15 @@ radius = 15.0
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_wmuni")
-health = 5.0
+health = 4.0
 player_near_range = 100.0
 metadata/move_points = PackedVector2Array()
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
-texture = ExtResource("2_2wjm1")
+sprite_frames = SubResource("SpriteFrames_cxcps")
+animation = &"jump"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gfxgg")
@@ -51,8 +215,8 @@ script = ExtResource("4_rckp1")
 
 [node name="move_towards_player" type="Node" parent="AI"]
 script = ExtResource("5_1j36j")
-move_speed = 250.0
-acceleration = 150.0
+move_speed = 200.0
+acceleration = 100.0
 gravity = 300.0
 wall_stops_velocity = true
 
