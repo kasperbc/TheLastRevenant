@@ -168,3 +168,6 @@ func load_main():
 
 func load_end_screen():
 	get_tree().change_scene_to_file("res://end_screen.tscn")
+
+func get_audioman() -> AudioManager:
+	return get_tree().root.get_node_or_null("/root/Main/AudioManager")

@@ -23,10 +23,16 @@ func ai_state_process(delta):
 		jump()
 	
 	body.get_node("Sprite2D").flip_h = get_player_dir_x() == 1
+	
+	if body.is_on_floor():
+		body.get_node("Sprite2D").play("walk")
+	else:
+		body.get_node("Sprite2D").play("jump")
 
 func jump():
 	if last_jump_time + jump_cooldown > Time.get_unix_time_from_system():
 		return
+	
 	
 	last_jump_time = Time.get_unix_time_from_system()
 	jump_cooldown = randf_range(min_jump_cooldown, max_jump_cooldown)

@@ -4,6 +4,7 @@
 
 [node name="AudioManager" type="Node" groups=["AudioManager"]]
 script = ExtResource("1")
+fading_music_starting_db = -60.0
 
 [node name="Music" type="Node" parent="."]
 
