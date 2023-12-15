@@ -106,7 +106,9 @@ func shoot_projectile(offset : Vector2):
 		GameMan.get_audioman().play_fx(fx_name, -5, randf_range(0.95, 1.05))
 	
 	if new_projectile is Node2D:
-		new_projectile.global_position = global_position + offset
+		new_projectile.set_deferred("global_position", global_position + offset)
+	
+	await get_tree()
 	
 	last_projectile = new_projectile
 

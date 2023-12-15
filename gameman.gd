@@ -88,7 +88,7 @@ func move_player_to_latest_recharge_station():
 			break
 	
 	if target_station:
-		get_player().global_position = target_station.global_position
+		get_player().set_deferred("global_position", target_station.global_position)
 		print("Player has been moved to station %s" % latest_recharge_station)
 
 func get_upgrade_status(value : Upgrades) -> UpgradeStatus:

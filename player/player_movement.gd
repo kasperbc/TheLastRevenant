@@ -3,8 +3,8 @@ class_name PlayerMovement
 
 const SPEED = 150.0
 const SPEED_EXPANSION_INCREASE = 12.5
-const ACCELERATION = 600.0
-const FRICTION = 800.0
+const ACCELERATION = 500.0
+const FRICTION = 900.0
 const AIR_FRICTION = 250.0
 const SNAP_VELOCITY = 50.0
 const MIN_VELOCITY_FRICTION_EFFECTS = 175.0
@@ -12,7 +12,7 @@ const MIN_VELOCITY_FRICTION_EFFECTS = 175.0
 const JUMP_HEIGHT = 50.0
 const JUMP_TIME_TO_PEAK = 0.45
 const JUMP_TIME_TO_DESCENT = 0.4
-const SPEED_EXPANSION_GRAVITY_DECREASE = 50
+const SPEED_EXPANSION_GRAVITY_DECREASE = 25
 
 const HOOK_BASE_FLY_SPEED = 275.0
 const HOOK_MAX_FLY_SPEED = 550.0
@@ -134,7 +134,7 @@ func get_gravity() -> float:
 func apply_gravity(delta):
 	velocity.y += get_gravity() * delta
 	var gravity_decrease = GameMan.get_expansion_count(GameMan.ExpansionType.SPEED) * SPEED_EXPANSION_GRAVITY_DECREASE * gravity_multiplier
-	velocity.y = clamp(velocity.y, -999999, 850 - gravity_decrease)
+	velocity.y = clamp(velocity.y, -999999, 600 - gravity_decrease)
 	
 	if not is_on_floor():
 		if velocity.y > 0:

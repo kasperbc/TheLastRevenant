@@ -246,9 +246,9 @@ script = ExtResource("11_a8ros")
 [node name="UpgradeToggles" type="HBoxContainer" parent="Control/PauseScreen"]
 layout_mode = 0
 offset_left = 48.0
-offset_top = 653.0
+offset_top = 644.0
 offset_right = 355.0
-offset_bottom = 701.0
+offset_bottom = 692.0
 scale = Vector2(1.25, 1.25)
 theme_override_constants/separation = 20
 
@@ -276,6 +276,17 @@ upgrade_res = ExtResource("16_7nt7v")
 layout_mode = 2
 upgrade = 5
 upgrade_res = ExtResource("17_00q1f")
+
+[node name="VolumeLabel2" type="Label" parent="Control/PauseScreen"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 2
+offset_left = 176.0
+offset_top = 693.0
+offset_right = 289.0
+offset_bottom = 713.0
+text = "Hold for info"
+horizontal_alignment = 1
+script = ExtResource("18_x6xrf")
 
 [node name="TitleButton" type="Button" parent="Control/PauseScreen"]
 layout_mode = 0
@@ -379,6 +390,38 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("11_6yqxg")
+
+[node name="LogbookBG" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 612.0
+offset_top = 400.0
+offset_right = 1276.0
+offset_bottom = 712.0
+color = Color(0, 0, 0, 0.0980392)
+
+[node name="LogbookText" type="Label" parent="Control/LogbookBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 16.0
+offset_right = -12.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "Logbook 1: Laboratory
+
+Engineer Bridget Gizzal | Log 1.5.3206 GTC
+
+It’s only my fourth day on this far-out base, and I’m already getting second thoughts from selecting ”Accept” on that relocation form. They said my sentence would be over sooner, yet something makes me feel like that might mean something else than I originally thought with my newfound context. Such a distant past shouldn’t even be used to brand my entire identity like livestock, I’m not the woman I used to be. I’ve changed.
+
+In any case, I guess I should start mentally settling in a bit, assuming I ever get out of this hellhole. I just hope the work we’re doing here truly helps the people in those pods, they’ve gone through even more suffering than I have. Hopefully these upgrades that they’ve forced me to retrofit for humanoid use aren’t too painful to insert, but then again, I’m (thankfully) not in charge of biotech installations.
+"
+horizontal_alignment = 2
+autowrap_mode = 2
 
 [connection signal="pressed" from="Control/PauseScreen/TitleButton" to="Control/PauseScreen" method="_on_title_button_pressed"]
 [connection signal="pressed" from="Control/PauseScreen/RestartButton" to="Control/PauseScreen" method="_on_restart_button_pressed"]
