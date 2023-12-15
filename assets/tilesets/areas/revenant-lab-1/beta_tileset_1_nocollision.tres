@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=62 format=3 uid="uid://bhebaufm57e5e"]
+[gd_resource type="TileSet" load_steps=62 format=3 uid="uid://c6jpaym1j24d3"]
 
 [ext_resource type="Texture2D" uid="uid://ckwwhofablvg5" path="res://assets/tilesets/areas/revenant-lab-1/tlr-betatexture-1.png" id="1_2b7tm"]
 [ext_resource type="Texture2D" uid="uid://8uf0ndfdd64p" path="res://assets/tilesets/areas/waste-management-4/tlr-betatexture-4-pipes.png" id="2_ym3l7"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c8dgl7j8qdvjr" path="res://assets/tilesets/areas/weapons-training-7/tlr-betatexture-7-tiles.png" id="6_osu2x"]
 [ext_resource type="Texture2D" uid="uid://dhhd7tpmng1my" path="res://assets/tilesets/areas/observation-deck-6/tlr-betatexture-6-tiles.png" id="7_jao8t"]
 [ext_resource type="Texture2D" uid="uid://bbjxmaks6nr8v" path="res://assets/tilesets/areas/flight-hangar-9/tlr-betatexture-9-tiles.png" id="8_wo6lw"]
-[ext_resource type="Texture2D" uid="uid://cuqcs27n7ffa2" path="res://assets/backgrounds/tilesets/areas/flight-hangar-9/tlr-betatexture-9-boss.png" id="9_41c1l"]
+[ext_resource type="Texture2D" uid="uid://cuqcs27n7ffa2" path="res://assets/tilesets/areas/flight-hangar-9/tlr-betatexture-9-boss.png" id="9_41c1l"]
 [ext_resource type="Texture2D" uid="uid://wh2qpw2k7wn5" path="res://assets/tilesets/tlr_platforms.png" id="10_ypnwb"]
 [ext_resource type="Texture2D" uid="uid://bp8q4ehbruuxt" path="res://assets/tilesets/areas/distribution-railway-5/tlr-funi-rail.png" id="11_u8fm4"]
 [ext_resource type="Texture2D" uid="uid://bbkouo3061tnr" path="res://assets/tilesets/areas/revenant-lab-1/tlr-betatexture-1-tiles.png" id="12_hwota"]

@@ -76,6 +76,7 @@ text = "kekis - Programming, Sprites
 Francca - Sprites, Map Design
 RedDeadDumb - Music
 Luca - Lead Funikulaari
+Wisku, RedDeadDumb, Eero - Testing
 
 Made with Godot 4 for the 
 Metroidvania Month 22 Game Jam."
@@ -89,7 +90,7 @@ offset_left = 1226.0
 offset_top = 688.0
 offset_right = 1266.0
 offset_bottom = 708.0
-text = "0.0.5"
+text = "1.0.0"
 horizontal_alignment = 2
 
 [node name="SecretSong" type="AudioStreamPlayer2D" parent="."]

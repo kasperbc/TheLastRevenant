@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://b5g4g7sk7nr3o" path="res://objects/hook/hook.tscn" id="3_mds0t"]
 [ext_resource type="PackedScene" uid="uid://dcr1q7oj4a006" path="res://main_ui.tscn" id="4_etwc1"]
 [ext_resource type="PackedScene" uid="uid://cwh5d4qwcv0i6" path="res://objects/lights/area_light.tscn" id="4_yb3h7"]
-[ext_resource type="Texture2D" uid="uid://dge4ysc7omnmg" path="res://assets/backgrounds/background.png" id="5_g3icy"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="6_2wqmi"]
+[ext_resource type="Texture2D" uid="uid://d0yswgu7ryoge" path="res://assets/backgrounds/lab-1.png" id="7_x4qn4"]
 [ext_resource type="Script" path="res://scripts/game_start.gd" id="10_5r6h5"]
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="11_8wm0p"]
 [ext_resource type="Texture2D" uid="uid://cvax2goia4dxm" path="res://assets/collision_decor/cryocapsule-opening-start.png" id="11_e2h05"]
@@ -403,14 +403,13 @@ offset = Vector2(0, -0.045)
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -10
 position = Vector2(576, 6)
-scale = Vector2(30, 30)
-texture = ExtResource("5_g3icy")
+texture = ExtResource("7_x4qn4")
 script = ExtResource("6_2wqmi")
 
 [node name="Background2" type="Sprite2D" parent="Background"]
 top_level = true
 z_index = -15
-texture = ExtResource("5_g3icy")
+texture = ExtResource("7_x4qn4")
 
 [node name="GameStartManager" type="Node" parent="."]
 script = ExtResource("10_5r6h5")
