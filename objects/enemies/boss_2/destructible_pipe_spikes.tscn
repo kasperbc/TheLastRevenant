@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6v12i36arge2"]
+
+[ext_resource type="Script" path="res://objects/enemies/boss_2/destructible_pipe_spikes.gd" id="1_rt1ny"]
+[ext_resource type="Texture2D" uid="uid://da2g2i17q2c3x" path="res://assets/sprites/objects/destructible_pipe_spikes.png" id="2_ivp6c"]
+[ext_resource type="Texture2D" uid="uid://dwk7q24fk3klf" path="res://assets/sprites/particles/pipe_shard.png" id="3_6warh"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_fmxqs"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ai_state.gd" id="4_irkg4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moyok"]
+size = Vector2(4, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m3cu"]
+size = Vector2(2, 16)
+
+[node name="SpikesDestructible" type="StaticBody2D"]
+script = ExtResource("1_rt1ny")
+infinite_health = true
+drop_health_pickups = false
+static_object = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("2_ivp6c")
+region_enabled = true
+region_rect = Rect2(0, 0, 4, 16)
+
+[node name="DestructiblePipe" type="Area2D" parent="."]
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestructiblePipe"]
+shape = SubResource("RectangleShape2D_moyok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2m3cu")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("3_fmxqs")
+
+[node name="idle" type="Node" parent="AI"]
+script = ExtResource("4_irkg4")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_6warh")
+emission_shape = 3
+emission_rect_extents = Vector2(5, 8)
+direction = Vector2(-1, -0.5)
+gravity = Vector2(0, 250)
+initial_velocity_min = 41.66
+initial_velocity_max = 194.44
+angular_velocity_min = -180.0
+angular_velocity_max = 120.0
+
+[connection signal="area_entered" from="DestructiblePipe" to="." method="_on_area_entered"]
+[connection signal="body_entered" from="DestructiblePipe" to="." method="_on_contact_detection_body_entered"]

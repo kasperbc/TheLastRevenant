@@ -74,6 +74,8 @@ func update_path():
 	if pathfind and path_target and is_active():
 		nav_agent.target_position = path_target
 	
+	if not get_tree():
+		return
 	await get_tree().create_timer(path_update_rate).timeout
 
 	update_path()

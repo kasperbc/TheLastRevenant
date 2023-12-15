@@ -133,7 +133,7 @@ func get_gravity() -> float:
 
 func apply_gravity(delta):
 	velocity.y += get_gravity() * delta
-	var gravity_decrease = GameMan.get_expansion_count(GameMan.ExpansionType.SPEED) * SPEED_EXPANSION_GRAVITY_DECREASE
+	var gravity_decrease = GameMan.get_expansion_count(GameMan.ExpansionType.SPEED) * SPEED_EXPANSION_GRAVITY_DECREASE * gravity_multiplier
 	velocity.y = clamp(velocity.y, -999999, 850 - gravity_decrease)
 	
 	if not is_on_floor():
@@ -214,6 +214,9 @@ func _on_hook_collided(collision : KinematicCollision2D):
 	else:
 		if hooked_obj:
 			hooked_obj._on_player_attacked()
+		
+		if collision.get_collider() is DestructiblePipe:
+			collision.get_collider().destroy_self()
 		
 		bomb_last_use_timestamp = Time.get_unix_time_from_system()
 		hook_released_early.emit()
@@ -408,6 +411,13 @@ func process_debug():
 			GameMan.get_player_health().heal_full()
 		else:
 			GameMan.get_player_health().heal()
+	
+	if Input.is_action_just_pressed("debug_spawn_missiles"):
+		for x in 30:
+			var missile = PoolMan.borrow_from_pool(self, "missile")
+			remove_child(missile)
+			get_parent().add_child(missile)
+			missile.global_position = global_position
 	
 	var in_editor = OS.has_feature("editor")
 	

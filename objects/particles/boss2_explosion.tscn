@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cffg0bk6w00x3"]
+
+[ext_resource type="Texture2D" uid="uid://daic6pyha072e" path="res://assets/sprites/particles/boss1_death_particle.png" id="1_qffid"]
+[ext_resource type="Script" path="res://objects/particles/queue_free_holder.gd" id="2_o1cxs"]
+
+[node name="Boss2Explosion" type="CPUParticles2D"]
+amount = 150
+lifetime = 5.0
+explosiveness = 1.0
+texture = ExtResource("1_qffid")
+emission_shape = 3
+emission_rect_extents = Vector2(32, 100)
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 236.11
+initial_velocity_max = 472.22
+angular_velocity_min = -140.0
+angular_velocity_max = 300.0
+script = ExtResource("2_o1cxs")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.9
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="destroy"]

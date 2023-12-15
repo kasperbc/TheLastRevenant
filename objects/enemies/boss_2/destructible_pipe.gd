@@ -7,6 +7,7 @@ func _ready():
 
 func _on_area_entered(area):
 	if area.get_parent().is_in_group("Boss2"):
+		area.get_parent().get_node("AI/go_in_direction").current_speed /= 2
 		destroy_self()
 
 func destroy_self():
@@ -20,3 +21,5 @@ func destroy_self():
 	particles.emission_rect_extents = Vector2(5, scale.y * 8.0)
 	particles.emitting = true
 	queue_free()
+
+

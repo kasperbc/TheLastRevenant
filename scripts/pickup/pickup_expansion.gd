@@ -12,6 +12,7 @@ func _ready():
 
 func pick_up():
 	GameMan.collect_expansion(expansion_type, expansion_id)
+	GameMan.get_player_health().heal_full()
 	
 	show_expansion_text()
 	await get_tree().create_timer(0.5).timeout

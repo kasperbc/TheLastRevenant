@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg8sw82ajfg67"]
+
+[ext_resource type="TileSet" uid="uid://c6jpaym1j24d3" path="res://assets/tilesets/areas/revenant-lab-1/beta_tileset_1_nocollision.tres" id="1_fkqvd"]
+[ext_resource type="Script" path="res://scripts/fake_floor.gd" id="2_x1idv"]
+[ext_resource type="Texture2D" uid="uid://dh7tlvpmv5qsa" path="res://assets/sprites/particles/area_7_shard.png" id="3_8udj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jwqg"]
+size = Vector2(224, 112)
+
+[node name="FakeFloor" type="TileMap"]
+tile_set = ExtResource("1_fkqvd")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 327694, 4, 65535, 327694, 4, 65534, 327694, 4, -2, 327694, 0, -1, 327694, 0, -65536, 327694, 0, -65535, 327694, 0, -65534, 327694, 0, -65533, 327694, 0, 3, 327694, 4, 2, 327694, 4, 1, 327694, 4, 65533, 327694, 4, -3, 327694, 0, -4, 327694, 0, 65532, 327694, 4, -6, 327694, 0, 65530, 327694, 4, 65531, 327694, 4, -5, 327694, 0, -65532, 327694, 0, -65531, 327694, 0, 5, 327694, 4, 4, 327694, 4, -65530, 327694, 0, 6, 327694, 4, -7, 327694, 0, 65529, 327694, 4, 131065, 327694, 4, 196601, 327694, 4, 262141, 327694, 4, 262142, 327694, 4, 262143, 327694, 4, 196608, 327694, 4, 196609, 327694, 4, 196610, 327694, 4, 196611, 327694, 4, 196612, 327694, 4, 196613, 327694, 4, 196614, 327694, 4, 131078, 327694, 4, 65542, 327694, 4, 65541, 327694, 4, 65540, 327694, 4, 65539, 327694, 4, 131074, 327694, 4, 131073, 327694, 4, 131072, 327694, 4, 196607, 327694, 4, 196606, 327694, 4, 196605, 327694, 4, 65536, 327694, 4, 65537, 327694, 4, 65538, 327694, 4, 131077, 327694, 4, 131076, 327694, 4, 131075, 327694, 4, 131070, 327694, 4, 131069, 327694, 4, 131068, 327694, 4, 131067, 327694, 4, 131071, 327694, 4, 196604, 327694, 4, 196603, 327694, 4, 131066, 327694, 4, 196602, 327694, 4, 262140, 327694, 4, 262139, 327694, 4, 262138, 327694, 4, 262137, 327694, 4, 327673, 327694, 4, 327674, 327694, 4, 327675, 327694, 4, 327676, 327694, 4, 327677, 327694, 4, 327678, 327694, 4, 327679, 327694, 4, 262144, 327694, 4, 262145, 327694, 4, 262146, 327694, 4, 262147, 327694, 4, 262148, 327694, 4, 262149, 327694, 4, 262150, 327694, 4, 327686, 327694, 4, 327685, 327694, 4, 327684, 327694, 4, 327683, 327694, 4, 327682, 327694, 4, 327681, 327694, 4, 327680, 327694, 4, 393215, 327694, 4, 393214, 327694, 4, 393213, 327694, 4, 393212, 327694, 4, 393211, 327694, 4, 393210, 327694, 4, 393209, 327694, 4)
+script = ExtResource("2_x1idv")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(0, 56)
+shape = SubResource("RectangleShape2D_6jwqg")
+
+[node name="BreakParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 128
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_8udj7")
+emission_shape = 3
+emission_rect_extents = Vector2(100, 32)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 300)
+initial_velocity_min = 164.56
+initial_velocity_max = 303.8
+angular_velocity_min = -145.84
+angular_velocity_max = 72.9
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
