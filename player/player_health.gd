@@ -40,6 +40,8 @@ func damage():
 	get_parent().get_node("Sprite2D").self_modulate = Color(1,0.5,0.5,1)
 	get_parent().get_node("Sprite2D").flash_red()
 	
+	GameMan.get_audioman().play_fx("playerhurt", 0.0, randf_range(0.95, 1.05))
+	
 	get_tree().paused = true
 	await get_tree().create_timer(0.15).timeout
 	get_tree().paused = false
@@ -56,17 +58,22 @@ func die():
 	
 	get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/Shaker").start_shake(get_node("/root/Main/UI/Control/HealthSprite"), 5.0, 3.0)
 	
+	GameMan.get_audioman().play_fx("player_die", 0.0, randf_range(0.95, 1.05))
+	
 	await get_tree().create_timer(0.5).timeout
 	GameMan.get_player().get_node("DeathParticle").process_mode = Node.PROCESS_MODE_ALWAYS
 	GameMan.get_player().get_node("DeathParticle").visible = true
+	GameMan.get_audioman().play_fx("small_explosion", 0.0, randf_range(0.95, 1.05))
 	
 	await get_tree().create_timer(0.5).timeout
 	GameMan.get_player().get_node("DeathParticle2").process_mode = Node.PROCESS_MODE_ALWAYS
 	GameMan.get_player().get_node("DeathParticle2").visible = true
+	GameMan.get_audioman().play_fx("small_explosion", 0.0, randf_range(0.95, 1.05))
 	
 	await get_tree().create_timer(0.5).timeout
 	GameMan.get_player().get_node("DeathParticle3").process_mode = Node.PROCESS_MODE_ALWAYS
 	GameMan.get_player().get_node("DeathParticle3").visible = true
+	GameMan.get_audioman().play_fx("small_explosion", 0.0, randf_range(0.95, 1.05))
 	
 	await get_tree().create_timer(0.5).timeout
 	get_tree().root.get_node("/root/Main/UI/Control/FadeScreen").fade_to_black(1)

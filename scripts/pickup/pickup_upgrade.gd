@@ -18,6 +18,8 @@ func pick_up():
 	super()
 
 func show_upgrade_text():
+	GameMan.get_audioman().pause_music()
+	GameMan.get_audioman().play_fx("core_item_obtained", -6.0)
 	in_upgrade_text = true
 	get_tree().paused = true
 	get_tree().get_root().get_node("/root/Main/UI/Control/UpgradeText/Name").text = upgrade.name
@@ -27,6 +29,8 @@ func show_upgrade_text():
 func hide_upgrade_text():
 	if not in_upgrade_text:
 		return
+	
+	GameMan.get_audioman().fade_unpause_music(2)
 	
 	in_upgrade_text = false
 	get_tree().paused = false

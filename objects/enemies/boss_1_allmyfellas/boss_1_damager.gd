@@ -9,6 +9,7 @@ var down_velocity : float = 0
 
 func on_missile_hit():
 	falling = true
+	GameMan.get_audioman().play_fx("thud2", -4, randf_range(0.95, 1.05))
 
 func _process(delta):
 	if falling:
@@ -25,6 +26,9 @@ func damage_boss():
 	if fallen:
 		return
 	fallen = true
+	
+	GameMan.get_audioman().play_fx("big_explosion", -8, randf_range(0.95, 1.05))
+	GameMan.get_audioman().play_fx("big_explosion2", -8, randf_range(0.95, 1.05))
 	
 	var boss = get_tree().get_first_node_in_group("Boss1")
 	boss.take_damage()

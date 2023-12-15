@@ -33,6 +33,7 @@ func jump():
 	if last_jump_time + jump_cooldown > Time.get_unix_time_from_system():
 		return
 	
+	GameMan.get_audioman().play_fx("thud2", -4, randf_range(1.35, 1.55))
 	
 	last_jump_time = Time.get_unix_time_from_system()
 	jump_cooldown = randf_range(min_jump_cooldown, max_jump_cooldown)

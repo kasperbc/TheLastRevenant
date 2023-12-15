@@ -20,6 +20,7 @@ func _ready():
 	current_state = HookMoveState.RETURNING
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(4, false)
+	set_collision_mask_value(7, false)
 
 func _on_spawned():
 	move_dir = global_position.direction_to(get_global_mouse_position())
@@ -27,11 +28,14 @@ func _on_spawned():
 	current_state = HookMoveState.MOVING
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(4, true)
+	set_collision_mask_value(7, true)
 	hooked_obj = null
 	$Hook.visible = true
 
 func _on_collided(collision):
 	current_state = HookMoveState.STILL
+	
+	GameMan.get_audioman().play_fx("hookfire", -9, randf_range(0.95, 1.05))
 	
 	var dir = global_position.direction_to(collision.get_position())
 	
@@ -55,6 +59,7 @@ func _on_max_distance_reached():
 	current_state = HookMoveState.RETURNING
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(4, false)
+	set_collision_mask_value(7, false)
 
 # HOOK MOVEMENT
 
@@ -109,3 +114,6 @@ func process_still():
 	if is_instance_valid(hooked_obj):
 		if not hooked_obj.static_object:
 			global_position = hooked_obj.global_position
+	
+	if GameMan.get_player().current_state == PlayerMovement.MoveState.NORMAL:
+		current_state = HookMoveState.RETURNING

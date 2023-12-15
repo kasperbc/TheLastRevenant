@@ -26,6 +26,8 @@ script = ExtResource("1_mrrf7")
 phases = 4
 invincibility_time = 0.0
 death_particle = ExtResource("2_u3sm1")
+death_sound = "boom"
+death_sound_volume = 0.0
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

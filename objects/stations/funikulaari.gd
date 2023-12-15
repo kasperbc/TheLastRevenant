@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var going : bool = false
+var moving : bool = false
 
 @export var dir = 1
 @export var warp_pos : Vector2
@@ -18,7 +19,7 @@ func _ready():
 func _process(delta):
 	$AnimatedSprite2D/WheelSprite.speed_scale = velocity.x / (TOP_SPEED / 15)
 	
-	if not going:
+	if not moving:
 		return
 	
 	current_speed += ACCELERATION * delta
@@ -37,6 +38,9 @@ func _on_player_detection_body_entered(body):
 func go():
 	if going:
 		return
+	
+	GameMan.get_audioman().play_fx("thud2", -4, 1.0)
+	GameMan.get_audioman().stop_music()
 	going = true
 	
 	current_speed = 0.0
@@ -44,6 +48,11 @@ func go():
 	$Door.set_deferred("disabled", false)
 	$Ceiling.set_deferred("disabled", false)
 	$AnimatedSprite2D.frame = 1
+	
+	await get_tree().create_timer(1).timeout
+	
+	GameMan.get_audioman().play_fx("accelerate", -4, 1.0)
+	moving = true
 	
 	await get_tree().create_timer(3).timeout
 	
@@ -62,4 +71,5 @@ func go():
 	$AnimatedSprite2D.frame = 0
 	
 	going = false
+	moving = false
 	global_position = start_pos

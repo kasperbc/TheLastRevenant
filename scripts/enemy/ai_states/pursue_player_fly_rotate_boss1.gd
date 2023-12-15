@@ -46,5 +46,6 @@ func ai_state_process(delta):
 			break
 	
 	if closest_damager:
+		GameMan.get_audioman().play_fx("notice", -4, randf_range(0.95, 1.05))
 		target = closest_damager
 		going_towards_damager = true

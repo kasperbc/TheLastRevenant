@@ -17,6 +17,7 @@ func change_state():
 func idle_state_check():
 	if can_see_player_in_dir(Vector2.DOWN, idle_check_angle, idle_check_distance):
 		state = "pursue"
+		GameMan.get_audioman().play_fx("notice", 0.0, randf_range(0.95, 1.05))
 
 func pursue_state_check():
 	if not can_see_player(160):

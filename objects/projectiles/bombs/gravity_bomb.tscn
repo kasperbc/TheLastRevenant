@@ -28,6 +28,7 @@ damage_while_hooked = true
 death_particle = ExtResource("2_fiwdi")
 pooled = true
 pool_identifier = "gravity_bomb"
+death_sound = "small_explosion"
 health_pickup_chance = 0.05
 metadata/move_points = PackedVector2Array()
 

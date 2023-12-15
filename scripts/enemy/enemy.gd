@@ -12,6 +12,8 @@ class_name Enemy
 @export var pooled : bool = false
 @export var pool_identifier : String = ""
 @export var insta_kill : bool = false
+@export var death_sound = "thud2"
+@export var death_sound_volume = -6.0
 @export_group("Pickups")
 @export var drop_health_pickups = true
 @export var health_pickup_amount = 1
@@ -138,10 +140,14 @@ func die():
 			pickup.base_pos = pickup.global_position
 	
 	if boss:
+		GameMan.get_audioman().stop_music()
 		GameMan.bosses_defeated.append(boss_id)
 	
 	if hook_attached:
 		GameMan.get_player().hook_released_early.emit()
+	
+	if not death_sound == "":
+		GameMan.get_audioman().play_fx(death_sound, death_sound_volume, randf_range(0.95, 1.05))
 	
 	if not pooled:
 		queue_free()

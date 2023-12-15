@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cuqyw6ifnaw28"]
 
-[ext_resource type="TileSet" uid="uid://cugqd8tqxnjuh" path="res://assets/backgrounds/tilesets/areas/revenant-lab-1/beta_tileset_1.tres" id="1_hlinh"]
+[ext_resource type="TileSet" uid="uid://cugqd8tqxnjuh" path="res://assets/tilesets/areas/revenant-lab-1/beta_tileset_1.tres" id="1_hlinh"]
 [ext_resource type="Script" path="res://scripts/fake_floor.gd" id="2_a5rh5"]
 [ext_resource type="Texture2D" uid="uid://crfhsp78y50e0" path="res://assets/sprites/particles/area_6_shard.png" id="3_sy737"]
 

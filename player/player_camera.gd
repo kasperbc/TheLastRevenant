@@ -39,15 +39,18 @@ func _process(delta):
 		return
 	
 	var vp_rect = get_viewport_rect().size / zoom
+	print(cam_restrictor_shape)
+	var cr_size = cam_restrictor_shape.size
+	cr_size *= result[0].collider.scale
 	
-	limit_left = cam_restrictor.global_position.x - cam_restrictor_shape.size.x / 2
-	limit_right = cam_restrictor.global_position.x + cam_restrictor_shape.size.x / 2
-	if vp_rect.x > cam_restrictor_shape.size.x:
+	limit_left = cam_restrictor.global_position.x - cr_size.x / 2
+	limit_right = cam_restrictor.global_position.x + cr_size.x / 2
+	if vp_rect.x > cr_size.x:
 		position.x = cam_restrictor.global_position.x
 	
-	limit_top = cam_restrictor.global_position.y - cam_restrictor_shape.size.y / 2
-	limit_bottom = cam_restrictor.global_position.y + cam_restrictor_shape.size.y / 2
-	if vp_rect.y > cam_restrictor_shape.size.y:
+	limit_top = cam_restrictor.global_position.y - cr_size.y / 2
+	limit_bottom = cam_restrictor.global_position.y + cr_size.y / 2
+	if vp_rect.y > cr_size.y:
 		position.y = cam_restrictor.global_position.y
 
 func free_camera():
@@ -58,12 +61,12 @@ func free_camera():
 	
 	var offset = Vector2.ZERO
 	
-	if player.is_on_floor():
-		offset.y += FLOOR_Y_OFFSET
-		position_smoothing_speed = FLOOR_SMOOTH_SPEED
-	else:
-		var floor_ceil_dist_norm = player_floor_ceil_dist_normalized()
-		offset.y = -FLOOR_Y_OFFSET * (floor_ceil_dist_norm - 0.5) * 2
+	#if player.is_on_floor():
+		#offset.y += FLOOR_Y_OFFSET
+		#position_smoothing_speed = FLOOR_SMOOTH_SPEED
+	#else:
+		#var floor_ceil_dist_norm = player_floor_ceil_dist_normalized()
+		#offset.y = -FLOOR_Y_OFFSET * (floor_ceil_dist_norm - 0.5) * 2
 	
 	position = player.position + offset
 

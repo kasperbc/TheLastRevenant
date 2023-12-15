@@ -101,6 +101,7 @@ script = ExtResource("1_7ylg8")
 death_particle = ExtResource("2_ii8wc")
 pooled = true
 pool_identifier = "missile"
+death_sound = "small_explosion"
 drop_health_pickups = false
 metadata/move_points = PackedVector2Array()
 

@@ -14,6 +14,7 @@ func on_player_contact():
 	if GameMan.get_upgrade_status(GameMan.Upgrades.GALVANIC_MODULE) == GameMan.UpgradeStatus.ENABLED:
 		return
 	
+	GameMan.get_audioman().play_fx("shock", -8, randf_range(0.95, 1.05))
 	damage_player()
 
 func on_player_attacked():

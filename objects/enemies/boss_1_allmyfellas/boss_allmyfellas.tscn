@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://b4tg3cp3idim5"]
 
 [ext_resource type="Script" path="res://objects/enemies/boss_1_allmyfellas/boss1.gd" id="1_cwjhc"]
-[ext_resource type="Texture2D" uid="uid://cy4pelkhlxc5c" path="res://assets/sprites/enemies/boss-1-allmyfellas-fixed.png" id="2_8odqr"]
-[ext_resource type="PackedScene" uid="uid://guniwtfi5jxm" path="res://objects/particles/boss1_explosion.tscn" id="2_v7wyj"]
+[ext_resource type="Texture2D" uid="uid://jl1fuvroj5g" path="res://assets/sprites/enemies/boss-1-allmyfellas-fixed.png" id="2_8odqr"]
+[ext_resource type="PackedScene" uid="uid://bt0dh4woutis4" path="res://objects/particles/boss1_explosion.tscn" id="2_v7wyj"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="3_lomk7"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move.gd" id="4_eaece"]
 [ext_resource type="PackedScene" uid="uid://kj4psh0t28c3" path="res://objects/enemies/cannons/rotating_cannon.tscn" id="5_8omdk"]
@@ -21,6 +21,8 @@ script = ExtResource("1_cwjhc")
 health = 3.0
 death_particle = ExtResource("2_v7wyj")
 stun_time = 0.0
+death_sound = "boom"
+death_sound_volume = 0.0
 health_pickup_amount = 10
 health_pickup_spread = Vector2(50, 16)
 health_pickup_offset = Vector2(0, -16)
@@ -52,23 +54,19 @@ script = ExtResource("3_lomk7")
 
 [node name="idle" type="Node" parent="AI"]
 script = ExtResource("4_eaece")
-move_speed = 100.0
 gravity = 0.0
 
 [node name="RotatingCannon" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
-z_index = -1
 position = Vector2(-35, -32)
 rotation = -2.89376
 metadata/rotate_points = PackedFloat64Array(-165, -110)
 
 [node name="RotatingCannon2" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
-z_index = -1
 position = Vector2(-52, -24)
 rotation = -1.57079
 metadata/rotate_points = PackedFloat64Array(-165, -110)
 
 [node name="RotatingCannon3" parent="." groups=["Boss1Cannon"] instance=ExtResource("5_8omdk")]
-z_index = -1
 position = Vector2(48, -25)
 rotation = -0.785398
 metadata/rotate_points = PackedFloat64Array(-45, 10)

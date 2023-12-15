@@ -192,6 +192,8 @@ func _on_hook_fired():
 	$Sprite2D/HookshotHand.visible = false
 	hook_obj.global_position = global_position
 	hook_obj.spawned.emit()
+	
+	GameMan.get_audioman().play_fx("hook_hit", -6, randf_range(0.95, 1.05))
 
 func get_hooks_fired_amount() -> int:
 	return get_tree().get_nodes_in_group("Hooks").size()
@@ -251,6 +253,7 @@ func process_hook_flying(delta):
 	var distance = position.distance_to(hook_position)
 	
 	if Input.is_action_just_pressed("jump"):
+		GameMan.get_audioman().play_fx("fly2", -2)
 		hook_released_early.emit()
 		return
 	

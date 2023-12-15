@@ -218,6 +218,19 @@ offset_bottom = -28.0
 grow_vertical = 0
 text = "Expansion Text"
 
+[node name="StationText" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -48.0
+offset_right = 158.0
+offset_bottom = -28.0
+grow_vertical = 0
+text = "Station Text"
+
 [node name="PauseScreen" type="ColorRect" parent="Control"]
 process_mode = 3
 visible = false

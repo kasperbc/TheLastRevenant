@@ -19,6 +19,10 @@ func try_pass_player_through():
 	
 	GameMan.get_player().hook_released_early.emit()
 	GameMan.get_player().velocity.x *= 1.05
+	
+	GameMan.get_audioman().play_fx("launch", -4, randf_range(0.95, 1.05))
+	GameMan.get_audioman().play_fx("thud2", -6, randf_range(0.95, 1.05))
+	
 	temporarily_disable_collision()
 
 func temporarily_disable_collision():

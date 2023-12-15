@@ -16,6 +16,10 @@ func destroy_self():
 	get_parent().add_child(particles)
 	particles.global_position = global_position
 	
+	GameMan.get_audioman().play_fx("boom", 0.0, randf_range(0.75, 0.95))
+	if randf() < 0.003:
+		GameMan.get_audioman().play_fx("metal_pipe", -38.0, 1.0)
+	
 	particles.scale = Vector2.ONE
 	particles.amount = randi_range(2,4) * scale.y
 	particles.emission_rect_extents = Vector2(5, scale.y * 8.0)

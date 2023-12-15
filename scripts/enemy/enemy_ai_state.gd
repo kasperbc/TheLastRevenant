@@ -29,6 +29,9 @@ var ai_controller : EnemyAI :
 @export var path_update_rate : float = 0.1
 @export_group("Projectile")
 @export var projectile_identifier : String = "missile"
+@export var play_fx : bool = true
+@export var fx_name = "missile_fire"
+@export var fx_maxdistance = 300.0
 
 var path_target : Vector2
 var last_projectile
@@ -98,6 +101,9 @@ func shoot_projectile(offset : Vector2):
 	var new_projectile = PoolMan.borrow_from_pool(self, projectile_identifier)
 	if not new_projectile:
 		return
+	
+	if play_fx and global_position.distance_to(GameMan.get_player().global_position) < fx_maxdistance:
+		GameMan.get_audioman().play_fx(fx_name, -5, randf_range(0.95, 1.05))
 	
 	if new_projectile is Node2D:
 		new_projectile.global_position = global_position + offset

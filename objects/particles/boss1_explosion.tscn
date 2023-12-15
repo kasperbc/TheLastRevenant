@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://guniwtfi5jxm"]
+[gd_scene load_steps=3 format=3 uid="uid://bt0dh4woutis4"]
 
 [ext_resource type="Texture2D" uid="uid://daic6pyha072e" path="res://assets/sprites/particles/boss1_death_particle.png" id="1_jry3m"]
 [ext_resource type="Script" path="res://objects/particles/queue_free_holder.gd" id="2_45n0q"]
