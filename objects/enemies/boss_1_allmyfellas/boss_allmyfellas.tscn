@@ -16,7 +16,6 @@ radius = 52.0
 
 [node name="Boss_Allmyfellas" type="CharacterBody2D" groups=["Boss1", "Enemies"]]
 collision_layer = 8
-collision_mask = 3
 script = ExtResource("1_cwjhc")
 health = 3.0
 death_particle = ExtResource("2_v7wyj")

@@ -110,7 +110,8 @@ func _get_sound(sound_name, is_music : bool) -> Resource:
 	
 	for i in array.size():
 		var sound = array[i]
-		if sound.resource_path.get_file().get_basename() == sound_name:
-			result = sound
+		if sound:
+			if sound.resource_path.get_file().get_basename() == sound_name:
+				result = sound
 	
 	return result
