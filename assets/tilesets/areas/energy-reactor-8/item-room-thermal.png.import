@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmslwqsofll43"
-path="res://.godot/imported/boss-3-chaddeus-structure-manned.png-7daf640f68662bf5e8f93584b26090a9.ctex"
+uid="uid://cwod2uqqgep0u"
+path="res://.godot/imported/item-room-thermal.png-c8885f93557bded13feb4faa58a60d75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/boss-3-chaddeus-structure-manned.png"
-dest_files=["res://.godot/imported/boss-3-chaddeus-structure-manned.png-7daf640f68662bf5e8f93584b26090a9.ctex"]
+source_file="res://assets/tilesets/areas/energy-reactor-8/item-room-thermal.png"
+dest_files=["res://.godot/imported/item-room-thermal.png-c8885f93557bded13feb4faa58a60d75.ctex"]
 
 [params]
 

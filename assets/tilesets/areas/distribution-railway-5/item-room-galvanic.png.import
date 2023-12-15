@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmslwqsofll43"
-path="res://.godot/imported/boss-3-chaddeus-structure-manned.png-7daf640f68662bf5e8f93584b26090a9.ctex"
+uid="uid://dqehjhnxd3x6n"
+path="res://.godot/imported/item-room-galvanic.png-2943bc34af29ca03f59fde7dfd09f0d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/boss-3-chaddeus-structure-manned.png"
-dest_files=["res://.godot/imported/boss-3-chaddeus-structure-manned.png-7daf640f68662bf5e8f93584b26090a9.ctex"]
+source_file="res://assets/tilesets/areas/distribution-railway-5/item-room-galvanic.png"
+dest_files=["res://.godot/imported/item-room-galvanic.png-2943bc34af29ca03f59fde7dfd09f0d4.ctex"]
 
 [params]
 

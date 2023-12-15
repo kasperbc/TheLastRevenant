@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmslwqsofll43"
-path="res://.godot/imported/boss-3-chaddeus-structure-manned.png-7daf640f68662bf5e8f93584b26090a9.ctex"
+uid="uid://m0dx28w2enbe"
+path="res://.godot/imported/item-room-hookshot.png-491b321fe0e706dd5ad1d839500962cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/boss-3-chaddeus-structure-manned.png"
-dest_files=["res://.godot/imported/boss-3-chaddeus-structure-manned.png-7daf640f68662bf5e8f93584b26090a9.ctex"]
+source_file="res://assets/tilesets/areas/revenant-lab-1/item-room-hookshot.png"
+dest_files=["res://.godot/imported/item-room-hookshot.png-491b321fe0e706dd5ad1d839500962cb.ctex"]
 
 [params]
 

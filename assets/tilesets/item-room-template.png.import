@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmslwqsofll43"
-path="res://.godot/imported/boss-3-chaddeus-structure-manned.png-7daf640f68662bf5e8f93584b26090a9.ctex"
+uid="uid://2p275biij8w7"
+path="res://.godot/imported/item-room-template.png-880d5192fba3c200d62099f40892bbbd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/boss-3-chaddeus-structure-manned.png"
-dest_files=["res://.godot/imported/boss-3-chaddeus-structure-manned.png-7daf640f68662bf5e8f93584b26090a9.ctex"]
+source_file="res://assets/tilesets/item-room-template.png"
+dest_files=["res://.godot/imported/item-room-template.png-880d5192fba3c200d62099f40892bbbd.ctex"]
 
 [params]
 
