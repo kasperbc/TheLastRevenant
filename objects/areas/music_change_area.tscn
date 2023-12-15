@@ -11,5 +11,6 @@ volume = -28.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xlpyp")
+debug_color = Color(0.592157, 0.545098, 0, 0.419608)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
