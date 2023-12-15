@@ -60,7 +60,7 @@ func go():
 	
 	await get_tree().create_timer(1).timeout
 	
-	GameMan.get_player().global_position = warp_pos
+	GameMan.get_player().set_deferred("global_position", warp_pos)
 	
 	await get_tree().create_timer(1).timeout
 	

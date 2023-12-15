@@ -89,7 +89,7 @@ offset_left = 1226.0
 offset_top = 688.0
 offset_right = 1266.0
 offset_bottom = 708.0
-text = "0.0.3"
+text = "0.0.5"
 horizontal_alignment = 2
 
 [node name="SecretSong" type="AudioStreamPlayer2D" parent="."]

@@ -24,8 +24,11 @@ func shoot():
 	if ai_controller.can_see_player():
 		shoot_projectile_towards_player(Vector2.ZERO, 5.0)
 
-#func shoot_projectile(offset):
-	#super(offset)
+func shoot_projectile(offset):
+	super(offset)
+	#
+	#if projectile_identifier == "missile":
+		#return
 	#
 	#if is_instance_valid(last_projectile):
 		#if last_projectile.get_node_or_null("AI/fly_towards_point"):

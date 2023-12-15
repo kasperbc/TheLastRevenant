@@ -16,4 +16,4 @@ func _on_body_entered(body):
 	
 	get_tree().root.get_node("Main/UI/Control/FadeScreen").fade_to_transparent(fade_out_time)
 	
-	GameMan.get_player().global_position = teleport_pos
+	GameMan.get_player().set_deferred("global_position", teleport_pos)

@@ -7,11 +7,11 @@ func _ready():
 	create_pools()
 
 func create_pools():
-	pools.append(NodePool.new("missile", "res://objects/projectiles/missiles/missile.tscn", 30))
+	pools.append(NodePool.new("missile", "res://objects/projectiles/missiles/missile.tscn", 15))
 	# pools.append(NodePool.new("homing_missile", "res://objects/projectiles/missiles/homing_missile.tscn", 3))
-	pools.append(NodePool.new("direction_missile", "res://objects/projectiles/missiles/direction_missile.tscn", 20))
+	pools.append(NodePool.new("direction_missile", "res://objects/projectiles/missiles/direction_missile.tscn", 15))
 	pools.append(NodePool.new("fat_missile", "res://objects/projectiles/missiles/fat_missile.tscn", 1))
-	pools.append(NodePool.new("gravity_bomb", "res://objects/projectiles/bombs/gravity_bomb.tscn", 20))
+	#pools.append(NodePool.new("gravity_bomb", "res://objects/projectiles/bombs/gravity_bomb.tscn", 20))
 	
 	for p in pools:
 		add_child(p)

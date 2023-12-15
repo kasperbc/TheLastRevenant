@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://2insib1dvbbr"]
+
+[ext_resource type="Texture2D" uid="uid://c36eikw8hqgdb" path="res://assets/sprites/pickups/pickup_logbook.png" id="1_1r5vh"]
+[ext_resource type="Script" path="res://objects/logbook/logbook.gd" id="1_hj4sn"]
+
+[node name="Logbook" type="Sprite2D"]
+texture = ExtResource("1_1r5vh")
+script = ExtResource("1_hj4sn")
