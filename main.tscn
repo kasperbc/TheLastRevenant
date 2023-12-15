@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c65f2wpdei786"]
+[gd_scene load_steps=51 format=3 uid="uid://c65f2wpdei786"]
 
 [ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="1_37j5j"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="2_q7r5k"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dcr1q7oj4a006" path="res://main_ui.tscn" id="4_etwc1"]
 [ext_resource type="PackedScene" uid="uid://cwh5d4qwcv0i6" path="res://objects/lights/area_light.tscn" id="4_yb3h7"]
 [ext_resource type="Texture2D" uid="uid://dge4ysc7omnmg" path="res://assets/backgrounds/background.png" id="5_g3icy"]
-[ext_resource type="PackedScene" uid="uid://fc5h1wnmon4l" path="res://objects/lights/light_revealer.tscn" id="5_q84k6"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="6_2wqmi"]
 [ext_resource type="Script" path="res://scripts/game_start.gd" id="10_5r6h5"]
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="11_8wm0p"]
@@ -310,47 +309,94 @@ script = ExtResource("2_q7r5k")
 visible = false
 blend_mode = 1
 
-[node name="AreaLightSpawn" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(2284, -3562)
-scale = Vector2(121.727, 20.7031)
+[node name="RevenantLab" type="Node2D" parent="DirectionalLight2D"]
+
+[node name="AreaLightSpawn" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
+position = Vector2(192, -176)
+scale = Vector2(7, 6)
 offset = Vector2(0, -0.045)
 
-[node name="AreaLightHallway1" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(174, -745)
-scale = Vector2(11.125, 7.53125)
+[node name="AreaLightSpawn2" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
+position = Vector2(576, -96)
+scale = Vector2(7, 3)
+offset = Vector2(0, -0.045)
 
-[node name="LightRevealer" parent="DirectionalLight2D/AreaLightHallway1" instance=ExtResource("5_q84k6")]
-position = Vector2(285, 3)
+[node name="AreaLightSpawn3" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
+position = Vector2(1184, 75.0784)
+scale = Vector2(14.5, 8.83378)
+offset = Vector2(0, -0.045)
 
-[node name="AreaLightStealth" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(1425.63, -99)
-scale = Vector2(18.793, 6.71875)
+[node name="AreaLightSpawn5" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
+position = Vector2(1184, 75.0784)
+scale = Vector2(14.5, 8.83378)
+offset = Vector2(0, -0.045)
 
-[node name="AreaLightStealth2" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(1425.63, -99)
-scale = Vector2(18.793, 6.71875)
+[node name="AreaLightSpawn4" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
+position = Vector2(2504, 0)
+scale = Vector2(31.25, 13)
+offset = Vector2(0, -0.045)
 
-[node name="AreaLightHallway2" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(2258.5, -5)
-scale = Vector2(9.10938, 1.78125)
+[node name="AreaLightSpawn7" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
+position = Vector2(3664, 272)
+scale = Vector2(10, 4)
+offset = Vector2(0, -0.045)
 
-[node name="LightRevealer" parent="DirectionalLight2D/AreaLightHallway2" instance=ExtResource("5_q84k6")]
-position = Vector2(2073, -5)
+[node name="AreaLightSpawn8" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
+position = Vector2(4416, 32)
+scale = Vector2(20, 12)
+offset = Vector2(0, -0.045)
 
-[node name="AreaLightBoss1" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(2914, -122)
-scale = Vector2(14.1875, 7.07812)
+[node name="AreaLightSpawn9" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
+position = Vector2(5376, 448)
+scale = Vector2(15, 12)
+offset = Vector2(0, -0.045)
 
-[node name="LightRevealer" parent="DirectionalLight2D/AreaLightBoss1" instance=ExtResource("5_q84k6")]
-position = Vector2(2627, -14)
+[node name="AreaLightSpawn10" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
+position = Vector2(5952, 272)
+scale = Vector2(8, 4)
+offset = Vector2(0, -0.045)
 
-[node name="AreaLightToHookshot" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(3606, 119.5)
-scale = Vector2(9.25, 8.10938)
+[node name="AreaLightSpawn11" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
+position = Vector2(888, -407.606)
+scale = Vector2(22.25, 8.75)
+offset = Vector2(0, -0.045)
 
-[node name="AreaLighHookshot2" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(4108, -40)
-scale = Vector2(8.875, 3.51758)
+[node name="Hangar" type="Node2D" parent="DirectionalLight2D"]
+
+[node name="AreaLightSpawn11" parent="DirectionalLight2D/Hangar" instance=ExtResource("4_yb3h7")]
+position = Vector2(6720, 0)
+scale = Vector2(18, 13)
+offset = Vector2(0, -0.045)
+
+[node name="AreaLightSpawn12" parent="DirectionalLight2D/Hangar" instance=ExtResource("4_yb3h7")]
+position = Vector2(6720, 776.641)
+scale = Vector2(6.24999, 14.25)
+offset = Vector2(0, -0.045)
+
+[node name="AreaLightSpawn13" parent="DirectionalLight2D/Hangar" instance=ExtResource("4_yb3h7")]
+position = Vector2(6624, 1344.27)
+scale = Vector2(15.5, 6)
+offset = Vector2(0, -0.045)
+
+[node name="AreaLightSpawn14" parent="DirectionalLight2D/Hangar" instance=ExtResource("4_yb3h7")]
+position = Vector2(8992, 1416.11)
+scale = Vector2(5.75, 3.25105)
+offset = Vector2(0, -0.045)
+
+[node name="AreaLightSpawn15" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
+position = Vector2(2500, -2085.27)
+scale = Vector2(6.125, 60.75)
+offset = Vector2(0, -0.045)
+
+[node name="AreaLightSpawn16" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
+position = Vector2(1552, -1695.44)
+scale = Vector2(25.5, 12.5)
+offset = Vector2(0, -0.045)
+
+[node name="AreaLightSpawn17" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
+position = Vector2(2862, -1635.94)
+scale = Vector2(7.0625, 2.37342)
+offset = Vector2(0, -0.045)
 
 [node name="UI" parent="." instance=ExtResource("4_etwc1")]
 
