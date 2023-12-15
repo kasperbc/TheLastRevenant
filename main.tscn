@@ -185,7 +185,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_htmnu")
 }, {
-"duration": 3.0,
+"duration": 10.0,
 "texture": SubResource("AtlasTexture_ep7nf")
 }, {
 "duration": 1.0,
@@ -206,7 +206,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0cvia")
 }, {
-"duration": 3.0,
+"duration": 10.0,
 "texture": SubResource("AtlasTexture_2gfbn")
 }, {
 "duration": 1.0,
@@ -408,6 +408,7 @@ texture = ExtResource("5_g3icy")
 script = ExtResource("6_2wqmi")
 
 [node name="Background2" type="Sprite2D" parent="Background"]
+top_level = true
 z_index = -15
 texture = ExtResource("5_g3icy")
 

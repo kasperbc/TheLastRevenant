@@ -2,6 +2,7 @@ extends Area2D
 
 @export var music_name : String
 @export var volume : float
+@export var background : CompressedTexture2D
 
 func _on_body_entered(body):
 	if not body.is_in_group("Players"):
@@ -11,3 +12,6 @@ func _on_body_entered(body):
 		return
 	
 	GameMan.get_audioman().fade_to_music(music_name, 1, volume)
+	
+	if background:
+		get_tree().root.get_node("Main/Background").change_background(background)

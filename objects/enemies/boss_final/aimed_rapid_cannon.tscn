@@ -47,7 +47,7 @@ default_state = "rotate_to_idle"
 [node name="rotate_at_player_shoot" type="Node" parent="AI"]
 script = ExtResource("4_jn2mm")
 rotate_speed = 1.75
-wait_time = 0.15
+wait_time = 0.5
 projectile_identifier = "direction_missile"
 
 [node name="rotate_to_idle" type="Node" parent="AI"]

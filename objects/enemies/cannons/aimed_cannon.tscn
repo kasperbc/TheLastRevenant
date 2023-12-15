@@ -42,6 +42,7 @@ debug_enabled = true
 
 [node name="AI" type="Node" parent="."]
 script = ExtResource("3_u34qj")
+player_see_range = 250.0
 default_state = "rotate_to_idle"
 
 [node name="rotate_at_player_shoot" type="Node" parent="AI"]

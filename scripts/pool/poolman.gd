@@ -8,7 +8,7 @@ func _ready():
 
 func create_pools():
 	pools.append(NodePool.new("missile", "res://objects/projectiles/missiles/missile.tscn", 30))
-	pools.append(NodePool.new("homing_missile", "res://objects/projectiles/missiles/homing_missile.tscn", 3))
+	# pools.append(NodePool.new("homing_missile", "res://objects/projectiles/missiles/homing_missile.tscn", 3))
 	pools.append(NodePool.new("direction_missile", "res://objects/projectiles/missiles/direction_missile.tscn", 20))
 	pools.append(NodePool.new("fat_missile", "res://objects/projectiles/missiles/fat_missile.tscn", 1))
 	pools.append(NodePool.new("gravity_bomb", "res://objects/projectiles/bombs/gravity_bomb.tscn", 20))
@@ -40,9 +40,9 @@ func return_to_pool(node, identifier):
 
 func reset_pools():
 	for p in pools:
-		remove_child(p)
-		p.queue_free()
-	
-	pools.clear()
-	
-	create_pools()
+		pass
+		#p.queue_free()
+	#
+	#pools.clear()
+	#
+	#create_pools()

@@ -5,6 +5,7 @@ var id : String
 var node_path : String
 var node_amount : int
 var scene
+var borrowed_nodes : Array[Node]
 
 func _init(identifier : String, path : String, amount : int):
 	id = identifier
@@ -29,6 +30,8 @@ func borrow_node(recipient : Node) -> Node:
 	recipient.add_child(node)
 	node.process_mode = Node.PROCESS_MODE_INHERIT
 	
+	borrowed_nodes.append(node)
+	
 	if node is Node2D:
 		node.modulate.a = 1
 	
@@ -41,9 +44,15 @@ func return_node(node : Node):
 	node.get_parent().remove_child(node)
 	add_child(node)
 	
+	borrowed_nodes.erase(node)
+	
 	if node.has_method("_reset"):
 		node.call("_reset")
 		
 	node.process_mode = Node.PROCESS_MODE_DISABLED
 	if node is Node2D:
 		node.modulate.a = 0
+
+func return_all_nodes():
+	for b in borrowed_nodes:
+		return_node(b)

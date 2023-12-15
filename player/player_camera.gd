@@ -39,7 +39,6 @@ func _process(delta):
 		return
 	
 	var vp_rect = get_viewport_rect().size / zoom
-	print(cam_restrictor_shape)
 	var cr_size = cam_restrictor_shape.size
 	cr_size *= result[0].collider.scale
 	

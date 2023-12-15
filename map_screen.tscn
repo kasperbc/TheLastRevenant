@@ -71,6 +71,9 @@ position = Vector2(-52, 44)
 [node name="RechargeStationItem8" parent="RechargeStations" instance=ExtResource("4_ujhqh")]
 position = Vector2(108, -60)
 
+[node name="RechargeStationItem9" parent="RechargeStations" instance=ExtResource("4_ujhqh")]
+position = Vector2(20, -60)
+
 [node name="NavigationStations" type="Node2D" parent="."]
 
 [node name="NavigationStation" parent="NavigationStations" instance=ExtResource("5_lxrjd")]

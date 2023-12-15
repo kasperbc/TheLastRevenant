@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2yrjlexgqqvi"]
+[gd_scene load_steps=34 format=3 uid="uid://b2yrjlexgqqvi"]
 
 [ext_resource type="Script" path="res://addons/audio-manager/AudioManager.gd" id="1"]
 [ext_resource type="AudioStream" uid="uid://0b4ybpx6x1ao" path="res://assets/sfx/core_item_obtained.mp3" id="2_5x2x6"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://ricdkpkohax4" path="res://assets/music/vents.mp3" id="7_ajhmo"]
 [ext_resource type="AudioStream" uid="uid://cymnik8pkscud" path="res://assets/sfx/fly.wav" id="7_g26qe"]
 [ext_resource type="AudioStream" uid="uid://b1fa0q4t0rhfa" path="res://assets/sfx/hit.wav" id="8_38fjy"]
+[ext_resource type="AudioStream" uid="uid://b8eafutk0jisu" path="res://assets/music/obsv.mp3" id="8_hs0lf"]
 [ext_resource type="AudioStream" uid="uid://541r6bx6hp8w" path="res://assets/sfx/boom.wav" id="9_g7kxk"]
 [ext_resource type="AudioStream" uid="uid://b31kvda6wfnrr" path="res://assets/sfx/big_explosion.wav" id="10_x1gis"]
 [ext_resource type="AudioStream" uid="uid://bg3l3cxfeynhg" path="res://assets/sfx/missile_fire.wav" id="11_o8lds"]
@@ -31,14 +32,15 @@
 [ext_resource type="AudioStream" uid="uid://cgq71a10tw05p" path="res://assets/sfx/heal.wav" id="25_ghfo2"]
 [ext_resource type="AudioStream" uid="uid://ec7coue56m0a" path="res://assets/sfx/metal_pipe.mp3" id="26_dyrw5"]
 [ext_resource type="AudioStream" uid="uid://jbkxmk5akwfd" path="res://assets/sfx/accelerate.wav" id="27_m3xu4"]
+[ext_resource type="AudioStream" uid="uid://cpddet1cjcrp0" path="res://assets/sfx/unsexylaugh.mp3" id="32_qpx2o"]
 
 [node name="AudioManager" type="Node" groups=["AudioManager"]]
 process_mode = 3
 script = ExtResource("1")
 num_sfx_players = 10
 fading_music_starting_db = -60.0
-music = Array[Resource]([ExtResource("2_cxjxk"), ExtResource("3_3kjfp"), ExtResource("4_lnf6n"), ExtResource("5_hrudd"), ExtResource("6_nqjup"), ExtResource("7_ajhmo")])
-effects = Array[Resource]([ExtResource("2_5x2x6"), ExtResource("3_rpa1c"), ExtResource("4_rlu3l"), ExtResource("7_g26qe"), ExtResource("8_38fjy"), ExtResource("9_g7kxk"), ExtResource("10_x1gis"), ExtResource("11_o8lds"), ExtResource("12_4smsi"), ExtResource("13_fpxe4"), ExtResource("14_fm1sg"), ExtResource("15_otfkp"), ExtResource("16_bfjcs"), ExtResource("17_t5l84"), ExtResource("18_sdbhv"), ExtResource("19_ignmn"), ExtResource("20_hto0t"), ExtResource("21_64x5v"), ExtResource("22_v80np"), ExtResource("23_gpaql"), ExtResource("24_ol1k7"), ExtResource("25_ghfo2"), ExtResource("26_dyrw5"), ExtResource("27_m3xu4")])
+music = Array[Resource]([ExtResource("2_cxjxk"), ExtResource("3_3kjfp"), ExtResource("4_lnf6n"), ExtResource("5_hrudd"), ExtResource("6_nqjup"), ExtResource("7_ajhmo"), ExtResource("8_hs0lf")])
+effects = Array[Resource]([ExtResource("2_5x2x6"), ExtResource("3_rpa1c"), ExtResource("4_rlu3l"), ExtResource("7_g26qe"), ExtResource("8_38fjy"), ExtResource("9_g7kxk"), ExtResource("10_x1gis"), ExtResource("11_o8lds"), ExtResource("12_4smsi"), ExtResource("13_fpxe4"), ExtResource("14_fm1sg"), ExtResource("15_otfkp"), ExtResource("16_bfjcs"), ExtResource("17_t5l84"), ExtResource("18_sdbhv"), ExtResource("19_ignmn"), ExtResource("20_hto0t"), ExtResource("21_64x5v"), ExtResource("22_v80np"), ExtResource("23_gpaql"), ExtResource("24_ol1k7"), ExtResource("25_ghfo2"), ExtResource("26_dyrw5"), ExtResource("27_m3xu4"), ExtResource("32_qpx2o")])
 
 [node name="Music" type="Node" parent="."]
 

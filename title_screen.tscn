@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cysvrvvovblxi"]
+[gd_scene load_steps=9 format=3 uid="uid://cysvrvvovblxi"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_5pnsf"]
 [ext_resource type="Texture2D" uid="uid://535gam887hrk" path="res://assets/sprites/ui/title-screen.png" id="1_mtryt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/title_info.gd" id="4_4in77"]
 [ext_resource type="AudioStream" uid="uid://46rpurl7whcu" path="res://assets/music/foxbeat.mp3" id="4_6ob6f"]
 [ext_resource type="Script" path="res://scripts/secret_song.gd" id="5_2oaut"]
+[ext_resource type="AudioStream" uid="uid://c2nwwhm2gjvty" path="res://assets/music/gibbrishtext.mp3" id="7_qcstw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_50n41"]
 outline_size = 4
@@ -88,13 +89,17 @@ offset_left = 1226.0
 offset_top = 688.0
 offset_right = 1266.0
 offset_bottom = 708.0
-text = "0.0.1"
+text = "0.0.3"
 horizontal_alignment = 2
 
-[node name="Foxbeat" type="AudioStreamPlayer2D" parent="."]
+[node name="SecretSong" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_6ob6f")
 volume_db = -20.0
 script = ExtResource("5_2oaut")
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="SecretSong"]
+stream = ExtResource("7_qcstw")
+volume_db = -20.0
 
 [connection signal="pressed" from="Background/Play" to="." method="_on_play_pressed"]
 [connection signal="button_down" from="Background/InfoButton" to="Background/Credits" method="_on_info_button_button_down"]
