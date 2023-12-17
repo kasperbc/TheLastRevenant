@@ -3,9 +3,9 @@ class_name PlayerMovement
 
 const SPEED = 150.0
 const SPEED_EXPANSION_INCREASE = 12.5
-const ACCELERATION = 500.0
-const FRICTION = 900.0
-const AIR_FRICTION = 250.0
+const ACCELERATION = 300.0
+const FRICTION = 800.0
+const AIR_FRICTION = 450.0
 const SNAP_VELOCITY = 50.0
 const MIN_VELOCITY_FRICTION_EFFECTS = 175.0
 
@@ -53,6 +53,7 @@ var last_distance : float
 var bomb_active : bool
 var bomb_last_use_timestamp = 0.0
 var gravity_multiplier = 1
+var coyotetime = 5
 
 var _hooked_obj
 var hooked_obj : 
@@ -80,7 +81,10 @@ func _physics_process(delta):
 		var in_editor = OS.has_feature("editor")
 		if (Input.is_action_just_pressed("toggle_debug") and in_editor) or Input.is_action_just_pressed("toggle_debug_inbuild"):
 			toggle_debug(true)
-	
+	if is_on_floor():
+		coyotetime = 5
+	else:
+		coyotetime -= 1*delta*60
 	move_and_slide()
 
 # NORMAL MOVEMENT
@@ -142,11 +146,12 @@ func apply_gravity(delta):
 		else:
 			$Sprite2D.play("jumpsquat")
 
+
 func jump():
 	if not is_on_floor():
 		return
-	
-	velocity.y = -jump_velocity
+	if is_on_floor() or coyotetime > 0:
+		velocity.y = -jump_velocity
 
 func horizontal_move(delta):
 	var direction = Input.get_axis("move_left", "move_right")
