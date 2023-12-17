@@ -57,7 +57,8 @@ offset_top = -36.0
 offset_right = 112.0
 offset_bottom = -8.0
 grow_vertical = 0
-text = "Hold for info"
+keep_pressed_outside = true
+text = "Hold for credits"
 
 [node name="Credits" type="Label" parent="Background"]
 visible = false
@@ -89,7 +90,7 @@ offset_left = 1226.0
 offset_top = 688.0
 offset_right = 1266.0
 offset_bottom = 708.0
-text = "0.0.5"
+text = "1.0.1"
 horizontal_alignment = 2
 
 [node name="SecretSong" type="AudioStreamPlayer2D" parent="."]
