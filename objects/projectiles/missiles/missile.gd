@@ -14,7 +14,7 @@ func _reset():
 func _borrow():
 	$SmokeParticle.restart()
 
-func is_on_wall() -> bool:
+func on_wall() -> bool:
 	var space = get_world_2d().direct_space_state
 	
 	var query = PhysicsPointQueryParameters2D.new()

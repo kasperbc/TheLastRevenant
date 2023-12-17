@@ -39,8 +39,19 @@ func go_towards_dir():
 	die_if_on_wall()
 
 func die_if_on_wall():
-	if body.is_on_wall():
-		var collider = body.get_wall_collider()
+	var on_wall
+	var collider
+	
+	if body.manual_velocity:
+		on_wall = body.on_wall()
+		if on_wall:
+			collider = body.get_wall_collider()
+	else:
+		on_wall = body.is_on_wall()
+		if on_wall:
+			collider = body.get_slide_collision(0)
+	
+	if on_wall:
 		if collider.is_in_group("Boxes"):
 			collider.die()
 		
