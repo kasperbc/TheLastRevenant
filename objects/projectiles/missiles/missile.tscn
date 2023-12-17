@@ -86,23 +86,24 @@ _data = {
 radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_icfny"]
-radius = 5.09902
+radius = 3.0
 
 [sub_resource type="Gradient" id="Gradient_b3cr8"]
 offsets = PackedFloat32Array(0, 0.543624, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Missile" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Missile" type="StaticBody2D" groups=["Enemies"]]
 z_index = 1
 collision_layer = 0
 collision_mask = 3
-motion_mode = 1
 script = ExtResource("1_7ylg8")
+manual_velocity = true
 death_particle = ExtResource("2_ii8wc")
 pooled = true
 pool_identifier = "missile"
 death_sound = "small_explosion"
 drop_health_pickups = false
+destroy_on_contact = true
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]

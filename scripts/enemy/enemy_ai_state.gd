@@ -3,6 +3,7 @@ class_name EnemyAIState
 
 var global_position : Vector2
 var position : Vector2
+var delta_time
 
 var _body : Enemy
 var body : Enemy :
@@ -44,6 +45,7 @@ func _ready():
 func _process(delta):
 	global_position = body.global_position
 	position = body.position
+	delta_time = delta
 
 func ai_state_process(delta):
 	pass
@@ -57,8 +59,11 @@ func _on_state_deactivate():
 func move_towards_point(target : Vector2, speed : float):
 	var dir = body.global_position.direction_to(target)
 	
-	body.velocity = dir * (speed * speed_multiplier)
-	body.move_and_slide()
+	if not body.manual_velocity:
+		body.velocity = dir * (speed * speed_multiplier)
+		body.move_and_slide()
+	elif delta_time:
+		body.global_position += dir * (speed * speed_multiplier * delta_time)
 
 func pathfind_towards_point(target : Vector2, speed : float):
 	path_target = target
