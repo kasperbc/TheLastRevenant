@@ -5,7 +5,6 @@ class_name GameManager
 var player : Node
 var player_health : Node
 
-
 enum Upgrades {
 	DEFAULT = 0,
 	HOOKSHOT = 1,
@@ -171,3 +170,12 @@ func load_end_screen():
 
 func get_audioman() -> AudioManager:
 	return get_tree().root.get_node_or_null("/root/Main/AudioManager")
+
+func get_user_setting(key):
+	var config = ConfigFile.new()
+	
+	var result = config.load("user://settings.cfg")
+	if not result == OK:
+		return null
+	
+	return config.get_value(SettingsMan.SETTING_USER_SECTION, key)

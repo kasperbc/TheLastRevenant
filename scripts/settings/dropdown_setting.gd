@@ -16,8 +16,14 @@ func create_ui_setter():
 	dropdown.custom_minimum_size = Vector2(100,50)
 	
 	for i in items.size():
-		print("added item %s" % items[i])
 		dropdown.add_item(items[i], i)
-	dropdown.selected = 0
+	
+	var value = get_setting_value()
+	
+	if not value == null:
+		dropdown.selected = value
+	else:
+		dropdown.queue_free()
+		return null
 	
 	return dropdown

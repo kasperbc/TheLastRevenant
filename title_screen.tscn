@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://46rpurl7whcu" path="res://assets/music/foxbeat.mp3" id="4_6ob6f"]
 [ext_resource type="Script" path="res://scripts/secret_song.gd" id="5_2oaut"]
 [ext_resource type="Script" path="res://scripts/ui/version_label.gd" id="5_7kpd4"]
-[ext_resource type="Script" path="res://scripts/settings/settingsman.gd" id="6_ipxa3"]
+[ext_resource type="PackedScene" uid="uid://2r2ppdsrhmie" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
 [ext_resource type="AudioStream" uid="uid://c2nwwhm2gjvty" path="res://assets/music/gibbrishtext.mp3" id="7_qcstw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_50n41"]
@@ -33,21 +33,30 @@ grow_vertical = 2
 theme = ExtResource("1_n7yo8")
 texture = ExtResource("1_mtryt")
 
-[node name="Play" type="Button" parent="Background"]
+[node name="Buttons" type="VBoxContainer" parent="Background"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = 216.5
-offset_right = 9.0
-offset_bottom = 247.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -205.0
+offset_right = 100.0
+offset_bottom = -25.0
 grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.5, 1.5)
+grow_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="PlayButton" type="Button" parent="Background/Buttons"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
 text = "Play"
+
+[node name="SettingsButton" type="Button" parent="Background/Buttons"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "Settings"
 
 [node name="InfoButton" type="Button" parent="Background"]
 layout_mode = 1
@@ -96,47 +105,9 @@ text = "VERSION"
 horizontal_alignment = 2
 script = ExtResource("5_7kpd4")
 
-[node name="SettingsPanel" type="Panel" parent="Background" node_paths=PackedStringArray("setting_parent")]
+[node name="SettingsPanel" parent="Background" instance=ExtResource("6_42u6o")]
+visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_ipxa3")
-setting_parent = NodePath("SettingBackground/ScrollContainer/VBoxContainer")
-
-[node name="SettingBackground" type="ColorRect" parent="Background/SettingsPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -521.5
-offset_top = -253.5
-offset_right = 521.5
-offset_bottom = 271.5
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.109804, 0.0901961, 0.160784, 1)
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Background/SettingsPanel/SettingBackground"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = 25.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/SettingsPanel/SettingBackground/ScrollContainer"]
-custom_minimum_size = Vector2(950, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 15
 
 [node name="SecretSong" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_6ob6f")
@@ -147,6 +118,7 @@ script = ExtResource("5_2oaut")
 stream = ExtResource("7_qcstw")
 volume_db = -20.0
 
-[connection signal="pressed" from="Background/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Background/Buttons/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Background/Buttons/SettingsButton" to="Background/SettingsPanel" method="show_settings"]
 [connection signal="button_down" from="Background/InfoButton" to="Background/Credits" method="_on_info_button_button_down"]
 [connection signal="button_up" from="Background/InfoButton" to="Background/Credits" method="_on_info_button_button_up"]

@@ -5,6 +5,11 @@ class_name SettingsMan
 
 var setting_categories : Array[SettingCategory]
 
+const SETTING_FILE_PATH = "user://settings.cfg"
+const SETTING_META_SECTION = "Meta"
+const SETTING_USER_SECTION = "User"
+
+
 func _ready():
 	var audio = SettingCategory.new("Audio")
 	audio.settings.append(SliderSetting.new("Music Volume", "music_volume", 1.0, 0.0, 1.0, 0.01, true))
@@ -17,9 +22,10 @@ func _ready():
 	setting_categories.append(audio)
 	setting_categories.append(controls)
 	
-	update_settings_ui()
+	create_settings_file()
+	create_settings_ui()
 
-func update_settings_ui():
+func create_settings_ui():
 	for category in setting_categories:
 		var category_label = Label.new()
 		category_label.text = category.name
@@ -45,3 +51,44 @@ func update_settings_ui():
 			
 			if setting_ui_setter:
 				hbox.add_child(setting_ui_setter)
+
+func create_settings_file():
+	var settings_file = ConfigFile.new()
+	
+	if not FileAccess.file_exists(SETTING_FILE_PATH):
+		settings_file.save(SETTING_FILE_PATH)
+	
+	var res = settings_file.load(SETTING_FILE_PATH)
+	
+	if not res == OK:
+		return
+	
+	if not settings_file.has_section_key(SETTING_META_SECTION, "format"):
+		settings_file.set_value(SETTING_META_SECTION, "format", 1)
+	
+	for c in setting_categories:
+		for s in c.settings:
+			
+			if not settings_file.has_section_key(SETTING_USER_SECTION, s.internal_name):
+				settings_file.set_value(SETTING_USER_SECTION, s.internal_name, s.default_value)
+	
+	settings_file.save(SETTING_FILE_PATH)
+
+func reset_settings():
+	var result = DirAccess.remove_absolute(SETTING_FILE_PATH)
+	
+	if not result == OK:
+		return
+	
+	for c in $SettingBackground/ScrollContainer/VBoxContainer.get_children():
+		c.queue_free()
+	
+	create_settings_file()
+	create_settings_ui()
+
+func hide_settings():
+	visible = false
+
+
+func show_settings():
+	visible = true

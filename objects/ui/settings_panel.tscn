@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://2r2ppdsrhmie"]
+
+[ext_resource type="Script" path="res://scripts/settings/settingsman.gd" id="1_sfka2"]
+[ext_resource type="Texture2D" uid="uid://c1o7e64h6q4r4" path="res://assets/sprites/ui/warn.png" id="2_uhwni"]
+[ext_resource type="Script" path="res://scripts/savewarn.gd" id="3_wwane"]
+
+[node name="SettingsPanel" type="Panel" node_paths=PackedStringArray("setting_parent")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sfka2")
+setting_parent = NodePath("SettingBackground/ScrollContainer/VBoxContainer")
+
+[node name="SettingBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -521.5
+offset_top = -253.5
+offset_right = 521.5
+offset_bottom = 271.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.0901961, 0.160784, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 25.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingBackground/ScrollContainer"]
+custom_minimum_size = Vector2(950, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
+
+[node name="SaveWarn" type="TextureRect" parent="SettingBackground"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -55.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "Because of your browser settings, these will not be saved after you quit!
+If you want to save these, try enabling cookies! But you don't have to!"
+texture = ExtResource("2_uhwni")
+script = ExtResource("3_wwane")
+
+[node name="ResetButton" type="Button" parent="SettingBackground"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -43.0
+offset_right = 115.0
+offset_bottom = -15.0
+grow_vertical = 0
+text = "Reset"
+
+[node name="CloseButton" type="Button" parent="SettingBackground"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -43.0
+offset_right = 50.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Close"
+
+[connection signal="pressed" from="SettingBackground/ResetButton" to="." method="reset_settings"]
+[connection signal="pressed" from="SettingBackground/CloseButton" to="." method="hide_settings"]
