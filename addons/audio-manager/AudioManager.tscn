@@ -47,7 +47,9 @@ effects = Array[Resource]([ExtResource("2_5x2x6"), ExtResource("3_rpa1c"), ExtRe
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music"]
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Music"]
+bus = &"Music"
 
 [node name="Effects" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Effects"]
+bus = &"SFX"

@@ -233,7 +233,6 @@ text = "Station Text"
 
 [node name="PauseScreen" type="ColorRect" parent="Control"]
 process_mode = 3
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -323,27 +322,6 @@ checkpoint"
 label_settings = SubResource("LabelSettings_lkqad")
 horizontal_alignment = 1
 
-[node name="VolumeSlider" type="HSlider" parent="Control/PauseScreen"]
-layout_mode = 0
-offset_left = 528.0
-offset_top = 632.0
-offset_right = 678.0
-offset_bottom = 648.0
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="VolumeLabel" type="Label" parent="Control/PauseScreen/VolumeSlider"]
-modulate = Color(1, 1, 1, 0.392157)
-layout_mode = 0
-offset_left = 24.0
-offset_top = 34.0
-offset_right = 137.0
-offset_bottom = 54.0
-text = "Volume: 100%"
-horizontal_alignment = 1
-script = ExtResource("18_x6xrf")
-
 [node name="MapMask" type="ColorRect" parent="Control"]
 process_mode = 3
 modulate = Color(1, 1, 1, 0.862745)
@@ -425,4 +403,3 @@ autowrap_mode = 2
 
 [connection signal="pressed" from="Control/PauseScreen/TitleButton" to="Control/PauseScreen" method="_on_title_button_pressed"]
 [connection signal="pressed" from="Control/PauseScreen/RestartButton" to="Control/PauseScreen" method="_on_restart_button_pressed"]
-[connection signal="value_changed" from="Control/PauseScreen/VolumeSlider" to="Control/PauseScreen/VolumeSlider/VolumeLabel" method="_on_volume_slider_value_changed"]

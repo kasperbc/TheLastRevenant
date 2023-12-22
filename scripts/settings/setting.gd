@@ -32,6 +32,7 @@ func save_setting_value(value):
 	var s_file = ConfigFile.new()
 	
 	var result = s_file.load(SettingsMan.SETTING_FILE_PATH)
+	print("Result: %s, Value %s" % [result, value])
 	if not result == OK:
 		return
 	

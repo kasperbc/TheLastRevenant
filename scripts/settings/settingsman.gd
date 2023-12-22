@@ -17,7 +17,9 @@ func _ready():
 	
 	var controls = SettingCategory.new("Controls")
 	controls.settings.append(DropdownSetting.new("Control Method", "control_method", 
-		["Keyboard + Mouse", "Gamepad (PlayStation)", "Gamepad (Xbox)", "Gamepad (Nintendo Switch Pro Controller)", "Gamepad (Generic)"]))
+		["Keyboard + Mouse", "Gamepad (PlayStation)", "Gamepad (Xbox)", "Gamepad (Nintendo Switch Pro Controller)", "Gamepad (Generic)"],
+		["keyboard_mouse", "gamepad_playstation", "gamepad_xbox", "gamepad_nspro", "gamepad_generic"]))
+	controls.settings.append(ToggleSetting.new("Flip X", "flip_x", false))
 	
 	setting_categories.append(audio)
 	setting_categories.append(controls)
