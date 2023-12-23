@@ -19,7 +19,7 @@ func get_setting_type():
 
 func create_ui_setter():
 	var slider = HSlider.new()
-	slider.custom_minimum_size = Vector2(100,50)
+	slider.custom_minimum_size = Vector2(100,0)
 	slider.min_value = slider_min_value
 	slider.max_value = slider_max_value
 	slider.step = slider_step
@@ -34,10 +34,11 @@ func create_ui_setter():
 	if percentage:
 		var perc_label = SliderSettingPercentageLabel.new()
 		perc_label.text = "%s" % round(value * 100) + "%"
+		perc_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		perc_label.position.x -= 50
 		slider.value_changed.connect(perc_label._on_slider_change)
 		slider.value_changed.connect(save_setting_value)
 		slider.add_child(perc_label)
 	
 	ui_setter = slider
-	
 	return slider

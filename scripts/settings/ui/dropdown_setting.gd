@@ -9,14 +9,14 @@ func _init(setting_name : String, setting_internal_name : String, setting_items 
 	
 	items = setting_items
 	item_internal_names = setting_item_internal_names
+	refresh_ui_on_change = true
 
 func get_setting_type():
 	return "Dropdown"
 
 func create_ui_setter():
 	var dropdown = OptionButton.new()
-	dropdown.custom_minimum_size = Vector2(100,50)
-	
+
 	for i in items.size():
 		dropdown.add_item(items[i], i)
 	
@@ -30,6 +30,7 @@ func create_ui_setter():
 		dropdown.queue_free()
 		return null
 	
+	ui_setter = dropdown
 	return dropdown
 
 func save_setting_value(value):

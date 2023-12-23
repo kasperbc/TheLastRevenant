@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c1o7e64h6q4r4" path="res://assets/sprites/ui/warn.png" id="2_uhwni"]
 [ext_resource type="Script" path="res://scripts/savewarn.gd" id="3_wwane"]
 
-[node name="SettingsPanel" type="Panel" node_paths=PackedStringArray("setting_parent")]
+[node name="SettingsPanel" type="Panel" node_paths=PackedStringArray("setting_parent") groups=["SettingsMan"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

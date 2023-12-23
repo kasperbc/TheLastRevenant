@@ -155,11 +155,12 @@ func jump():
 
 func horizontal_move(delta):
 	var direction = Input.get_axis("move_left", "move_right")
+	direction = clamp(direction * 10, -1, 1)
 	
 	$FrictionParticles.emitting = false
 	
 	var speed = SPEED + (GameMan.get_expansion_count(GameMan.ExpansionType.SPEED) * SPEED_EXPANSION_INCREASE)
-	
+
 	if direction:
 		var direction_opposite_to_velocity = clamp(direction * 100, -1, 1) + clamp(velocity.x, -1, 1) == 0
 		

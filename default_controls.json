@@ -1,0 +1,252 @@
+{
+	"keyboard_mouse": {
+		"hook_aim": {
+			"type": 0,
+			"axis": []
+		},
+		"valid_input_types": [0,1],
+		"actions": {
+			"move_left": {
+				"type": 0,
+				"key": 65
+			},
+			"move_right": {
+				"type": 0,
+				"key": 68
+			},
+			"move_up": {
+				"type": 0,
+				"key": 87
+			},
+			"move_down": {
+				"type": 0,
+				"key": 83
+			},
+			"jump": {
+				"type": 0,
+				"key": 32
+			},
+			"fire_hook": {
+				"type": 1,
+				"key": 1
+			},
+			"hook_attack": {
+				"type": 1,
+				"key": 2
+			},
+			"interact": {
+				"type": 0,
+				"key": 69
+			},
+			"pause_game": {
+				"type": 0,
+				"key": 77
+			}
+		}
+	},
+	"gamepad_nspro": {
+		"hook_aim": {
+			"type": 1,
+			"axis": [ 2, 3 ]
+		},
+		"valid_input_types": [2,3],
+		"actions": {
+			"move_left": {
+				"type": 3,
+				"key": 0,
+				"invert": true
+			},
+			"move_right": {
+				"type": 3,
+				"key": 0,
+				"invert": false
+			},
+			"move_up": {
+				"type": 3,
+				"key": 1,
+				"invert": false
+			},
+			"move_down": {
+				"type": 3,
+				"key": 1,
+				"invert": true
+			},
+			"jump": {
+				"type": 2,
+				"key": 9
+			},
+			"fire_hook": {
+				"type": 3,
+				"key": 5,
+				"invert": false
+			},
+			"hook_attack": {
+				"type": 3,
+				"key": 4,
+				"invert": false
+			},
+			"interact": {
+				"type": 2,
+				"key": 3
+			},
+			"pause_game": {
+				"type": 2,
+				"key": 6
+			}
+		}
+	},
+	"gamepad_playstation": {
+		"hook_aim": {
+			"type": 1,
+			"axis": [ 2, 3 ]
+		},
+		"valid_input_types": [2,3],
+		"actions": {
+			"move_left": {
+				"type": 3,
+				"key": 0,
+				"invert": true
+			},
+			"move_right": {
+				"type": 3,
+				"key": 0,
+				"invert": false
+			},
+			"move_up": {
+				"type": 3,
+				"key": 1,
+				"invert": false
+			},
+			"move_down": {
+				"type": 3,
+				"key": 1,
+				"invert": true
+			},
+			"jump": {
+				"type": 2,
+				"key": 9
+			},
+			"fire_hook": {
+				"type": 3,
+				"key": 5,
+				"invert": false
+			},
+			"hook_attack": {
+				"type": 3,
+				"key": 4,
+				"invert": false
+			},
+			"interact": {
+				"type": 2,
+				"key": 3
+			},
+			"pause_game": {
+				"type": 2,
+				"key": 6
+			}
+		}
+	},
+	"gamepad_xbox": {
+		"hook_aim": {
+			"type": 1,
+			"axis": [ 2, 3 ]
+		},
+		"valid_input_types": [2,3],
+		"actions": {
+			"move_left": {
+				"type": 3,
+				"key": 0,
+				"invert": true
+			},
+			"move_right": {
+				"type": 3,
+				"key": 0,
+				"invert": false
+			},
+			"move_up": {
+				"type": 3,
+				"key": 1,
+				"invert": false
+			},
+			"move_down": {
+				"type": 3,
+				"key": 1,
+				"invert": true
+			},
+			"jump": {
+				"type": 2,
+				"key": 9
+			},
+			"fire_hook": {
+				"type": 3,
+				"key": 5,
+				"invert": false
+			},
+			"hook_attack": {
+				"type": 3,
+				"key": 4,
+				"invert": false
+			},
+			"interact": {
+				"type": 2,
+				"key": 3
+			},
+			"pause_game": {
+				"type": 2,
+				"key": 6
+			}
+		}
+	},
+	"gamepad_generic": {
+		"hook_aim": {
+			"type": 1,
+			"axis": [ 2, 3 ]
+		},
+		"valid_input_types": [2,3],
+		"actions": {
+			"move_left": {
+				"type": 3,
+				"key": 0,
+				"invert": true
+			},
+			"move_right": {
+				"type": 3,
+				"key": 0,
+				"invert": false
+			},
+			"move_up": {
+				"type": 3,
+				"key": 1,
+				"invert": false
+			},
+			"move_down": {
+				"type": 3,
+				"key": 1,
+				"invert": true
+			},
+			"jump": {
+				"type": 2,
+				"key": 9
+			},
+			"fire_hook": {
+				"type": 3,
+				"key": 5,
+				"invert": false
+			},
+			"hook_attack": {
+				"type": 3,
+				"key": 4,
+				"invert": false
+			},
+			"interact": {
+				"type": 2,
+				"key": 3
+			},
+			"pause_game": {
+				"type": 2,
+				"key": 6
+			}
+		}
+	}
+}
+
