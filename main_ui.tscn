@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
-[ext_resource type="Texture2D" uid="uid://jpwsi0g1tyfj" path="res://assets/sprites/ui/health-circle-sixths.png" id="2_grqex"]
+[ext_resource type="Texture2D" uid="uid://5hm18mar4hmi" path="res://assets/sprites/ui/health-circle-sixths.png" id="2_grqex"]
 [ext_resource type="Texture2D" uid="uid://wd3gqvj8tiaa" path="res://assets/sprites/ui/bomb_bar_outline.png" id="3_0rfi0"]
 [ext_resource type="Texture2D" uid="uid://pucppjrdakd1" path="res://assets/sprites/ui/bomb_bar_under.png" id="3_btd6h"]
 [ext_resource type="Texture2D" uid="uid://68ucm7p53mpf" path="res://assets/sprites/ui/bomb_bar_fill.png" id="4_wmwh3"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://fgbkjltmqd2f" path="res://assets/sprites/ui/speed_bar_fill.png" id="8_h8tpl"]
 [ext_resource type="Script" path="res://scripts/ui/speed_bar.gd" id="9_cre45"]
 [ext_resource type="FontFile" uid="uid://dth7yl8x2whvb" path="res://assets/fonts/Retro Gaming.ttf" id="10_f8qvh"]
-[ext_resource type="PackedScene" path="res://objects/enemies/shaker.tscn" id="11_6b2ob"]
+[ext_resource type="PackedScene" uid="uid://dhfieln5f4mk5" path="res://objects/enemies/shaker.tscn" id="11_6b2ob"]
 [ext_resource type="Script" path="res://scripts/ui/fade_screen.gd" id="11_6yqxg"]
 [ext_resource type="Script" path="res://scripts/pause_screen.gd" id="11_a8ros"]
 [ext_resource type="PackedScene" uid="uid://cecc7ddrs85o4" path="res://map_screen.tscn" id="12_f8m6a"]
@@ -168,14 +168,12 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Name" type="Label" parent="Control/UpgradeText"]
-visible = false
 layout_mode = 2
 text = "HOOKSHOT
 "
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Control/UpgradeText"]
-visible = false
 layout_mode = 2
 text = "DEFAULT DESCRIPTION"
 horizontal_alignment = 1
@@ -235,6 +233,7 @@ text = "Station Text"
 
 [node name="PauseScreen" type="ColorRect" parent="Control"]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

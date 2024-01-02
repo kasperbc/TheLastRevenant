@@ -40,9 +40,8 @@ func return_to_pool(node, identifier):
 
 func reset_pools():
 	for p in pools:
-		pass
-		#p.queue_free()
-	#
-	#pools.clear()
-	#
-	#create_pools()
+		p.queue_free()
+	
+	pools.clear()
+	
+	create_pools()

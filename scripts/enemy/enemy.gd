@@ -3,6 +3,7 @@ class_name Enemy
 
 @onready var health_pickup = preload("res://objects/pickups/pickup_health.tscn")
 
+@export var manual_velocity : bool = false
 @export_group("Damage")
 @export var health : float = 1.0
 @export var infinite_health = false
