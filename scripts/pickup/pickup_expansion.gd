@@ -36,6 +36,7 @@ func hide_expansion_text():
 	get_tree().paused = false
 	visible = false
 	set_collision_mask_value(2, false)
+	GameMan.get_audioman().fade_unpause_music(1)
 	await get_tree().create_timer(3).timeout
 	get_tree().get_root().get_node("/root/Main/UI/Control/ExpansionText").visible = false
 	destroy_self()

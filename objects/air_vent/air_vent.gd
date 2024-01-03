@@ -9,6 +9,7 @@ func _on_player_near():
 
 func _on_player_attached():
 	GameMan.get_player().hook_released_early.emit()
+	GameMan.get_player().velocity *= 1.25
 	open_vent()
 
 func open_vent():

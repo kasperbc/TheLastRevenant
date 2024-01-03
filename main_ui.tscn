@@ -340,6 +340,18 @@ visible = false
 top_level = true
 layout_mode = 1
 
+[node name="NoGamepadWarn" type="Label" parent="Control/PauseScreen"]
+modulate = Color(1, 1, 1, 0.733333)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -318.5
+offset_right = 318.5
+offset_bottom = 20.0
+grow_horizontal = 2
+text = "A gamepad is set as the control method but no gamepads are connected!"
+
 [node name="MapMask" type="ColorRect" parent="Control"]
 process_mode = 3
 modulate = Color(1, 1, 1, 0.862745)

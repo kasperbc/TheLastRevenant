@@ -234,7 +234,7 @@ func update_input_map():
 			new_event.keycode = control_key
 		elif control_type == 1:
 			new_event = InputEventMouseButton.new()
-			new_event.button_mask = control_key
+			new_event.button_index = control_key
 		elif control_type == 2:
 			new_event = InputEventJoypadButton.new()
 			new_event.button_index = control_key
