@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cysvrvvovblxi"]
+[gd_scene load_steps=12 format=3 uid="uid://cysvrvvovblxi"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_5pnsf"]
 [ext_resource type="Texture2D" uid="uid://535gam887hrk" path="res://assets/sprites/ui/title-screen.png" id="1_mtryt"]
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_n7yo8"]
+[ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="2_kxrn2"]
 [ext_resource type="Script" path="res://scripts/title_info.gd" id="4_4in77"]
 [ext_resource type="AudioStream" uid="uid://46rpurl7whcu" path="res://assets/music/foxbeat.mp3" id="4_6ob6f"]
 [ext_resource type="Script" path="res://scripts/secret_song.gd" id="5_2oaut"]
+[ext_resource type="Script" path="res://scripts/ui/version_label.gd" id="5_7kpd4"]
+[ext_resource type="PackedScene" uid="uid://2r2ppdsrhmie" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
 [ext_resource type="AudioStream" uid="uid://c2nwwhm2gjvty" path="res://assets/music/gibbrishtext.mp3" id="7_qcstw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_50n41"]
@@ -19,8 +22,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_n7yo8")
 script = ExtResource("1_5pnsf")
+
+[node name="AudioManager" parent="." instance=ExtResource("2_kxrn2")]
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -29,23 +33,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_n7yo8")
 texture = ExtResource("1_mtryt")
 
-[node name="Play" type="Button" parent="Background"]
+[node name="Buttons" type="VBoxContainer" parent="Background"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = 216.5
-offset_right = 9.0
-offset_bottom = 247.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -205.0
+offset_right = 100.0
+offset_bottom = -25.0
 grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.5, 1.5)
+grow_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="PlayButton" type="Button" parent="Background/Buttons"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
 text = "Play"
+
+[node name="SettingsButton" type="Button" parent="Background/Buttons"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "Settings"
 
 [node name="InfoButton" type="Button" parent="Background"]
 layout_mode = 1
@@ -78,7 +92,7 @@ Francca - Sprites, Map Design, Story
 RedDeadDumb - Music
 Luca - Lead Funikulaari
 
-Made with Godot 4 for the 
+Made with Godot 4, originally for the
 Metroidvania Month 22 Game Jam."
 label_settings = SubResource("LabelSettings_50n41")
 script = ExtResource("4_4in77")
@@ -86,22 +100,30 @@ script = ExtResource("4_4in77")
 [node name="Version" type="Label" parent="Background"]
 modulate = Color(1, 1, 1, 0.784314)
 layout_mode = 0
-offset_left = 1226.0
-offset_top = 688.0
-offset_right = 1266.0
-offset_bottom = 708.0
-text = "1.0.2"
+offset_left = 1197.0
+offset_top = 687.0
+offset_right = 1270.0
+offset_bottom = 707.0
+text = "VERSION"
 horizontal_alignment = 2
+script = ExtResource("5_7kpd4")
+
+[node name="SettingsPanel" parent="Background" instance=ExtResource("6_42u6o")]
+visible = false
+layout_mode = 1
 
 [node name="SecretSong" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_6ob6f")
 volume_db = -20.0
+bus = &"Music"
 script = ExtResource("5_2oaut")
 
 [node name="TitleMusic" type="AudioStreamPlayer" parent="SecretSong"]
 stream = ExtResource("7_qcstw")
 volume_db = -20.0
+bus = &"Music"
 
-[connection signal="pressed" from="Background/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Background/Buttons/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Background/Buttons/SettingsButton" to="Background/SettingsPanel" method="show_settings"]
 [connection signal="button_down" from="Background/InfoButton" to="Background/Credits" method="_on_info_button_button_down"]
 [connection signal="button_up" from="Background/InfoButton" to="Background/Credits" method="_on_info_button_button_up"]

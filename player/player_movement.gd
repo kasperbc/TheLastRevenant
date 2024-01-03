@@ -3,16 +3,18 @@ class_name PlayerMovement
 
 const SPEED = 150.0
 const SPEED_EXPANSION_INCREASE = 12.5
-const ACCELERATION = 300.0
+const ACCELERATION = 250.0
+const AIR_ACCELERATION = 700.0
 const FRICTION = 800.0
 const AIR_FRICTION = 450.0
 const SNAP_VELOCITY = 50.0
 const MIN_VELOCITY_FRICTION_EFFECTS = 175.0
 
 const JUMP_HEIGHT = 50.0
-const JUMP_TIME_TO_PEAK = 0.45
-const JUMP_TIME_TO_DESCENT = 0.4
+const JUMP_TIME_TO_PEAK = 0.4
+const JUMP_TIME_TO_DESCENT = 0.35
 const SPEED_EXPANSION_GRAVITY_DECREASE = 25
+const TERMINAL_VELOCITY = 400
 
 const HOOK_BASE_FLY_SPEED = 275.0
 const HOOK_MAX_FLY_SPEED = 550.0
@@ -26,6 +28,8 @@ const HOOK_WALL_JUMP_STRENGTH = 150.0
 
 const HOOK_ATTACK_DISTANCE = 150.0
 const BOMB_COOLDOWN = 3.0
+
+const JOYPAD_AIM_DEADZONE = 0.3
 
 enum MoveState {DISABLED, NORMAL, HOOKED_FLYING, HOOKED, DEBUG}
 var current_state : MoveState = MoveState.NORMAL
@@ -61,6 +65,8 @@ var hooked_obj :
 		return get_hooked_obj() 
 	set(value): 
 		set_hooked_obj(value)
+
+var joy_aim_dir : Vector2
 
 func _ready():
 	GameMan.move_player_to_latest_recharge_station()
@@ -127,18 +133,22 @@ func process_normal_movement(delta):
 	
 	if GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
 		flip_sprite(get_global_mouse_position().x < global_position.x)
-
+	
+	
 
 func get_gravity() -> float:
 	var grav = jump_gravity if velocity.y < 0.0 else fall_gravity
 	grav *= gravity_multiplier
+	
+	if is_on_floor():
+		return 0
 	
 	return grav
 
 func apply_gravity(delta):
 	velocity.y += get_gravity() * delta
 	var gravity_decrease = GameMan.get_expansion_count(GameMan.ExpansionType.SPEED) * SPEED_EXPANSION_GRAVITY_DECREASE * gravity_multiplier
-	velocity.y = clamp(velocity.y, -999999, 600 - gravity_decrease)
+	velocity.y = clamp(velocity.y, -999999, TERMINAL_VELOCITY - gravity_decrease)
 	
 	if not is_on_floor():
 		if velocity.y > 0:
@@ -155,10 +165,12 @@ func jump():
 
 func horizontal_move(delta):
 	var direction = Input.get_axis("move_left", "move_right")
+	direction = clamp(direction * 10, -1, 1)
 	
 	$FrictionParticles.emitting = false
 	
 	var speed = SPEED + (GameMan.get_expansion_count(GameMan.ExpansionType.SPEED) * SPEED_EXPANSION_INCREASE)
+	var acceleration = ACCELERATION
 	
 	if direction:
 		var direction_opposite_to_velocity = clamp(direction * 100, -1, 1) + clamp(velocity.x, -1, 1) == 0
@@ -169,11 +181,14 @@ func horizontal_move(delta):
 		if (abs(velocity.x) < SNAP_VELOCITY or direction_opposite_to_velocity) and is_on_floor() and abs(velocity.x) < speed * 1.5:
 			velocity.x = SNAP_VELOCITY * direction
 		
+		if not is_on_floor():
+			acceleration = AIR_ACCELERATION
+		
 		if abs(velocity.x) > speed and not direction_opposite_to_velocity:
 			apply_friction(delta)
 			return
 		
-		velocity.x = move_toward(velocity.x, direction * speed, ACCELERATION * delta)
+		velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
 		
 		if is_on_floor():
 			$Sprite2D.play("walk")
@@ -182,7 +197,7 @@ func horizontal_move(delta):
 		if is_on_floor():
 			$Sprite2D.play("idle")
 	
-	
+	set_joy_dir()
 
 func apply_friction(delta):
 	if is_on_floor():
@@ -191,6 +206,23 @@ func apply_friction(delta):
 			$FrictionParticles.emitting = true
 	else:
 		velocity.x = move_toward(velocity.x, 0, AIR_FRICTION * delta)
+
+func set_joy_dir():
+	var control_method = GameMan.get_user_setting("control_method")
+	var aim_method = GameMan.default_controls_config[control_method]["hook_aim"]
+	
+	if aim_method["type"] == 0:
+		joy_aim_dir = Vector2.ZERO
+		return
+	
+	var joy_x = Input.get_joy_axis(0, aim_method["axis"][0])
+	var joy_y = Input.get_joy_axis(0, aim_method["axis"][1])
+	
+	var joy_vector = Vector2(joy_x, joy_y)
+	if joy_vector.length() < JOYPAD_AIM_DEADZONE:
+		return
+	
+	joy_aim_dir = joy_vector.normalized()
 
 func _on_hook_fired():
 	hook_obj.visible = true

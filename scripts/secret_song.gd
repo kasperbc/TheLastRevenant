@@ -1,5 +1,8 @@
 extends AudioStreamPlayer2D
 
+func _process(delta):
+	pass
+
 func _ready():
 	var date = Time.get_datetime_dict_from_system()
 	

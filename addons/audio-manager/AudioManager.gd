@@ -23,11 +23,21 @@ var current_as1_vol_offset : float = 0.0
 func _ready() -> void:
 	for i in num_sfx_players:
 		var stream = AudioStreamPlayer.new()
+		stream.bus = "SFX"
 		effects_container.add_child(stream)
 
 func _process(delta):
 	if fading_music:
 		_fade_music(delta)
+	
+	var music_vol = GameMan.get_user_setting("music_volume")
+	var sound_vol = GameMan.get_user_setting("sound_volume")
+	if not music_vol == null:
+		AudioServer.set_bus_volume_db(2, linear_to_db(GameMan.get_user_setting("music_volume")))
+		AudioServer.set_bus_mute(2, music_vol == 0)
+	if not sound_vol == null:
+		AudioServer.set_bus_volume_db(1, linear_to_db(GameMan.get_user_setting("sound_volume")))
+		AudioServer.set_bus_mute(1, sound_vol == 0)
 
 func play_fx(play_sfx_name : String, volume = 0.0, pitch = 1.0) -> void:
 	var sound = _get_sound(play_sfx_name, false)
