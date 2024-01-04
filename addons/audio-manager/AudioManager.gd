@@ -69,6 +69,7 @@ func stop_music() -> void:
 	audio_stream_player.stop()
 	audio_stream_player_2.stop()
 	current_song = ""
+	fading_music = false
 
 func pause_music() -> void:
 	paused_position = audio_stream_player.get_playback_position()
@@ -82,7 +83,7 @@ func fade_unpause_music(duration : float) -> void:
 
 func fade_to_music(song_name, time, volume = 0.0) -> void:
 	var song = _get_sound(song_name, true)
-	if not song or fading_music: return
+	if not song: return
 	
 	audio_stream_player_2.stream = song
 	audio_stream_player_2.volume_db = fading_music_starting_db
@@ -93,8 +94,8 @@ func fade_to_music(song_name, time, volume = 0.0) -> void:
 	current_song = song_name
 	
 	fade_time = time
-	current_fade_time = 0.0
 	fading_music = true
+	current_fade_time = 0.0
 
 func _fade_music(delta):
 	current_fade_time += delta

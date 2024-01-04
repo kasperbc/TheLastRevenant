@@ -47,6 +47,8 @@ func go():
 	
 	$Door.set_deferred("disabled", false)
 	$Ceiling.set_deferred("disabled", false)
+	GameMan.get_player().hook_released.emit()
+	GameMan.get_player().current_state = PlayerMovement.MoveState.DISABLED
 	$AnimatedSprite2D.frame = 1
 	
 	await get_tree().create_timer(1).timeout
@@ -69,6 +71,8 @@ func go():
 	$Door.set_deferred("disabled", true)
 	$Ceiling.set_deferred("disabled", false)
 	$AnimatedSprite2D.frame = 0
+	
+	GameMan.get_player().current_state = PlayerMovement.MoveState.NORMAL
 	
 	going = false
 	moving = false

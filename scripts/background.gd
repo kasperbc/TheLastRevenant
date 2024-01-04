@@ -18,14 +18,12 @@ func _process(delta):
 			self_modulate.a = 1
 			changing_background = false
 
-func change_background(texture_to : CompressedTexture2D):
-	if changing_background:
-		return
-	
+func change_background(texture_to : CompressedTexture2D):	
 	changing_background = true
+	self_modulate.a = 1
+	
 	$Background2.texture = texture_to
 	
 	$Background2.scale.x = 0.5 / (texture_to.get_size().x / 1280)
 	$Background2.scale.y = 0.5 / (texture_to.get_size().y / 720)
 	
-	print($Background2.scale)

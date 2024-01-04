@@ -16,6 +16,7 @@ func _on_body_entered(body):
 	activate_done = true
 	
 	if not music == "":
+		GameMan.get_audioman().stop_music()
 		GameMan.get_audioman().play_music(music, volume)
 	
 	if is_instance_valid(boss):

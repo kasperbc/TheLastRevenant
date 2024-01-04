@@ -15,6 +15,7 @@ const JUMP_TIME_TO_PEAK = 0.4
 const JUMP_TIME_TO_DESCENT = 0.35
 const SPEED_EXPANSION_GRAVITY_DECREASE = 25
 const TERMINAL_VELOCITY = 400
+const COYOTE_TIME = 0.3
 
 const HOOK_BASE_FLY_SPEED = 275.0
 const HOOK_MAX_FLY_SPEED = 550.0
@@ -57,7 +58,9 @@ var last_distance : float
 var bomb_active : bool
 var bomb_last_use_timestamp = 0.0
 var gravity_multiplier = 1
-var coyotetime = 5
+var time_in_air = 0.0
+var holding_jump : bool
+var in_air_because_hook : bool
 
 var _hooked_obj
 var hooked_obj : 
@@ -87,10 +90,6 @@ func _physics_process(delta):
 		var in_editor = OS.has_feature("editor")
 		if (Input.is_action_just_pressed("toggle_debug") and in_editor) or Input.is_action_just_pressed("toggle_debug_inbuild"):
 			toggle_debug(true)
-	if is_on_floor():
-		coyotetime = 5
-	else:
-		coyotetime -= 1*delta*60
 	move_and_slide()
 
 # NORMAL MOVEMENT
@@ -134,10 +133,22 @@ func process_normal_movement(delta):
 	if GameMan.get_upgrade_status(GameMan.Upgrades.HOOKSHOT) == GameMan.UpgradeStatus.ENABLED:
 		flip_sprite(get_global_mouse_position().x < global_position.x)
 	
+	if is_on_floor():
+		time_in_air = 0
+		in_air_because_hook = false
+	else:
+		time_in_air += delta
 	
+	if holding_jump and not Input.is_action_pressed("jump"):
+		holding_jump = false
 
-func get_gravity() -> float:
-	var grav = jump_gravity if velocity.y < 0.0 else fall_gravity
+func get_gravity() -> float:	
+	var grav = jump_gravity 
+	if velocity.y > 0.0:
+		grav = fall_gravity
+	elif not holding_jump and not in_air_because_hook:
+		grav = fall_gravity * 1.5
+	
 	grav *= gravity_multiplier
 	
 	if is_on_floor():
@@ -156,12 +167,12 @@ func apply_gravity(delta):
 		else:
 			$Sprite2D.play("jumpsquat")
 
-
 func jump():
-	if not is_on_floor():
+	if not is_on_floor() and time_in_air > COYOTE_TIME:
 		return
-	if is_on_floor() or coyotetime > 0:
-		velocity.y = -jump_velocity
+	time_in_air = COYOTE_TIME
+	holding_jump = true
+	velocity.y = -jump_velocity
 
 func horizontal_move(delta):
 	var direction = Input.get_axis("move_left", "move_right")
@@ -264,7 +275,7 @@ func _on_hook_collided(collision : KinematicCollision2D):
 		get_parent().add_child(explosion_effect)
 		explosion_effect.global_position = hook_obj.global_position
 	
-	
+	in_air_because_hook = true
 
 # HOOK MOVEMENT
 

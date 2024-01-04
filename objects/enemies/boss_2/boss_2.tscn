@@ -116,6 +116,7 @@ insta_kill = true
 death_sound = "boom"
 death_sound_volume = 0.0
 boss = true
+boss_music = "bosss2"
 boss_id = 1
 metadata/move_points = PackedVector2Array()
 

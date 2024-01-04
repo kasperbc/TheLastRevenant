@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=39 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://5hm18mar4hmi" path="res://assets/sprites/ui/health-circle-sixths.png" id="2_grqex"]
@@ -24,6 +24,8 @@
 [ext_resource type="Script" path="res://scripts/ui/volume_label.gd" id="18_x6xrf"]
 [ext_resource type="PackedScene" uid="uid://2r2ppdsrhmie" path="res://objects/ui/settings_panel.tscn" id="20_jdpvm"]
 [ext_resource type="Script" path="res://scripts/ui/item_complete_percentage.gd" id="21_tu8x2"]
+[ext_resource type="Script" path="res://scripts/ui/new_area_label.gd" id="26_60crq"]
+[ext_resource type="FontFile" uid="uid://k2d21ektbug7" path="res://assets/fonts/PixeloidSans-Bold.ttf" id="26_rnk7w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0f5e"]
 atlas = ExtResource("2_grqex")
@@ -95,6 +97,12 @@ outline_color = Color(0.176471, 0.356863, 0.521569, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lkqad"]
 font_color = Color(1, 1, 1, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sa0vk"]
+font = ExtResource("26_rnk7w")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_ihn16"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -234,6 +242,7 @@ text = "Station Text"
 
 [node name="PauseScreen" type="ColorRect" parent="Control"]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -244,6 +253,7 @@ color = Color(0.117647, 0.152941, 0.203922, 1)
 script = ExtResource("11_a8ros")
 
 [node name="UpgradeToggles" type="HBoxContainer" parent="Control/PauseScreen"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -430,6 +440,35 @@ In any case, I guess I should start mentally settling in a bit, assuming I ever 
 "
 horizontal_alignment = 2
 autowrap_mode = 2
+
+[node name="NewAreaLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -132.0
+offset_top = 58.0
+offset_right = 132.0
+offset_bottom = 98.0
+grow_horizontal = 2
+text = "Living Quarters"
+label_settings = SubResource("LabelSettings_sa0vk")
+horizontal_alignment = 1
+script = ExtResource("26_60crq")
+
+[node name="NewAreaInfo" type="Label" parent="Control/NewAreaLabel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -228.0
+offset_top = 51.0
+offset_right = 228.0
+offset_bottom = 71.0
+grow_horizontal = 2
+text = "View info on your prompter (Press [Button] to open)"
+label_settings = SubResource("LabelSettings_ihn16")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Control/PauseScreen/TitleButton" to="Control/PauseScreen" method="_on_title_button_pressed"]
 [connection signal="pressed" from="Control/PauseScreen/RestartButton" to="Control/PauseScreen" method="_on_restart_button_pressed"]
