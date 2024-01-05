@@ -23,7 +23,7 @@ func _ready():
 	set_collision_mask_value(7, false)
 
 func _on_spawned():
-	move_dir = global_position.direction_to(get_global_mouse_position())
+	set_dir()
 	rotation_degrees = rad_to_deg(Vector2.RIGHT.angle_to(move_dir))
 	current_state = HookMoveState.MOVING
 	set_collision_mask_value(1, true)
@@ -31,6 +31,13 @@ func _on_spawned():
 	set_collision_mask_value(7, true)
 	hooked_obj = null
 	$Hook.visible = true
+
+func set_dir():
+	if GameMan.get_player().joy_aim_dir == Vector2.ZERO:
+		move_dir = global_position.direction_to(get_global_mouse_position())
+		return
+	
+	move_dir = GameMan.get_player().joy_aim_dir
 
 func _on_collided(collision):
 	current_state = HookMoveState.STILL

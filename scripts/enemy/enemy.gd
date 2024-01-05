@@ -27,6 +27,9 @@ class_name Enemy
 @export var knockback = Vector2(200, -200)
 @export_group("Boss")
 @export var boss = false
+@export var boss_music : String
+@export var post_boss_music : String
+@export var post_boss_music_volume : int
 @export var boss_id : int
 
 var stunned
@@ -134,14 +137,23 @@ func die():
 	if drop_health_pickups and health_pickup_chance >= randf():
 		for x in health_pickup_amount:
 			var pickup = health_pickup.instantiate()
-			get_parent().add_child(pickup)
+			get_parent().call_deferred("add_child", pickup)
 			pickup.global_position = global_position + health_pickup_offset
 			pickup.global_position.x += randf_range(-health_pickup_spread.x, health_pickup_spread.x)
 			pickup.global_position.y += randf_range(-health_pickup_spread.y, health_pickup_spread.y)
 			pickup.base_pos = pickup.global_position
 	
 	if boss:
-		GameMan.get_audioman().stop_music()
+		if not boss_music == "":
+			if boss_music == GameMan.get_audioman().current_song:
+				GameMan.get_audioman().stop_music()
+				if not post_boss_music == "":
+					GameMan.get_audioman().fade_to_music(post_boss_music, 2, post_boss_music_volume)
+		if boss_music == "":
+			GameMan.get_audioman().stop_music()
+			if not post_boss_music == "":
+				GameMan.get_audioman().fade_to_music(post_boss_music, 2, post_boss_music_volume)
+		
 		GameMan.bosses_defeated.append(boss_id)
 	
 	if hook_attached:

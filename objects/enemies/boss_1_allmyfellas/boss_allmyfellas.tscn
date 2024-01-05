@@ -26,6 +26,7 @@ health_pickup_amount = 10
 health_pickup_spread = Vector2(50, 16)
 health_pickup_offset = Vector2(0, -16)
 boss = true
+boss_music = "beatfactory"
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -37,4 +37,5 @@ func _on_body_entered(body):
 	await get_tree().create_timer(3).timeout
 	
 	$FinalBoss.process_mode = Node.PROCESS_MODE_INHERIT
+	$SpaceBlocker.process_mode = Node.PROCESS_MODE_DISABLED
 	GameMan.get_audioman().play_music("finalboss", -24.0)

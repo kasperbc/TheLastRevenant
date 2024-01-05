@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://objects/enemies/boss_final/final_boss.gd" id="1_mrrf7"]
 [ext_resource type="PackedScene" uid="uid://3xbbfvb8emqu" path="res://objects/particles/bossfinal_explosion.tscn" id="2_u3sm1"]
 [ext_resource type="Script" path="res://objects/enemies/boss_final/final_boss_ai.gd" id="3_hwy5i"]
-[ext_resource type="Texture2D" uid="uid://lva0yxer1447" path="res://assets/sprites/enemies/boss-3-chaddeus-structure-manned.png" id="3_q65wl"]
+[ext_resource type="Texture2D" uid="uid://cmslwqsofll43" path="res://assets/sprites/enemies/boss-3-chaddeus-structure-manned.png" id="3_q65wl"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai_state.gd" id="4_f6oog"]
 [ext_resource type="PackedScene" uid="uid://bqr5w82q83bao" path="res://objects/enemies/boss_final/final_boss_cannon.tscn" id="5_xwu2e"]
 [ext_resource type="Script" path="res://objects/enemies/boss_final/final_boss_phase.gd" id="6_4myo4"]
@@ -30,7 +30,7 @@ size = Vector2(384, 75)
 size = Vector2(384, 66)
 
 [node name="FinalBoss" type="CharacterBody2D" groups=["Enemies"]]
-collision_layer = 8
+collision_layer = 9
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_mrrf7")
@@ -39,6 +39,9 @@ invincibility_time = 0.0
 death_particle = ExtResource("2_u3sm1")
 death_sound = "boom"
 death_sound_volume = 0.0
+boss = true
+boss_music = "finalboss"
+boss_id = 2
 metadata/move_points = PackedVector2Array()
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]

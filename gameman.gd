@@ -5,7 +5,6 @@ class_name GameManager
 var player : Node
 var player_health : Node
 
-
 enum Upgrades {
 	DEFAULT = 0,
 	HOOKSHOT = 1,
@@ -43,12 +42,23 @@ var bosses_defeated : Array[int]
 var game_paused : bool
 @onready var game_start_timestamp : float = Time.get_unix_time_from_system()
 
+var config : ConfigFile
+var default_controls_config : Dictionary
+
+var listening_to_input = false
+signal input_listen_ended(event : InputEvent)
+
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	if get_tree().root.get_node_or_null("Main"):
 		player = get_tree().get_first_node_in_group("Players")
 		player_health = player.find_child("HealthMan")
+	
+	var control_file = FileAccess.open(SettingsMan.KEYBINDS_FILE_PATH, FileAccess.READ).get_as_text()
+	var control_json = JSON.new()
+	control_json.parse(control_file)
+	default_controls_config = control_json.data
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause_game"):
@@ -171,3 +181,113 @@ func load_end_screen():
 
 func get_audioman() -> AudioManager:
 	return get_tree().root.get_node_or_null("/root/Main/AudioManager")
+
+func get_user_setting(key):
+	if config == null:
+		config = ConfigFile.new()
+		config.load(SettingsMan.SETTING_FILE_PATH)
+	
+	return config.get_value(SettingsMan.SETTING_USER_SECTION, key)
+
+func get_keybind_setting(key):
+	if config == null:
+		config = ConfigFile.new()
+		config.load(SettingsMan.SETTING_FILE_PATH)
+	
+	return config.get_value(SettingsMan.SETTING_KEYBIND_SECTION, key)
+
+func on_setting_change(refresh_ui = false):
+	config = ConfigFile.new()
+	
+	config.load(SettingsMan.SETTING_FILE_PATH)
+	update_input_map()
+	
+	if not refresh_ui:
+		return
+	
+	var settings_man = get_tree().get_first_node_in_group("SettingsMan")
+	if settings_man:
+		settings_man.refresh_settings_ui()
+
+func update_input_map():
+	var controls_data = config.get_section_keys(SettingsMan.SETTING_KEYBIND_SECTION)
+	var control_method = get_user_setting("control_method")
+	
+	for action in InputMap.get_actions():
+		if action.contains("debug"):
+			continue
+		
+		if not controls_data.has(str(action)):
+			continue
+		
+		var c_data = config.get_value(SettingsMan.SETTING_KEYBIND_SECTION, str(action))
+		var m_data = c_data[control_method]
+		
+		InputMap.action_erase_events(action)
+		
+		var new_event
+		
+		var control_key = m_data["key"]
+		var control_type = m_data["type"]
+		if control_type == 0:
+			new_event = InputEventKey.new()
+			new_event.keycode = control_key
+		elif control_type == 1:
+			new_event = InputEventMouseButton.new()
+			new_event.button_index = control_key
+		elif control_type == 2:
+			new_event = InputEventJoypadButton.new()
+			new_event.button_index = control_key
+		elif control_type == 3:
+			new_event = InputEventJoypadMotion.new()
+			new_event.axis = control_key
+			
+			var invert = m_data["invert"]
+			new_event.axis_value = -1.0 if invert else 1.0
+		
+		InputMap.action_add_event(action, new_event)
+
+func listen_to_input(keybind_btn):
+	await get_tree().create_timer(0.1).timeout
+	
+	listening_to_input = true
+	input_listen_ended.connect(keybind_btn.on_listen_end)
+
+func _input(event):
+	if not listening_to_input:
+		return
+	
+	if event is InputEventKey:
+		if event.keycode == KEY_ESCAPE:
+			input_listen_ended.emit(null)
+			listening_to_input = false
+			return
+	
+	var event_type = -1
+	if event is InputEventKey:
+		event_type = 0
+	elif event is InputEventMouseButton:
+		event_type = 1
+	elif event is InputEventJoypadButton:
+		event_type = 2
+	elif event is InputEventJoypadMotion:
+		event_type = 3
+	
+	if event_type == -1:
+		return
+	
+	var valid_types = default_controls_config[get_user_setting("control_method")]["valid_input_types"]
+	var valid = false
+	for t in valid_types:
+		if event_type == t:
+			valid = true
+	
+	if not valid:
+		return
+	
+	if event is InputEventJoypadMotion:
+		if abs(event.axis_value) < 0.4:
+			return
+	
+	input_listen_ended.emit(event)
+	listening_to_input = false

@@ -2,7 +2,7 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://corer8h1gipth"
+uid="uid://cjtdg53axilac"
 path="res://.godot/imported/revenant_lab.mp3-cb3826d2a12d9eecd6135c3d9223c370.mp3str"
 
 [deps]
@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/revenant_lab.mp3-cb3826d2a12d9eecd6135c3d9223
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4
