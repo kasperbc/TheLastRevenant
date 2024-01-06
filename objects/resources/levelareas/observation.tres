@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelArea" load_steps=2 format=3 uid="uid://bkcfhqckoq3jb"]
+
+[ext_resource type="Script" path="res://scripts/resources/levelarea.gd" id="1_jp382"]
+
+[resource]
+script = ExtResource("1_jp382")
+id = 7
+name = "Observation Deck"
+description = ""

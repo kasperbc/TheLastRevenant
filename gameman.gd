@@ -14,6 +14,20 @@ enum Upgrades {
 	THERMAL_MODULE = 5
 }
 
+enum LevelAreas {
+	DEFAULT = 0,
+	REVENANT_LAB = 1,
+	LIVING_QUARTERS = 2,
+	HANGAR = 3,
+	VENTILATION = 4,
+	WASTE_MANAGEMENT = 5,
+	DISTRIBUTION_RAILWAY = 6,
+	OBSERVATION_DECK = 7,
+	REACTOR = 8,
+	WEAPONS = 9,
+	ASTEROID_FIELD = 10
+}
+
 enum UpgradeStatus {
 	LOCKED = 0, # not unlocked
 	ENABLED = 1, # unlocked & enabled

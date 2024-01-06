@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelArea" load_steps=2 format=3 uid="uid://bw7tdrw0uft8f"]
+
+[ext_resource type="Script" path="res://scripts/resources/levelarea.gd" id="1_6gh7a"]
+
+[resource]
+script = ExtResource("1_6gh7a")
+id = 9
+name = "Weapons"
+description = ""

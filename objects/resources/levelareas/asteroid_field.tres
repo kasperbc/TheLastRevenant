@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelArea" load_steps=2 format=3 uid="uid://cvenkifdw8yrn"]
+
+[ext_resource type="Script" path="res://scripts/resources/levelarea.gd" id="1_1f1qs"]
+
+[resource]
+script = ExtResource("1_1f1qs")
+id = 10
+name = "Asteroid Field"
+description = ""
