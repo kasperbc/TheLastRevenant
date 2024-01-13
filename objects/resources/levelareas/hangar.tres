@@ -6,4 +6,8 @@
 script = ExtResource("1_4qlsx")
 id = 3
 name = "Flight Hangar"
-description = ""
+description = "Area 2 | Flight Hangar
+
+The Flight Hangar sure is a series of contradictions. For one, it’s the smallest region in the outpost by surface area, yet is one of the most spacious. I originally arrived to this outpost through those big doors, yet I'm numb from all the experiments and sheer time that I've spent here. It’s emotionally confusing. I'm really not quite sure what to think. I'm at ease, but also feel empty. The air is clinical, certainly less damp than the lab's, which means the ventilation systems must still be in at least partial working order.
+
+From what I'm able to recall from my capsule's guards' chats, apparently this station was a simple pit stop for Sirius' starships, which eventually got abandoned in service of faster kinetoscopic lanes. Converting a station like this would certainly make sense, considering how remote it is, specifically being very far away from Sirius' headquarters in the Copernicus System."
