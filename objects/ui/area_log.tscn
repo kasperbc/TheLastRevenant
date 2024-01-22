@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyyj5i8jfghos"]
+
+[ext_resource type="Texture2D" uid="uid://datdcus226fbq" path="res://assets/sprites/ui/area_icons/asteroid_field_icon.png" id="1_q5ki8"]
+
+[node name="AreaLog" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 550.0
+offset_bottom = 64.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_q5ki8")
+expand_mode = 1
