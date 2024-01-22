@@ -1,11 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://q6127s5vksfd"]
+[gd_scene load_steps=8 format=3 uid="uid://q6127s5vksfd"]
 
 [ext_resource type="Script" path="res://objects/stations/recharge_station.gd" id="1_dbcl5"]
 [ext_resource type="Texture2D" uid="uid://cbb4lvha5fh7x" path="res://assets/sprites/objects/recharge_station.png" id="2_uamba"]
-[ext_resource type="Texture2D" uid="uid://dlgcdmo01kfx0" path="res://assets/sprites/ui/e_prompt.png" id="3_2rsvt"]
+[ext_resource type="FontFile" uid="uid://cumsyijkodo52" path="res://assets/fonts/PixeloidSans.ttf" id="3_1e8cw"]
+[ext_resource type="Script" path="res://objects/stations/keyprompt.gd" id="4_owavy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qg65v"]
 size = Vector2(26, 39)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cuuhr"]
+font = ExtResource("3_1e8cw")
+font_size = 72
+font_color = Color(0.913725, 0.890196, 0.901961, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3.81, 4.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x77ht"]
 size = Vector2(42, 6)
@@ -24,9 +33,25 @@ shape = SubResource("RectangleShape2D_qg65v")
 position = Vector2(0, -8)
 texture = ExtResource("2_uamba")
 
-[node name="KeyPrompt" type="Sprite2D" parent="."]
-position = Vector2(0, -35)
-texture = ExtResource("3_2rsvt")
+[node name="KeyPrompt" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -44.0
+offset_right = 950.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+text = "E"
+label_settings = SubResource("LabelSettings_cuuhr")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("4_owavy")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, -16)

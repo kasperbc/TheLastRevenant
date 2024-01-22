@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://s3hn1pcur1f"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://s3hn1pcur1f"]
 
 [ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_dy4aq"]
 [ext_resource type="Texture2D" uid="uid://63tj6ltc46bn" path="res://assets/sprites/pickups/pickup_velocity_module.png" id="2_7tmjp"]
+[ext_resource type="Texture2D" uid="uid://b7r51tdgo31hv" path="res://objects/map/inventory_tab/velocity_wireframe.png" id="3_j3gb5"]
 
 [resource]
 script = ExtResource("1_dy4aq")
@@ -9,3 +10,4 @@ id = 3
 name = "Velocity Module"
 description = "Augments the velocity of the Hookshot and allows countering obstacles with [Right Click] while hooked."
 texture = ExtResource("2_7tmjp")
+texture_wireframe = ExtResource("3_j3gb5")

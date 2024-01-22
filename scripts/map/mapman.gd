@@ -5,7 +5,7 @@ const MINIMAP_MAPSCREEN_OFFSET : Vector2i = Vector2i(3, 2)
 const MINIMAP_MAPSCREEN_OFFSET_PAUSED : Vector2i = Vector2i(12, 12)
 
 const MAPMASK_PAUSED_SIZE = Vector2(1200,580)
-const MAPMASK_PAUSED_POSITION = Vector2(32,16)
+const MAPMASK_PAUSED_POSITION = Vector2(32,64)
 const MAPMASK_UNPAUSED_SIZE = Vector2(210,150)
 const MAPMASK_UNPAUSED_POSITION = Vector2(1030,32)
 
@@ -36,10 +36,12 @@ func _process(_delta):
 		$DebugPos.text = str(player_pos)
 	
 	if GameMan.game_paused:
+		visible = get_parent().get_node("MapScreen/TabContainer").current_tab == 0
 		size = MAPMASK_PAUSED_SIZE
 		position = MAPMASK_PAUSED_POSITION
 		self_modulate.a = 1
 	else:
+		visible = true
 		size = MAPMASK_UNPAUSED_SIZE
 		position = MAPMASK_UNPAUSED_POSITION
 		self_modulate.a = 0.8
@@ -61,7 +63,7 @@ func update_partially_unlocked_tiles():
 
 func move_mapscreen_to_player_pos():
 	var target_pos = -get_player_pos() + MINIMAP_MAPSCREEN_OFFSET
-	if GameMan.game_paused:
+	if GameMan.game_paused and GameMan.map_open:
 		target_pos = MINIMAP_MAPSCREEN_OFFSET_PAUSED
 	
 	get_map_scr_ref().position = target_pos * 30.0

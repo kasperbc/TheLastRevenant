@@ -2,12 +2,14 @@ extends CheckButton
 
 @export var upgrade : GameMan.Upgrades
 @export var upgrade_res : Upgrade
+@export var texture_enabled : CompressedTexture2D
+@export var texture_disabled : CompressedTexture2D
 
 func _ready():
 	if not upgrade_res:
 		return
 	
-	$UpgradeTexture.texture = upgrade_res.texture
+	$UpgradeDescription.text = upgrade_res.description
 	tooltip_text = upgrade_res.description
 
 func _process(delta):
@@ -16,8 +18,10 @@ func _process(delta):
 	disabled = upgrade_locked
 	
 	if GameMan.get_upgrade_status(upgrade) == GameMan.UpgradeStatus.DISABLED:
-		$UpgradeTexture.modulate.a = 0.5
+		$UpgradeTexture.texture = upgrade_res.texture_wireframe
+		$UpgradeTexture.modulate.a = 0.75
 	else:
+		$UpgradeTexture.texture = upgrade_res.texture
 		$UpgradeTexture.modulate.a = 1
 
 

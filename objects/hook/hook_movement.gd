@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name HookMovement
 
 const MOVE_SPEED = 500.0
-const RETURN_SPEED_MULTIPLIER = 2.1
+const RETURN_SPEED_MULTIPLIER = 2.2
 const MAX_DISTANCE = 180.0
 const RANGE_EXPANSION_DISTANCE_INCREASE = 22.5
 

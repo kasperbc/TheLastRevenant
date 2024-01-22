@@ -40,6 +40,10 @@
 			},
 			"pause_game": {
 				"type": 0,
+				"key": 4194305
+			},
+			"open_map": {
+				"type": 0,
 				"key": 77
 			}
 		}
@@ -92,6 +96,10 @@
 			"pause_game": {
 				"type": 2,
 				"key": 6
+			},
+			"open_map": {
+				"type": 0,
+				"key": 4
 			}
 		}
 	},
@@ -143,6 +151,10 @@
 			"pause_game": {
 				"type": 2,
 				"key": 6
+			},
+			"open_map": {
+				"type": 0,
+				"key": 4
 			}
 		}
 	},
@@ -194,6 +206,10 @@
 			"pause_game": {
 				"type": 2,
 				"key": 6
+			},
+			"open_map": {
+				"type": 0,
+				"key": 4
 			}
 		}
 	},
@@ -245,6 +261,10 @@
 			"pause_game": {
 				"type": 2,
 				"key": 6
+			},
+			"open_map": {
+				"type": 0,
+				"key": 4
 			}
 		}
 	}

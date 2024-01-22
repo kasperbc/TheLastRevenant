@@ -1,21 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3ifnkrxk22ss"]
+[gd_scene load_steps=5 format=3 uid="uid://c3ifnkrxk22ss"]
 
 [ext_resource type="Script" path="res://objects/ui/upgrade_toggle.gd" id="1_fghq7"]
 [ext_resource type="Texture2D" uid="uid://bho4e2nb1ra24" path="res://assets/sprites/pickups/pickup_hookshot.png" id="1_rp6w5"]
+[ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="3_fqepc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4qg6c"]
+font_size = 13
+font_color = Color(1, 1, 1, 0.501961)
 
 [node name="UpgradeToggle" type="CheckButton"]
 offset_right = 44.0
 offset_bottom = 24.0
+scale = Vector2(2, 2)
 tooltip_text = "Pipo pipo"
 button_pressed = true
 script = ExtResource("1_fghq7")
 
 [node name="UpgradeTexture" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 6.0
-offset_top = -37.0
-offset_right = 38.0
-offset_bottom = -5.0
+offset_left = -50.0
+offset_top = -3.5
+offset_right = -18.0
+offset_bottom = 28.5
 texture = ExtResource("1_rp6w5")
+
+[node name="UpgradeDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -24.0
+offset_right = 660.0
+offset_bottom = 52.0
+theme = ExtResource("3_fqepc")
+text = "In geometry, a hypotenuse is the longest side of a right-angled triangle, the side opposite the right angle. The length of the hypotenuse can be found using the Pythagorean theorem, which states that the square of the length of the hypotenuse equals the sum of the squares of the lengths of the other two sides. For example, if one of the other sides has a length of 3 (when squared, 9) and the other has a length of 4 (when squared, 16), then their squares add up to 25. The length of the hypotenuse is the square root of 25, that is, 5. "
+label_settings = SubResource("LabelSettings_4qg6c")
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 3
 
 [connection signal="toggled" from="." to="." method="_on_toggled"]

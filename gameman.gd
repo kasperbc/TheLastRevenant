@@ -11,7 +11,8 @@ enum Upgrades {
 	VISUALIZER = 2,
 	VELOCITY_MODULE = 3,
 	GALVANIC_MODULE = 4,
-	THERMAL_MODULE = 5
+	THERMAL_MODULE = 5,
+	AUTOCOUNTER = 6
 }
 
 enum LevelAreas {
@@ -53,7 +54,10 @@ var map_sources_partial_unlocked : Array[int]
 
 var bosses_defeated : Array[int]
 
+var areas_discovered : Array[LevelAreas]
+
 var game_paused : bool
+var map_open : bool
 @onready var game_start_timestamp : float = Time.get_unix_time_from_system()
 
 var config : ConfigFile
@@ -73,13 +77,6 @@ func _ready():
 	var control_json = JSON.new()
 	control_json.parse(control_file)
 	default_controls_config = control_json.data
-
-func _process(delta):
-	if Input.is_action_just_pressed("pause_game"):
-		if game_paused:
-			unpause_game()
-		else:
-			pause_game()
 
 func get_player() -> PlayerMovement:
 	if not is_instance_valid(player):
@@ -172,6 +169,7 @@ func pause_game():
 
 func unpause_game():
 	game_paused = false
+	map_open = false
 	get_tree().paused = false
 
 func load_title_screen():
@@ -185,6 +183,7 @@ func load_title_screen():
 	map_positions_unlocked.clear()
 	map_sources_partial_unlocked.clear()
 	bosses_defeated.clear()
+	areas_discovered.clear()
 
 func load_main():
 	get_tree().change_scene_to_file("res://main.tscn")
@@ -245,7 +244,7 @@ func update_input_map():
 		var control_type = m_data["type"]
 		if control_type == 0:
 			new_event = InputEventKey.new()
-			new_event.keycode = control_key
+			new_event.physical_keycode = control_key
 		elif control_type == 1:
 			new_event = InputEventMouseButton.new()
 			new_event.button_index = control_key
@@ -267,15 +266,23 @@ func listen_to_input(keybind_btn):
 	listening_to_input = true
 	input_listen_ended.connect(keybind_btn.on_listen_end)
 
+func _unhandled_key_input(event):
+	if Input.is_action_just_pressed("pause_game"):
+		if game_paused:
+			unpause_game()
+		else:
+			pause_game()
+	elif Input.is_action_just_pressed("open_map"):
+		if game_paused:
+			unpause_game()
+		else:
+			map_open = true
+			pause_game()
+
 func _input(event):
 	if not listening_to_input:
 		return
 	
-	if event is InputEventKey:
-		if event.keycode == KEY_ESCAPE:
-			input_listen_ended.emit(null)
-			listening_to_input = false
-			return
 	
 	var event_type = -1
 	if event is InputEventKey:
@@ -305,3 +312,22 @@ func _input(event):
 	
 	input_listen_ended.emit(event)
 	listening_to_input = false
+
+func get_input_action_key_str(action : String) -> String:
+	if not InputMap.has_action(action):
+		return "[No action found]"
+	
+	var input_action = InputMap.action_get_events(action)[0]
+	
+	if input_action is InputEventKey:
+		var keycode = DisplayServer.keyboard_get_keycode_from_physical(input_action.physical_keycode)
+		return OS.get_keycode_string(keycode)
+	
+	return input_action.as_text()
+
+func discover_area(area : LevelArea):
+	if areas_discovered.has(area.id):
+		return
+	areas_discovered.append(area.id)
+	
+	get_tree().root.get_node("Main/UI/Control/NewAreaLabel").show_area_text(area)

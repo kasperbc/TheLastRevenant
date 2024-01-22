@@ -18,7 +18,6 @@ func _physics_process(delta):
 		end_dir = GameMan.get_player().joy_aim_dir
 	
 	var end_pos = GameMan.get_player().global_position + (end_dir * 1000)
-	print(end_dir)
 	var query = PhysicsRayQueryParameters2D.create(GameMan.get_player().global_position, end_pos)
 	query.exclude = [GameMan.get_player()]
 	var result = space_state.intersect_ray(query)
