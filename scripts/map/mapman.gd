@@ -35,7 +35,7 @@ func _process(_delta):
 	if debug:
 		$DebugPos.text = str(player_pos)
 	
-	if GameMan.game_paused:
+	if GameMan.game_paused and GameMan.map_open:
 		visible = get_parent().get_node("MapScreen/TabContainer").current_tab == 0
 		size = MAPMASK_PAUSED_SIZE
 		position = MAPMASK_PAUSED_POSITION

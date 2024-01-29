@@ -1,11 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd7s0aqqasom1"]
+[gd_scene load_steps=8 format=3 uid="uid://bg62em3i60pjk"]
 
 [ext_resource type="Script" path="res://objects/stations/nav_station.gd" id="1_pxpi1"]
 [ext_resource type="Texture2D" uid="uid://bkfnae0o4g3xo" path="res://assets/sprites/objects/nav-station.png" id="2_tn1qb"]
-[ext_resource type="Texture2D" uid="uid://dlgcdmo01kfx0" path="res://assets/sprites/ui/e_prompt.png" id="3_ul3p2"]
+[ext_resource type="FontFile" uid="uid://cumsyijkodo52" path="res://assets/fonts/PixeloidSans.ttf" id="3_wkh7v"]
+[ext_resource type="Script" path="res://objects/stations/keyprompt.gd" id="4_gp58o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qg65v"]
 size = Vector2(26, 39)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0nho4"]
+font = ExtResource("3_wkh7v")
+font_size = 160
+font_color = Color(0.854902, 0.882353, 0.898039, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x77ht"]
 size = Vector2(42, 6)
@@ -24,9 +30,16 @@ shape = SubResource("RectangleShape2D_qg65v")
 position = Vector2(0, -8)
 texture = ExtResource("2_tn1qb")
 
-[node name="KeyPrompt" type="Sprite2D" parent="."]
-position = Vector2(0, -35)
-texture = ExtResource("3_ul3p2")
+[node name="KeyPrompt" type="Label" parent="."]
+offset_left = -37.0
+offset_top = -41.0
+offset_right = 1463.0
+offset_bottom = 155.0
+scale = Vector2(0.05, 0.05)
+text = "E"
+label_settings = SubResource("LabelSettings_0nho4")
+horizontal_alignment = 1
+script = ExtResource("4_gp58o")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, -16)

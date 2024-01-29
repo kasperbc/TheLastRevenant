@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="LevelArea" load_steps=2 format=3 uid="uid://clgi2ekblhcft"]
+[gd_resource type="Resource" script_class="LevelArea" load_steps=3 format=3 uid="uid://clgi2ekblhcft"]
 
+[ext_resource type="Texture2D" uid="uid://c08c5bhc7nl25" path="res://assets/sprites/ui/area_icons/trash_icon.png" id="1_ojmus"]
 [ext_resource type="Script" path="res://scripts/resources/levelarea.gd" id="1_qx8dr"]
 
 [resource]
@@ -13,3 +14,4 @@ I do not envy the poor souls that ended up working here. Waste Management isn’
 Uncountably large piles of trash, ranging from discarded electronics to mounds of literal human skeletons. Or they used to be human, anyway. From what I managed to eavesdrop while the engineers worked on me, Revenance changes your body immensely, but tends to leave bone structure mostly intact unless additional mutations occur. This means it makes it hard to really tell long-dead humans and Revenants apart.
 
 There really are piles and piles of this stuff, though. Should I be more worried than I already am, or am I sufficiently creeped out? And that’s what makes you think: how are the support structures of the foundations below still standing when this disgusting mass of waste has been collecting here for who-knows how many years?"
+icon = ExtResource("1_ojmus")

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="LevelArea" load_steps=2 format=3 uid="uid://dgny5t5vtjx5n"]
+[gd_resource type="Resource" script_class="LevelArea" load_steps=3 format=3 uid="uid://dgny5t5vtjx5n"]
 
+[ext_resource type="Texture2D" uid="uid://50ppj77iyn7y" path="res://assets/sprites/ui/area_icons/ventilation_icon.png" id="1_bjmmy"]
 [ext_resource type="Script" path="res://scripts/resources/levelarea.gd" id="1_rrtqg"]
 
 [resource]
@@ -11,3 +12,4 @@ description = "Area 4 | Ventilation Systems
 I never really traveled back here in the Ventilation Systems. Of course I knew this outpost would probably have to have such a sector, but I never personally visited. Partially due to this, though, these well-lit and ventilated corridors are a breath of fresh air - no pun intended - from the well-worn pathways of the previous few areas, but simultaneously don't really feel safer, either.
 
 Indeed, I'm getting farther and farther from the few areas I've ever properly visited during my imprisonment here, so I'll have to stay on my toes. Was that breeze I just felt simply one of the hundreds of fans blowing past my helmet, or perhaps something much more sinister? Best to move quickly and not stay in one place for too long, just in case."
+icon = ExtResource("1_bjmmy")

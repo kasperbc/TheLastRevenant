@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="LevelArea" load_steps=2 format=3 uid="uid://dwj1ytetmjvri"]
+[gd_resource type="Resource" script_class="LevelArea" load_steps=3 format=3 uid="uid://dwj1ytetmjvri"]
 
+[ext_resource type="Texture2D" uid="uid://bm21muv4x6x1h" path="res://assets/sprites/ui/area_icons/reactor_icon.png" id="1_frye6"]
 [ext_resource type="Script" path="res://scripts/resources/levelarea.gd" id="1_i6guv"]
 
 [resource]
@@ -11,3 +12,4 @@ description = "I can feel it getting closer. The Energy Reactor Complex is a sig
 I understand now. Someone - or something - is trying to draw power from the outpost, and escape its confines.. The question is, why haven't they done so yet? Are they waiting for something? They're clearly a more sophisticated foe than the previous ones I've faced, which suggests they may be doing so.
 
 I have to find a way out of here, and quick."
+icon = ExtResource("1_frye6")

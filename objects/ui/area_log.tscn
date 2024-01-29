@@ -1,16 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyyj5i8jfghos"]
+[gd_scene load_steps=4 format=3 uid="uid://cyyj5i8jfghos"]
 
+[ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_i3io5"]
 [ext_resource type="Texture2D" uid="uid://datdcus226fbq" path="res://assets/sprites/ui/area_icons/asteroid_field_icon.png" id="1_q5ki8"]
+[ext_resource type="Script" path="res://objects/ui/area_log.gd" id="2_h3vxj"]
 
 [node name="AreaLog" type="Control"]
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 550.0
 offset_bottom = 64.0
+theme = ExtResource("1_i3io5")
+script = ExtResource("2_h3vxj")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="AreaIcon" type="TextureRect" parent="."]
 layout_mode = 2
-offset_right = 64.0
-offset_bottom = 64.0
+offset_left = 15.0
+offset_top = 8.0
+offset_right = 63.0
+offset_bottom = 56.0
 texture = ExtResource("1_q5ki8")
 expand_mode = 1
+
+[node name="InfoButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 16.0
+offset_right = 528.0
+offset_bottom = 48.0
+theme = ExtResource("1_i3io5")
+text = "Read Log"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 16.0
+offset_right = 400.0
+offset_bottom = 48.0
+text = "Area Name"
+vertical_alignment = 1
+
+[connection signal="pressed" from="InfoButton" to="." method="_on_info_button_pressed"]

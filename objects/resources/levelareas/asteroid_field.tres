@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="LevelArea" load_steps=2 format=3 uid="uid://cvenkifdw8yrn"]
+[gd_resource type="Resource" script_class="LevelArea" load_steps=3 format=3 uid="uid://cvenkifdw8yrn"]
 
 [ext_resource type="Script" path="res://scripts/resources/levelarea.gd" id="1_1f1qs"]
+[ext_resource type="Texture2D" uid="uid://datdcus226fbq" path="res://assets/sprites/ui/area_icons/asteroid_field_icon.png" id="1_4di1g"]
 
 [resource]
 script = ExtResource("1_1f1qs")
 id = 10
 name = "Asteroid Field"
 description = "It’s finally over. The Asteroid Field dawns above me, as the final obstacle right before the communications satellite I've been trying to reach for all this time. The cold surroundings and low gravity rush my senses and feel refreshing after all I've gone through. The future is unclear, I don’t even know if the creature I just defeated really was the last of its kind, all I do know is that it’s behind me. For now. And all that remains between me and the faint possibility of freedom are a few puny little rocks. Time to get to work."
+icon = ExtResource("1_4di1g")

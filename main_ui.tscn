@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=62 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://5hm18mar4hmi" path="res://assets/sprites/ui/health-circle-sixths.png" id="2_grqex"]
@@ -38,6 +38,18 @@
 [ext_resource type="FontFile" uid="uid://k2d21ektbug7" path="res://assets/fonts/PixeloidSans-Bold.ttf" id="26_rnk7w"]
 [ext_resource type="Texture2D" uid="uid://dvxus2dxltrvb" path="res://objects/map/inventory_tab/thermal_wireframe.png" id="28_m3s2h"]
 [ext_resource type="Texture2D" uid="uid://n3q1jye0k13q" path="res://objects/map/inventory_tab/autocounter_wireframe.png" id="30_f2afl"]
+[ext_resource type="PackedScene" uid="uid://cyyj5i8jfghos" path="res://objects/ui/area_log.tscn" id="31_63bw7"]
+[ext_resource type="Script" path="res://scripts/ui/area_tab.gd" id="31_id5al"]
+[ext_resource type="Resource" uid="uid://bxeogmpqol8ei" path="res://objects/resources/levelareas/revenant_lab.tres" id="32_ne2sg"]
+[ext_resource type="Resource" uid="uid://el1xfiuvjw2i" path="res://objects/resources/levelareas/hangar.tres" id="33_33orp"]
+[ext_resource type="Resource" uid="uid://cl46d64rj0msv" path="res://objects/resources/levelareas/living_quarters.tres" id="34_q0o00"]
+[ext_resource type="Resource" uid="uid://dgny5t5vtjx5n" path="res://objects/resources/levelareas/ventilation.tres" id="35_susuo"]
+[ext_resource type="Resource" uid="uid://clgi2ekblhcft" path="res://objects/resources/levelareas/waste_management.tres" id="36_fswxp"]
+[ext_resource type="Resource" uid="uid://bcfmqnjvkkom6" path="res://objects/resources/levelareas/distribution_railway.tres" id="37_caj4j"]
+[ext_resource type="Resource" uid="uid://bkcfhqckoq3jb" path="res://objects/resources/levelareas/observation.tres" id="38_k6ogq"]
+[ext_resource type="Resource" uid="uid://bw7tdrw0uft8f" path="res://objects/resources/levelareas/weapons.tres" id="39_55f24"]
+[ext_resource type="Resource" uid="uid://dwj1ytetmjvri" path="res://objects/resources/levelareas/reactor.tres" id="40_e1pit"]
+[ext_resource type="Resource" uid="uid://cvenkifdw8yrn" path="res://objects/resources/levelareas/asteroid_field.tres" id="41_qsnt2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0f5e"]
 atlas = ExtResource("2_grqex")
@@ -106,6 +118,9 @@ font_size = 24
 font_color = Color(0.509804, 0.847059, 0.913725, 1)
 outline_size = 4
 outline_color = Color(0.176471, 0.356863, 0.521569, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3iby"]
+font_color = Color(1, 1, 1, 0.784314)
 
 [sub_resource type="LabelSettings" id="LabelSettings_sa0vk"]
 font = ExtResource("26_rnk7w")
@@ -248,6 +263,7 @@ text = "Station Text"
 
 [node name="MapScreen" type="ColorRect" parent="Control"]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -265,11 +281,79 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 2
 
 [node name="Map" type="Control" parent="Control/MapScreen/TabContainer"]
+layout_mode = 2
+
+[node name="Areas" type="Control" parent="Control/MapScreen/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("31_id5al")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MapScreen/TabContainer/Areas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -526.0
+offset_top = -320.0
+offset_right = 26.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="AreaLog" parent="Control/MapScreen/TabContainer/Areas/VBoxContainer" instance=ExtResource("31_63bw7")]
+layout_mode = 2
+area = ExtResource("32_ne2sg")
+
+[node name="AreaLog2" parent="Control/MapScreen/TabContainer/Areas/VBoxContainer" instance=ExtResource("31_63bw7")]
+layout_mode = 2
+area = ExtResource("33_33orp")
+
+[node name="AreaLog3" parent="Control/MapScreen/TabContainer/Areas/VBoxContainer" instance=ExtResource("31_63bw7")]
+layout_mode = 2
+area = ExtResource("34_q0o00")
+
+[node name="AreaLog4" parent="Control/MapScreen/TabContainer/Areas/VBoxContainer" instance=ExtResource("31_63bw7")]
+layout_mode = 2
+area = ExtResource("35_susuo")
+
+[node name="AreaLog5" parent="Control/MapScreen/TabContainer/Areas/VBoxContainer" instance=ExtResource("31_63bw7")]
+layout_mode = 2
+area = ExtResource("36_fswxp")
+
+[node name="AreaLog6" parent="Control/MapScreen/TabContainer/Areas/VBoxContainer" instance=ExtResource("31_63bw7")]
+layout_mode = 2
+area = ExtResource("37_caj4j")
+
+[node name="AreaLog7" parent="Control/MapScreen/TabContainer/Areas/VBoxContainer" instance=ExtResource("31_63bw7")]
+layout_mode = 2
+area = ExtResource("38_k6ogq")
+
+[node name="AreaLog8" parent="Control/MapScreen/TabContainer/Areas/VBoxContainer" instance=ExtResource("31_63bw7")]
+layout_mode = 2
+area = ExtResource("39_55f24")
+
+[node name="AreaLog9" parent="Control/MapScreen/TabContainer/Areas/VBoxContainer" instance=ExtResource("31_63bw7")]
+layout_mode = 2
+area = ExtResource("40_e1pit")
+
+[node name="AreaLog10" parent="Control/MapScreen/TabContainer/Areas/VBoxContainer" instance=ExtResource("31_63bw7")]
+layout_mode = 2
+area = ExtResource("41_qsnt2")
+
+[node name="AreaLogText" type="Label" parent="Control/MapScreen/TabContainer/Areas"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 36.0
+offset_right = 1184.0
+offset_bottom = 660.0
+label_settings = SubResource("LabelSettings_v3iby")
+autowrap_mode = 2
+clip_text = true
 
 [node name="Upgrades" type="Control" parent="Control/MapScreen/TabContainer"]
 visible = false
@@ -332,28 +416,6 @@ upgrade = 6
 upgrade_res = ExtResource("17_00q1f")
 texture_enabled = ExtResource("24_c7tmw")
 texture_disabled = ExtResource("30_f2afl")
-
-[node name="Areas" type="Control" parent="Control/MapScreen/TabContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="GridContainer" parent="Control/MapScreen/TabContainer/Areas"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -600.0
-offset_top = -300.0
-offset_right = 600.0
-offset_bottom = 300.0
-grow_horizontal = 2
-grow_vertical = 2
-columns = 2
-
-[node name="Logbooks" type="Control" parent="Control/MapScreen/TabContainer"]
-visible = false
-layout_mode = 2
 
 [node name="MapMask" type="ColorRect" parent="Control"]
 process_mode = 3

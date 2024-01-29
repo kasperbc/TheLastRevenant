@@ -267,17 +267,25 @@ func listen_to_input(keybind_btn):
 	input_listen_ended.connect(keybind_btn.on_listen_end)
 
 func _unhandled_key_input(event):
-	if Input.is_action_just_pressed("pause_game"):
-		if game_paused:
-			unpause_game()
-		else:
-			pause_game()
+	#if Input.is_action_just_pressed("pause_game"):
+		#toggle_pause()
+	if Input.is_action_just_pressed("debug_pause"):
+		toggle_pause()
 	elif Input.is_action_just_pressed("open_map"):
-		if game_paused:
-			unpause_game()
-		else:
-			map_open = true
-			pause_game()
+		toggle_map()
+
+func toggle_map():
+	if game_paused:
+		unpause_game()
+	else:
+		map_open = true
+		pause_game()
+
+func toggle_pause():
+	if game_paused:
+		unpause_game()
+	else:
+		pause_game()
 
 func _input(event):
 	if not listening_to_input:

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="LevelArea" load_steps=2 format=3 uid="uid://bxeogmpqol8ei"]
+[gd_resource type="Resource" script_class="LevelArea" load_steps=3 format=3 uid="uid://bxeogmpqol8ei"]
 
 [ext_resource type="Script" path="res://scripts/resources/levelarea.gd" id="1_3kdne"]
+[ext_resource type="Texture2D" uid="uid://cesuc6ed3irwa" path="res://assets/sprites/ui/area_icons/revenant_lab_icon.png" id="1_siw6d"]
 
 [resource]
 script = ExtResource("1_3kdne")
@@ -10,4 +11,11 @@ description = "Area 1 | Revenant Laboratory
 
 The Revenant Laboratory is the core of this moon's entire operation. If said bioengineering facility didn't exist, I most likely wouldn't be here and neither would anyone else currently stationed on this outpost.
 
-The lab has clearly been forsaken long ago. The air, barely moving, is somehow dusty, yet damp, at the same time. It doesn’t feel good to wake up, although simply exiting the small room I was trapped in for so long is definitely freeing in its own way. My footsteps echo across the drone-infested hallways. If there are any actual living beings remaining anywhere, they sure seem to have been driven away by the autopiloted security systems. Indeed, it feels like I'm alone here, in this decrepit series of pipeways and narrow corridors, yet deep inside I know I'm not."
+The lab has clearly been forsaken long ago. The air, barely moving, is somehow dusty, yet damp, at the same time. 
+
+It doesn’t feel good to wake up, although simply exiting the small room I was trapped in for so long is definitely freeing in its own way. 
+
+My footsteps echo across the drone-infested hallways. If there are any actual living beings remaining anywhere, they sure seem to have been driven away by the autopiloted security systems. 
+
+Indeed, it feels like I'm alone here, in this decrepit series of pipeways and narrow corridors, yet deep inside I know I'm not."
+icon = ExtResource("1_siw6d")

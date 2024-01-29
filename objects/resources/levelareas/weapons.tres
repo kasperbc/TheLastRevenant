@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="LevelArea" load_steps=2 format=3 uid="uid://bw7tdrw0uft8f"]
+[gd_resource type="Resource" script_class="LevelArea" load_steps=3 format=3 uid="uid://bw7tdrw0uft8f"]
 
 [ext_resource type="Script" path="res://scripts/resources/levelarea.gd" id="1_6gh7a"]
+[ext_resource type="Texture2D" uid="uid://dftq3hu11j3kr" path="res://assets/sprites/ui/area_icons/weapons_icon.png" id="1_trc24"]
 
 [resource]
 script = ExtResource("1_6gh7a")
@@ -11,3 +12,4 @@ description = "After escaping that unrecognizably large boss, the area barely fe
 Weapons & Training is where it all started, after all. It makes me think about the spare Hookshot I found in the Lab: is this one of the weapons I used to train with years ago? Is that why it feels so natural to use, and fits the slots in my armor? Of course, I never finished my training, but the feeling is eerie, nonetheless.
 
 There are still tons of the Vent Systems' old, frail pipes lying around here. We used to use them for target practice. They're definitely not from the same cloth that the upper level's barrier was made from, that the boss struck. That must've been a prototype for the highly sophisticated TKTS-class phyllosilicate armor that some of the other mechanics were working on here."
+icon = ExtResource("1_trc24")

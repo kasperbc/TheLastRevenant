@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="LevelArea" load_steps=2 format=3 uid="uid://bcfmqnjvkkom6"]
+[gd_resource type="Resource" script_class="LevelArea" load_steps=3 format=3 uid="uid://bcfmqnjvkkom6"]
 
 [ext_resource type="Script" path="res://scripts/resources/levelarea.gd" id="1_5s1ip"]
+[ext_resource type="Texture2D" uid="uid://bdh3j0w8wgad8" path="res://assets/sprites/ui/area_icons/funikulaari_icon.png" id="1_leggt"]
 
 [resource]
 script = ExtResource("1_5s1ip")
@@ -9,3 +10,4 @@ name = "Distribution Railway"
 description = "The Distribution Railway is the place I thought I'd stay slaving away my sentence at, before I was selected as a subject for so-called “enhancements”. Despite the bitter memory, my mechanic’s heart can’t help but be in awe of the way they constructed the electrorails here. Impeccable design, and surprisingly fast transportation for such an off-the-books project by the SLEC. They must've repurposed an existing project and retrofitted it here, since these funny-looking cars don't seem to fully fit in their environment.
 
 The area is spacious, tidier than most, and there aren’t even any enemies here. The desolation still gets to you eventually, but not in the same way it did in previous rooms. In a more humane life - although in one where I still got sentenced - this would've been a fine place to be served “punishment”."
+icon = ExtResource("1_leggt")

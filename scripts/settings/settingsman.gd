@@ -31,7 +31,6 @@ func create_settings():
 	controls.settings.append(KeybindSetting.new("Jump", "jump", "jump"))
 	controls.settings.append(KeybindSetting.new("Interact", "interact", "interact"))
 	controls.settings.append(KeybindSetting.new("Open Map", "open_map", "open_map"))
-	controls.settings.append(KeybindSetting.new("Pause Game", "pause_game", "pause_game"))
 	controls.settings.append(KeybindSetting.new("Use Hookshot", "fire_hook", "fire_hook"))
 	controls.settings.append(KeybindSetting.new("Hookshot Counter/Artillery Toggle", "hook_attack", "hook_attack"))
 	
