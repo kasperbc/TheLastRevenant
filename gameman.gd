@@ -174,6 +174,7 @@ func unpause_game():
 
 func load_title_screen():
 	get_tree().change_scene_to_file("res://title_screen.tscn")
+	latest_recharge_station = -1
 	game_paused = false
 	upgrades_collected.clear()
 	upgrades_enabled.clear()

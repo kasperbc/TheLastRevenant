@@ -24,7 +24,6 @@ layer_0/tile_data = PackedInt32Array(327702, 655364, 2, 262166, 327684, 0, -1965
 
 [node name="MapScreenPartialShown" type="TileMap" parent="."]
 self_modulate = Color(1, 1, 1, 0.25098)
-position = Vector2(8, 0)
 tile_set = ExtResource("1_0mvxt")
 format = 2
 layer_0/tile_data = PackedInt32Array(196631, 7, 2, 196632, 131079, 2, 131095, 10, 2, 131096, 131082, 2, 65559, 10, 1, 23, 10, 1, -65513, 10, 1, -131049, 10, 1, 65560, 131082, 1, 24, 131082, 1, -65512, 131082, 1, -131048, 131082, 1, -196585, 10, 0, -196584, 131082, 0, 327702, 655364, 2, 262166, 327684, 0, 196629, 589834, 0)
@@ -70,7 +69,7 @@ position = Vector2(188, 28)
 position = Vector2(124, 28)
 
 [node name="RechargeStationItem5" parent="RechargeStations" instance=ExtResource("4_ujhqh")]
-position = Vector2(-52, 44)
+position = Vector2(-52, 36)
 
 [node name="RechargeStationItem8" parent="RechargeStations" instance=ExtResource("4_ujhqh")]
 position = Vector2(108, -60)
@@ -81,7 +80,7 @@ position = Vector2(20, -60)
 [node name="NavigationStations" type="Node2D" parent="."]
 
 [node name="NavigationStation" parent="NavigationStations" instance=ExtResource("5_lxrjd")]
-position = Vector2(-36, 44)
+position = Vector2(-36, 36)
 
 [node name="NavigationStation2" parent="NavigationStations" instance=ExtResource("5_lxrjd")]
 position = Vector2(-68, -36)
