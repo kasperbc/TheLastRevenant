@@ -404,7 +404,7 @@ offset = Vector2(0, -0.045)
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -10
 position = Vector2(1296, -152)
-scale = Vector2(1.495, 1.396)
+scale = Vector2(0.391, 0.366)
 texture = ExtResource("9_0tm2v")
 script = ExtResource("6_2wqmi")
 

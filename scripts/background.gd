@@ -2,6 +2,8 @@ extends Sprite2D
 
 var changing_background = false
 
+const BG_SCALE = 0.3725
+
 func _process(delta):
 	position = get_viewport().get_camera_2d().get_screen_center_position()
 	$Background2.global_position = get_viewport().get_camera_2d().get_screen_center_position()
@@ -12,8 +14,8 @@ func _process(delta):
 		if self_modulate.a <= 0:
 			texture = $Background2.texture
 			
-			scale.x = 0.5 / (texture.get_size().x / 1280)
-			scale.y = 0.5 / (texture.get_size().y / 720)
+			scale.x = BG_SCALE / (texture.get_size().x / 1280)
+			scale.y = BG_SCALE / (texture.get_size().y / 720)
 			
 			self_modulate.a = 1
 			changing_background = false
@@ -24,6 +26,6 @@ func change_background(texture_to : CompressedTexture2D):
 	
 	$Background2.texture = texture_to
 	
-	$Background2.scale.x = 0.5 / (texture_to.get_size().x / 1280)
-	$Background2.scale.y = 0.5 / (texture_to.get_size().y / 720)
+	$Background2.scale.x = BG_SCALE / (texture_to.get_size().x / 1280)
+	$Background2.scale.y = BG_SCALE / (texture_to.get_size().y / 720)
 	
