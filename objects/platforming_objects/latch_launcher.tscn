@@ -36,6 +36,7 @@ detect_player_near = true
 player_near_range = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.2, 1.2)
 shape = SubResource("CircleShape2D_wa83w")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
