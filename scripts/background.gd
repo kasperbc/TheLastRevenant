@@ -4,9 +4,13 @@ var changing_background = false
 
 const BG_SCALE = 0.3725
 
+func _ready():
+	$Background2.region_enabled = true
+	$Background2.region_rect.size = region_rect.size
+
 func _process(delta):
-	position = get_viewport().get_camera_2d().get_screen_center_position()
-	$Background2.global_position = get_viewport().get_camera_2d().get_screen_center_position()
+	global_position = get_parallax_position()
+	$Background2.global_position = get_parallax_position()
 	
 	if changing_background:
 		self_modulate.a -= delta
@@ -29,3 +33,16 @@ func change_background(texture_to : CompressedTexture2D):
 	$Background2.scale.x = BG_SCALE / (texture_to.get_size().x / 1280)
 	$Background2.scale.y = BG_SCALE / (texture_to.get_size().y / 720)
 	
+
+func get_parallax_position() -> Vector2:
+	return get_viewport().get_camera_2d().get_screen_center_position() / 1.5
+	#
+	#var bg_offset = base_pos - get_viewport().get_camera_2d().get_screen_center_position()
+	#var bg_steps = ceil(bg_offset.x / HORIZONTAL_STEP)
+	#
+	#print(bg_offset)
+	#
+	#var result = base_pos
+	#result.x -= HORIZONTAL_STEP * 2 * bg_steps
+#
+	#return result
