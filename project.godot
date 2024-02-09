@@ -14,6 +14,7 @@ config/name="The Last Revenant"
 config/version="2.0.0"
 run/main_scene="res://title_screen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/image="res://title_screen/team_funikulaari.png"
 config/icon="res://tlr-desktop-icon-helmet.png"
 boot_splash/minimum_display_time=2000
 

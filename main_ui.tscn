@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://5hm18mar4hmi" path="res://assets/sprites/ui/health-circle-sixths.png" id="2_grqex"]
 [ext_resource type="Texture2D" uid="uid://wd3gqvj8tiaa" path="res://assets/sprites/ui/bomb_bar_outline.png" id="3_0rfi0"]
 [ext_resource type="Texture2D" uid="uid://pucppjrdakd1" path="res://assets/sprites/ui/bomb_bar_under.png" id="3_btd6h"]
-[ext_resource type="Texture2D" uid="uid://crfhsp78y50e0" path="res://assets/sprites/particles/area_6_shard.png" id="3_t0qtl"]
+[ext_resource type="Texture2D" uid="uid://b1uu7c1vbsguo" path="res://assets/sprites/ui/health-expansion_thingy.png" id="3_cpujd"]
 [ext_resource type="Texture2D" uid="uid://68ucm7p53mpf" path="res://assets/sprites/ui/bomb_bar_fill.png" id="4_wmwh3"]
 [ext_resource type="Script" path="res://scripts/ui/bomb_bar.gd" id="5_730nh"]
 [ext_resource type="Texture2D" uid="uid://cnwm58do1to1b" path="res://assets/sprites/ui/speed_bar_under.png" id="7_ji1u2"]
@@ -153,11 +153,10 @@ frame = 5
 
 [node name="HealthExpansions" type="Sprite2D" parent="Control/HealthSprite"]
 texture_repeat = 2
-position = Vector2(76.5, -23)
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("3_t0qtl")
+position = Vector2(64, -23)
+texture = ExtResource("3_cpujd")
 region_enabled = true
-region_rect = Rect2(0, 0, 24, 6)
+region_rect = Rect2(0, 0, 17, 18)
 
 [node name="BombBar" type="TextureProgressBar" parent="Control/HealthSprite"]
 offset_left = 20.5
