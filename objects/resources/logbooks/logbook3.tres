@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LogbookRes" load_steps=2 format=3 uid="uid://ckorvg1twx3bq"]
+
+[ext_resource type="Script" path="res://scripts/resources/logbook_res.gd" id="1_7o5m8"]
+
+[resource]
+script = ExtResource("1_7o5m8")
+text = "That old hag Gizzal bumped into me in the corridor again. I could swear it was not by accident. She’s been on my back ever since I installed augments into that kid a bit early on schedule. She should thank me for doing it at all, otherwise she’d be forced to! Even though this early experiment was a failure, it was worth it for the data alone. We’re short-staffed as it is, and Gizzal still cares to whine about morality. Just think about that, an ex-con lecturing me, a 14-star General, on ethics! 
+
+While subject SK-3190 was temporarily incapacitated from the pain overload of the procedure, subject’s organics accepted implementation rather quickly after prolonged rest. This suggests Revenance inflicted at a more physically malleable age is yields more preferable results."
+header = "General Edvard Enkara | Log 4.6.3206 GTC"

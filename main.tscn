@@ -404,7 +404,7 @@ offset = Vector2(0, -0.045)
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -10
 texture_repeat = 2
-position = Vector2(1296, -152)
+position = Vector2(1390, -58)
 scale = Vector2(0.391, 0.366)
 texture = ExtResource("9_0tm2v")
 region_enabled = true

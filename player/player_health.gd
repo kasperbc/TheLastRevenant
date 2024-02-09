@@ -11,6 +11,7 @@ var current_health :
 		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite").frame = (current_health - 1) % 6
 		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").text = str(current_health)
 		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").label_settings.font_color = Color("49b2d3")
+		get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthExpansions").region_rect.size = Vector2(6 * floor((current_health - 1) / 6), 6)
 		if current_health == get_max_health():
 			get_tree().root.get_node("/root/Main/UI/Control/HealthSprite/HealthText").label_settings.font_color = Color("82d8e9")
 		if current_health == 0:

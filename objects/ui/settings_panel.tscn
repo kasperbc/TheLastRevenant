@@ -26,7 +26,7 @@ offset_right = 521.5
 offset_bottom = 271.5
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.109804, 0.0901961, 0.160784, 1)
+color = Color(0.117647, 0.152941, 0.203922, 1)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SettingBackground"]
 layout_mode = 1

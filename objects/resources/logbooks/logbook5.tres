@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LogbookRes" load_steps=2 format=3 uid="uid://c6fbb7p70ru0l"]
+
+[ext_resource type="Script" path="res://scripts/resources/logbook_res.gd" id="1_ery8f"]
+
+[resource]
+script = ExtResource("1_ery8f")
+text = "This isn’t quite how I imagined my transfer from Distribution ending up. My limbs are aching to the core. I can’t even write this, only the recording function on this VerboPrompter is allowing me to record these thoughts at all.
+
+Then again, I don’t exactly have a great track record when it comes to accepting transferrals to begin with. This was supposed to be a more comfortable way to serve time - for something I didn't do! - carefreely manicuring these big shots' malfunctioning railway system, but suddenly I was yanked away to go through these horrible \"enhancements\" for being \"young and pretty\".
+
+I think all that was just geemerdung to try and calm me down, even though that one lady did seem oddly nice. Maybe she's also having doubts about her relocation."
+header = "Sombre Kishar | Log 1.5.3206"

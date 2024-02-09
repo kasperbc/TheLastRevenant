@@ -1,8 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://2insib1dvbbr"]
+[gd_scene load_steps=4 format=3 uid="uid://2insib1dvbbr"]
 
 [ext_resource type="Texture2D" uid="uid://c36eikw8hqgdb" path="res://assets/sprites/pickups/pickup_logbook.png" id="1_1r5vh"]
 [ext_resource type="Script" path="res://objects/logbook/logbook.gd" id="1_hj4sn"]
 
-[node name="Logbook" type="Sprite2D"]
-texture = ExtResource("1_1r5vh")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhq74"]
+size = Vector2(16, 16)
+
+[node name="Logbook" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("1_hj4sn")
+hover = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_1r5vh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nhq74")
+
+[connection signal="body_entered" from="." to="." method="_on_player_contact"]
