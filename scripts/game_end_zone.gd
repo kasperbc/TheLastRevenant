@@ -12,4 +12,5 @@ func _on_body_entered(body):
 	
 	await get_tree().create_timer(2).timeout
 	
+	SaveMan.write_game_end_meta()
 	GameMan.load_end_screen()

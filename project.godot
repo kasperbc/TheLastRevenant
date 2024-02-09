@@ -20,6 +20,7 @@ config/icon="res://tlr-desktop-icon-helmet.png"
 
 GameMan="*res://gameman.gd"
 PoolMan="*res://scripts/pool/poolman.gd"
+SaveMan="*res://saveman.gd"
 
 [display]
 

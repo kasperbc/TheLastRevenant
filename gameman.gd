@@ -41,24 +41,24 @@ enum ExpansionType {
 	RANGE = 2
 }
 
-var upgrades_collected : Array[Upgrade]
-var upgrades_enabled : Array[bool]
+# var upgrades_collected : Array[Upgrade]
+# var upgrades_enabled : Array[bool]
 
-var latest_recharge_station : int = -1
-var health_expansions_collected : Array[int]
-var speed_expansions_collected : Array[int]
-var range_expansions_collected : Array[int]
+# var latest_recharge_station : int = -1
+# var health_expansions_collected : Array[int]
+# var speed_expansions_collected : Array[int]
+# var range_expansions_collected : Array[int]
 
-var map_positions_unlocked : Array[Vector2i]
-var map_sources_partial_unlocked : Array[int]
+# var map_positions_unlocked : Array[Vector2i]
+# var map_sources_partial_unlocked : Array[int]
 
-var bosses_defeated : Array[int]
+# var bosses_defeated : Array[int]
 
-var areas_discovered : Array[LevelAreas]
+# var areas_discovered : Array[LevelAreas]
 
 var game_paused : bool
 var map_open : bool
-@onready var game_start_timestamp : float = Time.get_unix_time_from_system()
+# @onready var game_start_timestamp : float = Time.get_unix_time_from_system()
 
 var config : ConfigFile
 var default_controls_config : Dictionary
@@ -78,6 +78,10 @@ func _ready():
 	control_json.parse(control_file)
 	default_controls_config = control_json.data
 
+func _process(delta):
+	if not game_paused and get_tree().current_scene && get_tree().current_scene.name == "Main":
+		increment_playtime_count(delta)
+
 func get_player() -> PlayerMovement:
 	if not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("Players")
@@ -95,7 +99,9 @@ func reload_scene():
 	PoolMan.reset_pools()
 
 func move_player_to_latest_recharge_station():
-	if latest_recharge_station == -1:
+	var station = SaveMan.get_value("current_station", -1)
+	
+	if station == -1:
 		return
 	
 	var target_station
@@ -104,15 +110,23 @@ func move_player_to_latest_recharge_station():
 	for s in stations:
 		if not s is RechargeStation:
 			continue
-		if s.station_id == latest_recharge_station:
+		if s.station_id == station:
 			target_station = s
 			break
 	
 	if target_station:
 		get_player().set_deferred("global_position", target_station.global_position)
-		print("Player has been moved to station %s" % latest_recharge_station)
+		print("Player has been moved to station %s" % station)
+
+func increment_playtime_count(value):
+	var playtime = SaveMan.get_value("playtime", 0)
+	playtime += value
+	SaveMan.save_value("playtime", playtime)
 
 func get_upgrade_status(value : Upgrades) -> UpgradeStatus:
+	var upgrades_collected = SaveMan.get_value("upgrades_collected", [])
+	var upgrades_enabled = SaveMan.get_value("upgrades_enabled", [])
+	
 	for i in upgrades_collected.size():
 		if upgrades_collected[i].id == value:
 			if upgrades_enabled[i]:
@@ -123,42 +137,65 @@ func get_upgrade_status(value : Upgrades) -> UpgradeStatus:
 	return UpgradeStatus.LOCKED
 
 func unlock_upgrade(value : Upgrade):
+	var upgrades_collected = SaveMan.get_value("upgrades_collected", [])
+	var upgrades_enabled = SaveMan.get_value("upgrades_enabled", [])
+	
 	if not upgrades_collected.has(value):
 		upgrades_collected.append(value)
 		upgrades_enabled.append(true)
+	
+	SaveMan.save_value("upgrades_collected", upgrades_collected)
+	SaveMan.save_value("upgrades_enabled", upgrades_enabled)
 
 func set_upgrade_enabled(upgrade : Upgrades, value):
+	var upgrades_collected = SaveMan.get_value("upgrades_collected", [])
+	var upgrades_enabled = SaveMan.get_value("upgrades_enabled", [])
+	
 	for i in upgrades_collected.size():
 		if upgrades_collected[i].id == upgrade:
 			upgrades_enabled[i] = value
+	
+	SaveMan.save_value("upgrades_enabled", upgrades_enabled)	
 
 func set_latest_recharge_point(id : int):
-	latest_recharge_station = id
+	SaveMan.save_value("current_station", id)
 	print("The latest recharge station has been set to %s!" % id)
 
 func has_collected_expansion(type : ExpansionType, id : int) -> bool:
 	if type == ExpansionType.HEALTH:
-		return health_expansions_collected.has(id)
+		var expansions = SaveMan.get_value("health_expansions", [-1])
+		return expansions.has(id)
 	elif type == ExpansionType.SPEED:
-		return speed_expansions_collected.has(id)
+		var expansions = SaveMan.get_value("speed_expansions", [-1])
+		return expansions.has(id)
 	else:
-		return range_expansions_collected.has(id)
+		var expansions = SaveMan.get_value("range_expansions", [-1])
+		return expansions.has(id)
 
 func get_expansion_count(type : ExpansionType) -> int:
 	if type == ExpansionType.HEALTH:
-		return health_expansions_collected.size()
+		var expansions = SaveMan.get_value("health_expansions", [-1])
+		return expansions.size() - 1
 	elif type == ExpansionType.SPEED:
-		return speed_expansions_collected.size()
+		var expansions = SaveMan.get_value("speed_expansions", [-1])
+		return expansions.size() - 1
 	else:
-		return range_expansions_collected.size()
+		var expansions = SaveMan.get_value("range_expansions", [-1])
+		return expansions.size() - 1
 
 func collect_expansion(type: ExpansionType, id : int):
 	if type == ExpansionType.HEALTH:
-		health_expansions_collected.append(id)
+		var expansions = SaveMan.get_value("health_expansions", [-1])
+		expansions.append(id)
+		SaveMan.save_value("health_expansions", expansions)
 	elif type == ExpansionType.SPEED:
-		speed_expansions_collected.append(id)
+		var expansions = SaveMan.get_value("speed_expansions", [-1])
+		expansions.append(id)
+		SaveMan.save_value("speed_expansions", expansions)
 	else:
-		range_expansions_collected.append(id)
+		var expansions = SaveMan.get_value("range_expansions", [-1])
+		expansions.append(id)
+		SaveMan.save_value("range_expansions", expansions)
 
 func pause_game():
 	if get_tree().paused:
@@ -174,21 +211,11 @@ func unpause_game():
 
 func load_title_screen():
 	get_tree().change_scene_to_file("res://title_screen.tscn")
-	latest_recharge_station = -1
+	get_tree().paused = false
 	game_paused = false
-	upgrades_collected.clear()
-	upgrades_enabled.clear()
-	health_expansions_collected.clear()
-	speed_expansions_collected.clear()
-	range_expansions_collected.clear()
-	map_positions_unlocked.clear()
-	map_sources_partial_unlocked.clear()
-	bosses_defeated.clear()
-	areas_discovered.clear()
 
 func load_main():
 	get_tree().change_scene_to_file("res://main.tscn")
-	game_start_timestamp = Time.get_unix_time_from_system()
 
 func load_end_screen():
 	get_tree().change_scene_to_file("res://end_screen.tscn")
@@ -335,8 +362,11 @@ func get_input_action_key_str(action : String) -> String:
 	return input_action.as_text()
 
 func discover_area(area : LevelArea):
+	var areas_discovered = SaveMan.get_value("areas_discovered", [-1])
+	
 	if areas_discovered.has(area.id):
 		return
 	areas_discovered.append(area.id)
+	SaveMan.save_value("areas_discovered", areas_discovered)
 	
 	get_tree().root.get_node("Main/UI/Control/NewAreaLabel").show_area_text(area)

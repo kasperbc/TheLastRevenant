@@ -19,7 +19,7 @@ func generate_tilemap():
 	var scr_ref : TileMap = get_map_scr_ref()
 	var scr : TileMap = get_map_scr()
 	
-	for cell in GameMan.map_positions_unlocked:
+	for cell in SaveMan.get_value("map_positions_unlocked", [Vector2i.ZERO]):
 		var sid = scr_ref.get_cell_source_id(0, cell)
 		var atl = scr_ref.get_cell_atlas_coords(0, cell)
 		scr.set_cell(0, cell, sid, atl, 0)
@@ -47,14 +47,22 @@ func _process(_delta):
 		self_modulate.a = 0.8
 
 func try_unlock_map_pos(pos : Vector2i):
-	if GameMan.map_positions_unlocked.has(pos):
+	var map_positions = SaveMan.get_value("map_positions_unlocked", [Vector2i.ZERO])
+	
+	if map_positions.has(pos):
 		return
 	
-	GameMan.map_positions_unlocked.append(pos)
+	map_positions.append(pos)
 	reveal_tile(pos)
+	
+	SaveMan.save_value("map_positions_unlocked", map_positions)
 
 func update_partially_unlocked_tiles():
-	for s_id in GameMan.map_sources_partial_unlocked:
+	var map_sources_partial_unlocked = SaveMan.get_value("map_sources_partial_unlocked", [-1])
+	for s_id in map_sources_partial_unlocked:
+		if s_id == -1:
+			continue
+		
 		for cell in get_map_scr_ref().get_used_cells(0):
 			if not get_map_scr_ref().get_cell_source_id(0, cell) == s_id:
 				continue

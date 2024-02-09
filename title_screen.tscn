@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cysvrvvovblxi"]
+[gd_scene load_steps=17 format=3 uid="uid://cysvrvvovblxi"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_5pnsf"]
 [ext_resource type="Texture2D" uid="uid://535gam887hrk" path="res://assets/sprites/ui/title-screen.png" id="1_mtryt"]
@@ -6,14 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="2_kxrn2"]
 [ext_resource type="Script" path="res://scripts/title_info.gd" id="4_4in77"]
 [ext_resource type="AudioStream" uid="uid://46rpurl7whcu" path="res://assets/music/foxbeat.mp3" id="4_6ob6f"]
+[ext_resource type="Script" path="res://scripts/ui/continue_button.gd" id="5_1px6o"]
 [ext_resource type="Script" path="res://scripts/secret_song.gd" id="5_2oaut"]
 [ext_resource type="Script" path="res://scripts/ui/version_label.gd" id="5_7kpd4"]
 [ext_resource type="PackedScene" uid="uid://2r2ppdsrhmie" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
 [ext_resource type="AudioStream" uid="uid://c2nwwhm2gjvty" path="res://assets/music/gibbrishtext.mp3" id="7_qcstw"]
+[ext_resource type="Script" path="res://scripts/ui/save_manage.gd" id="9_iobso"]
+[ext_resource type="Script" path="res://scripts/ui/save_create_time_label.gd" id="10_w55hk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_50n41"]
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xl4m6"]
+bg_color = Color(0.117647, 0.152941, 0.203922, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u6bq7"]
+font_color = Color(1, 1, 1, 0.392157)
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -43,22 +52,43 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -205.0
-offset_right = 100.0
-offset_bottom = -25.0
+offset_left = -175.0
+offset_top = -200.0
+offset_right = 175.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 15
 
-[node name="PlayButton" type="Button" parent="Background/Buttons"]
-custom_minimum_size = Vector2(0, 45)
+[node name="NewGameButton" type="Button" parent="Background/Buttons"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Play"
+size_flags_horizontal = 3
+keep_pressed_outside = true
+text = "New Game"
 
-[node name="SettingsButton" type="Button" parent="Background/Buttons"]
-custom_minimum_size = Vector2(0, 45)
+[node name="ContinueButton" type="Button" parent="Background/Buttons"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+size_flags_horizontal = 3
+text = "Continue"
+script = ExtResource("5_1px6o")
+
+[node name="SettingButtons" type="HBoxContainer" parent="Background/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="SaveManageButton" type="Button" parent="Background/Buttons/SettingButtons"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Manage Save"
+
+[node name="SettingsButton" type="Button" parent="Background/Buttons/SettingButtons"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Settings"
 
 [node name="InfoButton" type="Button" parent="Background"]
@@ -112,6 +142,91 @@ script = ExtResource("5_7kpd4")
 visible = false
 layout_mode = 1
 
+[node name="SaveManagePanel" type="Panel" parent="Background"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_iobso")
+
+[node name="Panel" type="Panel" parent="Background/SaveManagePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xl4m6")
+
+[node name="CloseButton" type="Button" parent="Background/SaveManagePanel/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Close"
+
+[node name="SaveCreationTime" type="Label" parent="Background/SaveManagePanel/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = 55.0
+offset_right = 113.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Save: 15-11-2004 10:00:00"
+label_settings = SubResource("LabelSettings_u6bq7")
+horizontal_alignment = 1
+script = ExtResource("10_w55hk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/SaveManagePanel/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 175.0
+grow_horizontal = 2
+theme_override_constants/separation = 25
+
+[node name="ImportSave" type="Button" parent="Background/SaveManagePanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Import save"
+
+[node name="ExportSave" type="Button" parent="Background/SaveManagePanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Export save"
+
+[node name="DeleteSave" type="Button" parent="Background/SaveManagePanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Delete save"
+
 [node name="SecretSong" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_6ob6f")
 volume_db = -20.0
@@ -123,7 +238,10 @@ stream = ExtResource("7_qcstw")
 volume_db = -20.0
 bus = &"Music"
 
-[connection signal="pressed" from="Background/Buttons/PlayButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Background/Buttons/SettingsButton" to="Background/SettingsPanel" method="show_settings"]
+[connection signal="pressed" from="Background/Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Background/Buttons/ContinueButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Background/Buttons/SettingButtons/SaveManageButton" to="Background/SaveManagePanel" method="_on_save_manage_button_pressed"]
+[connection signal="pressed" from="Background/Buttons/SettingButtons/SettingsButton" to="Background/SettingsPanel" method="show_settings"]
 [connection signal="button_down" from="Background/InfoButton" to="Background/Credits" method="_on_info_button_button_down"]
 [connection signal="button_up" from="Background/InfoButton" to="Background/Credits" method="_on_info_button_button_up"]
+[connection signal="pressed" from="Background/SaveManagePanel/Panel/CloseButton" to="Background/SaveManagePanel" method="_on_close_button_pressed"]

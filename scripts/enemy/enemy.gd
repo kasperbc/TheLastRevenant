@@ -38,7 +38,8 @@ var stunned
 signal died
 
 func _ready():
-	if boss and GameMan.bosses_defeated.has(boss_id):
+	var bosses_defeated = SaveMan.get_value("bosses_defeated", [-1])
+	if boss and bosses_defeated.has(boss_id):
 		queue_free()
 
 # hookable object functions
@@ -154,7 +155,9 @@ func die():
 			if not post_boss_music == "":
 				GameMan.get_audioman().fade_to_music(post_boss_music, 2, post_boss_music_volume)
 		
-		GameMan.bosses_defeated.append(boss_id)
+		var bosses_defeated = SaveMan.get_value("bosses_defeated", [-1])
+		bosses_defeated.append(boss_id)
+		SaveMan.save_value("bosses_defeated", bosses_defeated)
 	
 	if hook_attached:
 		GameMan.get_player().hook_released_early.emit()

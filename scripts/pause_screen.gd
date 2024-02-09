@@ -11,6 +11,7 @@ func _process(delta):
 	visible = GameMan.game_paused and (not GameMan.map_open)
 
 func _on_title_button_pressed():
+	SaveMan.write_save()
 	GameMan.load_title_screen()
 
 func _on_restart_button_pressed():
