@@ -2,6 +2,8 @@ extends Node
 class_name SaveManager
 
 const SAVE_FILE_PATH = "user://save.thelastrevenant"
+const TMP_SAVE_FILE_PATH = "user://tmp_save.thelastrevenant"
+
 var save : ConfigFile
 
 func _ready():
@@ -59,6 +61,7 @@ func reset_save():
 func remove_save():
 	DirAccess.remove_absolute(SAVE_FILE_PATH)
 	create_save_file()
+	reload_save()
 
 func write_game_end_meta():
 	var _save = save
@@ -71,3 +74,24 @@ func write_game_end_meta():
 	
 	_save.save(SAVE_FILE_PATH)
 	reload_save()
+
+func import_save(path):
+	var import_file = FileAccess.open(path, FileAccess.READ)
+	var temp_save = FileAccess.open(TMP_SAVE_FILE_PATH, FileAccess.WRITE)
+	temp_save.store_string(import_file.get_as_text())
+	
+	var save_validity_checker = ConfigFile.new()
+	var err = save_validity_checker.load(TMP_SAVE_FILE_PATH)
+	
+	if err == OK:
+		var _save = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
+		_save.store_string(import_file.get_as_text())
+	
+	DirAccess.remove_absolute(TMP_SAVE_FILE_PATH)
+	
+	reload_save()
+
+func export_save(path):
+	var export_file = FileAccess.open(path, FileAccess.WRITE)
+	var save_file = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
+	export_file.store_string(save_file.get_as_text())

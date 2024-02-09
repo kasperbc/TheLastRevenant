@@ -17,10 +17,14 @@ signal collided(collision : KinematicCollision2D)
 signal max_distance_reached
 
 func _ready():
-	current_state = HookMoveState.RETURNING
+	current_state = HookMoveState.STILL
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(4, false)
 	set_collision_mask_value(7, false)
+	
+	await get_tree().process_frame
+	
+	global_position = GameMan.get_player().global_position
 
 func _on_spawned():
 	set_dir()
