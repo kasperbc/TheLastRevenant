@@ -18,6 +18,9 @@ func _ready():
 	GameMan.update_input_map()
 
 func create_settings():
+	var video = SettingCategory.new("Video")
+	video.settings.append(ToggleSetting.new("Fullscreen", "fullscreen", false))
+	
 	var audio = SettingCategory.new("Audio")
 	audio.settings.append(SliderSetting.new("Music Volume", "music_volume", 1.0, 0.0, 1.0, 0.01, true))
 	audio.settings.append(SliderSetting.new("Sound Volume", "sound_volume", 1.0, 0.0, 1.0, 0.01, true))
@@ -34,6 +37,7 @@ func create_settings():
 	controls.settings.append(KeybindSetting.new("Use Hookshot", "fire_hook", "fire_hook"))
 	controls.settings.append(KeybindSetting.new("Hookshot Counter/Artillery Toggle", "hook_attack", "hook_attack"))
 	
+	setting_categories.append(video)
 	setting_categories.append(audio)
 	setting_categories.append(controls)
 

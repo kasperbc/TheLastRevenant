@@ -77,6 +77,8 @@ func _ready():
 	var control_json = JSON.new()
 	control_json.parse(control_file)
 	default_controls_config = control_json.data
+	
+	set_fullscreen()
 
 func _process(delta):
 	if not game_paused and get_tree().current_scene && get_tree().current_scene.name == "Main":
@@ -230,6 +232,11 @@ func get_user_setting(key):
 	
 	return config.get_value(SettingsMan.SETTING_USER_SECTION, key)
 
+func collect_logbook(logbook_res : LogbookRes):
+	var logbooks = SaveMan.get_value("logbooks_collected", [])
+	logbooks.append(logbook_res)
+	SaveMan.save_value("logbooks_collected", logbooks)
+
 func get_keybind_setting(key):
 	if config == null:
 		config = ConfigFile.new()
@@ -249,6 +256,15 @@ func on_setting_change(refresh_ui = false):
 	var settings_man = get_tree().get_first_node_in_group("SettingsMan")
 	if settings_man:
 		settings_man.refresh_settings_ui()
+	
+	set_fullscreen()
+
+
+func set_fullscreen():
+	if get_user_setting("fullscreen"):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func update_input_map():
 	var controls_data = config.get_section_keys(SettingsMan.SETTING_KEYBIND_SECTION)

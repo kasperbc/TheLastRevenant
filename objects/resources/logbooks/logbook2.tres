@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LogbookRes" load_steps=2 format=3 uid="uid://tfy7maw0utjf"]
+
+[ext_resource type="Script" path="res://scripts/resources/logbook_res.gd" id="1_ph1kw"]
+
+[resource]
+script = ExtResource("1_ph1kw")
+text = "It has been about eight days since the Revenance. While my barricades are holding, both the makeshift ones protecting myself as well as the Conveyor door I shut behind that creature, I’m not quite sure how long the Medical Bay’s IVs can sustain me for, so I’m writing this just in case no one comes to save me.
+
+Oh, dear Nar, why did you have to take Menda’s offer? Who even knows if it was on purpose or not, and I’m not sure of the science behind it myself, but you should’ve known Revenance wouldn’t work on you. And for what? I never cared for Edvard, you had nothing to prove.
+
+While I will forever love my husband, whatever that thing in front of me is supposed to be isn’t him anymore. In a way, we both had already died when we first arrived here. Revenance was never what defined us as inhuman. SLEC was.
+
+In any case, I guess I should start mentally settling in a bit, assuming I ever get out of this hellhole. I just hope the work we’re doing here truly helps the people in those pods, they’ve gone through even more suffering than I have. Hopefully these upgrades that they’ve forced me to retrofit for humanoid use aren’t too painful to insert, but then again, I’m (thankfully) not in charge of biotech installations."
+header = "Katie Namazu | Log 19.2.3207 GTC"

@@ -62,6 +62,8 @@ var time_in_air = 0.0
 var holding_jump : bool
 var in_air_because_hook : bool
 
+var hook_offset
+
 var _hooked_obj
 var hooked_obj : 
 	get: 
@@ -75,7 +77,6 @@ func _ready():
 	GameMan.move_player_to_latest_recharge_station()
 	$Attack.visible = false
 	$AttackFlare.visible = false
-	$Hook.global_position = global_position
 
 func _physics_process(delta):
 	if current_state == MoveState.NORMAL:
@@ -238,7 +239,7 @@ func set_joy_dir():
 func _on_hook_fired():
 	hook_obj.visible = true
 	$Sprite2D/HookshotHand.visible = false
-	hook_obj.global_position = global_position
+	hook_obj.global_position = global_position + hook_offset
 	hook_obj.spawned.emit()
 	
 	GameMan.get_audioman().play_fx("hook_hit", -6, randf_range(0.95, 1.05))
@@ -479,8 +480,11 @@ func flip_sprite(inverse : bool):
 	$Sprite2D.flip_h = inverse
 	
 	var hookhand_pos = Vector2(4,5)
+	hook_offset = Vector2(8, 0)
+	
 	if inverse:
 		hookhand_pos.x *= -1
+		hook_offset = Vector2(-8, 0)
 	
 	$Sprite2D/HookshotHand.position = hookhand_pos
 

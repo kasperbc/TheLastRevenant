@@ -1,9 +1,10 @@
-[gd_scene load_steps=62 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=71 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://5hm18mar4hmi" path="res://assets/sprites/ui/health-circle-sixths.png" id="2_grqex"]
 [ext_resource type="Texture2D" uid="uid://wd3gqvj8tiaa" path="res://assets/sprites/ui/bomb_bar_outline.png" id="3_0rfi0"]
 [ext_resource type="Texture2D" uid="uid://pucppjrdakd1" path="res://assets/sprites/ui/bomb_bar_under.png" id="3_btd6h"]
+[ext_resource type="Texture2D" uid="uid://crfhsp78y50e0" path="res://assets/sprites/particles/area_6_shard.png" id="3_t0qtl"]
 [ext_resource type="Texture2D" uid="uid://68ucm7p53mpf" path="res://assets/sprites/ui/bomb_bar_fill.png" id="4_wmwh3"]
 [ext_resource type="Script" path="res://scripts/ui/bomb_bar.gd" id="5_730nh"]
 [ext_resource type="Texture2D" uid="uid://cnwm58do1to1b" path="res://assets/sprites/ui/speed_bar_under.png" id="7_ji1u2"]
@@ -50,6 +51,13 @@
 [ext_resource type="Resource" uid="uid://bw7tdrw0uft8f" path="res://objects/resources/levelareas/weapons.tres" id="39_55f24"]
 [ext_resource type="Resource" uid="uid://dwj1ytetmjvri" path="res://objects/resources/levelareas/reactor.tres" id="40_e1pit"]
 [ext_resource type="Resource" uid="uid://cvenkifdw8yrn" path="res://objects/resources/levelareas/asteroid_field.tres" id="41_qsnt2"]
+[ext_resource type="Script" path="res://scripts/ui/logbooktab.gd" id="43_8pmqp"]
+[ext_resource type="PackedScene" uid="uid://j7vq5nworq2e" path="res://objects/ui/logbook_ui.tscn" id="43_q2mda"]
+[ext_resource type="Resource" uid="uid://dg8wsnafej4je" path="res://objects/resources/logbooks/logbook1.tres" id="44_3sxd3"]
+[ext_resource type="Resource" uid="uid://tfy7maw0utjf" path="res://objects/resources/logbooks/logbook2.tres" id="45_wemiy"]
+[ext_resource type="Resource" uid="uid://ckorvg1twx3bq" path="res://objects/resources/logbooks/logbook3.tres" id="46_vxrn5"]
+[ext_resource type="Resource" uid="uid://bnjug6v4jycfe" path="res://objects/resources/logbooks/logbook4.tres" id="47_vxjug"]
+[ext_resource type="Resource" uid="uid://c6fbb7p70ru0l" path="res://objects/resources/logbooks/logbook5.tres" id="48_qpbjs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0f5e"]
 atlas = ExtResource("2_grqex")
@@ -122,6 +130,9 @@ outline_color = Color(0.176471, 0.356863, 0.521569, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_v3iby"]
 font_color = Color(1, 1, 1, 0.784314)
 
+[sub_resource type="LabelSettings" id="LabelSettings_bqj71"]
+font_size = 18
+
 [sub_resource type="LabelSettings" id="LabelSettings_sa0vk"]
 font = ExtResource("26_rnk7w")
 
@@ -139,6 +150,14 @@ position = Vector2(135, 94)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_myf26")
 frame = 5
+
+[node name="HealthExpansions" type="Sprite2D" parent="Control/HealthSprite"]
+texture_repeat = 2
+position = Vector2(76.5, -23)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_t0qtl")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 6)
 
 [node name="BombBar" type="TextureProgressBar" parent="Control/HealthSprite"]
 offset_left = 20.5
@@ -417,6 +436,81 @@ upgrade_res = ExtResource("17_00q1f")
 texture_enabled = ExtResource("24_c7tmw")
 texture_disabled = ExtResource("30_f2afl")
 
+[node name="Logbooks" type="Control" parent="Control/MapScreen/TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("43_8pmqp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MapScreen/TabContainer/Logbooks"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -304.0
+offset_right = 276.0
+offset_bottom = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="LogbookLog1" parent="Control/MapScreen/TabContainer/Logbooks/VBoxContainer" instance=ExtResource("43_q2mda")]
+layout_mode = 2
+logbook_res = ExtResource("44_3sxd3")
+
+[node name="LogbookLog2" parent="Control/MapScreen/TabContainer/Logbooks/VBoxContainer" instance=ExtResource("43_q2mda")]
+layout_mode = 2
+logbook_res = ExtResource("45_wemiy")
+
+[node name="LogbookLog3" parent="Control/MapScreen/TabContainer/Logbooks/VBoxContainer" instance=ExtResource("43_q2mda")]
+layout_mode = 2
+logbook_res = ExtResource("46_vxrn5")
+
+[node name="LogbookLog4" parent="Control/MapScreen/TabContainer/Logbooks/VBoxContainer" instance=ExtResource("43_q2mda")]
+layout_mode = 2
+logbook_res = ExtResource("47_vxjug")
+
+[node name="LogbookLog5" parent="Control/MapScreen/TabContainer/Logbooks/VBoxContainer" instance=ExtResource("43_q2mda")]
+layout_mode = 2
+logbook_res = ExtResource("48_qpbjs")
+
+[node name="LogbookPanel" type="Panel" parent="Control/MapScreen/TabContainer/Logbooks"]
+visible = false
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="LogbookHeader" type="Label" parent="Control/MapScreen/TabContainer/Logbooks/LogbookPanel"]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 32.0
+offset_right = 909.0
+offset_bottom = 62.0
+text = "Engineer Bridget Gizzal | Log 1.5.3206 GTC"
+label_settings = SubResource("LabelSettings_bqj71")
+horizontal_alignment = 1
+
+[node name="LogbookText" type="Label" parent="Control/MapScreen/TabContainer/Logbooks/LogbookPanel"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 96.0
+offset_right = 880.0
+offset_bottom = 656.0
+text = "It’s only my fourth day on this far-out base, and I’m already getting second thoughts from selecting ”Accept” on that relocation form. They said my sentence would be over sooner, yet something makes me feel like that might mean something else than I originally thought with my newfound context. Such a distant past shouldn’t even be used to brand my entire identity like livestock, I’m not the woman I used to be. I’ve changed.
+
+In any case, I guess I should start mentally settling in a bit, assuming I ever get out of this hellhole. I just hope the work we’re doing here truly helps the people in those pods, they’ve gone through even more suffering than I have. Hopefully these upgrades that they’ve forced me to retrofit for humanoid use aren’t too painful to insert, but then again, I’m (thankfully) not in charge of biotech installations."
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="Control/MapScreen/TabContainer/Logbooks/LogbookPanel"]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 666.0
+offset_right = 663.0
+offset_bottom = 694.0
+text = "Close"
+
 [node name="MapMask" type="ColorRect" parent="Control"]
 process_mode = 3
 modulate = Color(1, 1, 1, 0.862745)
@@ -452,6 +546,7 @@ script = ExtResource("21_tu8x2")
 
 [node name="PauseScreen" type="ColorRect" parent="Control"]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -528,38 +623,6 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("11_6yqxg")
 
-[node name="LogbookBG" type="ColorRect" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 612.0
-offset_top = 400.0
-offset_right = 1276.0
-offset_bottom = 712.0
-color = Color(0.0784314, 0.0196078, 0.0156863, 0.580392)
-
-[node name="LogbookText" type="Label" parent="Control/LogbookBG"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 16.0
-offset_right = -12.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 12
-text = "Logbook 1: Laboratory
-
-Engineer Bridget Gizzal | Log 1.5.3206 GTC
-
-It’s only my fourth day on this far-out base, and I’m already getting second thoughts from selecting ”Accept” on that relocation form. They said my sentence would be over sooner, yet something makes me feel like that might mean something else than I originally thought with my newfound context. Such a distant past shouldn’t even be used to brand my entire identity like livestock, I’m not the woman I used to be. I’ve changed.
-
-In any case, I guess I should start mentally settling in a bit, assuming I ever get out of this hellhole. I just hope the work we’re doing here truly helps the people in those pods, they’ve gone through even more suffering than I have. Hopefully these upgrades that they’ve forced me to retrofit for humanoid use aren’t too painful to insert, but then again, I’m (thankfully) not in charge of biotech installations.
-"
-horizontal_alignment = 2
-autowrap_mode = 2
-
 [node name="NewAreaLabel" type="Label" parent="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -587,6 +650,12 @@ offset_bottom = 25.0
 grow_vertical = 0
 text = "View info on your prompter (Press [Button] to open)"
 
+[connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog1" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
+[connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog2" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
+[connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog3" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
+[connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog4" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
+[connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog5" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
+[connection signal="pressed" from="Control/MapScreen/TabContainer/Logbooks/LogbookPanel/CloseButton" to="Control/MapScreen/TabContainer/Logbooks" method="_on_close_button_pressed"]
 [connection signal="pressed" from="Control/PauseScreen/VBoxContainer/ResumeButton" to="Control/PauseScreen" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Control/PauseScreen/VBoxContainer/SettingsButton" to="Control/PauseScreen/SettingsPanel" method="show_settings"]
 [connection signal="pressed" from="Control/PauseScreen/VBoxContainer/RestartButton" to="Control/PauseScreen" method="_on_restart_button_pressed"]
