@@ -13,4 +13,5 @@ func _process(delta):
 	try_set_visible()
 
 func try_set_visible():
-	visible = GameMan.map_positions_unlocked.has(pos)
+	var map_positions = SaveMan.get_value("map_positions_unlocked", [Vector2i.ZERO])
+	visible = map_positions.has(pos)

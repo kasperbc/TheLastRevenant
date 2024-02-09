@@ -1,9 +1,11 @@
 extends Label
 
 func _ready():
-	var game_time = Time.get_unix_time_from_system() - GameMan.game_start_timestamp
+	var game_time = SaveMan.get_value("playtime", 0)
 	
 	var time_dict = Time.get_datetime_dict_from_unix_time(game_time)
+	
+	print(time_dict)
 	
 	var second = str(time_dict.second) + "s"
 	if time_dict.second < 10:

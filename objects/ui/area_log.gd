@@ -12,7 +12,8 @@ func _ready():
 		show_log.connect(get_parent().get_parent().show_log)
 
 func _process(delta):
-	visible = GameMan.areas_discovered.has(area.id)
+	var areas_discovered = SaveMan.get_value("areas_discovered", [-1])
+	visible = areas_discovered.has(area.id)
 
 func _on_info_button_pressed():
 	show_log.emit(area.description)

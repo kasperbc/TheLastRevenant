@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():	
-	if not GameMan.latest_recharge_station == -1:
+	if not SaveMan.get_value("current_station", -1) == -1:
 		return
 	
 	GameMan.get_player().current_state = PlayerMovement.MoveState.DISABLED
