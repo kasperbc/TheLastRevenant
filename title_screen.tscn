@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://scripts/ui/title/title_scroll.gd" id="5_8m16c"]
 [ext_resource type="Texture2D" uid="uid://c8st1hp4ajgip" path="res://title_screen/vulpes_star.png" id="5_lcag0"]
 [ext_resource type="Texture2D" uid="uid://cwrl0pvt1aur2" path="res://title_screen/small_title.png" id="5_vwhf8"]
-[ext_resource type="PackedScene" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
+[ext_resource type="PackedScene" uid="uid://2r2ppdsrhmie" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
 [ext_resource type="Script" path="res://scripts/ui/extras_button.gd" id="6_b0kv4"]
 [ext_resource type="Texture2D" uid="uid://cwyxfciwh1qbd" path="res://title_screen/lepus_waypoint.png" id="6_yq8jq"]
 [ext_resource type="Texture2D" uid="uid://bwnrbgm7bwmo7" path="res://title_screen/comm_satellite.png" id="7_0dxhi"]

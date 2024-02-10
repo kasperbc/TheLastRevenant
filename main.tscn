@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c65f2wpdei786"]
+[gd_scene load_steps=60 format=3 uid="uid://c65f2wpdei786"]
 
 [ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="1_37j5j"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="2_q7r5k"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/game_start.gd" id="10_5r6h5"]
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="11_8wm0p"]
 [ext_resource type="Texture2D" uid="uid://cvax2goia4dxm" path="res://assets/collision_decor/cryocapsule-opening-start.png" id="11_e2h05"]
+[ext_resource type="Texture2D" uid="uid://b1nxou4d7rtbu" path="res://assets/collision_decor/bg_decor_nuthin/chain_tileset_bg.png" id="15_xuatu"]
 
 [sub_resource type="Curve" id="Curve_45d5i"]
 _data = [Vector2(0.0439024, 0.076923), 0.0, 0.431874, 0, 1, Vector2(0.985366, 0.483516), 0.431874, 0.0, 1, 0]
@@ -464,6 +465,10 @@ sprite_frames = SubResource("SpriteFrames_umcte")
 autoplay = "default"
 
 [node name="AudioManager" parent="." instance=ExtResource("11_8wm0p")]
+
+[node name="ChainTilesetBg" type="Sprite2D" parent="."]
+position = Vector2(2576, -3524)
+texture = ExtResource("15_xuatu")
 
 [connection signal="hook_released" from="Player" to="Player/Hook" method="_on_hook_released"]
 [connection signal="hook_released_early" from="Player" to="Player/Hook" method="_on_max_distance_reached"]

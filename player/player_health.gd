@@ -76,14 +76,11 @@ func die():
 	GameMan.get_player().get_node("DeathParticle3").visible = true
 	GameMan.get_audioman().play_fx("small_explosion", 0.0, randf_range(0.95, 1.05))
 	
-	await get_tree().create_timer(0.5).timeout
-	get_tree().root.get_node("/root/Main/UI/Control/FadeScreen").fade_to_black(1)
-	await get_tree().create_timer(1).timeout
+	get_tree().root.get_node("Main/UI/Control/GameOverScreen").play_anim()
 	
-	if get_tree():
-		get_tree().paused = false
-	
-	GameMan.reload_scene()
+	#await get_tree().create_timer(0.5).timeout
+	#get_tree().root.get_node("/root/Main/UI/Control/FadeScreen").fade_to_black(1)
+	#await get_tree().create_timer(1).timeout
 
 func heal():
 	current_health += 1

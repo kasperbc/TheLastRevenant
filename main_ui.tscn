@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=67 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://5hm18mar4hmi" path="res://assets/sprites/ui/health-circle-sixths.png" id="2_grqex"]
@@ -48,6 +48,12 @@
 [ext_resource type="Resource" uid="uid://ckorvg1twx3bq" path="res://objects/resources/logbooks/logbook3.tres" id="46_vxrn5"]
 [ext_resource type="Resource" uid="uid://bnjug6v4jycfe" path="res://objects/resources/logbooks/logbook4.tres" id="47_vxjug"]
 [ext_resource type="Resource" uid="uid://c6fbb7p70ru0l" path="res://objects/resources/logbooks/logbook5.tres" id="48_qpbjs"]
+[ext_resource type="Script" path="res://scripts/ui/game_over_screen.gd" id="49_c1128"]
+[ext_resource type="Texture2D" uid="uid://dykovs8abc52p" path="res://assets/sprites/player/intros/intro_bloodsplatter_back.png" id="49_s0hll"]
+[ext_resource type="Texture2D" uid="uid://b0w7lh0dsx8fa" path="res://assets/sprites/player/intros/intro_bloodsplatter_front.png" id="50_wfukd"]
+[ext_resource type="Texture2D" uid="uid://cmhtnvjt6nent" path="res://assets/sprites/player/intros/gameover_text.png" id="51_gxpde"]
+[ext_resource type="Texture2D" uid="uid://drkt4jy0dl1vi" path="res://assets/sprites/player/intros/gameover_totalsystemfailure.png" id="53_51s8f"]
+[ext_resource type="Script" path="res://scripts/ui/blink.gd" id="54_twr6c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0f5e"]
 atlas = ExtResource("2_grqex")
@@ -635,6 +641,111 @@ offset_bottom = 25.0
 grow_vertical = 0
 text = "View info on your prompter (Press [Button] to open)"
 
+[node name="GameOverScreen" type="Control" parent="Control"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("49_c1128")
+
+[node name="BloodBack" type="TextureRect" parent="Control/GameOverScreen"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("49_s0hll")
+
+[node name="BloodFront" type="TextureRect" parent="Control/GameOverScreen"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(640, 360)
+texture = ExtResource("50_wfukd")
+
+[node name="UI" type="Control" parent="Control/GameOverScreen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverText" type="TextureRect" parent="Control/GameOverScreen/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -72.0
+offset_right = 45.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(42, 7)
+texture = ExtResource("51_gxpde")
+
+[node name="TotalSystemFailure" type="TextureRect" parent="Control/GameOverScreen/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -168.0
+offset_right = -167.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6, 6)
+texture = ExtResource("53_51s8f")
+script = ExtResource("54_twr6c")
+
+[node name="Buttons" type="VBoxContainer" parent="Control/GameOverScreen/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = 104.0
+offset_right = 62.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+theme_override_constants/separation = 20
+
+[node name="ContinueButton" type="Button" parent="Control/GameOverScreen/UI/Buttons"]
+layout_mode = 2
+text = "Continue"
+
+[node name="ReturnToTitle" type="Button" parent="Control/GameOverScreen/UI/Buttons"]
+layout_mode = 2
+text = "Return to title"
+
 [connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog1" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
 [connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog2" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
 [connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog3" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
@@ -645,3 +756,5 @@ text = "View info on your prompter (Press [Button] to open)"
 [connection signal="pressed" from="Control/PauseScreen/VBoxContainer/SettingsButton" to="Control/PauseScreen/SettingsPanel" method="show_settings"]
 [connection signal="pressed" from="Control/PauseScreen/VBoxContainer/RestartButton" to="Control/PauseScreen" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Control/PauseScreen/VBoxContainer/TitleButton" to="Control/PauseScreen" method="_on_title_button_pressed"]
+[connection signal="pressed" from="Control/GameOverScreen/UI/Buttons/ContinueButton" to="Control/GameOverScreen" method="on_continue"]
+[connection signal="pressed" from="Control/GameOverScreen/UI/Buttons/ReturnToTitle" to="Control/GameOverScreen" method="on_title"]

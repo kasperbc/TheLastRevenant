@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://os618a3iy7sx"
-path="res://.godot/imported/ammo_crate.png-c4d60e50f509d5088630e7c220a3fbce.ctex"
+uid="uid://b0w7lh0dsx8fa"
+path="res://.godot/imported/intro_bloodsplatter_front.png-1a4de176334127c9a16b2be21da55073.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/collision_decor/bg_decor_special/ammo_crate.png"
-dest_files=["res://.godot/imported/ammo_crate.png-c4d60e50f509d5088630e7c220a3fbce.ctex"]
+source_file="res://assets/sprites/player/intros/intro_bloodsplatter_front.png"
+dest_files=["res://.godot/imported/intro_bloodsplatter_front.png-1a4de176334127c9a16b2be21da55073.ctex"]
 
 [params]
 
