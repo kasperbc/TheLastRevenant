@@ -10,7 +10,6 @@ size = Vector2(16, 16)
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_hj4sn")
-hover = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_1r5vh")
