@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdhmjqu0wqjc6"]
+
+[ext_resource type="Texture2D" uid="uid://r6ter43hasmm" path="res://assets/sprites/particles/easy_drone_shard.png" id="1_xq14b"]
+[ext_resource type="Script" path="res://objects/particles/queue_free_holder.gd" id="2_73t36"]
+
+[node name="EasyDroneExplosion" type="CPUParticles2D"]
+amount = 10
+lifetime = 2.0
+explosiveness = 1.0
+texture = ExtResource("1_xq14b")
+emission_shape = 3
+emission_rect_extents = Vector2(5, 5)
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 100.0
+initial_velocity_max = 500.0
+angular_velocity_min = -140.0
+angular_velocity_max = 300.0
+script = ExtResource("2_73t36")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.9
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="destroy"]

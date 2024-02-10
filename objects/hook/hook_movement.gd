@@ -46,6 +46,9 @@ func set_dir():
 func _on_collided(collision):
 	current_state = HookMoveState.STILL
 	
+	$HitParticle.restart()
+	$HitParticle.emitting = true
+	
 	GameMan.get_audioman().play_fx("hookfire", -9, randf_range(0.95, 1.05))
 	
 	var dir = global_position.direction_to(collision.get_position())
