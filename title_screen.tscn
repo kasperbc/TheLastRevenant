@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cysvrvvovblxi"]
+[gd_scene load_steps=69 format=3 uid="uid://cysvrvvovblxi"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_5pnsf"]
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_n7yo8"]
@@ -26,21 +26,37 @@
 [ext_resource type="Script" path="res://scripts/ui/save_create_time_label.gd" id="10_w55hk"]
 [ext_resource type="Script" path="res://scripts/ui/best_time_label.gd" id="11_ct5y2"]
 [ext_resource type="PackedScene" uid="uid://cj2clygujry4i" path="res://objects/ui/extras/music_select.tscn" id="23_se761"]
+[ext_resource type="Texture2D" uid="uid://bmqkwxdymmyiy" path="res://title_screen/music_circle_01.png" id="24_8xfrm"]
 [ext_resource type="AudioStream" uid="uid://tsmj2ows022u" path="res://assets/music/spawn_room.mp3" id="25_dpm4y"]
+[ext_resource type="Texture2D" uid="uid://bh3bxepgmsxra" path="res://title_screen/music_circle_02.png" id="26_o5p6x"]
 [ext_resource type="AudioStream" uid="uid://cjtdg53axilac" path="res://assets/music/revenant_lab.mp3" id="26_tgult"]
 [ext_resource type="AudioStream" uid="uid://ycqqqgrexcdc" path="res://assets/music/boss_prelude.mp3" id="27_koe8s"]
 [ext_resource type="AudioStream" uid="uid://dlf8euleocdwk" path="res://assets/music/beatfactory.mp3" id="28_klnup"]
+[ext_resource type="Texture2D" uid="uid://b8ktcggl85ee0" path="res://title_screen/music_circle_03.png" id="28_vabkt"]
 [ext_resource type="AudioStream" uid="uid://bkatxt0t1lcx8" path="res://assets/music/hangar.mp3" id="29_omry5"]
+[ext_resource type="Texture2D" uid="uid://ctem25wdnma3r" path="res://title_screen/music_circle_04.png" id="30_f4wn3"]
 [ext_resource type="AudioStream" uid="uid://dr23yhcesj6hx" path="res://assets/music/living_quarters.mp3" id="30_tkdda"]
 [ext_resource type="AudioStream" uid="uid://ricdkpkohax4" path="res://assets/music/vents.mp3" id="31_d1a2i"]
+[ext_resource type="Texture2D" uid="uid://duyfh67iuvud3" path="res://title_screen/music_circle_05.png" id="32_648jy"]
 [ext_resource type="AudioStream" uid="uid://b8eafutk0jisu" path="res://assets/music/obsv.mp3" id="32_jva41"]
 [ext_resource type="AudioStream" uid="uid://le6aimayib55" path="res://assets/music/bosss2.mp3" id="33_0px3m"]
 [ext_resource type="AudioStream" uid="uid://cg3v58sskj46j" path="res://assets/music/reactor.mp3" id="34_vejo6"]
+[ext_resource type="Texture2D" uid="uid://cxpgn0x31lv3u" path="res://title_screen/music_circle_06.png" id="34_wpbyw"]
 [ext_resource type="AudioStream" uid="uid://byvav4njfe0hu" path="res://assets/music/finalboss.mp3" id="35_vvcop"]
+[ext_resource type="Texture2D" uid="uid://xbkcus1x60bn" path="res://title_screen/music_circle_07.png" id="36_pscvn"]
 [ext_resource type="AudioStream" uid="uid://dgkjqq6en8pf2" path="res://assets/music/mendalla_aftermath.mp3" id="36_y325r"]
-[ext_resource type="AudioStream" uid="uid://bbwqap2kyheek" path="res://assets/music/asteroid_field_part1.mp3" id="37_8nfen"]
-[ext_resource type="AudioStream" uid="uid://6vscd3ahg8do" path="res://assets/music/asteroid_field_part2.mp3" id="38_vh724"]
+[ext_resource type="AudioStream" uid="uid://cccd7tex65pth" path="res://assets/music/asteroid_field_finalmb.mp3" id="37_lx2ad"]
+[ext_resource type="Texture2D" uid="uid://cd2m62sckccv3" path="res://title_screen/music_circle_08.png" id="38_s651r"]
 [ext_resource type="AudioStream" uid="uid://bfhqq744dnjx7" path="res://assets/music/the-last-revenant-title-theme-demo.mp3" id="39_pd8po"]
+[ext_resource type="Script" path="res://objects/ui/extras/extras_music_player.gd" id="40_d8ajl"]
+[ext_resource type="Texture2D" uid="uid://54200eqq4333" path="res://title_screen/music_circle_09.png" id="40_ddg1l"]
+[ext_resource type="Texture2D" uid="uid://dteea2gdybgxd" path="res://title_screen/music_circle.png" id="40_vgmsl"]
+[ext_resource type="Texture2D" uid="uid://bnsw3pkkv3eaj" path="res://title_screen/music_circle_10.png" id="42_lc8e8"]
+[ext_resource type="Texture2D" uid="uid://dy4t7dpu7mpb1" path="res://title_screen/music_circle_11.png" id="44_f6sn7"]
+[ext_resource type="Texture2D" uid="uid://be1xwunmtmshq" path="res://title_screen/music_circle_12.png" id="46_jfqrw"]
+[ext_resource type="Texture2D" uid="uid://b4bssayqinb6a" path="res://title_screen/music_circle_13.png" id="48_p5f6g"]
+[ext_resource type="Texture2D" uid="uid://dq6n3ypisdhf7" path="res://title_screen/music_circle_14.png" id="50_2giqa"]
+[ext_resource type="Texture2D" uid="uid://cxe113e5qw6ni" path="res://title_screen/music_circle_15.png" id="52_lp7fy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ngonl"]
 atlas = ExtResource("8_xj82v")
@@ -486,6 +502,7 @@ Made with Godot 4, originally for the
 Metroidvania Month 22 Game Jam."
 
 [node name="ExtrasPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -509,10 +526,8 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7fnti")
-current_tab = 1
 
 [node name="Home" type="Control" parent="ExtrasPanel/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="ExtrasPanel/TabContainer/Home"]
@@ -532,6 +547,7 @@ text = "Welcome to the extras menu!"
 label_settings = SubResource("LabelSettings_j44kk")
 
 [node name="Music" type="Control" parent="ExtrasPanel/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MusicSelect" type="Panel" parent="ExtrasPanel/TabContainer/Music"]
@@ -564,97 +580,184 @@ theme_override_constants/separation = 10
 layout_mode = 2
 track_name = "The Last Revenant"
 track_author = "RedDeadDumbass"
+texture = ExtResource("24_8xfrm")
 track = ExtResource("7_qcstw")
 
 [node name="Cyrostasis" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Cyrostasis"
 track_author = "Francca"
+texture = ExtResource("26_o5p6x")
 track = ExtResource("25_dpm4y")
 
 [node name="Laboratory" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
-track_name = "Cyrostasis"
+track_name = "Laboratory"
 track_author = "Francca"
+texture = ExtResource("28_vabkt")
 track = ExtResource("26_tgult")
 
 [node name="RevenantPrelude" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Revenant Prelude"
 track_author = "Francca"
+texture = ExtResource("30_f4wn3")
 track = ExtResource("27_koe8s")
 
 [node name="Enkara" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Enkara"
 track_author = "RedDeadDumbass"
+texture = ExtResource("32_648jy")
 track = ExtResource("28_klnup")
 
 [node name="HangarDistributor" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Hangar / Distributor"
 track_author = "RedDeadDumbass"
+texture = ExtResource("34_wpbyw")
 track = ExtResource("29_omry5")
 
 [node name="Habitation" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Habitation"
 track_author = "Francca"
+texture = ExtResource("36_pscvn")
 track = ExtResource("30_tkdda")
 
 [node name="VentsPollutant" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Vents / Pollutant"
 track_author = "RedDeadDumbass"
+texture = ExtResource("38_s651r")
 track = ExtResource("31_d1a2i")
 
 [node name="Observatory" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Observatory"
 track_author = "RedDeadDumbass"
+texture = ExtResource("40_ddg1l")
 track = ExtResource("32_jva41")
 
 [node name="Uru" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Uru"
 track_author = "RedDeadDumbass"
+texture = ExtResource("42_lc8e8")
 track = ExtResource("33_0px3m")
 
 [node name="ReactorWeaponry" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Reactor / Weaponry"
 track_author = "RedDeadDumbass"
+texture = ExtResource("44_f6sn7")
 track = ExtResource("34_vejo6")
 
 [node name="Mendalla" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Mendalla"
 track_author = "RedDeadDumbass"
+texture = ExtResource("46_jfqrw")
 track = ExtResource("35_vvcop")
 
 [node name="Aftermath" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Aftermath"
 track_author = "Francca"
+texture = ExtResource("48_p5f6g")
 track = ExtResource("36_y325r")
 
-[node name="LunarBreeze1" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
+[node name="LunarBreeze" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
-track_name = "Lunar Breeze Part 1"
+track_name = "Lunar Breeze"
 track_author = "Francca"
-track = ExtResource("37_8nfen")
-
-[node name="LunarBreeze2" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
-layout_mode = 2
-track_name = "Lunar Breeze Part 2"
-track_author = "Francca"
-track = ExtResource("38_vh724")
+texture = ExtResource("50_2giqa")
+track = ExtResource("37_lx2ad")
 
 [node name="TheLastRevenantDemo" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "The Last Revenant (Demo)"
 track_author = "Francca"
+texture = ExtResource("52_lp7fy")
 track = ExtResource("39_pd8po")
+
+[node name="CurrentMusic" type="Control" parent="ExtrasPanel/TabContainer/Music"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 517.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("40_d8ajl")
+default_texture = ExtResource("40_vgmsl")
+
+[node name="MusicCircle" type="TextureRect" parent="ExtrasPanel/TabContainer/Music/CurrentMusic"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -116.0
+offset_right = 20.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("40_vgmsl")
+
+[node name="NowPlaying" type="Label" parent="ExtrasPanel/TabContainer/Music/CurrentMusic"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = 30.0
+offset_right = 140.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Now playing:"
+horizontal_alignment = 1
+
+[node name="TrackName" type="Label" parent="ExtrasPanel/TabContainer/Music/CurrentMusic"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = 62.0
+offset_right = 140.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Music Track Name"
+horizontal_alignment = 1
+
+[node name="Stop" type="Button" parent="ExtrasPanel/TabContainer/Music/CurrentMusic"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = 114.0
+offset_right = 24.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stop"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ExtrasPanel/TabContainer/Music/CurrentMusic"]
+volume_db = -12.0
 
 [node name="Extra Settings" type="Control" parent="ExtrasPanel/TabContainer"]
 visible = false
@@ -693,4 +796,5 @@ bus = &"Music"
 [connection signal="file_selected" from="SaveManagePanel/Panel/ImportDialog" to="SaveManagePanel" method="on_save_file_selected"]
 [connection signal="file_selected" from="SaveManagePanel/Panel/ExportDialog" to="SaveManagePanel" method="on_save_file_exported"]
 [connection signal="confirmed" from="SaveManagePanel/Panel/DeleteConfirmationDialog" to="SaveManagePanel" method="_on_delete_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="ExtrasPanel/TabContainer/Music/CurrentMusic/Stop" to="ExtrasPanel/TabContainer/Music/CurrentMusic" method="on_stop"]
 [connection signal="pressed" from="ExtrasPanel/CloseButton" to="." method="_on_extras_close_button_pressed"]

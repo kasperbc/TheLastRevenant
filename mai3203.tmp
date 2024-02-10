@@ -452,7 +452,6 @@ script = ExtResource("6_2wqmi")
 [node name="Background2" type="Sprite2D" parent="Background"]
 top_level = true
 z_index = -15
-texture_repeat = 2
 texture = ExtResource("5_g3icy")
 region_rect = Rect2(0, 0, 36000, 25920)
 
