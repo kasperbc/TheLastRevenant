@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://bngsf10futafm"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://bngsf10futafm"]
 
 [ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_kqllc"]
 [ext_resource type="Texture2D" uid="uid://bho4e2nb1ra24" path="res://assets/sprites/pickups/pickup_hookshot.png" id="2_3cp6e"]
+[ext_resource type="Texture2D" uid="uid://codp0ch7sq50u" path="res://objects/map/inventory_tab/hookshot_wireframe.png" id="3_ulomf"]
 
 [resource]
 script = ExtResource("1_kqllc")
@@ -9,3 +10,4 @@ id = 1
 name = "Hookshot"
 description = "A powerful mechanised claw that extends in the direction of your cursor and interacts with objects using [Left Click]."
 texture = ExtResource("2_3cp6e")
+texture_wireframe = ExtResource("3_ulomf")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=61 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://5hm18mar4hmi" path="res://assets/sprites/ui/health-circle-sixths.png" id="2_grqex"]
@@ -19,28 +19,17 @@
 [ext_resource type="Script" path="res://scripts/map/mapman.gd" id="12_y05dh"]
 [ext_resource type="Resource" uid="uid://bngsf10futafm" path="res://objects/resources/upgrades/hookshot.tres" id="13_bept6"]
 [ext_resource type="Resource" uid="uid://bmpm7wkxtd2jk" path="res://objects/resources/upgrades/visualizer.tres" id="14_nmkxt"]
-[ext_resource type="Texture2D" uid="uid://bho4e2nb1ra24" path="res://assets/sprites/pickups/pickup_hookshot.png" id="15_725eu"]
 [ext_resource type="Resource" uid="uid://s3hn1pcur1f" path="res://objects/resources/upgrades/velocity_module.tres" id="15_a8ba0"]
 [ext_resource type="Resource" uid="uid://d1ivt5xs2pe1w" path="res://objects/resources/upgrades/galvanic_module.tres" id="16_7nt7v"]
-[ext_resource type="Texture2D" uid="uid://codp0ch7sq50u" path="res://objects/map/inventory_tab/hookshot_wireframe.png" id="16_ydtpe"]
 [ext_resource type="Resource" uid="uid://ddp665oscmntu" path="res://objects/resources/upgrades/thermal_module.tres" id="17_00q1f"]
-[ext_resource type="Texture2D" uid="uid://dprp14vr6btuf" path="res://assets/sprites/pickups/pickup_visualizer.png" id="17_q6asl"]
-[ext_resource type="Texture2D" uid="uid://63tj6ltc46bn" path="res://assets/sprites/pickups/pickup_velocity_module.png" id="19_a2eq1"]
-[ext_resource type="Texture2D" uid="uid://4rsys1j6da05" path="res://objects/map/inventory_tab/visualizer_wireframe.png" id="19_xr1jb"]
 [ext_resource type="PackedScene" uid="uid://2r2ppdsrhmie" path="res://objects/ui/settings_panel.tscn" id="20_jdpvm"]
-[ext_resource type="Texture2D" uid="uid://c5wpu1dc04g81" path="res://assets/sprites/pickups/pickup_galvanic_module.png" id="21_db21b"]
 [ext_resource type="Script" path="res://scripts/ui/item_complete_percentage.gd" id="21_tu8x2"]
-[ext_resource type="Texture2D" uid="uid://b7r51tdgo31hv" path="res://objects/map/inventory_tab/velocity_wireframe.png" id="22_xxlym"]
-[ext_resource type="Texture2D" uid="uid://dd0jgi1sqw4gf" path="res://assets/sprites/pickups/pickup_thermal_module.png" id="23_sp500"]
 [ext_resource type="Script" path="res://scripts/pause_screen.gd" id="24_8e0iu"]
-[ext_resource type="Texture2D" uid="uid://f56kv235i2mp" path="res://assets/sprites/pickups/pickup_autocounter_module.png" id="24_c7tmw"]
-[ext_resource type="Texture2D" uid="uid://dmliox3e4q7n2" path="res://objects/map/inventory_tab/galvanic_wireframe.png" id="25_l0jyb"]
 [ext_resource type="Script" path="res://scripts/ui/new_area_label.gd" id="26_60crq"]
 [ext_resource type="FontFile" uid="uid://k2d21ektbug7" path="res://assets/fonts/PixeloidSans-Bold.ttf" id="26_rnk7w"]
-[ext_resource type="Texture2D" uid="uid://dvxus2dxltrvb" path="res://objects/map/inventory_tab/thermal_wireframe.png" id="28_m3s2h"]
-[ext_resource type="Texture2D" uid="uid://n3q1jye0k13q" path="res://objects/map/inventory_tab/autocounter_wireframe.png" id="30_f2afl"]
 [ext_resource type="PackedScene" uid="uid://cyyj5i8jfghos" path="res://objects/ui/area_log.tscn" id="31_63bw7"]
 [ext_resource type="Script" path="res://scripts/ui/area_tab.gd" id="31_id5al"]
+[ext_resource type="Resource" uid="uid://cekrbo26y04m7" path="res://objects/resources/upgrades/autocounter.tres" id="32_3lb5p"]
 [ext_resource type="Resource" uid="uid://bxeogmpqol8ei" path="res://objects/resources/levelareas/revenant_lab.tres" id="32_ne2sg"]
 [ext_resource type="Resource" uid="uid://el1xfiuvjw2i" path="res://objects/resources/levelareas/hangar.tres" id="33_33orp"]
 [ext_resource type="Resource" uid="uid://cl46d64rj0msv" path="res://objects/resources/levelareas/living_quarters.tres" id="34_q0o00"]
@@ -53,6 +42,7 @@
 [ext_resource type="Resource" uid="uid://cvenkifdw8yrn" path="res://objects/resources/levelareas/asteroid_field.tres" id="41_qsnt2"]
 [ext_resource type="Script" path="res://scripts/ui/logbooktab.gd" id="43_8pmqp"]
 [ext_resource type="PackedScene" uid="uid://j7vq5nworq2e" path="res://objects/ui/logbook_ui.tscn" id="43_q2mda"]
+[ext_resource type="Resource" uid="uid://dy5qtwcshp0e7" path="res://objects/resources/upgrades/pantheonite_amplifier.tres" id="44_1pe8w"]
 [ext_resource type="Resource" uid="uid://dg8wsnafej4je" path="res://objects/resources/logbooks/logbook1.tres" id="44_3sxd3"]
 [ext_resource type="Resource" uid="uid://tfy7maw0utjf" path="res://objects/resources/logbooks/logbook2.tres" id="45_wemiy"]
 [ext_resource type="Resource" uid="uid://ckorvg1twx3bq" path="res://objects/resources/logbooks/logbook3.tres" id="46_vxrn5"]
@@ -227,11 +217,11 @@ text = "DEFAULT DESCRIPTION"
 horizontal_alignment = 1
 
 [node name="DebugText" type="Label" parent="Control"]
-visible = false
 layout_mode = 0
 offset_left = 1024.0
+offset_top = 192.0
 offset_right = 1280.0
-offset_bottom = 416.0
+offset_bottom = 626.0
 text = "Debug mode enabled
 
 1 = Unlock all upgrades
@@ -240,6 +230,8 @@ text = "Debug mode enabled
 4 = Unlock galvanic module
 5 = Unlock artillery module
 6 = Unlock visualizer
+7 = Unlock autocounter
+8 = Unlock pantheonite amp
 
 WASD = Move
 IJKL = Teleport
@@ -391,49 +383,42 @@ offset_bottom = -164.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.25, 1.25)
-theme_override_constants/separation = 60
+theme_override_constants/separation = 45
 
 [node name="HookshotToggle" parent="Control/MapScreen/TabContainer/Upgrades/UpgradeToggles" instance=ExtResource("12_vimth")]
 layout_mode = 2
 upgrade = 1
 upgrade_res = ExtResource("13_bept6")
-texture_enabled = ExtResource("15_725eu")
-texture_disabled = ExtResource("16_ydtpe")
 
 [node name="VisualizerToggle" parent="Control/MapScreen/TabContainer/Upgrades/UpgradeToggles" instance=ExtResource("12_vimth")]
 layout_mode = 2
 upgrade = 2
 upgrade_res = ExtResource("14_nmkxt")
-texture_enabled = ExtResource("17_q6asl")
-texture_disabled = ExtResource("19_xr1jb")
 
 [node name="VelocityToggle" parent="Control/MapScreen/TabContainer/Upgrades/UpgradeToggles" instance=ExtResource("12_vimth")]
 layout_mode = 2
 upgrade = 3
 upgrade_res = ExtResource("15_a8ba0")
-texture_enabled = ExtResource("19_a2eq1")
-texture_disabled = ExtResource("22_xxlym")
 
 [node name="GalvanicToggle" parent="Control/MapScreen/TabContainer/Upgrades/UpgradeToggles" instance=ExtResource("12_vimth")]
 layout_mode = 2
 upgrade = 4
 upgrade_res = ExtResource("16_7nt7v")
-texture_enabled = ExtResource("21_db21b")
-texture_disabled = ExtResource("25_l0jyb")
 
 [node name="ThermalToggle" parent="Control/MapScreen/TabContainer/Upgrades/UpgradeToggles" instance=ExtResource("12_vimth")]
 layout_mode = 2
 upgrade = 5
 upgrade_res = ExtResource("17_00q1f")
-texture_enabled = ExtResource("23_sp500")
-texture_disabled = ExtResource("28_m3s2h")
 
 [node name="AutocounterToggle" parent="Control/MapScreen/TabContainer/Upgrades/UpgradeToggles" instance=ExtResource("12_vimth")]
 layout_mode = 2
 upgrade = 6
-upgrade_res = ExtResource("17_00q1f")
-texture_enabled = ExtResource("24_c7tmw")
-texture_disabled = ExtResource("30_f2afl")
+upgrade_res = ExtResource("32_3lb5p")
+
+[node name="PantheoniteToggle" parent="Control/MapScreen/TabContainer/Upgrades/UpgradeToggles" instance=ExtResource("12_vimth")]
+layout_mode = 2
+upgrade = 7
+upgrade_res = ExtResource("44_1pe8w")
 
 [node name="Logbooks" type="Control" parent="Control/MapScreen/TabContainer"]
 visible = false

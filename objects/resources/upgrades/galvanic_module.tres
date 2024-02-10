@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://d1ivt5xs2pe1w"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://d1ivt5xs2pe1w"]
 
 [ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_8gn15"]
 [ext_resource type="Texture2D" uid="uid://c5wpu1dc04g81" path="res://assets/sprites/pickups/pickup_galvanic_module.png" id="2_nr8ym"]
+[ext_resource type="Texture2D" uid="uid://dmliox3e4q7n2" path="res://objects/map/inventory_tab/galvanic_wireframe.png" id="3_pmj52"]
 
 [resource]
 script = ExtResource("1_8gn15")
@@ -9,3 +10,4 @@ id = 4
 name = "Galvanic Module"
 description = "Grants the user access to electrified surfaces and areas."
 texture = ExtResource("2_nr8ym")
+texture_wireframe = ExtResource("3_pmj52")

@@ -32,6 +32,8 @@ const BOMB_COOLDOWN = 3.0
 
 const JOYPAD_AIM_DEADZONE = 0.3
 
+const AUTOCOUNTER_COOLDOWN = 1
+
 enum MoveState {DISABLED, NORMAL, HOOKED_FLYING, HOOKED, DEBUG}
 var current_state : MoveState = MoveState.NORMAL
 
@@ -61,6 +63,8 @@ var gravity_multiplier = 1
 var time_in_air = 0.0
 var holding_jump : bool
 var in_air_because_hook : bool
+
+var last_autocounter = Time.get_unix_time_from_system()
 
 var hook_offset
 
@@ -306,10 +310,16 @@ func process_hook_flying(delta):
 		hook_released_early.emit()
 		return
 	
+	var can_auto_counter = GameMan.get_upgrade_status(GameMan.Upgrades.AUTOCOUNTER) == GameMan.UpgradeStatus.ENABLED
+	if can_auto_counter:
+		if Time.get_unix_time_from_system() - last_autocounter < AUTOCOUNTER_COOLDOWN:
+			can_auto_counter = false
+	
+	
 	# Hook counter
-	if Input.is_action_just_pressed("hook_attack"):
-		hook_attack()
-		return
+	if Input.is_action_just_pressed("hook_attack") or can_auto_counter:
+		if hook_attack():
+			return
 	
 	if distance < hook_speed * delta:
 		current_state = MoveState.HOOKED
@@ -322,15 +332,21 @@ func process_hook_flying(delta):
 	
 	flip_sprite(hook_position.x < global_position.x)
 
-func hook_attack():
+func hook_attack() -> bool:
+	var auto_countering = !Input.is_action_just_pressed("hook_attack")
+	
 	if not GameMan.get_upgrade_status(GameMan.Upgrades.VELOCITY_MODULE) == GameMan.UpgradeStatus.ENABLED:
-		return
+		return false
 	
 	if not hooked_obj:
-		return
+		return false
 	
-	if not global_position.distance_to(hook_position) < HOOK_ATTACK_DISTANCE:
-		return
+	var dist = HOOK_ATTACK_DISTANCE
+	if auto_countering:
+		dist /= 3
+	
+	if not global_position.distance_to(hook_position) < dist:
+		return false
 	
 	$Attack.rotation = Vector2.RIGHT.angle_to(global_position.direction_to(hooked_obj.global_position)) + 90
 	$Attack/AnimationPlayer.current_animation = "attack"
@@ -338,6 +354,9 @@ func hook_attack():
 	$AttackFlare.global_position = hooked_obj.global_position
 	$AttackFlare/AnimationPlayer.current_animation = "flare"
 	hooked_obj._on_player_attacked()
+	
+	last_autocounter = Time.get_unix_time_from_system()
+	return true
 
 func process_hooked():
 	if hooked_obj:
@@ -410,6 +429,8 @@ func process_debug():
 	var thermal_module = Upgrade.new(GameMan.Upgrades.THERMAL_MODULE)
 	var galvanic_module = Upgrade.new(GameMan.Upgrades.GALVANIC_MODULE)
 	var visualizer = Upgrade.new(GameMan.Upgrades.VISUALIZER)
+	var autocounter = Upgrade.new(GameMan.Upgrades.AUTOCOUNTER)
+	var pantheonite = Upgrade.new(GameMan.Upgrades.PANTHEONITE_AMPLIFIER)
 	
 	var shift_held = Input.is_key_pressed(KEY_SHIFT)
 	
@@ -419,6 +440,8 @@ func process_debug():
 		GameMan.unlock_upgrade(thermal_module)
 		GameMan.unlock_upgrade(galvanic_module)
 		GameMan.unlock_upgrade(visualizer)
+		GameMan.unlock_upgrade(autocounter)
+		GameMan.unlock_upgrade(pantheonite)
 	
 	if Input.is_action_just_pressed("debug_unlock_hookshot"):
 		GameMan.unlock_upgrade(hookshot)
@@ -430,6 +453,10 @@ func process_debug():
 		GameMan.unlock_upgrade(thermal_module)
 	if Input.is_action_just_pressed("debug_unlock_visualizer"):
 		GameMan.unlock_upgrade(visualizer)
+	if Input.is_action_just_pressed("debug_unlock_autocounter"):
+		GameMan.unlock_upgrade(autocounter)
+	if Input.is_action_just_pressed("debug_unlock_pantheonite"):
+		GameMan.unlock_upgrade(pantheonite)
 	
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	

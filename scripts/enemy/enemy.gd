@@ -100,10 +100,15 @@ func take_damage():
 	
 	
 	if not infinite_health:
-		if not GameMan.get_upgrade_status(GameMan.Upgrades.GALVANIC_MODULE) == GameMan.UpgradeStatus.ENABLED:
-			health -= 1
-		else:
-			health -= 1.5
+		var damage = 1
+		if GameMan.get_upgrade_status(GameMan.Upgrades.GALVANIC_MODULE) == GameMan.UpgradeStatus.ENABLED:
+			damage = 1.5
+		
+		if GameMan.get_upgrade_status(GameMan.Upgrades.AUTOCOUNTER) == GameMan.UpgradeStatus.ENABLED and not Input.is_action_just_pressed("hook_attack"):
+			damage /= 2
+		
+		health -= damage
+		
 	
 	if health <= 0:
 		die()

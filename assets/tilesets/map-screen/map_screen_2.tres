@@ -1,10 +1,9 @@
-[gd_resource type="TileSet" load_steps=31 format=3 uid="uid://wa8itsni7gf8"]
+[gd_resource type="TileSet" load_steps=29 format=3 uid="uid://wa8itsni7gf8"]
 
 [ext_resource type="Texture2D" uid="uid://bl8xaxidgvl0h" path="res://assets/tilesets/map-screen/map-screen-tiles-1.png" id="1_0hdv3"]
 [ext_resource type="Texture2D" uid="uid://byaw8fwkt8fub" path="res://assets/tilesets/map-screen/map-screen-tiles-2.png" id="2_o6dyp"]
 [ext_resource type="Texture2D" uid="uid://cxymiyroc8m8i" path="res://assets/tilesets/map-screen/map-screen-tiles-3.png" id="4_1b6m6"]
 [ext_resource type="Texture2D" uid="uid://bfwjq002inwcs" path="res://assets/tilesets/map-screen/map-screen-tiles-12.png" id="4_r73fx"]
-[ext_resource type="Texture2D" uid="uid://6dw57xeeg11t" path="res://assets/tilesets/map-screen/map-screen-tiles-black.png" id="5_c1gje"]
 [ext_resource type="Texture2D" uid="uid://fbv5n21l7wne" path="res://assets/tilesets/map-screen/map-screen-tiles-4.png" id="5_q074h"]
 [ext_resource type="Texture2D" uid="uid://ccflrtsxihlry" path="res://assets/backgrounds/tilesets/map-screen/map-screen-tiles-secret.png" id="5_t1w4a"]
 [ext_resource type="Texture2D" uid="uid://cx8vup40ldncx" path="res://assets/backgrounds/tilesets/map-screen/map-screen-tiles-11-2.png" id="6_fq75v"]
@@ -331,98 +330,6 @@ texture_region_size = Vector2i(8, 8)
 3:2/0 = 0
 7:2/0 = 0
 7:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wht0o"]
-texture = ExtResource("5_c1gje")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-5:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-8:1/0 = 0
-10:1/0 = 0
-12:1/0 = 0
-13:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-5:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
-10:2/0 = 0
-1:3/0 = 0
-5:3/0 = 0
-9:3/0 = 0
-12:3/0 = 0
-0:4/0 = 0
-2:4/0 = 0
-4:4/0 = 0
-6:4/0 = 0
-8:4/0 = 0
-10:4/0 = 0
-12:4/0 = 0
-1:5/0 = 0
-5:5/0 = 0
-9:5/0 = 0
-12:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-3:6/0 = 0
-6:6/0 = 0
-9:6/0 = 0
-10:6/0 = 0
-12:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-3:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-9:7/0 = 0
-10:7/0 = 0
-12:7/0 = 0
-1:8/0 = 0
-4:8/0 = 0
-8:8/0 = 0
-10:8/0 = 0
-11:8/0 = 0
-13:8/0 = 0
-0:9/0 = 0
-2:9/0 = 0
-4:9/0 = 0
-8:9/0 = 0
-10:9/0 = 0
-11:9/0 = 0
-13:9/0 = 0
-0:10/0 = 0
-1:10/0 = 0
-2:10/0 = 0
-3:10/0 = 0
-5:10/0 = 0
-6:10/0 = 0
-8:10/0 = 0
-9:10/0 = 0
-11:10/0 = 0
-12:10/0 = 0
-2:11/0 = 0
-3:11/0 = 0
-5:11/0 = 0
-6:11/0 = 0
-8:11/0 = 0
-9:11/0 = 0
-11:11/0 = 0
-12:11/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t0u0r"]
 texture = ExtResource("6_fq75v")
@@ -1367,6 +1274,5 @@ sources/8 = SubResource("TileSetAtlasSource_mgl7i")
 sources/9 = SubResource("TileSetAtlasSource_qt6sn")
 sources/11 = SubResource("TileSetAtlasSource_61p3s")
 sources/13 = SubResource("TileSetAtlasSource_5f6ps")
-sources/15 = SubResource("TileSetAtlasSource_wht0o")
 sources/16 = SubResource("TileSetAtlasSource_t0u0r")
 sources/17 = SubResource("TileSetAtlasSource_w1fco")
