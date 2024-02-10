@@ -1,27 +1,30 @@
-[gd_scene load_steps=22 format=3 uid="uid://cysvrvvovblxi"]
+[gd_scene load_steps=26 format=3 uid="uid://cysvrvvovblxi"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_5pnsf"]
-[ext_resource type="Texture2D" uid="uid://535gam887hrk" path="res://assets/sprites/ui/title-screen.png" id="1_mtryt"]
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_n7yo8"]
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="2_kxrn2"]
 [ext_resource type="Script" path="res://scripts/title_info.gd" id="4_4in77"]
 [ext_resource type="AudioStream" uid="uid://46rpurl7whcu" path="res://assets/music/foxbeat.mp3" id="4_6ob6f"]
+[ext_resource type="Texture2D" uid="uid://c221vcv31m71t" path="res://title_screen/title_screen_vulpes.png" id="4_u2un4"]
 [ext_resource type="Script" path="res://scripts/ui/continue_button.gd" id="5_1px6o"]
 [ext_resource type="Script" path="res://scripts/secret_song.gd" id="5_2oaut"]
 [ext_resource type="Script" path="res://scripts/ui/version_label.gd" id="5_7kpd4"]
+[ext_resource type="Texture2D" uid="uid://cwrl0pvt1aur2" path="res://title_screen/small_title.png" id="5_vwhf8"]
 [ext_resource type="PackedScene" uid="uid://2r2ppdsrhmie" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
 [ext_resource type="Script" path="res://scripts/ui/extras_button.gd" id="6_b0kv4"]
 [ext_resource type="AudioStream" uid="uid://c2nwwhm2gjvty" path="res://assets/music/gibbrishtext.mp3" id="7_qcstw"]
+[ext_resource type="Texture2D" uid="uid://rchscos1poir" path="res://assets/sprites/ui/completion_emblem.png" id="8_wdex8"]
+[ext_resource type="Script" path="res://scripts/ui/completion_emblem.gd" id="9_dnf4a"]
 [ext_resource type="Script" path="res://scripts/ui/save_manage.gd" id="9_iobso"]
 [ext_resource type="Script" path="res://scripts/ui/save_create_time_label.gd" id="10_w55hk"]
 [ext_resource type="Script" path="res://scripts/ui/best_time_label.gd" id="11_ct5y2"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_jeywl"]
-font_size = 24
-font_color = Color(0.941176, 0.556863, 0.223529, 1)
-shadow_size = 0
-shadow_color = Color(0.435294, 0.231373, 0.192157, 1)
-shadow_offset = Vector2(0, 2)
+[sub_resource type="Gradient" id="Gradient_5u4jm"]
+offsets = PackedFloat32Array(0, 0.564593, 1)
+colors = PackedColorArray(0, 0, 0, 0.196078, 0, 0, 0, 0.196078, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r2fem"]
+gradient = SubResource("Gradient_5u4jm")
 
 [sub_resource type="LabelSettings" id="LabelSettings_50n41"]
 outline_size = 4
@@ -55,19 +58,35 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_n7yo8")
-texture = ExtResource("1_mtryt")
+texture = ExtResource("4_u2un4")
 
-[node name="LogoText" type="Label" parent="Background"]
+[node name="Gradient" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 720.0
+offset_right = -833.0
+offset_bottom = 1280.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_r2fem")
+
+[node name="Logo" type="TextureRect" parent="Background"]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 313.0
-offset_right = 535.0
-offset_bottom = 343.0
-text = "- THE LAST REVENANT -"
-label_settings = SubResource("LabelSettings_jeywl")
+offset_left = 55.0
+offset_top = 315.0
+offset_right = 137.0
+offset_bottom = 324.0
+scale = Vector2(4, 4)
+texture = ExtResource("5_vwhf8")
 
 [node name="Buttons" type="VBoxContainer" parent="Background"]
 layout_mode = 1
@@ -139,6 +158,34 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 18
 text = "  Quit"
 alignment = 0
+
+[node name="CompletionEmblems" type="HBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 321.0
+offset_right = 479.0
+offset_bottom = 345.0
+theme_override_constants/separation = 12
+
+[node name="BeatGameCompletionEmblem" type="TextureRect" parent="Background/CompletionEmblems"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("8_wdex8")
+script = ExtResource("9_dnf4a")
+
+[node name="FullCompletionCompletionEmblem" type="TextureRect" parent="Background/CompletionEmblems"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("8_wdex8")
+script = ExtResource("9_dnf4a")
+requirement = 1
+
+[node name="FastCompletionCompletionEmblem" type="TextureRect" parent="Background/CompletionEmblems"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("8_wdex8")
+script = ExtResource("9_dnf4a")
+requirement = 2
 
 [node name="Credits" type="Label" parent="Background"]
 visible = false

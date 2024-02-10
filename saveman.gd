@@ -72,6 +72,11 @@ func write_game_end_meta():
 	else:
 		_save.set_value("Meta", "best_time", get_value("playtime", 0))
 	
+	if _save.has_section_key("Meta", "best_item_percentage"):
+		_save.set_value("Meta", "best_item_percentage", min(GameMan.get_item_completion_percentage(), _save.get_value("Meta", "best_item_percentage")))
+	else:
+		_save.set_value("Meta", "best_item_percentage", GameMan.get_item_completion_percentage())
+	
 	_save.save(SAVE_FILE_PATH)
 	reload_save()
 

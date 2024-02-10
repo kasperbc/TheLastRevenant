@@ -5,6 +5,10 @@ class_name GameManager
 var player : Node
 var player_health : Node
 
+const EXPANSION_COUNT = 12
+const CORE_COUNT = 7
+const LOGBOOK_COUNT = 5
+
 enum Upgrades {
 	DEFAULT = 0,
 	HOOKSHOT = 1,
@@ -387,3 +391,20 @@ func discover_area(area : LevelArea):
 	SaveMan.save_value("areas_discovered", areas_discovered)
 	
 	get_tree().root.get_node("Main/UI/Control/NewAreaLabel").show_area_text(area)
+
+func get_item_completion_percentage() -> float:
+	var expansions_collected = SaveMan.get_value("speed_expansions", [-1]).size() - 1
+	expansions_collected += SaveMan.get_value("health_expansions", [-1]).size() - 1
+	expansions_collected += SaveMan.get_value("range_expansions", [-1]).size() - 1
+	expansions_collected = clamp(expansions_collected, 0, EXPANSION_COUNT)
+	var expansion_collected_01 = float(expansions_collected) / EXPANSION_COUNT
+	
+	var upgrades_collected = SaveMan.get_value("upgrades_collected", [])
+	var core_upgrades_collected = upgrades_collected.size()
+	core_upgrades_collected = clamp(core_upgrades_collected, 0, CORE_COUNT)
+	var core_upgrades_collected_01 = float(core_upgrades_collected) / CORE_COUNT
+	
+	var logbooks_collected = SaveMan.get_value("logbooks_collected", [])
+	var logbooks_collected_01 = logbooks_collected.size() / LOGBOOK_COUNT
+	
+	return core_upgrades_collected_01 / 2 + expansion_collected_01 / 4 + logbooks_collected_01 / 4
