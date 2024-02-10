@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_rt020"]
 [ext_resource type="Texture2D" uid="uid://dprp14vr6btuf" path="res://assets/sprites/pickups/pickup_visualizer.png" id="2_8ljqq"]
-[ext_resource type="Texture2D" uid="uid://cig4166g5747c" path="res://objects/map/inventory_tab/visualizer_wireframe.png" id="3_1w6gr"]
+[ext_resource type="Texture2D" uid="uid://4rsys1j6da05" path="res://objects/map/inventory_tab/visualizer_wireframe.png" id="3_1w6gr"]
 
 [resource]
 script = ExtResource("1_rt020")

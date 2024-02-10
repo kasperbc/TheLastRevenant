@@ -217,6 +217,7 @@ text = "DEFAULT DESCRIPTION"
 horizontal_alignment = 1
 
 [node name="DebugText" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 1024.0
 offset_top = 192.0
