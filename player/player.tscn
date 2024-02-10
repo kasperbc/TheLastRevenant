@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://cdk28anvdyvwx"]
+[gd_scene load_steps=111 format=3 uid="uid://cdk28anvdyvwx"]
 
 [ext_resource type="Script" path="res://player/player_movement.gd" id="1_xsl8m"]
 [ext_resource type="Texture2D" uid="uid://chewg68qcfq0k" path="res://assets/sprites/player/tlr-sombre-freefall.png" id="2_4pjd8"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://darglr61b8u42" path="res://assets/sprites/player/attack_flare.png" id="15_phk2r"]
 [ext_resource type="Texture2D" uid="uid://dtceudcbadgtq" path="res://assets/sprites/particles/deltarune-refrence-2.png" id="18_03ai1"]
 [ext_resource type="Texture2D" uid="uid://ceyi2ulnwjom4" path="res://assets/sprites/particles/deltarune_refrence.png" id="21_diawq"]
+[ext_resource type="Texture2D" uid="uid://1h2r2d0oq0hh" path="res://assets/sprites/particles/attack.png" id="23_il1a2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uw8j3"]
 radius = 3.0
@@ -729,6 +730,27 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_geoxc"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ylrv"]
+gradient = SubResource("Gradient_geoxc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rxwbw"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_1ylrv")
+
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 collision_layer = 2
 floor_constant_speed = true
@@ -840,6 +862,14 @@ sprite_frames = SubResource("SpriteFrames_jd1at")
 autoplay = "default"
 frame = 15
 frame_progress = 1.0
+
+[node name="AttackParticle" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_rxwbw")
+texture = ExtResource("23_il1a2")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
 
 [connection signal="hook_fired" from="." to="." method="_on_hook_fired"]
 [connection signal="hook_released" from="." to="." method="_on_hook_released"]

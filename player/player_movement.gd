@@ -353,6 +353,11 @@ func hook_attack() -> bool:
 	
 	$AttackFlare.global_position = hooked_obj.global_position
 	$AttackFlare/AnimationPlayer.current_animation = "flare"
+	
+	$AttackParticle.global_position = hooked_obj.global_position
+	$AttackParticle.restart()
+	$AttackParticle.emitting = true
+	
 	hooked_obj._on_player_attacked()
 	
 	last_autocounter = Time.get_unix_time_from_system()
