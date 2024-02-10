@@ -1,111 +1,47 @@
-[gd_scene load_steps=22 format=3 uid="uid://bva60n6dsvanh"]
+[gd_scene load_steps=18 format=3 uid="uid://bva60n6dsvanh"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_ho5lk"]
-[ext_resource type="Texture2D" uid="uid://1v83se2v2hfb" path="res://assets/sprites/player/tlr-sombre-idle.png" id="2_71tr4"]
 [ext_resource type="Script" path="res://scripts/end_screen.gd" id="2_cvvwa"]
 [ext_resource type="Script" path="res://scripts/ui/item_complete_percentage.gd" id="3_5tvwr"]
+[ext_resource type="Texture2D" uid="uid://ndntmcnvwjpp" path="res://title_screen/title_scroll_nostars.png" id="3_wgj1s"]
+[ext_resource type="Texture2D" uid="uid://dv8m6on0w7qus" path="res://title_screen/title_scroll_stars.png" id="5_h17cq"]
 [ext_resource type="Script" path="res://scripts/ui/game_time.gd" id="5_hndrj"]
+[ext_resource type="PackedScene" uid="uid://s0vl1buabjq3" path="res://objects/ui/fade_screen.tscn" id="6_67am4"]
+[ext_resource type="Texture2D" uid="uid://btue6yo01wax5" path="res://title_screen/comm_satellite_end.png" id="6_f6ld8"]
+[ext_resource type="Script" path="res://scripts/ui/end_float.gd" id="7_6fxqq"]
+[ext_resource type="Texture2D" uid="uid://bitx5mtlmvvo7" path="res://title_screen/the_end_text.png" id="8_8dq2q"]
+[ext_resource type="Script" path="res://scripts/ui/title/title_scroll.gd" id="8_vkgbc"]
+[ext_resource type="Texture2D" uid="uid://cth2ocaxyshe5" path="res://title_screen/the_end_sub.png" id="9_rwik6"]
+[ext_resource type="AudioStream" uid="uid://6vscd3ahg8do" path="res://assets/music/asteroid_field_part2.mp3" id="13_eic2r"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_x8vqe"]
-font_size = 48
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn6ox"]
+atlas = ExtResource("6_f6ld8")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i7kh6"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(0, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw8oe"]
+atlas = ExtResource("6_f6ld8")
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_edku4"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(16, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5q7v6"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(32, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_djce2"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(48, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c4duk"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(64, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ciyp5"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(80, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1u1x4"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(96, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7nono"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(112, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_frnp5"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(128, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pit5u"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(144, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_24jfm"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(160, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_huduy"]
-atlas = ExtResource("2_71tr4")
-region = Rect2(176, 0, 16, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ik4ia"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_b2gld"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i7kh6")
+"texture": SubResource("AtlasTexture_xn6ox")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_edku4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5q7v6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_djce2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c4duk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ciyp5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1u1x4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7nono")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_frnp5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pit5u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_24jfm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_huduy")
+"texture": SubResource("AtlasTexture_gw8oe")
 }],
 "loop": true,
-"name": &"idle",
-"speed": 5.0
+"name": &"default",
+"speed": 1.0
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j24ra"]
 font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_li1yn"]
-font_color = Color(1, 1, 1, 0.372549)
+font_color = Color(0.854902, 0.882353, 0.898039, 1)
+shadow_size = 0
+shadow_color = Color(0.521569, 0.603922, 0.662745, 1)
+shadow_offset = Vector2(0, 2)
 
 [node name="EndScreen" type="Control"]
 layout_mode = 3
@@ -117,37 +53,74 @@ grow_vertical = 2
 theme = ExtResource("1_ho5lk")
 script = ExtResource("2_cvvwa")
 
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.117647, 0.152941, 0.203922, 1)
-
-[node name="Header" type="Label" parent="Background"]
+[node name="Space" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -286.0
-offset_top = 72.0
-offset_right = 286.0
-offset_bottom = 131.0
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 2160.0
 grow_horizontal = 2
-text = "Thank you for playing!"
-label_settings = SubResource("LabelSettings_x8vqe")
-horizontal_alignment = 1
+theme = ExtResource("1_ho5lk")
+texture = ExtResource("3_wgj1s")
+script = ExtResource("8_vkgbc")
+speed = 100
 
-[node name="Player" type="AnimatedSprite2D" parent="Background"]
-position = Vector2(649, 329)
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_ik4ia")
-animation = &"idle"
-autoplay = "idle"
+[node name="Space2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 2160.0
+grow_horizontal = 2
+theme = ExtResource("1_ho5lk")
+texture = ExtResource("5_h17cq")
+script = ExtResource("8_vkgbc")
+speed = 60
 
-[node name="CompletionPercentage" type="Label" parent="Background"]
+[node name="Satellite" type="AnimatedSprite2D" parent="."]
+position = Vector2(647, 328)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_b2gld")
+autoplay = "default"
+frame_progress = 0.775914
+script = ExtResource("7_6fxqq")
+
+[node name="TheEndText" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.5
+offset_top = 104.0
+offset_right = 16.5
+offset_bottom = 111.0
+grow_horizontal = 2
+scale = Vector2(8, 8)
+pivot_offset = Vector2(16, 4)
+texture = ExtResource("8_8dq2q")
+
+[node name="TheEndSubText" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 188.0
+offset_right = 20.0
+offset_bottom = 193.0
+grow_horizontal = 2
+scale = Vector2(8, 8)
+pivot_offset = Vector2(36, 2)
+texture = ExtResource("9_rwik6")
+
+[node name="CompletionPercentage" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -167,7 +140,8 @@ script = ExtResource("3_5tvwr")
 prefix = "Item completion: "
 hide_unpaused = false
 
-[node name="Time" type="Label" parent="Background"]
+[node name="Time" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -185,38 +159,36 @@ label_settings = SubResource("LabelSettings_j24ra")
 horizontal_alignment = 1
 script = ExtResource("5_hndrj")
 
-[node name="ReturnToTitle" type="Button" parent="Background"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -88.0
-offset_top = 176.0
-offset_right = 40.0
-offset_bottom = 204.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.5, 1.5)
-text = "Return to title"
-
-[node name="Credits" type="Label" parent="Background"]
+[node name="ReturnToTitle" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -505.0
-offset_top = -41.0
-offset_right = 505.0
-offset_bottom = -8.0
+offset_left = -85.0
+offset_top = -124.0
+offset_right = 43.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "kekis - Programming, Sprites | Francca - Sprites, Map Design | RedDeadDumb - Music | Luca - Funikulaari"
-label_settings = SubResource("LabelSettings_li1yn")
-horizontal_alignment = 1
-vertical_alignment = 2
+scale = Vector2(1.5, 1.5)
+text = "Return to title"
 
-[connection signal="pressed" from="Background/ReturnToTitle" to="." method="_on_return_to_title_pressed"]
+[node name="FadeScreen" parent="." instance=ExtResource("6_67am4")]
+modulate = Color(1, 1, 1, 1)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_eic2r")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="ReturnToTitle" to="." method="_on_return_to_title_pressed"]

@@ -7,6 +7,7 @@ func play_anim():
 	var blood_front_fade = get_tree().create_tween().bind_node(self)
 	
 	GameMan.get_audioman().play_fx("thud")
+	GameMan.get_audioman().stop_music()
 	
 	blood_front_fade.tween_property($BloodFront, "self_modulate", Color(1,1,1,1), 0.2)
 	await get_tree().create_timer(0.1).timeout
@@ -24,6 +25,8 @@ func play_anim():
 	await get_tree().create_timer(0.5).timeout
 	var blood_back_fade = get_tree().create_tween().bind_node(self)
 	blood_back_fade.tween_property($BloodBack, "self_modulate", Color(1,1,1,1), 2)
+	
+	GameMan.get_audioman().play_music("boss_prelude", -22.0)
 	
 	await get_tree().create_timer(1).timeout
 	var ui_fade = get_tree().create_tween().bind_node(self)
