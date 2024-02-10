@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://scripts/ui/speed_bar.gd" id="9_cre45"]
 [ext_resource type="FontFile" uid="uid://dth7yl8x2whvb" path="res://assets/fonts/Retro Gaming.ttf" id="10_f8qvh"]
 [ext_resource type="PackedScene" uid="uid://dhfieln5f4mk5" path="res://objects/enemies/shaker.tscn" id="11_6b2ob"]
-[ext_resource type="Script" path="res://scripts/ui/fade_screen.gd" id="11_6yqxg"]
 [ext_resource type="Script" path="res://scripts/map_screen.gd" id="11_a8ros"]
 [ext_resource type="PackedScene" uid="uid://cecc7ddrs85o4" path="res://map_screen.tscn" id="12_f8m6a"]
 [ext_resource type="PackedScene" uid="uid://c3ifnkrxk22ss" path="res://objects/ui/upgrade_toggle.tscn" id="12_vimth"]
@@ -45,6 +44,7 @@
 [ext_resource type="Resource" uid="uid://dy5qtwcshp0e7" path="res://objects/resources/upgrades/pantheonite_amplifier.tres" id="44_1pe8w"]
 [ext_resource type="Resource" uid="uid://dg8wsnafej4je" path="res://objects/resources/logbooks/logbook1.tres" id="44_3sxd3"]
 [ext_resource type="Resource" uid="uid://tfy7maw0utjf" path="res://objects/resources/logbooks/logbook2.tres" id="45_wemiy"]
+[ext_resource type="PackedScene" uid="uid://s0vl1buabjq3" path="res://objects/ui/fade_screen.tscn" id="46_hh2mq"]
 [ext_resource type="Resource" uid="uid://ckorvg1twx3bq" path="res://objects/resources/logbooks/logbook3.tres" id="46_vxrn5"]
 [ext_resource type="Resource" uid="uid://bnjug6v4jycfe" path="res://objects/resources/logbooks/logbook4.tres" id="47_vxjug"]
 [ext_resource type="Resource" uid="uid://c6fbb7p70ru0l" path="res://objects/resources/logbooks/logbook5.tres" id="48_qpbjs"]
@@ -600,19 +600,13 @@ visible = false
 top_level = true
 layout_mode = 1
 
-[node name="FadeScreen" type="ColorRect" parent="Control"]
-process_mode = 3
-visible = false
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-script = ExtResource("11_6yqxg")
+[node name="FadeScreen" parent="Control" instance=ExtResource("46_hh2mq")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="NewAreaLabel" type="Label" parent="Control"]
 modulate = Color(1, 1, 1, 0)
@@ -649,6 +643,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("49_c1128")
 
 [node name="BloodBack" type="TextureRect" parent="Control/GameOverScreen"]
@@ -659,6 +654,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("49_s0hll")
 
 [node name="BloodFront" type="TextureRect" parent="Control/GameOverScreen"]
@@ -687,6 +683,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="GameOverText" type="TextureRect" parent="Control/GameOverScreen/UI"]
 layout_mode = 1
