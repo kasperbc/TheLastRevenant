@@ -1,17 +1,46 @@
-[gd_scene load_steps=52 format=3 uid="uid://c65f2wpdei786"]
+[gd_scene load_steps=59 format=3 uid="uid://c65f2wpdei786"]
 
 [ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="1_37j5j"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="2_q7r5k"]
 [ext_resource type="PackedScene" uid="uid://b4mitftujrrxp" path="res://level.tscn" id="3_6jmh6"]
 [ext_resource type="PackedScene" uid="uid://b5g4g7sk7nr3o" path="res://objects/hook/hook.tscn" id="3_mds0t"]
 [ext_resource type="PackedScene" uid="uid://dcr1q7oj4a006" path="res://main_ui.tscn" id="4_etwc1"]
+[ext_resource type="Texture2D" uid="uid://bloaaha5osmtp" path="res://assets/sprites/hook/pantheonite-ropeparticle.png" id="4_evcet"]
 [ext_resource type="PackedScene" uid="uid://cwh5d4qwcv0i6" path="res://objects/lights/area_light.tscn" id="4_yb3h7"]
 [ext_resource type="Texture2D" uid="uid://dge4ysc7omnmg" path="res://assets/backgrounds/background.png" id="5_g3icy"]
+[ext_resource type="Script" path="res://objects/hook/panparticle.gd" id="5_m4rns"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="6_2wqmi"]
 [ext_resource type="Texture2D" uid="uid://74syq5yrk888" path="res://assets/backgrounds/lab-1.png" id="9_0tm2v"]
 [ext_resource type="Script" path="res://scripts/game_start.gd" id="10_5r6h5"]
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="11_8wm0p"]
 [ext_resource type="Texture2D" uid="uid://cvax2goia4dxm" path="res://assets/collision_decor/cryocapsule-opening-start.png" id="11_e2h05"]
+
+[sub_resource type="Curve" id="Curve_45d5i"]
+_data = [Vector2(0.0439024, 0.076923), 0.0, 0.431874, 0, 1, Vector2(0.985366, 0.483516), 0.431874, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6aipf"]
+curve = SubResource("Curve_45d5i")
+
+[sub_resource type="Gradient" id="Gradient_clpgn"]
+offsets = PackedFloat32Array(0, 0.451977, 1)
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 0.501961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_18wgo"]
+gradient = SubResource("Gradient_clpgn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vo21m"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(7, 1, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -434.5
+angle_max = 372.4
+angle_curve = SubResource("CurveTexture_6aipf")
+gravity = Vector3(0, 10, 0)
+linear_accel_min = 20.0
+linear_accel_max = 62.81
+color_ramp = SubResource("GradientTexture1D_18wgo")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tj2s"]
 atlas = ExtResource("11_e2h05")
@@ -299,6 +328,14 @@ top_level = true
 position = Vector2(64, -80)
 motion_mode = 1
 wall_min_slide_angle = 1.5708
+
+[node name="PanParticle" type="GPUParticles2D" parent="Player"]
+z_index = -1
+amount = 20
+amount_ratio = 0.1
+process_material = SubResource("ParticleProcessMaterial_vo21m")
+texture = ExtResource("4_evcet")
+script = ExtResource("5_m4rns")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.75, 2.75)
