@@ -1,30 +1,36 @@
-[gd_scene load_steps=26 format=3 uid="uid://cysvrvvovblxi"]
+[gd_scene load_steps=32 format=3 uid="uid://cysvrvvovblxi"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_5pnsf"]
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_n7yo8"]
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="2_kxrn2"]
 [ext_resource type="Script" path="res://scripts/title_info.gd" id="4_4in77"]
 [ext_resource type="AudioStream" uid="uid://46rpurl7whcu" path="res://assets/music/foxbeat.mp3" id="4_6ob6f"]
-[ext_resource type="Texture2D" uid="uid://c221vcv31m71t" path="res://title_screen/title_screen_vulpes.png" id="4_u2un4"]
+[ext_resource type="Texture2D" uid="uid://dg1arm8ypa0qj" path="res://title_screen/title_scroll.png" id="4_7hlu4"]
 [ext_resource type="Script" path="res://scripts/ui/continue_button.gd" id="5_1px6o"]
 [ext_resource type="Script" path="res://scripts/secret_song.gd" id="5_2oaut"]
 [ext_resource type="Script" path="res://scripts/ui/version_label.gd" id="5_7kpd4"]
+[ext_resource type="Script" path="res://scripts/ui/title/title_scroll.gd" id="5_8m16c"]
+[ext_resource type="Texture2D" uid="uid://c8st1hp4ajgip" path="res://title_screen/vulpes_star.png" id="5_lcag0"]
 [ext_resource type="Texture2D" uid="uid://cwrl0pvt1aur2" path="res://title_screen/small_title.png" id="5_vwhf8"]
 [ext_resource type="PackedScene" uid="uid://2r2ppdsrhmie" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
 [ext_resource type="Script" path="res://scripts/ui/extras_button.gd" id="6_b0kv4"]
+[ext_resource type="Texture2D" uid="uid://cwyxfciwh1qbd" path="res://title_screen/lepus_waypoint.png" id="6_yq8jq"]
+[ext_resource type="Texture2D" uid="uid://bwnrbgm7bwmo7" path="res://title_screen/comm_satellite.png" id="7_0dxhi"]
 [ext_resource type="AudioStream" uid="uid://c2nwwhm2gjvty" path="res://assets/music/gibbrishtext.mp3" id="7_qcstw"]
+[ext_resource type="Texture2D" uid="uid://mp0jln140442" path="res://title_screen/pantheon4_moon.png" id="8_2wg8o"]
 [ext_resource type="Texture2D" uid="uid://rchscos1poir" path="res://assets/sprites/ui/completion_emblem.png" id="8_wdex8"]
+[ext_resource type="Script" path="res://scripts/ui/title/title_float.gd" id="9_bgey0"]
 [ext_resource type="Script" path="res://scripts/ui/completion_emblem.gd" id="9_dnf4a"]
 [ext_resource type="Script" path="res://scripts/ui/save_manage.gd" id="9_iobso"]
 [ext_resource type="Script" path="res://scripts/ui/save_create_time_label.gd" id="10_w55hk"]
 [ext_resource type="Script" path="res://scripts/ui/best_time_label.gd" id="11_ct5y2"]
 
-[sub_resource type="Gradient" id="Gradient_5u4jm"]
-offsets = PackedFloat32Array(0, 0.564593, 1)
-colors = PackedColorArray(0, 0, 0, 0.196078, 0, 0, 0, 0.196078, 0, 0, 0, 0)
+[sub_resource type="Gradient" id="Gradient_wcufg"]
+colors = PackedColorArray(0, 0, 0, 0.235294, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_r2fem"]
-gradient = SubResource("Gradient_5u4jm")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jup7m"]
+gradient = SubResource("Gradient_wcufg")
+fill_from = Vector2(1, 0.482906)
 
 [sub_resource type="LabelSettings" id="LabelSettings_50n41"]
 outline_size = 4
@@ -37,7 +43,7 @@ bg_color = Color(0.117647, 0.152941, 0.203922, 1)
 font_color = Color(1, 1, 1, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fnti"]
-bg_color = Color(0.117647, 0.152941, 0.203922, 1)
+bg_color = Color(0.239216, 0.121569, 0.156863, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_j44kk"]
 font_color = Color(1, 1, 1, 0.784314)
@@ -49,58 +55,120 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_n7yo8")
 script = ExtResource("1_5pnsf")
 
 [node name="AudioManager" parent="." instance=ExtResource("2_kxrn2")]
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Space" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 2160.0
+grow_horizontal = 2
+theme = ExtResource("1_n7yo8")
+texture = ExtResource("4_7hlu4")
+script = ExtResource("5_8m16c")
+
+[node name="Waypoint" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = 80.0
+offset_right = -8.0
+offset_bottom = 98.0
+grow_horizontal = 2
+texture = ExtResource("6_yq8jq")
+script = ExtResource("9_bgey0")
+speed = 0.5
+
+[node name="Satellite" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 486.0
+offset_top = 60.0
+offset_right = 502.0
+offset_bottom = 76.0
+grow_horizontal = 2
+texture = ExtResource("7_0dxhi")
+script = ExtResource("9_bgey0")
+
+[node name="Star" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -337.0
+offset_top = -442.0
+offset_right = -159.0
+offset_bottom = -264.0
+pivot_offset = Vector2(89, 89)
+texture = ExtResource("5_lcag0")
+script = ExtResource("9_bgey0")
+speed = 0.1
+strength = 4
+
+[node name="Background" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -1.0
-offset_bottom = -1.0
+offset_right = -960.0
+offset_bottom = -539.998
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_n7yo8")
-texture = ExtResource("4_u2un4")
+scale = Vector2(4, 4)
+
+[node name="Moon" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -40.0
+offset_right = 160.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("8_2wg8o")
 
 [node name="Gradient" type="TextureRect" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 720.0
-offset_right = -833.0
-offset_bottom = 1280.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -1.5708
 mouse_filter = 2
-texture = SubResource("GradientTexture1D_r2fem")
+texture = SubResource("GradientTexture2D_jup7m")
 
-[node name="Logo" type="TextureRect" parent="Background"]
+[node name="Logo" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 55.0
-offset_top = 315.0
+offset_top = 314.0
 offset_right = 137.0
-offset_bottom = 324.0
+offset_bottom = 323.0
 scale = Vector2(4, 4)
 texture = ExtResource("5_vwhf8")
 
-[node name="Buttons" type="VBoxContainer" parent="Background"]
+[node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0
-offset_top = -348.0
+offset_top = -349.0
 offset_right = 225.0
-offset_bottom = -34.0
+offset_bottom = -21.0
 grow_vertical = 0
 theme_override_constants/separation = 15
 
-[node name="NewGameButton" type="Button" parent="Background/Buttons"]
+[node name="NewGameButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -109,7 +177,7 @@ keep_pressed_outside = true
 text = "  New Game"
 alignment = 0
 
-[node name="ContinueButton" type="Button" parent="Background/Buttons"]
+[node name="ContinueButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -118,7 +186,7 @@ text = "  Continue"
 alignment = 0
 script = ExtResource("5_1px6o")
 
-[node name="SettingsButton" type="Button" parent="Background/Buttons"]
+[node name="SettingsButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -126,7 +194,7 @@ theme_override_font_sizes/font_size = 18
 text = "  Settings"
 alignment = 0
 
-[node name="SaveManageButton" type="Button" parent="Background/Buttons"]
+[node name="SaveManageButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -134,7 +202,7 @@ theme_override_font_sizes/font_size = 18
 text = "  Load"
 alignment = 0
 
-[node name="CreditsButton" type="Button" parent="Background/Buttons"]
+[node name="CreditsButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -142,7 +210,7 @@ theme_override_font_sizes/font_size = 18
 text = "  Credits"
 alignment = 0
 
-[node name="ExtrasButton" type="Button" parent="Background/Buttons"]
+[node name="ExtrasButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -151,7 +219,7 @@ text = "  Extras"
 alignment = 0
 script = ExtResource("6_b0kv4")
 
-[node name="QuitButton" type="Button" parent="Background/Buttons"]
+[node name="QuitButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -159,35 +227,38 @@ theme_override_font_sizes/font_size = 18
 text = "  Quit"
 alignment = 0
 
-[node name="CompletionEmblems" type="HBoxContainer" parent="Background"]
+[node name="CompletionEmblems" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 399.0
-offset_top = 321.0
-offset_right = 479.0
-offset_bottom = 345.0
+offset_top = 320.0
+offset_right = 495.0
+offset_bottom = 344.0
 theme_override_constants/separation = 12
 
-[node name="BeatGameCompletionEmblem" type="TextureRect" parent="Background/CompletionEmblems"]
+[node name="BeatGameCompletionEmblem" type="TextureRect" parent="CompletionEmblems"]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
+tooltip_text = "Game Completion achieved"
 texture = ExtResource("8_wdex8")
 script = ExtResource("9_dnf4a")
 
-[node name="FullCompletionCompletionEmblem" type="TextureRect" parent="Background/CompletionEmblems"]
+[node name="FullCompletionCompletionEmblem" type="TextureRect" parent="CompletionEmblems"]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
+tooltip_text = "Full Item Completion achieved"
 texture = ExtResource("8_wdex8")
 script = ExtResource("9_dnf4a")
 requirement = 1
 
-[node name="FastCompletionCompletionEmblem" type="TextureRect" parent="Background/CompletionEmblems"]
+[node name="FastCompletionCompletionEmblem" type="TextureRect" parent="CompletionEmblems"]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
+tooltip_text = "Fast Game Completion achieved"
 texture = ExtResource("8_wdex8")
 script = ExtResource("9_dnf4a")
 requirement = 2
 
-[node name="Credits" type="Label" parent="Background"]
+[node name="Credits" type="Label" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 1
@@ -195,9 +266,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
-offset_top = -206.0
+offset_top = -207.0
 offset_right = 308.0
-offset_bottom = -48.0
+offset_bottom = -28.0
 grow_vertical = 0
 mouse_filter = 1
 text = "kekis - Programming, Sprites, Sounds
@@ -210,7 +281,7 @@ Metroidvania Month 22 Game Jam."
 label_settings = SubResource("LabelSettings_50n41")
 script = ExtResource("4_4in77")
 
-[node name="Version" type="Label" parent="Background"]
+[node name="Version" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.784314)
 layout_mode = 1
 anchors_preset = 3
@@ -219,30 +290,34 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -113.0
-offset_top = -52.0
+offset_top = -53.0
 offset_right = -40.0
-offset_bottom = -32.0
+offset_bottom = -30.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "VERSION"
 horizontal_alignment = 2
 script = ExtResource("5_7kpd4")
 
-[node name="SettingsPanel" parent="Background" instance=ExtResource("6_42u6o")]
+[node name="SettingsPanel" parent="." instance=ExtResource("6_42u6o")]
 visible = false
 layout_mode = 1
+offset_top = -1.0
+offset_bottom = -1.0
 
-[node name="SaveManagePanel" type="Panel" parent="Background"]
+[node name="SaveManagePanel" type="Panel" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_iobso")
 
-[node name="Panel" type="Panel" parent="Background/SaveManagePanel"]
+[node name="Panel" type="Panel" parent="SaveManagePanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -257,7 +332,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xl4m6")
 
-[node name="CloseButton" type="Button" parent="Background/SaveManagePanel/Panel"]
+[node name="CloseButton" type="Button" parent="SaveManagePanel/Panel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -272,7 +347,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Close"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Background/SaveManagePanel/Panel"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="SaveManagePanel/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -288,21 +363,21 @@ grow_vertical = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="SaveCreationTime" type="Label" parent="Background/SaveManagePanel/Panel/VBoxContainer2"]
+[node name="SaveCreationTime" type="Label" parent="SaveManagePanel/Panel/VBoxContainer2"]
 layout_mode = 2
 text = "Save: 15-11-2004 10:00:00"
 label_settings = SubResource("LabelSettings_u6bq7")
 horizontal_alignment = 1
 script = ExtResource("10_w55hk")
 
-[node name="BestTime" type="Label" parent="Background/SaveManagePanel/Panel/VBoxContainer2"]
+[node name="BestTime" type="Label" parent="SaveManagePanel/Panel/VBoxContainer2"]
 layout_mode = 2
 text = "Best time: ---"
 label_settings = SubResource("LabelSettings_u6bq7")
 horizontal_alignment = 1
 script = ExtResource("11_ct5y2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/SaveManagePanel/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SaveManagePanel/Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -314,22 +389,22 @@ offset_bottom = 175.0
 grow_horizontal = 2
 theme_override_constants/separation = 25
 
-[node name="ImportSave" type="Button" parent="Background/SaveManagePanel/Panel/VBoxContainer"]
+[node name="ImportSave" type="Button" parent="SaveManagePanel/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Import save"
 
-[node name="ExportSave" type="Button" parent="Background/SaveManagePanel/Panel/VBoxContainer"]
+[node name="ExportSave" type="Button" parent="SaveManagePanel/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Export save"
 
-[node name="DeleteSave" type="Button" parent="Background/SaveManagePanel/Panel/VBoxContainer"]
+[node name="DeleteSave" type="Button" parent="SaveManagePanel/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Delete save"
 
-[node name="ImportDialog" type="FileDialog" parent="Background/SaveManagePanel/Panel"]
+[node name="ImportDialog" type="FileDialog" parent="SaveManagePanel/Panel"]
 title = "Open a File"
 position = Vector2i(0, 36)
 size = Vector2i(407, 154)
@@ -339,16 +414,16 @@ access = 2
 filters = PackedStringArray("*.thelastrevenant ; The Last Revenant Save Files")
 use_native_dialog = true
 
-[node name="ExportDialog" type="FileDialog" parent="Background/SaveManagePanel/Panel"]
+[node name="ExportDialog" type="FileDialog" parent="SaveManagePanel/Panel"]
 title = "Export Save"
 access = 2
 use_native_dialog = true
 
-[node name="DeleteConfirmationDialog" type="ConfirmationDialog" parent="Background/SaveManagePanel/Panel"]
+[node name="DeleteConfirmationDialog" type="ConfirmationDialog" parent="SaveManagePanel/Panel"]
 initial_position = 1
 dialog_text = "Are you sure you want to delete your save?"
 
-[node name="CreditsDialog" type="AcceptDialog" parent="Background"]
+[node name="CreditsDialog" type="AcceptDialog" parent="."]
 title = "Credits"
 initial_position = 1
 size = Vector2i(335, 212)
@@ -366,16 +441,18 @@ Luca - Lead Funikulaari
 Made with Godot 4, originally for the
 Metroidvania Month 22 Game Jam."
 
-[node name="ExtrasPanel" type="Panel" parent="Background"]
+[node name="ExtrasPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TabContainer" type="TabContainer" parent="Background/ExtrasPanel"]
+[node name="TabContainer" type="TabContainer" parent="ExtrasPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -390,10 +467,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7fnti")
 
-[node name="Home" type="Control" parent="Background/ExtrasPanel/TabContainer"]
+[node name="Home" type="Control" parent="ExtrasPanel/TabContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/ExtrasPanel/TabContainer/Home"]
+[node name="Label" type="Label" parent="ExtrasPanel/TabContainer/Home"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -409,15 +486,15 @@ grow_vertical = 2
 text = "Welcome to the extras menu!"
 label_settings = SubResource("LabelSettings_j44kk")
 
-[node name="Tab2" type="Control" parent="Background/ExtrasPanel/TabContainer"]
+[node name="Tab2" type="Control" parent="ExtrasPanel/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Tab3" type="Control" parent="Background/ExtrasPanel/TabContainer"]
+[node name="Modes" type="Control" parent="ExtrasPanel/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="CloseButton" type="Button" parent="Background/ExtrasPanel"]
+[node name="CloseButton" type="Button" parent="ExtrasPanel"]
 layout_mode = 2
 offset_left = 156.0
 offset_top = 570.0
@@ -436,18 +513,18 @@ stream = ExtResource("7_qcstw")
 volume_db = -20.0
 bus = &"Music"
 
-[connection signal="pressed" from="Background/Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="Background/Buttons/ContinueButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Background/Buttons/SettingsButton" to="Background/SettingsPanel" method="show_settings"]
-[connection signal="pressed" from="Background/Buttons/SaveManageButton" to="Background/SaveManagePanel" method="_on_save_manage_button_pressed"]
-[connection signal="pressed" from="Background/Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="Background/Buttons/ExtrasButton" to="." method="_on_extras_button_pressed"]
-[connection signal="pressed" from="Background/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="Background/SaveManagePanel/Panel/CloseButton" to="Background/SaveManagePanel" method="_on_close_button_pressed"]
-[connection signal="pressed" from="Background/SaveManagePanel/Panel/VBoxContainer/ImportSave" to="Background/SaveManagePanel" method="_on_import_save_pressed"]
-[connection signal="pressed" from="Background/SaveManagePanel/Panel/VBoxContainer/ExportSave" to="Background/SaveManagePanel" method="_on_export_save_pressed"]
-[connection signal="pressed" from="Background/SaveManagePanel/Panel/VBoxContainer/DeleteSave" to="Background/SaveManagePanel" method="_on_delete_save_pressed"]
-[connection signal="file_selected" from="Background/SaveManagePanel/Panel/ImportDialog" to="Background/SaveManagePanel" method="on_save_file_selected"]
-[connection signal="file_selected" from="Background/SaveManagePanel/Panel/ExportDialog" to="Background/SaveManagePanel" method="on_save_file_exported"]
-[connection signal="confirmed" from="Background/SaveManagePanel/Panel/DeleteConfirmationDialog" to="Background/SaveManagePanel" method="_on_delete_confirmation_dialog_confirmed"]
-[connection signal="pressed" from="Background/ExtrasPanel/CloseButton" to="." method="_on_extras_close_button_pressed"]
+[connection signal="pressed" from="Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Buttons/ContinueButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Buttons/SettingsButton" to="SettingsPanel" method="show_settings"]
+[connection signal="pressed" from="Buttons/SaveManageButton" to="SaveManagePanel" method="_on_save_manage_button_pressed"]
+[connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Buttons/ExtrasButton" to="." method="_on_extras_button_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="SaveManagePanel/Panel/CloseButton" to="SaveManagePanel" method="_on_close_button_pressed"]
+[connection signal="pressed" from="SaveManagePanel/Panel/VBoxContainer/ImportSave" to="SaveManagePanel" method="_on_import_save_pressed"]
+[connection signal="pressed" from="SaveManagePanel/Panel/VBoxContainer/ExportSave" to="SaveManagePanel" method="_on_export_save_pressed"]
+[connection signal="pressed" from="SaveManagePanel/Panel/VBoxContainer/DeleteSave" to="SaveManagePanel" method="_on_delete_save_pressed"]
+[connection signal="file_selected" from="SaveManagePanel/Panel/ImportDialog" to="SaveManagePanel" method="on_save_file_selected"]
+[connection signal="file_selected" from="SaveManagePanel/Panel/ExportDialog" to="SaveManagePanel" method="on_save_file_exported"]
+[connection signal="confirmed" from="SaveManagePanel/Panel/DeleteConfirmationDialog" to="SaveManagePanel" method="_on_delete_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="ExtrasPanel/CloseButton" to="." method="_on_extras_close_button_pressed"]

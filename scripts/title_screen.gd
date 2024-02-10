@@ -10,7 +10,7 @@ func _on_new_game_button_pressed():
 
 
 func _on_credits_button_pressed():
-	$Background/CreditsDialog.popup()
+	$CreditsDialog.popup()
 
 
 func _on_quit_button_pressed():
@@ -19,8 +19,8 @@ func _on_quit_button_pressed():
 
 
 func _on_extras_close_button_pressed():
-	$Background/ExtrasPanel.visible = false
+	$ExtrasPanel.visible = false
 
 
 func _on_extras_button_pressed():
-	$Background/ExtrasPanel.visible = true
+	$ExtrasPanel.visible = true

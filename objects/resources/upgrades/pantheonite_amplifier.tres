@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://qug8e7p6ofxe"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://dy5qtwcshp0e7"]
 
 [ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_ylfd2"]
 [ext_resource type="Texture2D" uid="uid://b15sd1oc1i706" path="res://assets/sprites/pickups/pickup_pantheonite_module.png" id="2_rwf3j"]
