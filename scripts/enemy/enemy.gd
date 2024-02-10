@@ -93,10 +93,6 @@ func take_damage():
 	if stunned:
 		return
 	
-	await get_tree().create_timer(0.06, true, false, true).timeout
-	get_tree().paused = true
-	await get_tree().create_timer(0.1, true, false, true).timeout
-	get_tree().paused = false
 	
 	
 	if not infinite_health:
@@ -104,11 +100,21 @@ func take_damage():
 		if GameMan.get_upgrade_status(GameMan.Upgrades.GALVANIC_MODULE) == GameMan.UpgradeStatus.ENABLED:
 			damage = 1.5
 		
-		if GameMan.get_upgrade_status(GameMan.Upgrades.AUTOCOUNTER) == GameMan.UpgradeStatus.ENABLED and not Input.is_action_just_pressed("hook_attack"):
+		if GameMan.get_upgrade_status(GameMan.Upgrades.AUTOCOUNTER) == GameMan.UpgradeStatus.ENABLED and not Input.is_action_just_pressed("hook_attack") and not GameMan.get_player().bomb_active:
 			damage /= 2
 		
-		health -= damage
+		if GameMan.get_upgrade_status(GameMan.Upgrades.PANTHEONITE_AMPLIFIER) == GameMan.UpgradeStatus.ENABLED:
+			if boss:
+				damage *= 100
+			else:
+				damage *= 5
 		
+		health -= damage
+	
+	await get_tree().create_timer(0.06, true, false, true).timeout
+	get_tree().paused = true
+	await get_tree().create_timer(0.1, true, false, true).timeout
+	get_tree().paused = false
 	
 	if health <= 0:
 		die()

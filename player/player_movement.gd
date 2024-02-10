@@ -507,11 +507,11 @@ func flip_sprite(inverse : bool):
 	$Sprite2D.flip_h = inverse
 	
 	var hookhand_pos = Vector2(4,5)
-	hook_offset = Vector2(8, 0)
+	hook_offset = Vector2(4, 0)
 	
 	if inverse:
 		hookhand_pos.x *= -1
-		hook_offset = Vector2(-8, 0)
+		hook_offset = Vector2(-4, 0)
 	
 	$Sprite2D/HookshotHand.position = hookhand_pos
 

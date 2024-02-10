@@ -5,7 +5,9 @@ extends AnimatedSprite2D
 func _process(delta):
 	set_dir()
 	
-	if GameMan.get_upgrade_status(GameMan.Upgrades.THERMAL_MODULE) == GameMan.UpgradeStatus.ENABLED:
+	if GameMan.get_upgrade_status(GameMan.Upgrades.PANTHEONITE_AMPLIFIER) == GameMan.UpgradeStatus.ENABLED:
+		sprite_frames = frames[4]
+	elif GameMan.get_upgrade_status(GameMan.Upgrades.THERMAL_MODULE) == GameMan.UpgradeStatus.ENABLED:
 		sprite_frames = frames[3]
 	elif GameMan.get_upgrade_status(GameMan.Upgrades.GALVANIC_MODULE) == GameMan.UpgradeStatus.ENABLED:
 		sprite_frames = frames[2]

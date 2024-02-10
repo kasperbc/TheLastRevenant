@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b5g4g7sk7nr3o"]
+[gd_scene load_steps=36 format=3 uid="uid://b5g4g7sk7nr3o"]
 
 [ext_resource type="Script" path="res://objects/hook/hook_movement.gd" id="1_idwuo"]
 [ext_resource type="Script" path="res://objects/hook/hook_head.gd" id="2_1m8hq"]
@@ -10,8 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://caumg5njpmg1i" path="res://assets/sprites/hook/rope-1.png" id="5_3sre8"]
 [ext_resource type="Texture2D" uid="uid://b3161p1jsjgl0" path="res://assets/sprites/hook/rope-2.png" id="6_fufdx"]
 [ext_resource type="Texture2D" uid="uid://bewe0xlre6eui" path="res://assets/sprites/hook/hookshot-head-4.png" id="6_nh17u"]
+[ext_resource type="Texture2D" uid="uid://c40sudr8vstju" path="res://assets/sprites/hook/hookshot-head-5-pantheonite.png" id="7_ln0ol"]
 [ext_resource type="Texture2D" uid="uid://dgyxmvu2o4x2y" path="res://assets/sprites/hook/rope-3.png" id="7_skump"]
 [ext_resource type="Texture2D" uid="uid://b612w104dp5ux" path="res://assets/sprites/hook/rope-4.png" id="8_osa88"]
+[ext_resource type="Texture2D" uid="uid://n84uhd8re44h" path="res://assets/sprites/hook/rope-5-pantheonite.png" id="14_jllsr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7hf"]
 size = Vector2(10, 10)
@@ -133,6 +135,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ywac"]
+atlas = ExtResource("7_ln0ol")
+region = Rect2(0, 0, 11, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daqkm"]
+atlas = ExtResource("7_ln0ol")
+region = Rect2(11, 0, 11, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ucxh"]
+atlas = ExtResource("7_ln0ol")
+region = Rect2(22, 0, 11, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ly3e4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ywac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daqkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ucxh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Hook" type="CharacterBody2D" groups=["Hooks"]]
 z_index = 1
 collision_layer = 0
@@ -145,7 +176,7 @@ shape = SubResource("RectangleShape2D_2n7hf")
 [node name="Hook" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_id8vs")
 script = ExtResource("2_1m8hq")
-frames = Array[SpriteFrames]([SubResource("SpriteFrames_72gfl"), SubResource("SpriteFrames_5pvso"), SubResource("SpriteFrames_kv4am"), SubResource("SpriteFrames_vpg5n")])
+frames = Array[SpriteFrames]([SubResource("SpriteFrames_72gfl"), SubResource("SpriteFrames_5pvso"), SubResource("SpriteFrames_kv4am"), SubResource("SpriteFrames_vpg5n"), SubResource("SpriteFrames_ly3e4")])
 
 [node name="Rope" type="Sprite2D" parent="."]
 top_level = true
@@ -155,7 +186,7 @@ texture = ExtResource("3_5cfij")
 region_enabled = true
 region_rect = Rect2(0, 0, 0, 4)
 script = ExtResource("4_4uoam")
-sprites = Array[CompressedTexture2D]([ExtResource("5_3sre8"), ExtResource("6_fufdx"), ExtResource("7_skump"), ExtResource("8_osa88")])
+sprites = Array[CompressedTexture2D]([ExtResource("5_3sre8"), ExtResource("6_fufdx"), ExtResource("7_skump"), ExtResource("8_osa88"), ExtResource("14_jllsr")])
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 

@@ -17,7 +17,7 @@ signal collided(collision : KinematicCollision2D)
 signal max_distance_reached
 
 func _ready():
-	current_state = HookMoveState.STILL
+	current_state = HookMoveState.RETURNING
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(4, false)
 	set_collision_mask_value(7, false)

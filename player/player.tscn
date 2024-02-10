@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://cdk28anvdyvwx"]
+[gd_scene load_steps=107 format=3 uid="uid://cdk28anvdyvwx"]
 
 [ext_resource type="Script" path="res://player/player_movement.gd" id="1_xsl8m"]
 [ext_resource type="Texture2D" uid="uid://chewg68qcfq0k" path="res://assets/sprites/player/tlr-sombre-freefall.png" id="2_4pjd8"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://doche4allsmwy" path="res://assets/sprites/hook/hookshot_hand.png" id="7_eyyva"]
 [ext_resource type="Texture2D" uid="uid://djdm5sx6ku7fc" path="res://assets/sprites/hook/hookshot_hand-4.png" id="8_jgxmu"]
 [ext_resource type="PackedScene" uid="uid://d2clbmyic26t" path="res://objects/particles/explosion.tscn" id="9_urjyp"]
+[ext_resource type="Texture2D" uid="uid://b8kbxgi5q4ncb" path="res://assets/sprites/hook/hookshot_hand-5-pantheonite.png" id="13_nwcld"]
 [ext_resource type="Texture2D" uid="uid://urnf4ratht57" path="res://assets/sprites/player/attack_anim.png" id="14_qrbme"]
 [ext_resource type="Texture2D" uid="uid://darglr61b8u42" path="res://assets/sprites/player/attack_flare.png" id="15_phk2r"]
 [ext_resource type="Texture2D" uid="uid://dtceudcbadgtq" path="res://assets/sprites/particles/deltarune-refrence-2.png" id="18_03ai1"]
@@ -273,6 +274,28 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h4ybs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qx6ic"]
+atlas = ExtResource("13_nwcld")
+region = Rect2(0, 0, 10, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8ryw"]
+atlas = ExtResource("13_nwcld")
+region = Rect2(10, 0, 10, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i213s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qx6ic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8ryw")
 }],
 "loop": true,
 "name": &"default",
@@ -733,7 +756,7 @@ position = Vector2(4, 5)
 sprite_frames = SubResource("SpriteFrames_m4la1")
 offset = Vector2(3, 0)
 script = ExtResource("4_s1e1s")
-frames = Array[SpriteFrames]([SubResource("SpriteFrames_8k2o0"), SubResource("SpriteFrames_bf7py"), SubResource("SpriteFrames_o1647"), SubResource("SpriteFrames_ea8w2")])
+frames = Array[SpriteFrames]([SubResource("SpriteFrames_8k2o0"), SubResource("SpriteFrames_bf7py"), SubResource("SpriteFrames_o1647"), SubResource("SpriteFrames_ea8w2"), SubResource("SpriteFrames_i213s")])
 
 [node name="HookShotPosIndicator" parent="." instance=ExtResource("3_8hvtn")]
 visible = false

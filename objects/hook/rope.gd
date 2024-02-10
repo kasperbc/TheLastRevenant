@@ -19,7 +19,9 @@ func _process(delta):
 	rotation = Vector2.RIGHT.angle_to(hook_pos.direction_to(player_pos))
 	
 	# sprite
-	if GameMan.get_upgrade_status(GameMan.Upgrades.THERMAL_MODULE) == GameMan.UpgradeStatus.ENABLED:
+	if GameMan.get_upgrade_status(GameMan.Upgrades.PANTHEONITE_AMPLIFIER) == GameMan.UpgradeStatus.ENABLED:
+		texture = sprites[4]
+	elif GameMan.get_upgrade_status(GameMan.Upgrades.THERMAL_MODULE) == GameMan.UpgradeStatus.ENABLED:
 		texture = sprites[3]
 	elif GameMan.get_upgrade_status(GameMan.Upgrades.GALVANIC_MODULE) == GameMan.UpgradeStatus.ENABLED:
 		texture = sprites[2]
