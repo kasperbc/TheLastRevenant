@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scripts/secret_song.gd" id="5_2oaut"]
 [ext_resource type="Script" path="res://scripts/ui/version_label.gd" id="5_7kpd4"]
 [ext_resource type="Texture2D" uid="uid://cwrl0pvt1aur2" path="res://title_screen/small_title.png" id="5_vwhf8"]
-[ext_resource type="PackedScene" uid="uid://2r2ppdsrhmie" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
+[ext_resource type="PackedScene" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
 [ext_resource type="Script" path="res://scripts/ui/extras_button.gd" id="6_b0kv4"]
 [ext_resource type="AudioStream" uid="uid://c2nwwhm2gjvty" path="res://assets/music/gibbrishtext.mp3" id="7_qcstw"]
 [ext_resource type="Texture2D" uid="uid://rchscos1poir" path="res://assets/sprites/ui/completion_emblem.png" id="8_wdex8"]
