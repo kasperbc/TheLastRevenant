@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://cekrbo26y04m7"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://0mr1bskovnof"]
 
 [ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_sb6kv"]
 [ext_resource type="Texture2D" uid="uid://f56kv235i2mp" path="res://assets/sprites/pickups/pickup_autocounter_module.png" id="2_qfn6b"]
