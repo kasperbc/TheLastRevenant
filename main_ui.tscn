@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=73 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://5hm18mar4hmi" path="res://assets/sprites/ui/health-circle-sixths.png" id="2_grqex"]
@@ -54,6 +54,10 @@
 [ext_resource type="Texture2D" uid="uid://cmhtnvjt6nent" path="res://assets/sprites/player/intros/gameover_text.png" id="51_gxpde"]
 [ext_resource type="Texture2D" uid="uid://drkt4jy0dl1vi" path="res://assets/sprites/player/intros/gameover_totalsystemfailure.png" id="53_51s8f"]
 [ext_resource type="Script" path="res://scripts/ui/blink.gd" id="54_twr6c"]
+[ext_resource type="Texture2D" uid="uid://c1kjkriwhb71b" path="res://assets/sprites/ui/bossbar_back.png" id="55_dncl5"]
+[ext_resource type="Texture2D" uid="uid://defoxrhy1jol8" path="res://assets/sprites/ui/bossbar_front.png" id="56_pihby"]
+[ext_resource type="Texture2D" uid="uid://x7i8khedntse" path="res://assets/sprites/ui/bossbar_fill.png" id="57_q3bme"]
+[ext_resource type="Script" path="res://scripts/ui/boss_health_bar.gd" id="58_xvdar"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0f5e"]
 atlas = ExtResource("2_grqex")
@@ -128,6 +132,15 @@ font_color = Color(1, 1, 1, 0.784314)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bqj71"]
 font_size = 18
+
+[sub_resource type="Gradient" id="Gradient_haqhg"]
+offsets = PackedFloat32Array(0.0143541, 1)
+colors = PackedColorArray(0, 0, 0, 0.156863, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8t17r"]
+gradient = SubResource("Gradient_haqhg")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_sa0vk"]
 font = ExtResource("26_rnk7w")
@@ -535,6 +548,18 @@ offset_bottom = 48.0
 text = "0%"
 script = ExtResource("21_tu8x2")
 
+[node name="Gradient" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 720.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_8t17r")
+
 [node name="PauseScreen" type="ColorRect" parent="Control"]
 process_mode = 3
 visible = false
@@ -743,6 +768,26 @@ text = "Continue"
 [node name="ReturnToTitle" type="Button" parent="Control/GameOverScreen/UI/Buttons"]
 layout_mode = 2
 text = "Return to title"
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_top = 8.0
+offset_right = 36.0
+offset_bottom = 18.0
+grow_horizontal = 2
+scale = Vector2(6, 6)
+pivot_offset = Vector2(36, 0)
+max_value = 1.0
+step = 0.01
+value = 1.0
+texture_under = ExtResource("55_dncl5")
+texture_over = ExtResource("56_pihby")
+texture_progress = ExtResource("57_q3bme")
+script = ExtResource("58_xvdar")
 
 [connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog1" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
 [connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog2" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]

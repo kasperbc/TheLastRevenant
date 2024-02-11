@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://c1mvi4507aurv"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://7r3a8f8xnccv"]
 
 [ext_resource type="Texture2D" uid="uid://bosjawp6pppue" path="res://assets/collision_decor/bg_decor_nuthin/pipes_tileset_bg.png" id="1_ayuvl"]
 [ext_resource type="Texture2D" uid="uid://b1nxou4d7rtbu" path="res://assets/collision_decor/bg_decor_nuthin/chain_tileset_bg.png" id="2_dbkl4"]

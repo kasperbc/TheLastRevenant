@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c65f2wpdei786"]
+[gd_scene load_steps=60 format=3 uid="uid://c65f2wpdei786"]
 
 [ext_resource type="PackedScene" uid="uid://cdk28anvdyvwx" path="res://player/player.tscn" id="1_37j5j"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="2_q7r5k"]
@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://b5g4g7sk7nr3o" path="res://objects/hook/hook.tscn" id="3_mds0t"]
 [ext_resource type="PackedScene" uid="uid://dcr1q7oj4a006" path="res://main_ui.tscn" id="4_etwc1"]
 [ext_resource type="Texture2D" uid="uid://bloaaha5osmtp" path="res://assets/sprites/hook/pantheonite-ropeparticle.png" id="4_evcet"]
-[ext_resource type="PackedScene" uid="uid://cwh5d4qwcv0i6" path="res://objects/lights/area_light.tscn" id="4_yb3h7"]
 [ext_resource type="Texture2D" uid="uid://dge4ysc7omnmg" path="res://assets/backgrounds/background.png" id="5_g3icy"]
 [ext_resource type="Script" path="res://objects/hook/panparticle.gd" id="5_m4rns"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="6_2wqmi"]
+[ext_resource type="PackedScene" uid="uid://c2motn016t1md" path="res://objects/decor/small_lamp.tscn" id="8_424u8"]
+[ext_resource type="PackedScene" uid="uid://0nq5ye7e5td1" path="res://objects/decor/wide_lamp.tscn" id="8_srfg1"]
 [ext_resource type="Script" path="res://scripts/game_start.gd" id="10_5r6h5"]
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="11_8wm0p"]
 [ext_resource type="Texture2D" uid="uid://cvax2goia4dxm" path="res://assets/collision_decor/cryocapsule-opening-start.png" id="11_e2h05"]
@@ -344,97 +345,46 @@ position_smoothing_enabled = true
 script = ExtResource("2_q7r5k")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
+energy = 0.3
 blend_mode = 1
 
-[node name="RevenantLab" type="Node2D" parent="DirectionalLight2D"]
+[node name="WideLamp" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(192, -192)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
 
-[node name="AreaLightSpawn" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
-position = Vector2(192, -176)
-scale = Vector2(7, 6)
-offset = Vector2(0, -0.045)
+[node name="SmallLamp" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(352, -108)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
 
-[node name="AreaLightSpawn2" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
-position = Vector2(576, -96)
-scale = Vector2(7, 3)
-offset = Vector2(0, -0.045)
+[node name="SmallLamp2" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(400, -108)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
 
-[node name="AreaLightSpawn3" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
-position = Vector2(1184, 75.0784)
-scale = Vector2(14.5, 8.83378)
-offset = Vector2(0, -0.045)
+[node name="SmallLamp3" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(752, -108)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
 
-[node name="AreaLightSpawn5" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
-position = Vector2(1184, 75.0784)
-scale = Vector2(14.5, 8.83378)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn4" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
-position = Vector2(2504, 0)
-scale = Vector2(31.25, 13)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn7" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
-position = Vector2(3664, 272)
-scale = Vector2(10, 4)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn8" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
-position = Vector2(4416, 32)
-scale = Vector2(20, 12)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn9" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
-position = Vector2(5376, 448)
-scale = Vector2(15, 12)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn10" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
-position = Vector2(5952, 272)
-scale = Vector2(8, 4)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn11" parent="DirectionalLight2D/RevenantLab" instance=ExtResource("4_yb3h7")]
-position = Vector2(888, -407.606)
-scale = Vector2(22.25, 8.75)
-offset = Vector2(0, -0.045)
-
-[node name="Hangar" type="Node2D" parent="DirectionalLight2D"]
-
-[node name="AreaLightSpawn11" parent="DirectionalLight2D/Hangar" instance=ExtResource("4_yb3h7")]
-position = Vector2(6720, 0)
-scale = Vector2(18, 13)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn12" parent="DirectionalLight2D/Hangar" instance=ExtResource("4_yb3h7")]
-position = Vector2(6720, 776.641)
-scale = Vector2(6.24999, 14.25)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn13" parent="DirectionalLight2D/Hangar" instance=ExtResource("4_yb3h7")]
-position = Vector2(6624, 1344.27)
-scale = Vector2(15.5, 6)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn14" parent="DirectionalLight2D/Hangar" instance=ExtResource("4_yb3h7")]
-position = Vector2(8992, 1416.11)
-scale = Vector2(5.75, 3.25105)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn15" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(2500, -2085.27)
-scale = Vector2(6.125, 60.75)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn16" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(1552, -1695.44)
-scale = Vector2(25.5, 12.5)
-offset = Vector2(0, -0.045)
-
-[node name="AreaLightSpawn17" parent="DirectionalLight2D" instance=ExtResource("4_yb3h7")]
-position = Vector2(2862, -1635.94)
-scale = Vector2(7.0625, 2.37342)
-offset = Vector2(0, -0.045)
+[node name="SmallLamp4" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(800, -108)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
 
 [node name="UI" parent="." instance=ExtResource("4_etwc1")]
 
@@ -442,7 +392,7 @@ offset = Vector2(0, -0.045)
 self_modulate = Color(1, 1, 1, 0.184314)
 z_index = -10
 texture_repeat = 2
-position = Vector2(1390, -58)
+position = Vector2(1200, -64)
 scale = Vector2(0.391, 0.366)
 texture = ExtResource("5_g3icy")
 region_enabled = true
