@@ -8,6 +8,7 @@ func play_anim():
 	
 	GameMan.get_audioman().play_fx("thud")
 	GameMan.get_audioman().stop_music()
+	$UI.process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	blood_front_fade.tween_property($BloodFront, "self_modulate", Color(1,1,1,1), 0.2)
 	await get_tree().create_timer(0.1).timeout
