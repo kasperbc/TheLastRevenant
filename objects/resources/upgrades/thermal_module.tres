@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_j5yop"]
 [ext_resource type="Texture2D" uid="uid://dd0jgi1sqw4gf" path="res://assets/sprites/pickups/pickup_thermal_module.png" id="2_7xbqh"]
-[ext_resource type="Texture2D" uid="uid://dvxus2dxltrvb" path="res://objects/map/inventory_tab/thermal_wireframe.png" id="3_gku2c"]
+[ext_resource type="Texture2D" uid="uid://dsmtgtjgt10qc" path="res://objects/map/inventory_tab/thermal_wireframe.png" id="3_gku2c"]
 
 [resource]
 script = ExtResource("1_j5yop")
