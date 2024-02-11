@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5eyqghutusi2"]
+
+[ext_resource type="Script" path="res://scripts/pickup/pickup_health.gd" id="1_8ei4p"]
+[ext_resource type="Texture2D" uid="uid://dhs4fxth8r3o1" path="res://assets/collision_decor/bg_decor_special/medkit_small.png" id="2_hgjra"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2t3wg"]
+radius = 3.0
+
+[node name="PickupMedkit" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_8ei4p")
+type = 1
+hover = true
+hover_speed = 2.0
+hover_intensity = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2t3wg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hgjra")
+
+[connection signal="body_entered" from="." to="." method="_on_player_contact"]

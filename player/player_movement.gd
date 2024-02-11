@@ -15,7 +15,7 @@ const JUMP_TIME_TO_PEAK = 0.4
 const JUMP_TIME_TO_DESCENT = 0.35
 const SPEED_EXPANSION_GRAVITY_DECREASE = 25
 const TERMINAL_VELOCITY = 400
-const COYOTE_TIME = 0.3
+const COYOTE_TIME = 0.15
 
 const HOOK_BASE_FLY_SPEED = 275.0
 const HOOK_MAX_FLY_SPEED = 550.0
@@ -176,6 +176,9 @@ func jump():
 	if not is_on_floor() and time_in_air > COYOTE_TIME:
 		return
 	time_in_air = COYOTE_TIME
+	$JumpParticle.restart()
+	$JumpParticle.emitting = true
+	
 	holding_jump = true
 	velocity.y = -jump_velocity
 

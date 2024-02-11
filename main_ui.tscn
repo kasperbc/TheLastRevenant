@@ -676,6 +676,7 @@ pivot_offset = Vector2(640, 360)
 texture = ExtResource("50_wfukd")
 
 [node name="UI" type="Control" parent="Control/GameOverScreen"]
+process_mode = 4
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
