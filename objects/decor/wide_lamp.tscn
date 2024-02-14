@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://0nq5ye7e5td1"]
+
+[ext_resource type="Texture2D" uid="uid://c63trfpjs4t7i" path="res://assets/collision_decor/bg_decor_special/ceiling_lamp_wide.png" id="1_b3dh5"]
+[ext_resource type="Texture2D" uid="uid://c0lbwpdt76b76" path="res://assets/gradients/ceiling_light3.png" id="2_rcrny"]
+[ext_resource type="Script" path="res://objects/decor/ceiling_lamp.gd" id="2_sy2s3"]
+[ext_resource type="Texture2D" uid="uid://cpvuovha5a1go" path="res://assets/collision_decor/bg_decor_special/ceiling_lamp_wide_broken.png" id="3_8the8"]
+[ext_resource type="Texture2D" uid="uid://bnosk8xxfr7je" path="res://assets/collision_decor/bg_decor_special/ceiling_lamp_wide_off.png" id="3_aa7ak"]
+[ext_resource type="Texture2D" uid="uid://qw6nvjr70mwj" path="res://assets/sprites/particles/shard.png" id="4_v4x38"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kihta"]
+size = Vector2(32, 10)
+
+[sub_resource type="Gradient" id="Gradient_r5lk0"]
+offsets = PackedFloat32Array(0, 0.519774, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0h815"]
+gradient = SubResource("Gradient_r5lk0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jii7b"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(8, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -198.6
+angle_max = 186.2
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 103.46
+initial_velocity_max = 146.56
+angular_velocity_min = -261.29
+angular_velocity_max = 173.79
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_0h815")
+
+[node name="WideLamp" type="StaticBody2D"]
+z_index = -1
+collision_layer = 64
+script = ExtResource("2_sy2s3")
+off_sprite = ExtResource("3_aa7ak")
+broken_sprite = ExtResource("3_8the8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_b3dh5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-8.58307e-06, 72)
+scale = Vector2(1.14286, 1.19438)
+energy = 0.33
+texture = ExtResource("2_rcrny")
+texture_scale = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_kihta")
+
+[node name="BreakParticles" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_jii7b")
+texture = ExtResource("4_v4x38")
+one_shot = true
+explosiveness = 1.0

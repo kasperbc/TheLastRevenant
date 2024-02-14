@@ -16,7 +16,6 @@ func _on_body_entered(body):
 	GameMan.get_audioman().play_fx("download", -8.0, 1.0)
 	
 	await get_tree().create_timer(1.3).timeout
-	$helmet.visible = true
 	GameMan.get_audioman().play_fx("thud2", -4.0, 1.0)
 	
 	await get_tree().create_timer(0.2).timeout
@@ -39,3 +38,6 @@ func _on_body_entered(body):
 	$FinalBoss.process_mode = Node.PROCESS_MODE_INHERIT
 	$SpaceBlocker.process_mode = Node.PROCESS_MODE_DISABLED
 	GameMan.get_audioman().play_music("finalboss", -24.0)
+	
+	get_tree().root.get_node("Main/UI/Control/BossHealthBar").show_bosshealth($FinalBoss)
+	$FakeFloor.queue_free()

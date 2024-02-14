@@ -36,6 +36,7 @@ var stunned
 @onready var base_health = health
 
 signal died
+signal damaged
 
 func _ready():
 	var bosses_defeated = SaveMan.get_value("bosses_defeated", [-1])
@@ -93,8 +94,6 @@ func take_damage():
 	if stunned:
 		return
 	
-	
-	
 	if not infinite_health:
 		var damage = 1
 		if GameMan.get_upgrade_status(GameMan.Upgrades.GALVANIC_MODULE) == GameMan.UpgradeStatus.ENABLED:
@@ -110,6 +109,7 @@ func take_damage():
 				damage *= 5
 		
 		health -= damage
+		damaged.emit()
 	
 	await get_tree().create_timer(0.06, true, false, true).timeout
 	get_tree().paused = true
