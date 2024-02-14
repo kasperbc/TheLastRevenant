@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/enemy/ais/turret_drone.gd" id="4_6rclm"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/idle_pointfollow_fly.gd" id="5_w72qb"]
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_standstill_fly_shoot.gd" id="6_bf5l2"]
-[ext_resource type="PackedScene" uid="uid://dhfieln5f4mk5" path="res://objects/enemies/shaker.tscn" id="7_0bk4l"]
+[ext_resource type="PackedScene" path="res://objects/enemies/shaker.tscn" id="7_0bk4l"]
 [ext_resource type="Texture2D" uid="uid://22dwjutt4ncg" path="res://assets/sprites/objects/cannon.png" id="9_62f7t"]
 [ext_resource type="Script" path="res://objects/enemies/turret_drone/turret_rotate.gd" id="10_mr6ki"]
 [ext_resource type="Script" path="res://scripts/tools/move_path_tool.gd" id="11_wwvvd"]

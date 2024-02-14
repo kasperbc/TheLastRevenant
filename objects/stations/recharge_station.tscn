@@ -189,9 +189,9 @@ frame_progress = 1.0
 
 [node name="KeyPrompt" type="Label" parent="."]
 offset_left = -37.0
-offset_top = -42.0
+offset_top = -45.0
 offset_right = 1463.0
-offset_bottom = 154.0
+offset_bottom = 151.0
 scale = Vector2(0.05, 0.05)
 text = "E"
 label_settings = SubResource("LabelSettings_ktq4f")
