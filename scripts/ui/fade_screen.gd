@@ -13,7 +13,6 @@ func _ready():
 	visible = true
 	fade_to_transparent(1, 0.5)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not fading:
