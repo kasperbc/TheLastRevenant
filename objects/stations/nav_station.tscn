@@ -1,12 +1,88 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg62em3i60pjk"]
+[gd_scene load_steps=24 format=3 uid="uid://bg62em3i60pjk"]
 
 [ext_resource type="Script" path="res://objects/stations/nav_station.gd" id="1_pxpi1"]
-[ext_resource type="Texture2D" uid="uid://bkfnae0o4g3xo" path="res://assets/sprites/objects/nav-station.png" id="2_tn1qb"]
+[ext_resource type="Texture2D" uid="uid://dygalyxp2307x" path="res://assets/sprites/objects/nav station/nav-station1.png" id="2_wbi71"]
+[ext_resource type="Texture2D" uid="uid://bsysrfuknodun" path="res://assets/sprites/objects/nav station/nav-station2.png" id="3_3rfem"]
 [ext_resource type="FontFile" uid="uid://cumsyijkodo52" path="res://assets/fonts/PixeloidSans.ttf" id="3_wkh7v"]
 [ext_resource type="Script" path="res://objects/stations/keyprompt.gd" id="4_gp58o"]
+[ext_resource type="Texture2D" uid="uid://br1nu6irw85ht" path="res://assets/sprites/objects/nav station/nav-station3.png" id="4_jxoh8"]
+[ext_resource type="Texture2D" uid="uid://m67c7m5wm4iu" path="res://assets/sprites/objects/nav station/nav-station4.png" id="5_sxm0m"]
+[ext_resource type="Texture2D" uid="uid://cak5egsjanqq8" path="res://assets/sprites/objects/nav station/nav-station5.png" id="6_2k56a"]
+[ext_resource type="Texture2D" uid="uid://csewytcqtgmyh" path="res://assets/sprites/objects/nav station/nav-station6.png" id="7_0cvf2"]
+[ext_resource type="Texture2D" uid="uid://cytfifi50mp6k" path="res://assets/sprites/objects/nav station/nav-station7.png" id="8_jud5b"]
+[ext_resource type="Texture2D" uid="uid://cg1kuuapila4c" path="res://assets/sprites/objects/nav station/nav-station8.png" id="9_7a33t"]
+[ext_resource type="Texture2D" uid="uid://cvnr3esb2s1y8" path="res://assets/sprites/objects/nav station/nav-station_interact1.png" id="10_rj1sl"]
+[ext_resource type="Texture2D" uid="uid://dn5icu3opefyg" path="res://assets/sprites/objects/nav station/nav-station_interact2.png" id="11_64704"]
+[ext_resource type="Texture2D" uid="uid://d01ofvg8d8anf" path="res://assets/sprites/objects/nav station/nav-station_interact3.png" id="12_tv61g"]
+[ext_resource type="Texture2D" uid="uid://x0me6xjnaitr" path="res://assets/sprites/objects/nav station/nav-station_interact4.png" id="13_jo7oi"]
+[ext_resource type="Texture2D" uid="uid://bb7gl7vic1cfc" path="res://assets/sprites/objects/nav station/nav-station_interact5.png" id="14_llcsq"]
+[ext_resource type="Texture2D" uid="uid://d2jkuuiuhrpq2" path="res://assets/sprites/objects/nav station/nav-station_interact6.png" id="15_bgm8y"]
+[ext_resource type="Texture2D" uid="uid://4cp487rikdex" path="res://assets/sprites/objects/nav station/nav-station_interact7.png" id="16_qwji6"]
+[ext_resource type="Texture2D" uid="uid://cajany063fd1r" path="res://assets/sprites/objects/nav station/nav-station_interact8.png" id="17_74lo1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qg65v"]
 size = Vector2(26, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w520j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wbi71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3rfem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jxoh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sxm0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2k56a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0cvf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jud5b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7a33t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_rj1sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_64704")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tv61g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jo7oi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_llcsq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_bgm8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_qwji6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_74lo1")
+}],
+"loop": true,
+"name": &"interact",
+"speed": 10.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0nho4"]
 font = ExtResource("3_wkh7v")
@@ -26,9 +102,11 @@ script = ExtResource("1_pxpi1")
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_qg65v")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
-texture = ExtResource("2_tn1qb")
+sprite_frames = SubResource("SpriteFrames_w520j")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="KeyPrompt" type="Label" parent="."]
 offset_left = -37.0

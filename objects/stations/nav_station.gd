@@ -12,6 +12,12 @@ func on_station_activate():
 	get_tree().get_root().get_node("/root/Main/UI/Control/StationText").text = "Map data downloaded"
 	get_tree().get_root().get_node("/root/Main/UI/Control/StationText").visible = true
 	
+	$Sprite2D.speed_scale = 2
+	$Sprite2D.animation = "interact"
+	var t = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR)
+	t.tween_property($Sprite2D, "speed_scale", 1, 2)
+	
 	await get_tree().create_timer(2).timeout
 	
 	get_tree().get_root().get_node("/root/Main/UI/Control/StationText").visible = false
+	$Sprite2D.animation = "idle"
