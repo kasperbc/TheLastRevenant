@@ -390,7 +390,7 @@ turn_on_light_when_near = true
 
 [node name="Background" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.184314)
-z_index = -10
+z_index = -100
 texture_repeat = 2
 position = Vector2(1200, -64)
 scale = Vector2(0.391, 0.366)

@@ -50,7 +50,7 @@ func ai_state_process(delta):
 func get_floor_pos():
 	var space_state = body.get_world_2d().direct_space_state
 	
-	var dir = Vector2.RIGHT.rotated(body.rotation)
+	var dir = Vector2.RIGHT.rotated(body.global_rotation)
 	
 	# use global coordinates, not local to node
 	var query = PhysicsRayQueryParameters2D.new()

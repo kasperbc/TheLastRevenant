@@ -109,6 +109,21 @@ initial_velocity_max = 43.1
 gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_v1spg")
 
+[sub_resource type="Animation" id="Animation_06s5v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_iphf3")]
+}
+
 [sub_resource type="Animation" id="Animation_s6uq2"]
 resource_name = "laser"
 length = 0.4
@@ -124,21 +139,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("5_iphf3"), ExtResource("6_gu483"), ExtResource("7_e3404"), ExtResource("8_mwqbe"), ExtResource("8_mwqbe")]
-}
-
-[sub_resource type="Animation" id="Animation_06s5v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_iphf3")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bh0ck"]
@@ -160,9 +160,8 @@ metadata/time_offset = 0.0
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dpbun")
-animation = &"shoot"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.926695
 offset = Vector2(11, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -189,6 +188,7 @@ active_range = 1400.0
 script = ExtResource("4_i3o7w")
 
 [node name="LaserEnd" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(27, 0)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="LaserEnd"]
@@ -205,6 +205,7 @@ process_material = SubResource("ParticleProcessMaterial_5im10")
 lifetime = 0.2
 
 [node name="Laser" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 z_index = -1
 texture_repeat = 2
 position = Vector2(27, 0)
