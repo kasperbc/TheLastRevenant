@@ -6,4 +6,4 @@ func _process(delta):
 		return
 	else:
 		visible = true
-		value = 1 - (GameMan.get_player().bomb_last_use_timestamp - Time.get_unix_time_from_system() + PlayerMovement.BOMB_COOLDOWN) / PlayerMovement.BOMB_COOLDOWN
+		value = 1 - (GameMan.get_player().current_bomb_cooldown) / PlayerMovement.BOMB_COOLDOWN

@@ -11,6 +11,8 @@ func _ready():
 func pick_up():
 	GameMan.unlock_upgrade(upgrade)
 	
+	GameMan.get_player().get_node("Sprite2D/VisorGlow").play("item")
+	
 	show_upgrade_text()
 	await get_tree().create_timer(3).timeout
 	hide_upgrade_text()
