@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LogbookRes" load_steps=2 format=3 uid="uid://bwl8xd483i72j"]
+
+[ext_resource type="Script" path="res://scripts/resources/logbook_res.gd" id="1_l67vd"]
+
+[resource]
+script = ExtResource("1_l67vd")
+text = "Mendalla | 23.10.3211
+
+Ever since arriving here, I've felt my true calling slowly creeping into view, like the red giant behind the Observation Deck's curved windows. I never really cared for its books, but watching the ships coming and going, swapping spent prisoners with new ones, it really put into perspective how important I am to the Sirius Law Enforcement Corporation.
+
+Here, I'm alive. I have purpose. There's a reason I was never on one of those leaving ships, and that's because I'm something more. No authority can talk me down from doing something if I want to do so. I wasn't chosen for the Revenance, I chose it. Enkara, Uru, and the rest of them all bow down to me now.
+
+The only thing I'm currently missing is a way to tap into those Modules, although I can partially emulate their power by directly controlling this outpost itself. And if that one kid - or whatever it is - ever wakes and is able to use those Modules, my Revenants will seize subject SK-3190's body, and bring it to me. And then, when I'm the last of my kind, I will finally have the tools to access that satellite and show the good work I've done here for the SLEC."
+header = "Mendalla | 23.10.3211"
