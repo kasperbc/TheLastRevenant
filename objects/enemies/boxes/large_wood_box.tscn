@@ -7,9 +7,8 @@
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/pursue_player_fly.gd" id="4_vb26p"]
 
 [node name="LargeWoodBox" instance=ExtResource("1_2yfw0")]
+flesh = false
 death_particle = ExtResource("2_gsm3t")
-health_pickup_amount = 1
-health_pickup_spread = Vector2(5, 5)
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_bckmw")
