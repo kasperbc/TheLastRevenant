@@ -1,7 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://bphqw27qpkl3c"]
+[gd_scene load_steps=37 format=3 uid="uid://bphqw27qpkl3c"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_7uwxc"]
 [ext_resource type="Texture2D" uid="uid://d0prx2clcv12g" path="res://assets/sprites/enemies/revenant_creeper.png" id="2_jo4s8"]
+[ext_resource type="Texture2D" uid="uid://bp61q22co625g" path="res://assets/sprites/enemies/revenant_crouch.png" id="2_kbv1x"]
 [ext_resource type="Texture2D" uid="uid://d1w8mv3p4nxsn" path="res://assets/sprites/enemies/revenant_creeper_jumpscare.png" id="3_jp8xo"]
 [ext_resource type="Texture2D" uid="uid://b5iog6cgy7nj1" path="res://assets/sprites/particles/trash_revenant_pile.png" id="3_u5s8t"]
 [ext_resource type="Texture2D" uid="uid://cqof1f00ss1lo" path="res://assets/sprites/enemies/revenant_creepingt.png" id="4_m8c2n"]
@@ -11,6 +12,10 @@
 [ext_resource type="Script" path="res://scripts/enemy/ai_states/ground_move_and_jump_towards_player.gd" id="8_g14st"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai_state.gd" id="9_co0hy"]
 [ext_resource type="Texture2D" uid="uid://dy6qowdc0es4b" path="res://assets/sprites/particles/trash_particle.png" id="11_5vfib"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6crh"]
+atlas = ExtResource("2_kbv1x")
+region = Rect2(0, 0, 32, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vh2fd"]
 atlas = ExtResource("3_jp8xo")
@@ -94,6 +99,14 @@ region = Rect2(352, 0, 32, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cxcps"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6crh")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_jo4s8")
@@ -198,7 +211,7 @@ metadata/move_points = PackedVector2Array()
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_cxcps")
-animation = &"in_trash"
+animation = &"crouch"
 autoplay = "in_trash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -227,8 +240,10 @@ script = ExtResource("7_s7vov")
 
 [node name="move_towards_player" type="Node" parent="AI"]
 script = ExtResource("8_g14st")
-move_speed = 200.0
-acceleration = 100.0
+min_jump_cooldown = 1.0
+max_jump_cooldown = 3.0
+move_speed = 125.0
+acceleration = 80.0
 gravity = 300.0
 wall_stops_velocity = true
 

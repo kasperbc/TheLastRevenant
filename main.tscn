@@ -389,7 +389,6 @@ turn_on_light_when_near = true
 [node name="UI" parent="." instance=ExtResource("4_etwc1")]
 
 [node name="Background" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.184314)
 z_index = -100
 texture_repeat = 2
 position = Vector2(1200, -64)
@@ -401,7 +400,7 @@ script = ExtResource("6_2wqmi")
 
 [node name="Background2" type="Sprite2D" parent="Background"]
 top_level = true
-z_index = -15
+z_index = -115
 texture_repeat = 2
 texture = ExtResource("5_g3icy")
 region_rect = Rect2(0, 0, 36000, 25920)

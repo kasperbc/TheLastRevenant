@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c2d1pxh4h0ea7" path="res://objects/particles/box_wood_explosion.tscn" id="2_w8tgl"]
 
 [node name="MediumWoodBox" instance=ExtResource("1_qov0p")]
+flesh = false
 death_particle = ExtResource("2_w8tgl")
 
 [node name="Sprite2D" parent="." index="0"]
