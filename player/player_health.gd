@@ -1,4 +1,5 @@
 extends Node
+class_name PlayerHealth
 
 const BASE_MAX_HEALTH = 6
 
@@ -43,6 +44,8 @@ func damage():
 	
 	GameMan.get_audioman().play_fx("playerhurt", 0.0, randf_range(0.95, 1.05))
 	
+	get_parent().get_node("Sprite2D/VisorGlow").play("damage_taken")
+	
 	get_tree().paused = true
 	await get_tree().create_timer(0.15).timeout
 	get_tree().paused = false
@@ -51,9 +54,12 @@ func damage():
 	invincible = true
 	await get_tree().create_timer(1).timeout
 	invincible = false
+	
 
 func die():
 	current_health = 0
+	
+	get_parent().get_node("Sprite2D/VisorGlow").play("damage_taken")
 	
 	get_tree().paused = true
 	

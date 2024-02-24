@@ -6,6 +6,8 @@ class_name Logbook
 func pick_up():
 	GameMan.get_audioman().play_fx("expansion_collect", 0.0, 1.0)
 	
+	GameMan.get_player().get_node("Sprite2D/VisorGlow").play("item")
+	
 	get_tree().paused = true
 	await get_tree().create_timer(0.25).timeout
 	get_tree().paused = false

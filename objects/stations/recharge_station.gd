@@ -18,6 +18,7 @@ func _process(delta):
 
 func on_station_activate():
 	GameMan.get_player_health().heal_full()
+	GameMan.get_player().get_node("Sprite2D/VisorGlow").play("save")
 	GameMan.set_latest_recharge_point(station_id)
 	SaveMan.write_save()
 	GameMan.get_audioman().play_fx("recharge", 0.0, 1.0)

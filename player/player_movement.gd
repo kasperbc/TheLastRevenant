@@ -58,7 +58,8 @@ var hook_speed : float
 var hook_jump_strength : float
 var last_distance : float
 var bomb_active : bool
-var bomb_last_use_timestamp = 0.0
+var current_bomb_cooldown : float
+var bomb_on_cooldown : bool
 var gravity_multiplier = 1
 var time_in_air = 0.0
 var holding_jump : bool
@@ -118,7 +119,7 @@ func process_normal_movement(delta):
 		hook_fired.emit()
 	
 	if Input.is_action_just_pressed("hook_attack") and GameMan.get_upgrade_status(GameMan.Upgrades.THERMAL_MODULE) == GameMan.UpgradeStatus.ENABLED:
-		if $Hook.visible or get_bomb_on_cooldown():
+		if $Hook.visible or bomb_on_cooldown:
 			return
 		bomb_active = !bomb_active
 	
@@ -146,6 +147,11 @@ func process_normal_movement(delta):
 	
 	if holding_jump and not Input.is_action_pressed("jump"):
 		holding_jump = false
+	
+	if bomb_on_cooldown:
+		current_bomb_cooldown -= delta
+		if current_bomb_cooldown <= 0:
+			on_bomb_cooldown_expire()
 
 func get_gravity() -> float:	
 	var grav = jump_gravity 
@@ -168,9 +174,9 @@ func apply_gravity(delta):
 	
 	if not is_on_floor():
 		if velocity.y > 0:
-			$Sprite2D.play("freefall")
+			$Sprite2D/AnimationPlayer.play("freefall")
 		else:
-			$Sprite2D.play("jumpsquat")
+			$Sprite2D/AnimationPlayer.play("jumpsquat")
 
 func jump():
 	if not is_on_floor() and time_in_air > COYOTE_TIME:
@@ -210,11 +216,11 @@ func horizontal_move(delta):
 		velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
 		
 		if is_on_floor():
-			$Sprite2D.play("walk")
+			$Sprite2D/AnimationPlayer.play("walk")
 	else:
 		apply_friction(delta)
 		if is_on_floor():
-			$Sprite2D.play("idle")
+			$Sprite2D/AnimationPlayer.play("idle")
 	
 	set_joy_dir()
 
@@ -276,7 +282,8 @@ func _on_hook_collided(collision : KinematicCollision2D):
 		if collision.get_collider() is DestructiblePipe:
 			collision.get_collider().destroy_self()
 		
-		bomb_last_use_timestamp = Time.get_unix_time_from_system()
+		current_bomb_cooldown = BOMB_COOLDOWN
+		bomb_on_cooldown = true
 		hook_released_early.emit()
 		bomb_active = false
 		var explosion_effect = explosion.instantiate()
@@ -284,6 +291,8 @@ func _on_hook_collided(collision : KinematicCollision2D):
 		explosion_effect.global_position = hook_obj.global_position
 	
 	in_air_because_hook = true
+	
+	$Sprite2D/VisorGlow.play("hook_cling")
 
 # HOOK MOVEMENT
 
@@ -523,5 +532,8 @@ func flip_sprite(inverse : bool):
 	
 	$Sprite2D/HookshotHand.position = hookhand_pos
 
-func get_bomb_on_cooldown() -> bool:
-	return Time.get_unix_time_from_system() < bomb_last_use_timestamp + BOMB_COOLDOWN
+func on_bomb_cooldown_expire():
+	bomb_on_cooldown = false
+	
+	$Sprite2D/VisorGlow.play("bomb_ready")
+	GameMan.get_audioman().play_fx("beep2", -6)

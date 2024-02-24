@@ -17,6 +17,8 @@ func pick_up():
 	GameMan.get_audioman().pause_music()
 	GameMan.get_audioman().play_fx("expansion_collect", 0.0, 1.0)
 	
+	GameMan.get_player().get_node("Sprite2D/VisorGlow").play("item")
+	
 	show_expansion_text()
 	await get_tree().create_timer(0.5).timeout
 	hide_expansion_text()
