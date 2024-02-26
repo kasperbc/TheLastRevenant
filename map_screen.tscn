@@ -95,7 +95,7 @@ position = Vector2(140, 4)
 position = Vector2(140, 12)
 
 [node name="HealthUpgrade2" parent="OptionalUpgrades" instance=ExtResource("6_hki2v")]
-position = Vector2(76, -20)
+position = Vector2(84, -20)
 expansion_id = 1
 
 [node name="HealthUpgrade3" parent="OptionalUpgrades" instance=ExtResource("6_hki2v")]
