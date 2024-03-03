@@ -12,11 +12,11 @@
 [ext_resource type="Script" path="res://scripts/ui/title/title_scroll.gd" id="5_8m16c"]
 [ext_resource type="Texture2D" uid="uid://c8st1hp4ajgip" path="res://title_screen/vulpes_star.png" id="5_lcag0"]
 [ext_resource type="Texture2D" uid="uid://cwrl0pvt1aur2" path="res://title_screen/small_title.png" id="5_vwhf8"]
-[ext_resource type="PackedScene" uid="uid://2r2ppdsrhmie" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
+[ext_resource type="PackedScene" path="res://objects/ui/settings_panel.tscn" id="6_42u6o"]
 [ext_resource type="Script" path="res://scripts/ui/extras_button.gd" id="6_b0kv4"]
 [ext_resource type="Texture2D" uid="uid://bwnrbgm7bwmo7" path="res://title_screen/comm_satellite.png" id="7_0dxhi"]
 [ext_resource type="AudioStream" uid="uid://c2nwwhm2gjvty" path="res://assets/music/gibbrishtext.mp3" id="7_qcstw"]
-[ext_resource type="Texture2D" uid="uid://mp0jln140442" path="res://title_screen/pantheon4_moon.png" id="8_2wg8o"]
+[ext_resource type="Texture2D" uid="uid://bt8mtjehp15oi" path="res://title_screen/pantheon4_moon.png" id="8_2wg8o"]
 [ext_resource type="Texture2D" uid="uid://rchscos1poir" path="res://assets/sprites/ui/completion_emblem.png" id="8_wdex8"]
 [ext_resource type="Texture2D" uid="uid://b0on8l50nnsl3" path="res://title_screen/lepus_waypoint_anim.png" id="8_xj82v"]
 [ext_resource type="Script" path="res://scripts/ui/end_float.gd" id="9_66g63"]
@@ -27,15 +27,15 @@
 [ext_resource type="Script" path="res://scripts/ui/best_time_label.gd" id="11_ct5y2"]
 [ext_resource type="PackedScene" uid="uid://cj2clygujry4i" path="res://objects/ui/extras/music_select.tscn" id="23_se761"]
 [ext_resource type="Texture2D" uid="uid://bmqkwxdymmyiy" path="res://title_screen/music_circle_01.png" id="24_8xfrm"]
-[ext_resource type="AudioStream" uid="uid://tsmj2ows022u" path="res://assets/music/spawn_room.mp3" id="25_dpm4y"]
+[ext_resource type="AudioStream" uid="uid://hq1li7hofb2t" path="res://assets/music/spawn_room.mp3" id="25_dpm4y"]
 [ext_resource type="Texture2D" uid="uid://bh3bxepgmsxra" path="res://title_screen/music_circle_02.png" id="26_o5p6x"]
-[ext_resource type="AudioStream" uid="uid://cjtdg53axilac" path="res://assets/music/revenant_lab.mp3" id="26_tgult"]
-[ext_resource type="AudioStream" uid="uid://ycqqqgrexcdc" path="res://assets/music/boss_prelude.mp3" id="27_koe8s"]
+[ext_resource type="AudioStream" uid="uid://corer8h1gipth" path="res://assets/music/revenant_lab.mp3" id="26_tgult"]
+[ext_resource type="AudioStream" uid="uid://b25sdpcabpwy8" path="res://assets/music/boss_prelude.mp3" id="27_koe8s"]
 [ext_resource type="AudioStream" uid="uid://dlf8euleocdwk" path="res://assets/music/beatfactory.mp3" id="28_klnup"]
 [ext_resource type="Texture2D" uid="uid://b8ktcggl85ee0" path="res://title_screen/music_circle_03.png" id="28_vabkt"]
 [ext_resource type="AudioStream" uid="uid://bkatxt0t1lcx8" path="res://assets/music/hangar.mp3" id="29_omry5"]
 [ext_resource type="Texture2D" uid="uid://ctem25wdnma3r" path="res://title_screen/music_circle_04.png" id="30_f4wn3"]
-[ext_resource type="AudioStream" uid="uid://dr23yhcesj6hx" path="res://assets/music/living_quarters.mp3" id="30_tkdda"]
+[ext_resource type="AudioStream" uid="uid://wsmexa3j5tp0" path="res://assets/music/living_quarters.mp3" id="30_tkdda"]
 [ext_resource type="AudioStream" uid="uid://ricdkpkohax4" path="res://assets/music/vents.mp3" id="31_d1a2i"]
 [ext_resource type="Texture2D" uid="uid://duyfh67iuvud3" path="res://title_screen/music_circle_05.png" id="32_648jy"]
 [ext_resource type="AudioStream" uid="uid://b8eafutk0jisu" path="res://assets/music/obsv.mp3" id="32_jva41"]
@@ -44,10 +44,10 @@
 [ext_resource type="Texture2D" uid="uid://cxpgn0x31lv3u" path="res://title_screen/music_circle_06.png" id="34_wpbyw"]
 [ext_resource type="AudioStream" uid="uid://byvav4njfe0hu" path="res://assets/music/finalboss.mp3" id="35_vvcop"]
 [ext_resource type="Texture2D" uid="uid://xbkcus1x60bn" path="res://title_screen/music_circle_07.png" id="36_pscvn"]
-[ext_resource type="AudioStream" uid="uid://dgkjqq6en8pf2" path="res://assets/music/mendalla_aftermath.mp3" id="36_y325r"]
-[ext_resource type="AudioStream" uid="uid://cccd7tex65pth" path="res://assets/music/asteroid_field_finalmb.mp3" id="37_lx2ad"]
+[ext_resource type="AudioStream" uid="uid://c4yokdtwxtmjl" path="res://assets/music/mendalla_aftermath.mp3" id="36_y325r"]
+[ext_resource type="AudioStream" uid="uid://cqnsnvxvil7my" path="res://assets/music/asteroid_field_finalmb.mp3" id="37_lx2ad"]
 [ext_resource type="Texture2D" uid="uid://cd2m62sckccv3" path="res://title_screen/music_circle_08.png" id="38_s651r"]
-[ext_resource type="AudioStream" uid="uid://bfhqq744dnjx7" path="res://assets/music/the-last-revenant-title-theme-demo.mp3" id="39_pd8po"]
+[ext_resource type="AudioStream" uid="uid://eitk1mgvvq21" path="res://assets/music/the-last-revenant-title-theme-demo.mp3" id="39_pd8po"]
 [ext_resource type="Script" path="res://objects/ui/extras/extras_music_player.gd" id="40_d8ajl"]
 [ext_resource type="Texture2D" uid="uid://54200eqq4333" path="res://title_screen/music_circle_09.png" id="40_ddg1l"]
 [ext_resource type="Texture2D" uid="uid://dteea2gdybgxd" path="res://title_screen/music_circle.png" id="40_vgmsl"]
@@ -530,7 +530,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7fnti")
 [node name="Home" type="Control" parent="ExtrasPanel/TabContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ExtrasPanel/TabContainer/Home"]
+[node name="Info" type="Label" parent="ExtrasPanel/TabContainer/Home"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -543,7 +543,36 @@ offset_right = 125.5
 offset_bottom = -142.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Welcome to the extras menu!"
+text = "
+
+
+
+
+
+
+
+
+
+
+
+                                                              Welcome to the extras menu!
+
+        Thank you for playing The Last Revenant! However, Sombre’s journey is not over.
+        Completing the game with any amount of item completion unlocks the Sound Test and
+        a new game mode, but to get additional extra content you’ll have to beat the game at
+        increasing levels of item completion, and even in under 90 minutes to unlock the very last page.
+        
+           If you’d like to support our team in any way, please feel free to follow us on the following platforms:
+
+        kekis on itch.io, YouTube
+        Francca on itch.io, YouTube, Instagram, Twitter
+        RedDeadDumbass on Instagram
+        Feel free to also subscribe to the official Team Funikulaari
+        YouTube channel for updates regarding future projects.
+
+        Thank you once again for enjoying our game!
+
+           Team Funikulaari"
 label_settings = SubResource("LabelSettings_j44kk")
 
 [node name="Music" type="Control" parent="ExtrasPanel/TabContainer"]
@@ -583,7 +612,7 @@ track_author = "RedDeadDumbass"
 texture = ExtResource("24_8xfrm")
 track = ExtResource("7_qcstw")
 
-[node name="Cyrostasis" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
+[node name="Cryostasis" parent="ExtrasPanel/TabContainer/Music/MusicSelect/ScrollContainer/VBoxContainer" instance=ExtResource("23_se761")]
 layout_mode = 2
 track_name = "Cyrostasis"
 track_author = "Francca"
@@ -759,7 +788,58 @@ text = "Stop"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ExtrasPanel/TabContainer/Music/CurrentMusic"]
 volume_db = -12.0
 
-[node name="Extra Settings" type="Control" parent="ExtrasPanel/TabContainer"]
+[node name="Gamemodes" type="Control" parent="ExtrasPanel/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="GamemodeList" type="Label" parent="ExtrasPanel/TabContainer/Gamemodes"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.5
+offset_top = -231.5
+offset_right = 971.5
+offset_bottom = 455.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+
+
+
+
+
+Randomizer Mode
+
+
+Low Gravity Mode
+
+
+Floor is Magma Mode
+
+
+God Mode"
+label_settings = SubResource("LabelSettings_j44kk")
+
+[node name="Art 1" type="Control" parent="ExtrasPanel/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Art 2" type="Control" parent="ExtrasPanel/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Art 3" type="Control" parent="ExtrasPanel/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Art 4" type="Control" parent="ExtrasPanel/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Art 5" type="Control" parent="ExtrasPanel/TabContainer"]
 visible = false
 layout_mode = 2
 

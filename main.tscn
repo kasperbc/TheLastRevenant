@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dge4ysc7omnmg" path="res://assets/backgrounds/background.png" id="5_g3icy"]
 [ext_resource type="Script" path="res://objects/hook/panparticle.gd" id="5_m4rns"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="6_2wqmi"]
-[ext_resource type="PackedScene" uid="uid://c2motn016t1md" path="res://objects/decor/small_lamp.tscn" id="8_424u8"]
-[ext_resource type="PackedScene" uid="uid://0nq5ye7e5td1" path="res://objects/decor/wide_lamp.tscn" id="8_srfg1"]
+[ext_resource type="PackedScene" path="res://objects/decor/small_lamp.tscn" id="8_424u8"]
+[ext_resource type="PackedScene" path="res://objects/decor/wide_lamp.tscn" id="8_srfg1"]
 [ext_resource type="Script" path="res://scripts/game_start.gd" id="10_5r6h5"]
 [ext_resource type="PackedScene" uid="uid://b2yrjlexgqqvi" path="res://addons/audio-manager/AudioManager.tscn" id="11_8wm0p"]
 [ext_resource type="Texture2D" uid="uid://cvax2goia4dxm" path="res://assets/collision_decor/cryocapsule-opening-start.png" id="11_e2h05"]
@@ -349,14 +349,86 @@ energy = 0.3
 blend_mode = 1
 
 [node name="WideLamp" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
-position = Vector2(192, -192)
+position = Vector2(232, -140)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp2" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(2216, 4)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp5" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(2768, 4)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp6" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(3064, 4)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp7" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(5376, 628)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp8" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(5952, 228)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp9" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(6576, 100)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp12" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(6592, 1284)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp13" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(6848, 1284)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp10" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(6864, 100)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp11" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(6848, -172)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp3" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(1920, -252)
+light_off = true
+turn_on_light_when_near = true
+static_object = true
+
+[node name="WideLamp4" parent="DirectionalLight2D" instance=ExtResource("8_srfg1")]
+position = Vector2(2000, -252)
 light_off = true
 turn_on_light_when_near = true
 static_object = true
 
 [node name="SmallLamp" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
 z_index = 0
-position = Vector2(352, -108)
+position = Vector2(384, -108)
 collision_mask = 0
 light_off = true
 broken_sprite = null
@@ -364,7 +436,7 @@ turn_on_light_when_near = true
 
 [node name="SmallLamp2" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
 z_index = 0
-position = Vector2(400, -108)
+position = Vector2(536, -140)
 collision_mask = 0
 light_off = true
 broken_sprite = null
@@ -372,7 +444,79 @@ turn_on_light_when_near = true
 
 [node name="SmallLamp3" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
 z_index = 0
-position = Vector2(752, -108)
+position = Vector2(768, -108)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
+
+[node name="SmallLamp5" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(1000, -12)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
+
+[node name="SmallLamp6" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(1112, -12)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
+
+[node name="SmallLamp7" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(1904, 276)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
+
+[node name="SmallLamp8" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(2424, -124)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
+
+[node name="SmallLamp9" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(2568, -124)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
+
+[node name="SmallLamp10" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(3496, 276)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
+
+[node name="SmallLamp11" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(3800, 276)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
+
+[node name="SmallLamp12" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(5288, 228)
+collision_mask = 0
+light_off = true
+broken_sprite = null
+turn_on_light_when_near = true
+
+[node name="SmallLamp13" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
+z_index = 0
+position = Vector2(5464, 228)
 collision_mask = 0
 light_off = true
 broken_sprite = null
@@ -380,7 +524,7 @@ turn_on_light_when_near = true
 
 [node name="SmallLamp4" parent="DirectionalLight2D" instance=ExtResource("8_424u8")]
 z_index = 0
-position = Vector2(800, -108)
+position = Vector2(616, -140)
 collision_mask = 0
 light_off = true
 broken_sprite = null
@@ -389,6 +533,7 @@ turn_on_light_when_near = true
 [node name="UI" parent="." instance=ExtResource("4_etwc1")]
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 z_index = -100
 texture_repeat = 2
 position = Vector2(1200, -64)
