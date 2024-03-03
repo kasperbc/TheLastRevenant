@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://dcr1q7oj4a006"]
+[gd_scene load_steps=74 format=3 uid="uid://dcr1q7oj4a006"]
 
 [ext_resource type="Theme" uid="uid://cwtscierv2utd" path="res://assets/themes/main_theme.tres" id="1_3mwic"]
 [ext_resource type="Texture2D" uid="uid://5hm18mar4hmi" path="res://assets/sprites/ui/health-circle-sixths.png" id="2_grqex"]
@@ -38,6 +38,7 @@
 [ext_resource type="Resource" uid="uid://bkcfhqckoq3jb" path="res://objects/resources/levelareas/observation.tres" id="38_k6ogq"]
 [ext_resource type="Resource" uid="uid://bw7tdrw0uft8f" path="res://objects/resources/levelareas/weapons.tres" id="39_55f24"]
 [ext_resource type="Resource" uid="uid://dwj1ytetmjvri" path="res://objects/resources/levelareas/reactor.tres" id="40_e1pit"]
+[ext_resource type="Resource" uid="uid://bwl8xd483i72j" path="res://objects/resources/logbooks/logbook6.tres" id="41_8q0wb"]
 [ext_resource type="Resource" uid="uid://cvenkifdw8yrn" path="res://objects/resources/levelareas/asteroid_field.tres" id="41_qsnt2"]
 [ext_resource type="Script" path="res://scripts/ui/logbooktab.gd" id="43_8pmqp"]
 [ext_resource type="PackedScene" uid="uid://j7vq5nworq2e" path="res://objects/ui/logbook_ui.tscn" id="43_q2mda"]
@@ -480,6 +481,10 @@ logbook_res = ExtResource("47_vxjug")
 layout_mode = 2
 logbook_res = ExtResource("48_qpbjs")
 
+[node name="LogbookLog6" parent="Control/MapScreen/TabContainer/Logbooks/VBoxContainer" instance=ExtResource("43_q2mda")]
+layout_mode = 2
+logbook_res = ExtResource("41_8q0wb")
+
 [node name="LogbookPanel" type="Panel" parent="Control/MapScreen/TabContainer/Logbooks"]
 visible = false
 layout_mode = 0
@@ -498,10 +503,10 @@ horizontal_alignment = 1
 
 [node name="LogbookText" type="Label" parent="Control/MapScreen/TabContainer/Logbooks/LogbookPanel"]
 layout_mode = 0
-offset_left = 416.0
-offset_top = 96.0
-offset_right = 880.0
-offset_bottom = 656.0
+offset_left = 304.0
+offset_top = 84.0
+offset_right = 1004.0
+offset_bottom = 628.0
 text = "It’s only my fourth day on this far-out base, and I’m already getting second thoughts from selecting ”Accept” on that relocation form. They said my sentence would be over sooner, yet something makes me feel like that might mean something else than I originally thought with my newfound context. Such a distant past shouldn’t even be used to brand my entire identity like livestock, I’m not the woman I used to be. I’ve changed.
 
 In any case, I guess I should start mentally settling in a bit, assuming I ever get out of this hellhole. I just hope the work we’re doing here truly helps the people in those pods, they’ve gone through even more suffering than I have. Hopefully these upgrades that they’ve forced me to retrofit for humanoid use aren’t too painful to insert, but then again, I’m (thankfully) not in charge of biotech installations."
@@ -510,9 +515,9 @@ autowrap_mode = 2
 [node name="CloseButton" type="Button" parent="Control/MapScreen/TabContainer/Logbooks/LogbookPanel"]
 layout_mode = 0
 offset_left = 608.0
-offset_top = 666.0
+offset_top = 634.0
 offset_right = 663.0
-offset_bottom = 694.0
+offset_bottom = 662.0
 text = "Close"
 
 [node name="MapMask" type="ColorRect" parent="Control"]
@@ -795,6 +800,7 @@ script = ExtResource("58_xvdar")
 [connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog3" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
 [connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog4" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
 [connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog5" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
+[connection signal="show_log" from="Control/MapScreen/TabContainer/Logbooks/VBoxContainer/LogbookLog6" to="Control/MapScreen/TabContainer/Logbooks" method="on_show_log"]
 [connection signal="pressed" from="Control/MapScreen/TabContainer/Logbooks/LogbookPanel/CloseButton" to="Control/MapScreen/TabContainer/Logbooks" method="_on_close_button_pressed"]
 [connection signal="pressed" from="Control/PauseScreen/VBoxContainer/ResumeButton" to="Control/PauseScreen" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Control/PauseScreen/VBoxContainer/SettingsButton" to="Control/PauseScreen/SettingsPanel" method="show_settings"]

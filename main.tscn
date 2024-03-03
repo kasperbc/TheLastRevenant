@@ -405,6 +405,23 @@ texture_repeat = 2
 texture = ExtResource("5_g3icy")
 region_rect = Rect2(0, 0, 36000, 25920)
 
+[node name="Background2" type="Sprite2D" parent="."]
+z_index = -100
+texture_repeat = 2
+position = Vector2(1200, -64)
+scale = Vector2(0.391, 0.366)
+texture = ExtResource("5_g3icy")
+region_enabled = true
+region_rect = Rect2(0, 0, 25000, 12000)
+script = ExtResource("6_2wqmi")
+
+[node name="Background2" type="Sprite2D" parent="Background2"]
+top_level = true
+z_index = -115
+texture_repeat = 2
+texture = ExtResource("5_g3icy")
+region_rect = Rect2(0, 0, 36000, 25920)
+
 [node name="GameStartManager" type="Node" parent="."]
 script = ExtResource("10_5r6h5")
 

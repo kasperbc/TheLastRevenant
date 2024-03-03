@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cecc7ddrs85o4"]
+[gd_scene load_steps=19 format=3 uid="uid://cecc7ddrs85o4"]
 
 [ext_resource type="TileSet" uid="uid://wa8itsni7gf8" path="res://assets/tilesets/map-screen/map_screen_2.tres" id="1_0mvxt"]
 [ext_resource type="Texture2D" uid="uid://iw82b3blhlos" path="res://assets/sprites/ui/player_map_icon.png" id="2_h5urc"]
@@ -9,6 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://cjacrqjxnbof6" path="res://objects/map/map_item_funikulaari.tscn" id="7_d883d"]
 [ext_resource type="PackedScene" uid="uid://hals0he1tiri" path="res://objects/map/map_item_boss.tscn" id="8_yyr7t"]
 [ext_resource type="Texture2D" uid="uid://bo6myt1uy6dkf" path="res://assets/tilesets/map-screen/satellite.png" id="9_swcnm"]
+[ext_resource type="Texture2D" uid="uid://cto2m01s1ifss" path="res://assets/tilesets/map-screen/tlr_map_icon_logbook.png" id="9_t3iic"]
+[ext_resource type="Script" path="res://objects/map/map_item_logbook.gd" id="10_ut4rs"]
+[ext_resource type="Resource" uid="uid://dg8wsnafej4je" path="res://objects/resources/logbooks/logbook1.tres" id="11_rnnxd"]
+[ext_resource type="Texture2D" uid="uid://cdk5o7arpifhx" path="res://assets/tilesets/map-screen/tlr_map_icon_logbook_collected.png" id="12_uh8sm"]
+[ext_resource type="Resource" uid="uid://tfy7maw0utjf" path="res://objects/resources/logbooks/logbook2.tres" id="13_mytro"]
+[ext_resource type="Resource" uid="uid://ckorvg1twx3bq" path="res://objects/resources/logbooks/logbook3.tres" id="14_ab384"]
+[ext_resource type="Resource" uid="uid://bnjug6v4jycfe" path="res://objects/resources/logbooks/logbook4.tres" id="15_ks5a2"]
+[ext_resource type="Resource" uid="uid://c6fbb7p70ru0l" path="res://objects/resources/logbooks/logbook5.tres" id="16_qocf6"]
+[ext_resource type="Resource" uid="uid://bwl8xd483i72j" path="res://objects/resources/logbooks/logbook6.tres" id="17_js0bw"]
 
 [node name="MapScreen" type="TileMap"]
 tile_set = ExtResource("1_0mvxt")
@@ -191,6 +200,50 @@ position = Vector2(164, -36)
 
 [node name="Boss3" parent="Bosses" instance=ExtResource("8_yyr7t")]
 position = Vector2(200, 28)
+
+[node name="Logbooks" type="Node2D" parent="."]
+
+[node name="Logbook1" parent="Logbooks" instance=ExtResource("6_hki2v")]
+position = Vector2(60, -60)
+texture = ExtResource("9_t3iic")
+script = ExtResource("10_ut4rs")
+logbook_res = ExtResource("11_rnnxd")
+collected_sprite = ExtResource("12_uh8sm")
+
+[node name="Logbook2" parent="Logbooks" instance=ExtResource("6_hki2v")]
+position = Vector2(12, -12)
+texture = ExtResource("9_t3iic")
+script = ExtResource("10_ut4rs")
+logbook_res = ExtResource("13_mytro")
+collected_sprite = ExtResource("12_uh8sm")
+
+[node name="Logbook3" parent="Logbooks" instance=ExtResource("6_hki2v")]
+position = Vector2(92, 12)
+texture = ExtResource("9_t3iic")
+script = ExtResource("10_ut4rs")
+logbook_res = ExtResource("14_ab384")
+collected_sprite = ExtResource("12_uh8sm")
+
+[node name="Logbook4" parent="Logbooks" instance=ExtResource("6_hki2v")]
+position = Vector2(84, -52)
+texture = ExtResource("9_t3iic")
+script = ExtResource("10_ut4rs")
+logbook_res = ExtResource("15_ks5a2")
+collected_sprite = ExtResource("12_uh8sm")
+
+[node name="Logbook5" parent="Logbooks" instance=ExtResource("6_hki2v")]
+position = Vector2(-12, -4)
+texture = ExtResource("9_t3iic")
+script = ExtResource("10_ut4rs")
+logbook_res = ExtResource("16_qocf6")
+collected_sprite = ExtResource("12_uh8sm")
+
+[node name="Logbook6" parent="Logbooks" instance=ExtResource("6_hki2v")]
+position = Vector2(180, 36)
+texture = ExtResource("9_t3iic")
+script = ExtResource("10_ut4rs")
+logbook_res = ExtResource("17_js0bw")
+collected_sprite = ExtResource("12_uh8sm")
 
 [node name="Satellite" type="Sprite2D" parent="."]
 position = Vector2(200, -20)

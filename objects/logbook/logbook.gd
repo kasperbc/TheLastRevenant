@@ -3,6 +3,10 @@ class_name Logbook
 
 @export var res : LogbookRes
 
+func _ready():
+	if GameMan.has_logbook(res):
+		queue_free()
+
 func pick_up():
 	GameMan.get_audioman().play_fx("expansion_collect", 0.0, 1.0)
 	

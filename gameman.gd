@@ -242,6 +242,10 @@ func collect_logbook(logbook_res : LogbookRes):
 	logbooks.append(logbook_res)
 	SaveMan.save_value("logbooks_collected", logbooks)
 
+func has_logbook(logbook_res : LogbookRes) -> bool:
+	var logbooks = SaveMan.get_value("logbooks_collected", [])
+	return logbooks.has(logbook_res)
+
 func get_keybind_setting(key):
 	if config == null:
 		config = ConfigFile.new()
